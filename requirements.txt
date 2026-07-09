@@ -1,7 +1,2 @@
-{
-  "meta": {
-    "generated_at": null,
-    "source": "placeholder"
-  },
-  "records": []
-}
+requests==2.32.3
+openpyxl==3.1.5

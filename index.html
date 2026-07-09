@@ -291,7 +291,7 @@ html.nav-unpinned.nav-open .nav-overlay{opacity:1;pointer-events:auto}
     <div class="update-panel">
       <h3>🔄 Manter os dados atualizados</h3>
       <p>Esta ferramenta usa uma cópia da planilha "B — Balcão". Para atualizar com a versão mais recente, baixe o arquivo do OneDrive e carregue aqui — a análise é <b>reprocessada automaticamente</b>, sem precisar mexer no código.</p>
-      <div class="up-actions"><button class="up-btn" onclick="document.getElementById('xlsxFile').click()">📂 Carregar planilha (.xlsx)</button><input type="file" id="xlsxFile" accept=".xlsx,.xls,.csv" style="display:none"><button class="up-btn sec" id="cloudBtn" onclick="tryCloudFetch()">☁️ Tentar atualizar da nuvem</button><span class="up-status" id="upStatus"></span></div>
+      <div class="up-actions"><button class="up-btn" onclick="document.getElementById('xlsxFile').click()">📂 Carregar planilha (.xlsx)</button><input type="file" id="xlsxFile" accept=".xlsx,.xls,.csv" style="display:none"><button class="up-btn sec" id="cloudBtn" onclick="loadDadosJson()">☁️ Tentar atualizar da nuvem</button><span class="up-status" id="upStatus"></span></div>
       <div class="sheet-links">
         <a class="sheet-link" href="https://1drv.ms/x/c/ba23482b38fbdc1e/EVyxoIPnz65Du-mLBAl7CuUBOsLybUkq3f-TJiOIyW9HBA?e=frZ3Ms" target="_blank" rel="noopener noreferrer"><div class="sl-t">📊 Planilha B — Balcão</div><div class="sl-d">Fila após entrega até o e-mail "Já sou Italiano" (base desta análise)</div><div class="sl-go">Abrir no OneDrive →</div></a>
         <a class="sheet-link" href="https://1drv.ms/x/c/ba23482b38fbdc1e/ETkw9cQ64L5Ko2WicjOlg04BiOc1mm4MLMiqKWcidPm6iA?e=4zXpjS" target="_blank" rel="noopener noreferrer"><div class="sl-t">🇮🇹 Planilha JSI — Já sou Italiano</div><div class="sl-d">Etapa seguinte: espera pelo e-mail PEC de finalização consular</div><div class="sl-go">Abrir no OneDrive →</div></a>
@@ -527,6 +527,57 @@ function isStandalone(){return window.matchMedia('(display-mode: standalone)').m
 function promptInstall(){if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then(function(){deferredPrompt=null;showInstall(false);});}else{var ios=/iphone|ipad|ipod/i.test(navigator.userAgent);alert(ios?'Para instalar no iPhone/iPad:\n\n1) Toque em Compartilhar (↑)\n2) "Adicionar à Tela de Início"':'Abra o menu do navegador (⋮) e toque em "Instalar app".');}}
 if(!isStandalone()&&/iphone|ipad|ipod/i.test(navigator.userAgent)){showInstall(true);}
 if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}
+
+/* ===== v4 - leitura automatica via dados.json gerado pelo GitHub Actions ===== */
+(function(){
+  function jsonStatus(msg){ if(typeof setStatus==='function') setStatus(msg); }
+  function normalizeRecord(r){
+    var out={
+      entrega:r.entrega,
+      nome:r.nome,
+      grupo:r.grupo || r.planilha || '-',
+      resol:r.resol || null,
+      planilha:r.planilha || r.origem || null,
+      origem:r.origem || r.planilha || null
+    };
+    return out;
+  }
+  var oldPlanilhaDe = window.planilhaDe;
+  window.planilhaDe = function(x){
+    if(x && x.planilha) return x.planilha;
+    if(x && x.origem) return x.origem;
+    return oldPlanilhaDe ? oldPlanilhaDe(x) : 'B';
+  };
+  window.loadDadosJson = function(){
+    jsonStatus('🔄 Verificando dados.json...');
+    return fetch('./dados.json?ts='+Date.now(), {cache:'no-store'})
+      .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+      .then(function(payload){
+        var records = Array.isArray(payload) ? payload : (payload.records || []);
+        records = records.map(normalizeRecord).filter(function(x){ return x.entrega && x.nome; });
+        if(!records.length) throw new Error('dados.json sem registros válidos');
+        DATA = records;
+        if(typeof enrich==='function') enrich();
+        if(typeof renderTable==='function') renderTable();
+        var result=document.getElementById('result'); if(result) result.style.display='none';
+        var empty=document.getElementById('empty'); if(empty) empty.style.display='block';
+        document.documentElement.classList.remove('has-proc');
+        var search=document.getElementById('search'); if(search) search.value='';
+        var updated = (payload.meta && payload.meta.generated_at) ? payload.meta.generated_at : new Date().toISOString();
+        var lu=document.getElementById('lastUpdate'); if(lu) lu.textContent='🔄 Dados: '+updated.substring(0,10)+' (dados.json)';
+        jsonStatus('✅ dados.json carregado: '+records.length+' registros · '+resolved.length+' resolvidos · '+waiting.length+' aguardando.');
+        return true;
+      })
+      .catch(function(e){
+        jsonStatus('⚠️ dados.json indisponível. Usando base embutida no HTML. Detalhe: '+(e && e.message ? e.message : e));
+        return false;
+      });
+  };
+  window.addEventListener('load', function(){
+    if(location.search.indexOf('nojson=1')>=0) return;
+    setTimeout(function(){ loadDadosJson(); }, 600);
+  });
+})();
 </script>
 </body>
 </html>
