@@ -253,6 +253,60 @@ html.nav-unpinned.nav-open .nav-overlay{opacity:1;pointer-events:auto}
   .dlbtn,.themebtn,.instbtn{padding:9px 12px;font-size:12px}.top>div:last-child{width:100%;justify-content:flex-start;flex-wrap:wrap}
   .foot>div{font-size:11px}.up-actions{gap:8px}.up-btn{padding:10px 12px;font-size:12.5px}
 }
+/* ===================== V5.0 — NOVOS MÓDULOS ===================== */
+/* Dashboard global */
+.dash{margin:18px 0}
+.dash-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+@media(max-width:1100px){.dash-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:640px){.dash-grid{grid-template-columns:repeat(2,1fr)}}
+.dcard{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:15px;position:relative;overflow:hidden}
+.dcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);opacity:.7}
+.dcard.g::before{background:var(--teal)}.dcard.w::before{background:var(--amber)}.dcard.r::before{background:#ff6b6b}.dcard.p::before{background:#c3a6e0}
+.dcard .dl{font-size:10.5px;color:var(--txt3);text-transform:uppercase;letter-spacing:.5px;display:flex;align-items:center;gap:5px}
+.dcard .dv{font-size:24px;font-weight:800;margin:6px 0 2px;line-height:1}
+.dcard .ds{font-size:11px;color:var(--txt2)}
+.dcard.g .dv{color:var(--teal)}.dcard.w .dv{color:var(--amber)}.dcard.r .dv{color:#ff6b6b}.dcard.a .dv{color:var(--accent)}.dcard.p .dv{color:#c3a6e0}
+/* Confiabilidade */
+.conf{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.conf-badge{font-size:13px;font-weight:800;padding:6px 16px;border-radius:20px}
+.conf-badge.alta{background:rgba(27,175,122,.18);color:#4fd6a0}.conf-badge.media{background:rgba(237,161,0,.18);color:#f5c860}.conf-badge.baixa{background:rgba(255,107,107,.18);color:#ff8a8a}
+.conf-ring{--pct:0;width:74px;height:74px;border-radius:50%;flex:0 0 auto;background:conic-gradient(var(--accent) calc(var(--pct)*1%),var(--line) 0);display:flex;align-items:center;justify-content:center;position:relative}
+.conf-ring::after{content:attr(data-v);position:absolute;width:56px;height:56px;border-radius:50%;background:var(--panel);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--txt)}
+/* Favoritos */
+.fav-btn{background:var(--panel2);border:1px solid var(--line);color:var(--txt2);border-radius:9px;padding:9px 14px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+.fav-btn:hover{border-color:var(--amber);color:var(--txt)}.fav-btn.on{background:rgba(237,161,0,.15);border-color:var(--amber);color:#f5c860}
+.share-btn{background:var(--accent);color:#fff;border:none;border-radius:9px;padding:9px 14px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+.share-btn:hover{filter:brightness(1.08)}
+.act-row{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.fav-list{display:flex;flex-wrap:wrap;gap:8px}
+.fav-chip{background:var(--panel2);border:1px solid var(--line);border-radius:20px;padding:6px 12px;font-size:12.5px;color:var(--txt);cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+.fav-chip:hover{border-color:var(--accent)}.fav-chip .x{color:var(--txt3);font-weight:700}.fav-chip .x:hover{color:#ff6b6b}
+.fav-empty{color:var(--txt3);font-size:12.5px}
+/* Radar / linha do tempo de estágios */
+.radar{display:flex;flex-wrap:wrap;gap:10px}
+.rstage{flex:1;min-width:96px;background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:12px 10px;text-align:center;position:relative;transition:.15s}
+.rstage .ri{font-size:20px}.rstage .rt{font-size:11.5px;font-weight:700;margin-top:5px}.rstage .rc{font-size:15px;font-weight:800;margin-top:3px;color:var(--accent)}
+.rstage.done{border-color:var(--teal)}.rstage.done .rc{color:var(--teal)}
+.rstage.cur{border-color:var(--accent);box-shadow:0 0 0 2px rgba(74,158,255,.25)}
+/* Checklist pós-cidadania */
+.chk-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:640px){.chk-grid{grid-template-columns:1fr}}
+.chk-item{display:flex;align-items:flex-start;gap:11px;background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:12px 14px;cursor:pointer;transition:.15s}
+.chk-item:hover{border-color:var(--accent)}.chk-item.on{border-color:var(--teal);background:rgba(27,175,122,.08)}
+.chk-box{width:22px;height:22px;flex:0 0 auto;border-radius:6px;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff}
+.chk-item.on .chk-box{background:var(--teal);border-color:var(--teal)}
+.chk-tx{font-size:12.8px}.chk-tx b{display:block;font-size:13.2px;margin-bottom:2px;color:var(--txt)}.chk-tx span{color:var(--txt2)}
+.chk-item.on .chk-tx b{color:#4fd6a0}
+/* Links úteis */
+.links-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:800px){.links-grid{grid-template-columns:1fr}}
+.link-card{display:block;background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:13px 15px;text-decoration:none;color:var(--txt);transition:.15s}
+.link-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.link-card .lc-t{font-weight:700;font-size:13.5px;display:flex;align-items:center;gap:7px}.link-card .lc-d{font-size:11.5px;color:var(--txt2);margin-top:4px}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--teal);color:#fff;padding:12px 20px;border-radius:10px;font-size:13px;font-weight:600;z-index:100;box-shadow:0 8px 24px rgba(0,0,0,.4);opacity:0;transition:.3s;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+:root[data-theme="light"] .conf-ring::after{background:#fff}
+
 </style>
 </head>
 <body>
@@ -261,7 +315,7 @@ html.nav-unpinned.nav-open .nav-overlay{opacity:1;pointer-events:auto}
   <header class="official-header">
     <button class="navtoggle" onclick="toggleNav()" aria-label="Abrir menu">&#9776;</button>
     <img class="emblem" src="data:image/png;base64,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" alt="Emblema da República Italiana">
-    <div class="oh-txt"><h1>Consolato Generale d'Italia · Rio de Janeiro</h1><p>Consultor de Expectativa de Atendimento — Cidadania Italiana (Jure Sanguinis)</p></div>
+    <div class="oh-txt"><h1>🇮🇹 Consultor Comunitário da Fila</h1><p>Cidadania Italiana (Jure Sanguinis) · RJ e ES — projeto colaborativo não oficial</p></div>
     <div class="tricolor"><i></i><i></i><i></i></div>
   </header>
   <div class="naooficial-banner">⚠️ <b>FERRAMENTA NÃO OFICIAL</b> — Projeto desenvolvido de forma voluntária pela comunidade para a comunidade, visando compartilhar informações, estatísticas e estimativas de acompanhamento do andamento dos processos. Não há qualquer vínculo com o Consulado Geral da Itália, com o Governo Italiano ou com o Governo Brasileiro. As informações oficiais dos processos são de acesso exclusivo do Consulado, que permanece como a única fonte oficial para consultas e atualizações.</div>
@@ -276,7 +330,13 @@ html.nav-unpinned.nav-open .nav-overlay{opacity:1;pointer-events:auto}
       <a class="nav-proc" onclick="scrollToId('s-cen')">🎯 Cenários</a>
       <a class="nav-proc" onclick="scrollToId('s-risk')">⚠️ Riscos</a>
       <a class="nav-proc" onclick="scrollToId('s-cal')">📅 Calendário 2026</a>
+      <a onclick="scrollToId('v5-dash-sec')">📊 Painel geral</a>
+      <a onclick="scrollToId('v5-radar-sec')">🧭 Radar de estágios</a>
+      <a onclick="scrollToId('v5-stats-sec')">📈 Estatísticas</a>
       <div class="nav-group">Sempre disponível</div>
+      <a onclick="scrollToId('v5-favs-sec')">⭐ Meus favoritos</a>
+      <a onclick="scrollToId('v5-chk-sec')">✅ Checklist pós-cidadania</a>
+      <a onclick="scrollToId('v5-links-sec')">🔗 Links úteis</a>
       <a onclick="scrollToId('s-tabela')">📋 Tabela geral</a>
       <a onclick="scrollToId('s-jornada')">🗺️ Minha jornada</a>
       <a onclick="scrollToId('s-emails')">📧 Modelos de e-mail</a>
@@ -299,12 +359,20 @@ html.nav-unpinned.nav-open .nav-overlay{opacity:1;pointer-events:auto}
       </div>
       <p style="margin-top:10px;font-size:11.5px;color:var(--txt3)">ℹ️ A atualização automática direto do link não é possível num arquivo HTML avulso (o OneDrive exige login e bloqueia acesso externo por segurança). Por isso o método confiável é <b>carregar o .xlsx</b> — leva 5 segundos e não depende de ninguém.</p>
     </div>
+    <div class="sec-t" id="v5-dash-sec">📊 Painel geral da comunidade</div>
+    <div class="dash"><div class="dash-grid" id="v5dash"></div>
+      <div class="info-block" id="v5lastjsi" style="margin-top:12px"></div>
+    </div>
     <div class="searchbox">
       <h3>🔍 Busque seu processo</h3>
       <p>Digite sua <b>sigla/nome</b> ou a <b>data de entrega</b> (ex.: 11/08/2025). A análise é recalculada automaticamente para o seu caso.</p>
       <div class="search-wrap"><input type="text" id="search" placeholder="Ex.: RGC, 11/08/2025..." autocomplete="off"><span class="search-ic">🔎</span><div class="suggestions" id="suggestions"></div></div>
       <div class="filters"><span class="chip on" data-f="todos">Todos</span><span class="chip" data-f="aguardando">Só aguardando</span></div>
       <div id="searchHint" style="display:none;margin-top:12px;padding:10px 14px;background:rgba(237,161,0,.15);border:1px solid #6b5210;border-radius:9px;color:#f5c860;font-size:12.5px">👆 Primeiro <b>busque e selecione o seu processo</b> acima — aí as seções aparecem com a sua análise.</div>
+    </div>
+    <div class="sec-t" id="v5-favs-sec">⭐ Meus favoritos</div>
+    <div class="panel"><p style="color:var(--txt2);font-size:12.5px;margin-bottom:10px">Processos que você marcou para acompanhar. Ficam salvos <b>neste navegador</b>. 🔒</p>
+      <div class="fav-list" id="v5favlist"></div>
     </div>
     <div id="empty"><span class="em">🇮🇹</span><b>Comece buscando seu processo acima</b><p style="margin-top:8px">Digite parte da sua sigla ou sua data de entrega para ver posição na fila, cenários e projeção de convocação.</p></div>
     <div id="result"></div>
@@ -345,6 +413,33 @@ Devendo, pois:
 → encerrar meu caso definitivamente na JSI.</div>
       <button class="copy-btn" onclick="copyTpl()">📋 Copiar modelo</button>
     </div>
+    <div class="sec-t" id="v5-radar-sec">🧭 Radar de estágios do processo</div>
+    <div class="panel"><p style="color:var(--txt2);font-size:12.5px;margin-bottom:12px">Visão macro do caminho, do <b>Balcão</b> até o <b>Passaporte</b>. Acompanha automaticamente a sua <b>Minha jornada</b>.</p>
+      <div class="radar" id="v5radar"></div>
+    </div>
+
+    <div class="sec-t" id="v5-stats-sec">📈 Estatísticas dos tempos de espera</div>
+    <div class="row r2">
+      <div class="panel"><h4>Distribuição (histograma)</h4><div class="chartbox"><canvas id="v5hist"></canvas></div></div>
+      <div class="panel"><h4>Boxplot / percentis</h4><div id="v5box"></div></div>
+    </div>
+    <div class="panel" style="margin-top:14px"><h4>🔥 Ranking de velocidade por mês</h4><div id="v5rank" style="overflow-x:auto"></div></div>
+
+    <div class="sec-t" id="v5-chk-sec">✅ Checklist pós-cidadania</div>
+    <div class="panel"><p style="color:var(--txt2);font-size:12.5px;margin-bottom:4px">Depois do reconhecimento, organize os próximos passos. <span id="v5chkp" style="color:var(--accent);font-weight:700"></span></p>
+      <div class="chk-grid" id="v5chk" style="margin-top:12px"></div>
+    </div>
+
+    <div class="sec-t" id="v5-links-sec">🔗 Links úteis</div>
+    <div class="panel"><div class="links-grid">
+      <a class="link-card" href="https://serviziconsolari.esteri.it/" target="_blank" rel="noopener noreferrer"><div class="lc-t">🌐 Prenot@Mi</div><div class="lc-d">Agendamentos consulares</div></a>
+      <a class="link-card" href="https://prenotami.esteri.it/" target="_blank" rel="noopener noreferrer"><div class="lc-t">🗓️ Prenotami</div><div class="lc-d">Portal de agendamento</div></a>
+      <a class="link-card" href="https://fastit.esteri.it/" target="_blank" rel="noopener noreferrer"><div class="lc-t">💻 Fast It</div><div class="lc-d">Serviços consulares online / AIRE</div></a>
+      <a class="link-card" href="https://consriodejaneiro.esteri.it/" target="_blank" rel="noopener noreferrer"><div class="lc-t">🏛️ Consulado RJ</div><div class="lc-d">Site oficial do Consulado</div></a>
+      <a class="link-card" href="https://www.anpr.interno.it/" target="_blank" rel="noopener noreferrer"><div class="lc-t">🌎 ANPR</div><div class="lc-d">Registro nacional da população</div></a>
+      <a class="link-card" href="https://www.gazzettaufficiale.it/" target="_blank" rel="noopener noreferrer"><div class="lc-t">⚖️ Gazzetta Ufficiale</div><div class="lc-d">Legislação italiana</div></a>
+    </div></div>
+
     <div class="foot" style="margin-top:40px">
       <div style="background:var(--panel2);border:1px solid var(--line);border-left:4px solid var(--vermelho);border-radius:10px;padding:14px 16px;margin-bottom:16px;text-align:left;color:var(--txt2)"><b style="color:var(--vermelho)">⚠️ AVISO IMPORTANTE</b><br>As informações deste painel são <b>colaborativas</b> e baseadas em dados compartilhados pelos participantes da comunidade. Podem existir <b>processos não cadastrados, informações desatualizadas ou casos já concluídos</b> sem atualização.<br><br>Os indicadores, gráficos e previsões possuem <b>caráter exclusivamente informativo e estimativo</b>, não representando prazos oficiais nem compromisso institucional.<br><br><b>Somente o Consulado Geral da Itália detém os registros oficiais dos processos e pode fornecer informações, status e prazos oficiais. Este painel não substitui os canais oficiais de comunicação do Consulado.</b></div>
       Base: planilhas voluntárias "B — Balcão", "JSI" e "P — Pendências" (grupo de WhatsApp).<br>Consultor de Expectativa de Atendimento — Cidadania Italiana · RJ e ES.
@@ -578,6 +673,184 @@ if('serviceWorker' in navigator){window.addEventListener('load',function(){navig
     setTimeout(function(){ loadDadosJson(); }, 600);
   });
 })();
+
+/* ===================== V5.0 — LÓGICA DOS NOVOS MÓDULOS ===================== */
+(function(){
+  function q(id){return document.getElementById(id);}
+  function toast(msg){var t=q('v5toast');if(!t){t=document.createElement('div');t.id='v5toast';t.className='toast';document.body.appendChild(t);}t.textContent=msg;t.classList.add('show');clearTimeout(window._v5t);window._v5t=setTimeout(function(){t.classList.remove('show');},2600);}
+
+  /* ---------- percentis / estatística ---------- */
+  function pctile(arr,p){if(!arr.length)return 0;var s=arr.slice().sort(function(a,b){return a-b;});var idx=(s.length-1)*p;var lo=Math.floor(idx),hi=Math.ceil(idx);if(lo===hi)return s[lo];return s[lo]+(s[hi]-s[lo])*(idx-lo);}
+
+  /* ---------- DASHBOARD GLOBAL ---------- */
+  window.renderDashboard=function(){
+    var el=q('v5dash');if(!el)return;
+    var pend=DATA.filter(function(x){return x.nome.toLowerCase().indexOf('pend')>=0;}).length;
+    var taxa=DATA.length?Math.round(resolved.length/DATA.length*100):0;
+    // último JSI (resolução mais recente)
+    var lastJ=resolved.slice().sort(function(a,b){return b.dResol-a.dResol;})[0];
+    var lastTxt=lastJ?(lastJ.nome+' · '+fmt(lastJ.dResol)):'—';
+    // melhor mês
+    var best=null,bestK=null;Object.keys(monthCounts).forEach(function(k){if(best===null||monthCounts[k]>best){best=monthCounts[k];bestK=k;}});
+    var M=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+    var bestTxt=bestK?(M[+bestK.split('-')[1]-1]+'/'+bestK.split('-')[0].slice(2)+' · '+best):'—';
+    el.innerHTML=
+      '<div class="dcard a"><div class="dl">👥 Total</div><div class="dv">'+DATA.length+'</div><div class="ds">processos na base</div></div>'+
+      '<div class="dcard g"><div class="dl">✅ Concluídos</div><div class="dv">'+resolved.length+'</div><div class="ds">'+taxa+'% da base</div></div>'+
+      '<div class="dcard w"><div class="dl">⏳ Aguardando</div><div class="dv">'+waiting.length+'</div><div class="ds">na fila</div></div>'+
+      '<div class="dcard r"><div class="dl">📎 Pendências</div><div class="dv">'+pend+'</div><div class="ds">em SEDEX (P)</div></div>'+
+      '<div class="dcard"><div class="dl">📈 Média · Mediana</div><div class="dv">'+mediaGeral+'<span style="font-size:14px;color:var(--txt3)"> / '+medianaGeral+'</span></div><div class="ds">dias de espera</div></div>'+
+      '<div class="dcard p"><div class="dl">🔥 Melhor mês</div><div class="dv" style="font-size:16px">'+bestTxt+'</div><div class="ds">resoluções</div></div>';
+    var lj=q('v5lastjsi');if(lj)lj.innerHTML='🇮🇹 <b>Último JSI:</b> '+lastTxt;
+  };
+
+  /* ---------- CONFIABILIDADE ---------- */
+  function confianca(P){
+    var base=Math.min(P.frontTotal/20,1)*40;              // volume à frente
+    var amostra=Math.min(resolved.length/60,1)*25;         // tamanho da amostra
+    var recencia=Math.min((P.aheadResolved90||0)/8,1)*20;  // fluxo recente
+    var rt=resTimes.length?(pctile(resTimes,.75)-pctile(resTimes,.25)):400;
+    var disp=(1-Math.min(rt/500,1))*15;                    // baixa dispersão = mais confiança
+    var score=Math.round(base+amostra+recencia+disp);
+    score=Math.max(8,Math.min(96,score));
+    var nivel=score>=70?'alta':(score>=45?'media':'baixa');
+    var label=score>=70?'🟢 Alta':(score>=45?'🟡 Média':'🔴 Baixa');
+    return {score:score,nivel:nivel,label:label};
+  }
+
+  /* ---------- JANELA PROBABILÍSTICA ---------- */
+  function janela(x,P){
+    if(!P.ahead){return null;}
+    var lo=P.opt.d,hi=P.cons.d,mid=P.real.d;
+    var dLo=new Date(TODAY.getTime()+lo*864e5),dHi=new Date(TODAY.getTime()+hi*864e5),dMid=new Date(TODAY.getTime()+mid*864e5);
+    return {dLo:dLo,dHi:dHi,dMid:dMid};
+  }
+
+  /* ---------- FAVORITOS ---------- */
+  function favLoad(){try{return JSON.parse(localStorage.getItem('fila_favs')||'[]');}catch(e){return [];}}
+  function favSave(a){try{localStorage.setItem('fila_favs',JSON.stringify(a));}catch(e){}}
+  window.isFav=function(x){return favLoad().some(function(f){return f.nome===x.nome&&f.entrega===x.entrega;});};
+  window.toggleFav=function(nome,entrega){var a=favLoad();var i=a.findIndex(function(f){return f.nome===nome&&f.entrega===entrega;});if(i>=0){a.splice(i,1);toast('Removido dos favoritos');}else{a.push({nome:nome,entrega:entrega});toast('⭐ Adicionado aos favoritos');}favSave(a);renderFavs();var b=q('v5favbtn');if(b){var on=isFav({nome:nome,entrega:entrega});b.className='fav-btn'+(on?' on':'');b.innerHTML=(on?'⭐ Nos favoritos':'☆ Favoritar');}};
+  window.renderFavs=function(){var el=q('v5favlist');if(!el)return;var a=favLoad();if(!a.length){el.innerHTML='<div class="fav-empty">Nenhum favorito ainda. Abra um processo e toque em ☆ Favoritar para acompanhá-lo aqui.</div>';return;}el.innerHTML=a.map(function(f){return '<span class="fav-chip" data-n="'+encodeURIComponent(f.nome)+'" data-e="'+f.entrega+'"><span class="op">📌 '+f.nome+'</span> <span class="x" data-rm="1">✕</span></span>';}).join('');Array.prototype.forEach.call(el.querySelectorAll('.fav-chip'),function(c){c.onclick=function(ev){var nome=decodeURIComponent(c.dataset.n),ent=c.dataset.e;if(ev.target.dataset.rm){window.toggleFav(nome,ent);return;}var x=DATA.find(function(d){return d.nome===nome&&d.entrega===ent;});if(x)select(x);};});};
+
+  /* ---------- COMPARTILHAR ---------- */
+  window.shareProc=function(nome){var url=location.origin+location.pathname+'?proc='+encodeURIComponent(nome);if(navigator.share){navigator.share({title:'Consultor de Fila',text:'Acompanhe o processo '+nome,url:url}).catch(function(){});}else if(navigator.clipboard){navigator.clipboard.writeText(url).then(function(){toast('🔗 Link copiado!');});}else{prompt('Copie o link:',url);}};
+
+  /* ---------- ESTATÍSTICA (histograma + boxplot) ---------- */
+  window.renderStats=function(){
+    if(!chartReady){setTimeout(window.renderStats,400);return;}
+    var AZ='#2a78d6',TE='#1baf7a',AM='#eda100';var grid='rgba(255,255,255,.06)';
+    // Histograma
+    var hc=q('v5hist');
+    if(hc&&resTimes.length){
+      if(window._histChart)try{window._histChart.destroy();}catch(e){}
+      var min=Math.min.apply(null,resTimes),max=Math.max.apply(null,resTimes);
+      var binW=50,bins={},labels=[];
+      for(var b=Math.floor(min/binW)*binW;b<=max;b+=binW){bins[b]=0;labels.push(b+'–'+(b+binW));}
+      resTimes.forEach(function(v){var k=Math.floor(v/binW)*binW;bins[k]=(bins[k]||0)+1;});
+      var vals=Object.keys(bins).map(function(k){return bins[k];});
+      window._histChart=new Chart(hc,{type:'bar',data:{labels:labels,datasets:[{data:vals,backgroundColor:AZ,borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{title:function(c){return c[0].label+' dias';},label:function(c){return c.parsed.y+' processos';}}}},scales:{x:{grid:{display:false},title:{display:true,text:'dias de espera'}},y:{grid:{color:grid},beginAtZero:true,title:{display:true,text:'nº de processos'}}}}});
+    }
+    // Boxplot (simulado com barras de percentis)
+    var box=q('v5box');
+    if(box&&resTimes.length){
+      var p0=Math.round(Math.min.apply(null,resTimes)),p25=Math.round(pctile(resTimes,.25)),p50=Math.round(pctile(resTimes,.5)),p75=Math.round(pctile(resTimes,.75)),p100=Math.round(Math.max.apply(null,resTimes));
+      box.innerHTML=
+        '<div class="conf" style="gap:10px;flex-wrap:wrap">'+
+        boxStat('Mínimo',p0,'var(--teal)')+boxStat('Q1 (25%)',p25,'var(--accent)')+boxStat('Mediana',p50,'var(--amber)')+boxStat('Q3 (75%)',p75,'var(--accent)')+boxStat('Máximo',p100,'#ff6b6b')+
+        '</div>'+
+        '<div style="margin-top:14px;position:relative;height:44px;background:var(--inputbg);border:1px solid var(--line);border-radius:10px;overflow:hidden">'+
+        '<div style="position:absolute;top:0;bottom:0;left:'+pctPos(p25,p0,p100)+'%;width:'+(pctPos(p75,p0,p100)-pctPos(p25,p0,p100))+'%;background:rgba(42,120,214,.28);border-left:2px solid var(--accent);border-right:2px solid var(--accent)"></div>'+
+        '<div style="position:absolute;top:0;bottom:0;left:'+pctPos(p50,p0,p100)+'%;width:3px;background:var(--amber)"></div>'+
+        '<div style="position:absolute;top:50%;left:0;right:0;height:2px;background:var(--line);transform:translateY(-50%);z-index:-0"></div>'+
+        '</div>'+
+        '<div style="display:flex;justify-content:space-between;font-size:10.5px;color:var(--txt3);margin-top:4px"><span>'+p0+'d</span><span>'+p100+'d</span></div>';
+    }
+    function boxStat(l,v,c){return '<div style="text-align:center;flex:1;min-width:70px"><div style="font-size:10px;color:var(--txt3);text-transform:uppercase;letter-spacing:.4px">'+l+'</div><div style="font-size:19px;font-weight:800;color:'+c+'">'+v+'</div><div style="font-size:10px;color:var(--txt3)">dias</div></div>';}
+    function pctPos(v,a,b){return b>a?Math.round((v-a)/(b-a)*100):0;}
+    // Ranking mensal
+    var rk=q('v5rank');
+    if(rk){var M=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];var keys=Object.keys(monthCounts).sort().slice(-8);var maxv=Math.max.apply(null,keys.map(function(k){return monthCounts[k];})||[1]);rk.innerHTML='<table><thead><tr><th>Mês</th><th>Resoluções</th><th></th></tr></thead><tbody>'+keys.reverse().map(function(k){var v=monthCounts[k];var top=v===maxv;return '<tr><td>'+M[+k.split('-')[1]-1]+'/'+k.split('-')[0].slice(2)+(top?' <span class="pl-tag pl-jsi">🔥</span>':'')+'</td><td><b>'+v+'</b></td><td style="width:55%"><div style="background:var(--inputbg);border-radius:10px;height:14px;overflow:hidden"><i style="display:block;height:100%;width:'+Math.round(v/maxv*100)+'%;background:linear-gradient(90deg,var(--teal),var(--accent))"></i></div></td></tr>';}).join('')+'</tbody></table>';}
+  };
+
+  /* ---------- RADAR DE ESTÁGIOS (jornada macro) ---------- */
+  var RSTAGES=[{i:'📂',t:'Balcão (B)',k:'B'},{i:'🇮🇹',t:'JSI',k:'JSI'},{i:'📧',t:'PEC',k:'PEC'},{i:'🏛️',t:'Comune',k:'CM'},{i:'🌎',t:'AIRE',k:'AIRE'},{i:'💻',t:'Fast It',k:'FI'},{i:'🪪',t:'CIE',k:'CIE'},{i:'🛂',t:'Passaporte',k:'PP'}];
+  window.renderRadar=function(){
+    var el=q('v5radar');if(!el)return;
+    // etapa atual macro derivada da jornada pessoal (jstate) se existir
+    var done=(typeof jstate!=='undefined'&&jstate.done)?jstate.done:0;
+    // mapeia 16 etapas -> 8 macro-estágios
+    var map=[0,0,1,2,3,4,5,5,5,5,6,6,7,7,7,7];// index por etapa concluída
+    var macroDone=done>0?(map[Math.min(done,16)-1]+1):0;
+    el.innerHTML=RSTAGES.map(function(s,i){var cls=i<macroDone?'done':(i===macroDone?'cur':'');var mark=i<macroDone?'✓':(i===macroDone?'●':'·');return '<div class="rstage '+cls+'"><div class="ri">'+s.i+'</div><div class="rt">'+s.t+'</div><div class="rc">'+mark+'</div></div>';}).join('');
+  };
+
+  /* ---------- CHECKLIST PÓS-CIDADANIA ---------- */
+  var CHK=[
+    {k:'cie',t:'CIE',d:'Carta d\'Identità Elettronica'},
+    {k:'pass',t:'Passaporte',d:'Após os 180 dias'},
+    {k:'cf',t:'Codice Fiscale',d:'via Consulado / Agenzia Entrate'},
+    {k:'spid',t:'SPID',d:'Identidade digital italiana'},
+    {k:'ts',t:'Tessera Sanitaria',d:'se residir na Itália'},
+    {k:'aire',t:'AIRE confirmado',d:'inscrição no exterior'},
+    {k:'voto',t:'Voto no exterior',d:'lista eleitoral'},
+    {k:'conta',t:'Conta bancária',d:'se aplicável'}
+  ];
+  function chkLoad(){try{return JSON.parse(localStorage.getItem('fila_chk')||'{}');}catch(e){return {};}}
+  function chkSave(o){try{localStorage.setItem('fila_chk',JSON.stringify(o));}catch(e){}}
+  window.toggleChk=function(k){var o=chkLoad();o[k]=!o[k];chkSave(o);renderChk();};
+  window.renderChk=function(){var el=q('v5chk');if(!el)return;var o=chkLoad();var n=CHK.filter(function(c){return o[c.k];}).length;el.innerHTML=CHK.map(function(c){var on=o[c.k];return '<div class="chk-item'+(on?' on':'')+'" onclick="toggleChk(\''+c.k+'\')"><div class="chk-box">'+(on?'✓':'')+'</div><div class="chk-tx"><b>'+c.t+'</b><span>'+c.d+'</span></div></div>';}).join('');var p=q('v5chkp');if(p)p.textContent=n+' de '+CHK.length+' itens concluídos';};
+
+  /* ---------- HOOK no select() para add confiabilidade/janela/ações ---------- */
+  if(typeof select==='function'){
+    var _origSelect=select;
+    select=function(x){
+      _origSelect(x);
+      try{ afterSelect(x); }catch(e){}
+    };
+  }
+  function afterSelect(x){
+    var res=q('result');if(!res)return;
+    var on=isFav(x);
+    // barra de ações (favoritar + compartilhar)
+    var act=document.createElement('div');act.className='act-row';
+    act.innerHTML='<button id="v5favbtn" class="fav-btn'+(on?' on':'')+'" onclick="toggleFav(\''+x.nome.replace(/'/g,"\\'")+'\',\''+x.entrega+'\')">'+(on?'⭐ Nos favoritos':'☆ Favoritar')+'</button>'+
+      '<button class="share-btn" onclick="shareProc(\''+x.nome.replace(/'/g,"\\'")+'\')">🔗 Compartilhar</button>';
+    res.insertBefore(act,res.firstChild);
+    if(x.done)return; // confiabilidade só p/ quem aguarda
+    var P=computeProjection(x);
+    var c=confianca(P);var j=janela(x,P);
+    var wrap=document.createElement('div');
+    var jTxt=j?('<div class="info-block" style="margin:10px 0 0"><b>🎯 Janela provável de convocação:</b> entre <b style="color:var(--teal)">'+fmt(j.dLo)+'</b> e <b style="color:#ff8a8a">'+fmt(j.dHi)+'</b> — central em <b style="color:var(--accent)">'+fmt(j.dMid)+'</b>.</div>'):'';
+    wrap.innerHTML='<div class="sec-t">🎯 Confiabilidade da estimativa</div>'+
+      '<div class="panel"><div class="conf"><div class="conf-ring" data-v="'+c.score+'%" style="--pct:'+c.score+'"></div>'+
+      '<div style="flex:1;min-width:200px"><span class="conf-badge '+c.nivel+'">'+c.label+'</span>'+
+      '<p style="color:var(--txt2);font-size:12.5px;margin-top:8px">Índice baseado no <b>volume de casos à sua frente</b> ('+P.frontTotal+'), no <b>tamanho da amostra</b> ('+resolved.length+' resolvidos), no <b>fluxo recente</b> ('+(P.aheadResolved90||0)+' nos últimos 90 dias) e na <b>dispersão</b> dos tempos. Quanto maior, mais estável tende a ser a projeção.</p>'+jTxt+'</div></div></div>';
+    // insere logo após a barra de posição (s-pos) se existir, senão no fim
+    var anchor=q('s-mov');
+    if(anchor&&anchor.parentNode){anchor.parentNode.insertBefore(wrap,anchor);}else{res.appendChild(wrap);}
+  }
+
+  /* ---------- DEEP LINK ?proc= ---------- */
+  function openFromURL(){var p=new URLSearchParams(location.search).get('proc');if(!p)return;var x=DATA.find(function(d){return d.nome.toLowerCase()===p.toLowerCase();})||DATA.find(function(d){return d.nome.toLowerCase().indexOf(p.toLowerCase())>=0;});if(x)setTimeout(function(){select(x);},400);}
+
+  /* ---------- re-render após atualização de dados ---------- */
+  var _origEnrich=(typeof enrich==='function')?enrich:null;
+  if(_origEnrich){enrich=function(){_origEnrich();try{renderDashboard();renderStats();}catch(e){}};}
+
+  /* ---------- init ---------- */
+  window.addEventListener('load',function(){
+    try{renderDashboard();}catch(e){}
+    try{renderStats();}catch(e){}
+    try{renderFavs();}catch(e){}
+    try{renderRadar();}catch(e){}
+    try{renderChk();}catch(e){}
+    openFromURL();
+  });
+  // atualiza radar sempre que a jornada muda
+  if(typeof renderJourney==='function'){var _rj=renderJourney;renderJourney=function(){_rj();try{renderRadar();}catch(e){}};}
+})();
+
 </script>
 </body>
 </html>
