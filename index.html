@@ -331,7 +331,6 @@ html.nav-unpinned.nav-open .nav-overlay{opacity:1;pointer-events:auto}
       <a class="nav-proc" onclick="scrollToId('s-ritmo')">📈 Ritmo mensal</a>
       <a class="nav-proc" onclick="scrollToId('s-cen')">🎯 Cenários</a>
       <a class="nav-proc" onclick="scrollToId('s-risk')">⚠️ Riscos</a>
-      <a class="nav-proc" onclick="scrollToId('s-cal')">📅 Calendário 2026</a>
       <div class="nav-group">Visão da comunidade</div>
       <a onclick="scrollToId('v5-dash-sec')">📊 Painel geral</a>
       <a onclick="scrollToId('v5-stats-sec')">📈 Estatísticas</a>
@@ -376,9 +375,8 @@ html.nav-unpinned.nav-open .nav-overlay{opacity:1;pointer-events:auto}
     <div id="empty"><span class="em">🇮🇹</span><b>Comece buscando seu processo acima</b><p style="margin-top:8px">Digite parte da sua sigla ou sua data de entrega para ver posição na fila, cenários e projeção de convocação.</p></div>
     <div id="result"></div>
     <div class="sec-t" id="v5-stats-sec">📈 Estatísticas dos tempos de espera</div>
-    <div class="row r2">
+    <div class="row">
       <div class="panel"><h4>Distribuição (histograma)</h4><div class="chartbox"><canvas id="v5hist"></canvas></div></div>
-      <div class="panel"><h4>Boxplot / percentis</h4><div id="v5box"></div></div>
     </div>
     <div class="panel" style="margin-top:14px"><h4>🔥 Ranking de velocidade por mês</h4><div id="v5rank" style="overflow-x:auto"></div></div>
     <div class="sec-t" id="s-tabela">📋 Tabela geral — todos os processos</div>
@@ -476,10 +474,9 @@ var statusLegal=restLegal<0?'<b style="color:#ff6b6b">Prazo legal ULTRAPASSADO</
 html+='<div class="sec-t">Prazo legal máximo (730 dias)</div><div class="legalbox"><div class="hd"><h4>⚖️ Progresso frente ao prazo legal</h4><span class="frac">'+x.espera+' de 730 dias ('+pctLegal+'%)</span></div><div class="legalbar"><i style="width:'+pctLegal+'%;background:'+corLegal+'"></i><div class="mid" style="left:50%"></div><span>'+x.espera+' dias</span></div><div class="legal-note">'+statusLegal+' O prazo máximo por lei é de <b>730 dias</b> a contar da entrega. Ultrapassado, cabe recurso.</div></div>';
 html+='<div class="sec-t" id="s-ritmo">Ritmo mensal &amp; sensibilidade</div><div class="row r23"><div class="panel"><h4>Resoluções por mês</h4><div class="chartbox"><canvas id="cVazao"></canvas></div></div><div class="panel"><h4>Composição da fila</h4><div class="chartbox"><canvas id="cDonut"></canvas></div></div></div><div class="panel" style="margin-top:14px"><h4>Data estimada vs. ritmo mensal ('+P.ahead+' à frente)</h4><div class="chartbox sm"><canvas id="cSens"></canvas></div></div>';
 html+='<div class="sec-t" id="s-cen">Cenários de convocação</div><div class="row r3">'+scenCard('opt','🚀 Otimista',P.opt,thrPico,'35%')+scenCard('real','🎯 Realista ★',P.real,thrMedTrim,'45%')+scenCard('cons','🕐 Conservador',P.cons,Math.round(thrSem*0.7),'20%')+'</div>';
-html+='<div class="sec-t" id="s-risk">Fatores de aceleração e risco</div><div class="row r2"><div class="risk pos"><div class="t">📈 Aceleram</div><div class="b">Ritmo recente elevado ('+thrPico+'/mês); vazão em máxima no trimestre; possíveis desistências à frente.</div></div><div class="risk pos"><div class="t">📅 Sem recesso na janela</div><div class="b">Calendário 2026: zero feriados em jul/ago. Único: 07/09.</div></div>'+(famNote?'<div class="risk pos"><div class="t">📁 Pasta familiar</div><div class="b">Processos familiares podem ser tratados em bloco.</div></div>':'')+'<div class="risk neg"><div class="t">📉 Atrasam</div><div class="b">Alta variância; pendências podem travar lotes; mudanças legislativas; capacidade limitada.</div></div><div class="risk neg"><div class="t">🔎 Incerteza da base</div><div class="b">Planilha comunitária parcial; alguns "aguardando" podem já ter sido chamados.</div></div></div>';
+html+='<div class="sec-t" id="s-risk">Fatores de aceleração e risco</div><div class="row r2"><div class="risk pos"><div class="t">📈 Aceleram</div><div class="b">Ritmo recente elevado ('+thrPico+'/mês); vazão em máxima no trimestre; possíveis desistências à frente.</div></div>'+(famNote?'<div class="risk pos"><div class="t">📁 Pasta familiar</div><div class="b">Processos familiares podem ser tratados em bloco.</div></div>':'')+'<div class="risk neg"><div class="t">📉 Atrasam</div><div class="b">Alta variância; pendências podem travar lotes; mudanças legislativas; capacidade limitada.</div></div><div class="risk neg"><div class="t">🔎 Incerteza da base</div><div class="b">Planilha comunitária parcial; alguns "aguardando" podem já ter sido chamados.</div></div></div>';
 html+='<div class="sec-t">Tabela-resumo</div><div class="panel" style="padding:0;overflow:hidden;overflow-x:auto"><table><thead><tr><th>Cenário</th><th>Ritmo</th><th>Data estimada</th><th>Restante</th><th>Prob.</th></tr></thead><tbody>'+trow('opt','Otimista',thrPico,P.opt,'35%')+trow('real','Realista',thrMedTrim,P.real,'45%')+trow('cons','Conservador',Math.round(thrSem*0.7),P.cons,'20%')+'</tbody></table></div>';
 html+='<div style="margin-top:10px"><span class="pill">Estimativa central: '+fmt(P.real.date)+'</span> <span class="pill">'+P.ahead+' à frente</span> <span class="pill">'+x.espera+' dias aguardando</span></div>';
-html+='<div class="sec-t" id="s-cal">Calendário oficial do consulado (2026)</div><div class="panel"><p style="color:#4fd6a0;font-size:12.5px;margin-bottom:10px">✅ Sem recesso de verão: nenhum feriado em jul/ago. Único: 07/09 (seg).</p><div style="display:flex;flex-wrap:wrap;gap:6px"><span class="pill" style="opacity:.5">01/01 Capodanno</span><span class="pill" style="opacity:.5">16–17/02 Carnevale</span><span class="pill" style="opacity:.5">03/04 Venerdì Santo</span><span class="pill" style="opacity:.5">25/04 Liberazione</span><span class="pill" style="opacity:.5">01/05 Lavoro</span><span class="pill" style="opacity:.5">02/06 Festa Italiana</span><span class="pill" style="background:rgba(237,161,0,.18);border-color:#6b5210;color:#f5c860">⚠️ 07/09 Festa Brasileira</span><span class="pill" style="opacity:.5">15/11 Rep. Brasileira</span><span class="pill" style="opacity:.5">25–26/12 Natale</span></div></div>';
 html+='<div class="disc"><h3>⚠️ Sobre esta estimativa</h3><ul><li>Base <b>voluntária/não oficial</b> — nem todos estão no grupo.</li><li>Não há dado de entrada direta × pasta familiar.</li><li>Alguns "aguardando" podem já ter sido chamados sem atualizar.</li><li>Use como <b>orientação</b>, não previsão exata.</li></ul></div>';
 res.innerHTML=html;window.scrollTo({top:document.getElementById('s-pos').offsetTop-20,behavior:'smooth'});drawCharts(x,P);}
 function scenCard(cls,label,eta,rate,prob){var d=eta.date,wk=Math.round(eta.d/7);return '<div class="scen '+cls+'"><div class="lb">'+label+'</div><div class="d">'+mesAno(d)+' ('+fmt(d)+')</div><div class="w">~'+wk+' semana(s) · +'+eta.d+' dias</div><span class="p">'+prob+'</span><div class="rt">ritmo '+rate+'/mês</div></div>';}
@@ -809,22 +806,6 @@ if('serviceWorker' in navigator){window.addEventListener('load',function(){navig
       var vals=Object.keys(bins).map(function(k){return bins[k];});
       window._histChart=new Chart(hc,{type:'bar',data:{labels:labels,datasets:[{data:vals,backgroundColor:AZ,borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{title:function(c){return c[0].label+' dias';},label:function(c){return c.parsed.y+' processos';}}}},scales:{x:{grid:{display:false},title:{display:true,text:'dias de espera'}},y:{grid:{color:grid},beginAtZero:true,title:{display:true,text:'nº de processos'}}}}});
     }
-    var box=q('v5box');
-    if(box&&resTimes.length){
-      var p0=Math.round(Math.min.apply(null,resTimes)),p25=Math.round(pctile(resTimes,.25)),p50=Math.round(pctile(resTimes,.5)),p75=Math.round(pctile(resTimes,.75)),p100=Math.round(Math.max.apply(null,resTimes));
-      box.innerHTML=
-        '<div class="conf" style="gap:10px;flex-wrap:wrap">'+
-        boxStat('Mínimo',p0,'var(--teal)')+boxStat('Q1 (25%)',p25,'var(--accent)')+boxStat('Mediana',p50,'var(--amber)')+boxStat('Q3 (75%)',p75,'var(--accent)')+boxStat('Máximo',p100,'#ff6b6b')+
-        '</div>'+
-        '<div style="margin-top:14px;position:relative;height:44px;background:var(--inputbg);border:1px solid var(--line);border-radius:10px;overflow:hidden">'+
-        '<div style="position:absolute;top:0;bottom:0;left:'+pctPos(p25,p0,p100)+'%;width:'+(pctPos(p75,p0,p100)-pctPos(p25,p0,p100))+'%;background:rgba(42,120,214,.28);border-left:2px solid var(--accent);border-right:2px solid var(--accent)"></div>'+
-        '<div style="position:absolute;top:0;bottom:0;left:'+pctPos(p50,p0,p100)+'%;width:3px;background:var(--amber)"></div>'+
-        '<div style="position:absolute;top:50%;left:0;right:0;height:2px;background:var(--line);transform:translateY(-50%);z-index:-0"></div>'+
-        '</div>'+
-        '<div style="display:flex;justify-content:space-between;font-size:10.5px;color:var(--txt3);margin-top:4px"><span>'+p0+'d</span><span>'+p100+'d</span></div>';
-    }
-    function boxStat(l,v,c){return '<div style="text-align:center;flex:1;min-width:70px"><div style="font-size:10px;color:var(--txt3);text-transform:uppercase;letter-spacing:.4px">'+l+'</div><div style="font-size:19px;font-weight:800;color:'+c+'">'+v+'</div><div style="font-size:10px;color:var(--txt3)">dias</div></div>';}
-    function pctPos(v,a,b){return b>a?Math.round((v-a)/(b-a)*100):0;}
     var rk=q('v5rank');
     if(rk){var M=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];var keys=Object.keys(monthCounts).sort().slice(-8);var maxv=Math.max.apply(null,keys.map(function(k){return monthCounts[k];})||[1]);rk.innerHTML='<table><thead><tr><th>Mês</th><th>Resoluções</th><th></th></tr></thead><tbody>'+keys.reverse().map(function(k){var v=monthCounts[k];var top=v===maxv;return '<tr><td>'+M[+k.split('-')[1]-1]+'/'+k.split('-')[0].slice(2)+(top?' <span class="pl-tag pl-jsi">🔥</span>':'')+'</td><td><b>'+v+'</b></td><td style="width:55%"><div style="background:var(--inputbg);border-radius:10px;height:14px;overflow:hidden"><i style="display:block;height:100%;width:'+Math.round(v/maxv*100)+'%;background:linear-gradient(90deg,var(--teal),var(--accent))"></i></div></td></tr>';}).join('')+'</tbody></table>';}
   };
