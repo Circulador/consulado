@@ -1,0 +1,50 @@
+name: Atualizar dados da fila
+
+# Quando roda:
+#  - schedule: 1x por dia (09:00 UTC = 06:00 no horário de Brasília)
+#  - workflow_dispatch: botão "Run workflow" na aba Actions do GitHub
+#  - repository_dispatch: acionado por API (usado pelo botão "Atualizar da nuvem" do site)
+on:
+  schedule:
+    - cron: '0 9 * * *'          # todo dia às 09:00 UTC
+  workflow_dispatch: {}           # execução manual pela interface do GitHub
+  repository_dispatch:
+    types: [atualizar-dados]      # execução via API (botão do site)
+
+# Permite que o job faça commit do dados.json no próprio repositório
+permissions:
+  contents: write
+
+concurrency:
+  group: atualizar-dados
+  cancel-in-progress: true
+
+jobs:
+  gerar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependências
+        run: npm install xlsx@0.18.5
+
+      - name: Gerar dados.json a partir das planilhas
+        run: node scripts/gerar-dados.mjs
+
+      - name: Commit e push (se houver mudança)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add dados.json
+          if git diff --cached --quiet; then
+            echo "Sem alterações no dados.json. Nada a commitar."
+          else
+            git commit -m "chore: atualização automática dos dados ($(date -u +'%Y-%m-%d %H:%M UTC'))"
+            git push
+          fi
