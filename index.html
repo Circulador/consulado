@@ -52,7 +52,11 @@ html.has-proc .nav a.nav-proc::after{content:'●';margin-left:auto;font-size:7p
 .search-wrap{position:relative}
 .search-wrap input{width:100%;background:var(--inputbg);border:1px solid var(--line);border-radius:10px;padding:13px 44px 13px 16px;color:var(--txt);font-size:15px;outline:none}
 .search-wrap input:focus{border-color:var(--accent)}
-.search-ic{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--txt3);font-size:18px}
+.search-ic{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--txt3);font-size:18px;pointer-events:none;transition:opacity .15s}
+.search-clear{position:absolute;right:12px;top:50%;transform:translateY(-50%);width:28px;height:28px;border:none;background:var(--panel2);color:var(--txt2);border-radius:50%;font-size:15px;line-height:1;cursor:pointer;display:none;align-items:center;justify-content:center;transition:.15s}
+.search-clear:hover{background:var(--line);color:var(--txt)}
+.search-wrap.has-text .search-ic{opacity:0}
+.search-wrap.has-text .search-clear{display:flex}
 .suggestions{position:absolute;top:100%;left:0;right:0;background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-top:6px;max-height:280px;overflow-y:auto;z-index:20;display:none;box-shadow:0 10px 30px rgba(0,0,0,.5)}
 .suggestions.show{display:block}
 .sug{padding:11px 16px;cursor:pointer;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px}
@@ -306,6 +310,21 @@ html.nav-unpinned.nav-open .nav-overlay{opacity:1;pointer-events:auto}
 .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--teal);color:#fff;padding:12px 20px;border-radius:10px;font-size:13px;font-weight:600;z-index:100;box-shadow:0 8px 24px rgba(0,0,0,.4);opacity:0;transition:.3s;pointer-events:none}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 :root[data-theme="light"] .conf-ring::after{background:#fff}
+/* Modal de compartilhamento */
+.share-ov{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
+.share-ov.show{display:flex}
+.share-modal{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;max-width:440px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.share-modal h3{font-size:16px;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.share-modal p{color:var(--txt2);font-size:12.5px;margin-bottom:14px}
+.share-url{display:flex;gap:8px;margin-bottom:14px}
+.share-url input{flex:1;background:var(--inputbg);border:1px solid var(--line);border-radius:9px;padding:11px 13px;color:var(--txt);font-size:12.5px;outline:none}
+.share-url input:focus{border-color:var(--accent)}
+.share-url button{background:var(--accent);color:#fff;border:none;border-radius:9px;padding:11px 16px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
+.share-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.share-opt{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:13px;font-weight:600;color:var(--txt);text-decoration:none;cursor:pointer}
+.share-opt:hover{border-color:var(--accent)}
+.share-close{margin-top:14px;width:100%;background:transparent;border:1px solid var(--line);color:var(--txt2);border-radius:9px;padding:10px;font-size:13px;cursor:pointer}
+.share-close:hover{border-color:var(--accent);color:var(--txt)}
 
 </style>
 </head>
@@ -325,29 +344,31 @@ html.nav-unpinned.nav-open .nav-overlay{opacity:1;pointer-events:auto}
       <a class="active" onclick="document.getElementById('search').focus();closeNavIfMobile()">🔍 Buscar meu processo</a>
       <div class="nav-group">Análise do seu processo</div>
       <a class="nav-proc" onclick="scrollToId('s-pos')">📍 Posição na fila</a>
+      <a class="nav-proc" onclick="scrollToId('s-conf')">🎯 Confiabilidade</a>
       <a class="nav-proc" onclick="scrollToId('s-mov')">📊 Movimento da fila</a>
       <a class="nav-proc" onclick="scrollToId('s-ritmo')">📈 Ritmo mensal</a>
       <a class="nav-proc" onclick="scrollToId('s-cen')">🎯 Cenários</a>
       <a class="nav-proc" onclick="scrollToId('s-risk')">⚠️ Riscos</a>
       <a class="nav-proc" onclick="scrollToId('s-cal')">📅 Calendário 2026</a>
+      <div class="nav-group">Visão da comunidade</div>
       <a onclick="scrollToId('v5-dash-sec')">📊 Painel geral</a>
-      <a onclick="scrollToId('v5-radar-sec')">🧭 Radar de estágios</a>
       <a onclick="scrollToId('v5-stats-sec')">📈 Estatísticas</a>
-      <div class="nav-group">Sempre disponível</div>
-      <a onclick="scrollToId('v5-favs-sec')">⭐ Meus favoritos</a>
-      <a onclick="scrollToId('v5-chk-sec')">✅ Checklist pós-cidadania</a>
-      <a onclick="scrollToId('v5-links-sec')">🔗 Links úteis</a>
       <a onclick="scrollToId('s-tabela')">📋 Tabela geral</a>
+      <div class="nav-group">Minhas ferramentas</div>
+      <a onclick="scrollToId('v5-favs-sec')">⭐ Meus favoritos</a>
       <a onclick="scrollToId('s-jornada')">🗺️ Minha jornada</a>
+      <a onclick="scrollToId('v5-radar-sec')">🧭 Radar de estágios</a>
+      <a onclick="scrollToId('v5-chk-sec')">✅ Checklist pós-cidadania</a>
+      <div class="nav-group">Ajuda & referências</div>
       <a onclick="scrollToId('s-emails')">📧 Modelos de e-mail</a>
       <a onclick="scrollToId('s-planilhas')">📚 As 3 planilhas</a>
+      <a onclick="scrollToId('v5-links-sec')">🔗 Links úteis</a>
     </nav>
     <button class="side-install" id="sideInstall" onclick="promptInstall()">📲 Instalar app</button>
     <div class="side-foot"><div class="lbl">📊 Base — Planilha B (Balcão)</div><div class="big" id="sf-wait">92</div><div class="s">aguardando o e-mail "Já sou Italiano"</div><div class="stage-mini"><span>📎 <b id="sf-pend">0</b> em pendência (P)</span><span>🇮🇹 <b id="sf-done">100</b> avançaram p/ JSI</span><span>Σ <b id="sf-total">192</b> registros na base</span></div></div>
     <div class="side-foot" style="margin-top:12px"><div class="lbl">Atualização</div><div class="s" style="margin-top:6px">Planilha: 07/08/2026<br>Fonte: grupo de WhatsApp<br><b style="color:var(--amber)">Dados não oficiais</b></div></div>
   </aside>
-  <main class="main">
-    <div class="top"><div><h2>Consultor de Expectativa de Atendimento</h2><div class="meta"><span>👥 Ferramenta aberta à comunidade</span><span id="lastUpdate">🔄 Dados: 07/08/2026</span></div></div><div style="display:flex;gap:10px"><button class="instbtn" id="topInstall" onclick="promptInstall()">📲 Instalar app</button><button class="themebtn" id="themeToggle" onclick="toggleTheme()">🌙 Tema escuro</button><button class="dlbtn" onclick="window.print()">⬇️ Imprimir / PDF</button></div></div>
+  <main class="main">    <div class="top"><div><h2>Consultor de Expectativa de Atendimento</h2><div class="meta"><span>👥 Ferramenta aberta à comunidade</span><span id="lastUpdate">🔄 Dados: 07/08/2026</span></div></div><div style="display:flex;gap:10px"><button class="instbtn" id="topInstall" onclick="promptInstall()">📲 Instalar app</button><button class="themebtn" id="themeToggle" onclick="toggleTheme()">🌙 Tema escuro</button><button class="dlbtn" onclick="window.print()">⬇️ Imprimir / PDF</button></div></div>
     <div class="update-panel">
       <h3>🔄 Manter os dados atualizados</h3>
       <p>Esta ferramenta usa uma cópia da planilha "B — Balcão". Para atualizar com a versão mais recente, baixe o arquivo do OneDrive e carregue aqui — a análise é <b>reprocessada automaticamente</b>, sem precisar mexer no código.</p>
@@ -359,23 +380,30 @@ html.nav-unpinned.nav-open .nav-overlay{opacity:1;pointer-events:auto}
       </div>
       <p style="margin-top:10px;font-size:11.5px;color:var(--txt3)">ℹ️ A atualização automática direto do link não é possível num arquivo HTML avulso (o OneDrive exige login e bloqueia acesso externo por segurança). Por isso o método confiável é <b>carregar o .xlsx</b> — leva 5 segundos e não depende de ninguém.</p>
     </div>
-    <div class="sec-t" id="v5-dash-sec">📊 Painel geral da comunidade</div>
-    <div class="dash"><div class="dash-grid" id="v5dash"></div>
-      <div class="info-block" id="v5lastjsi" style="margin-top:12px"></div>
-    </div>
     <div class="searchbox">
       <h3>🔍 Busque seu processo</h3>
       <p>Digite sua <b>sigla/nome</b> ou a <b>data de entrega</b> (ex.: 11/08/2025). A análise é recalculada automaticamente para o seu caso.</p>
-      <div class="search-wrap"><input type="text" id="search" placeholder="Ex.: RGC, 11/08/2025..." autocomplete="off"><span class="search-ic">🔎</span><div class="suggestions" id="suggestions"></div></div>
+      <div class="search-wrap"><input type="text" id="search" placeholder="Ex.: RGC, 11/08/2025..." autocomplete="off"><span class="search-ic">🔎</span><button type="button" class="search-clear" id="searchClear" onclick="clearSearch()" aria-label="Limpar busca" title="Limpar">✕</button><div class="suggestions" id="suggestions"></div></div>
       <div class="filters"><span class="chip on" data-f="todos">Todos</span><span class="chip" data-f="aguardando">Só aguardando</span></div>
       <div id="searchHint" style="display:none;margin-top:12px;padding:10px 14px;background:rgba(237,161,0,.15);border:1px solid #6b5210;border-radius:9px;color:#f5c860;font-size:12.5px">👆 Primeiro <b>busque e selecione o seu processo</b> acima — aí as seções aparecem com a sua análise.</div>
     </div>
-    <div class="sec-t" id="v5-favs-sec">⭐ Meus favoritos</div>
-    <div class="panel"><p style="color:var(--txt2);font-size:12.5px;margin-bottom:10px">Processos que você marcou para acompanhar. Ficam salvos <b>neste navegador</b>. 🔒</p>
+    <div class="sec-t" id="v5-favs-sec" style="display:none">⭐ Meus favoritos</div>
+    <div class="panel" id="v5-favs-panel" style="display:none"><p style="color:var(--txt2);font-size:12.5px;margin-bottom:10px">Processos que você marcou para acompanhar. Ficam salvos <b>neste navegador</b>. 🔒</p>
       <div class="fav-list" id="v5favlist"></div>
     </div>
     <div id="empty"><span class="em">🇮🇹</span><b>Comece buscando seu processo acima</b><p style="margin-top:8px">Digite parte da sua sigla ou sua data de entrega para ver posição na fila, cenários e projeção de convocação.</p></div>
     <div id="result"></div>
+    <div class="sec-t" id="v5-dash-sec">📊 Painel geral da comunidade</div>
+    <div class="dash"><div class="dash-grid" id="v5dash"></div>
+      <div class="info-block" id="v5lastjsi" style="margin-top:12px"></div>
+    </div>
+    <div class="sec-t" id="v5-stats-sec">📈 Estatísticas dos tempos de espera</div>
+    <div class="row r2">
+      <div class="panel"><h4>Distribuição (histograma)</h4><div class="chartbox"><canvas id="v5hist"></canvas></div></div>
+      <div class="panel"><h4>Boxplot / percentis</h4><div id="v5box"></div></div>
+    </div>
+    <div class="panel" style="margin-top:14px"><h4>🔥 Ranking de velocidade por mês</h4><div id="v5rank" style="overflow-x:auto"></div></div>
+
     <div class="sec-t" id="s-tabela">📋 Tabela geral — todos os processos</div>
     <div class="panel" style="padding:16px">
       <div class="tbl-controls"><div class="tbl-search"><input type="text" id="tblSearch" placeholder="Filtrar por nome ou data..."></div><div class="filters" style="margin-top:0"><span class="chip on" data-tf="todos">Todos</span><span class="chip" data-tf="B">📊 B — Balcão</span><span class="chip" data-tf="JSI">🇮🇹 JSI</span><span class="chip" data-tf="P">📎 Pendência</span></div><span class="tbl-count" id="tblCount"></span></div>
@@ -390,6 +418,16 @@ html.nav-unpinned.nav-open .nav-overlay{opacity:1;pointer-events:auto}
       <div class="journey" id="journey"></div>
       <div class="info-block" style="margin-top:14px">🔒 <b>Privacidade:</b> seu progresso e datas ficam salvos apenas <b>neste navegador/dispositivo</b> (localStorage). Não são compartilhados nem enviados para a comunidade.</div>
     </div>
+    <div class="sec-t" id="v5-radar-sec">🧭 Radar de estágios do processo</div>
+    <div class="panel"><p style="color:var(--txt2);font-size:12.5px;margin-bottom:12px">Visão macro do caminho, do <b>Balcão</b> até o <b>Passaporte</b>. Acompanha automaticamente a sua <b>Minha jornada</b>.</p>
+      <div class="radar" id="v5radar"></div>
+    </div>
+
+    <div class="sec-t" id="v5-chk-sec">✅ Checklist pós-cidadania</div>
+    <div class="panel"><p style="color:var(--txt2);font-size:12.5px;margin-bottom:4px">Depois do reconhecimento, organize os próximos passos. <span id="v5chkp" style="color:var(--accent);font-weight:700"></span></p>
+      <div class="chk-grid" id="v5chk" style="margin-top:12px"></div>
+    </div>
+
     <div class="sec-t" id="s-emails">📧 Modelos dos e-mails do Consulado</div>
     <div class="panel">
       <p style="color:var(--txt2);font-size:12.5px">Veja como são os e-mails que marcam as principais etapas, para reconhecer quando chegarem:</p>
@@ -413,23 +451,6 @@ Devendo, pois:
 → encerrar meu caso definitivamente na JSI.</div>
       <button class="copy-btn" onclick="copyTpl()">📋 Copiar modelo</button>
     </div>
-    <div class="sec-t" id="v5-radar-sec">🧭 Radar de estágios do processo</div>
-    <div class="panel"><p style="color:var(--txt2);font-size:12.5px;margin-bottom:12px">Visão macro do caminho, do <b>Balcão</b> até o <b>Passaporte</b>. Acompanha automaticamente a sua <b>Minha jornada</b>.</p>
-      <div class="radar" id="v5radar"></div>
-    </div>
-
-    <div class="sec-t" id="v5-stats-sec">📈 Estatísticas dos tempos de espera</div>
-    <div class="row r2">
-      <div class="panel"><h4>Distribuição (histograma)</h4><div class="chartbox"><canvas id="v5hist"></canvas></div></div>
-      <div class="panel"><h4>Boxplot / percentis</h4><div id="v5box"></div></div>
-    </div>
-    <div class="panel" style="margin-top:14px"><h4>🔥 Ranking de velocidade por mês</h4><div id="v5rank" style="overflow-x:auto"></div></div>
-
-    <div class="sec-t" id="v5-chk-sec">✅ Checklist pós-cidadania</div>
-    <div class="panel"><p style="color:var(--txt2);font-size:12.5px;margin-bottom:4px">Depois do reconhecimento, organize os próximos passos. <span id="v5chkp" style="color:var(--accent);font-weight:700"></span></p>
-      <div class="chk-grid" id="v5chk" style="margin-top:12px"></div>
-    </div>
-
     <div class="sec-t" id="v5-links-sec">🔗 Links úteis</div>
     <div class="panel"><div class="links-grid">
       <a class="link-card" href="https://serviziconsolari.esteri.it/" target="_blank" rel="noopener noreferrer"><div class="lc-t">🌐 Prenot@Mi</div><div class="lc-d">Agendamentos consulares</div></a>
@@ -474,12 +495,18 @@ var input=document.getElementById('search'),sug=document.getElementById('suggest
 function matchFilter(x){if(activeFilter==='todos')return true;if(activeFilter==='aguardando')return !x.done;return x.grupo===activeFilter;}
 function search(q){q=q.trim().toLowerCase();var list=DATA.filter(matchFilter);if(q){list=list.filter(function(x){return x.nome.toLowerCase().indexOf(q)>=0||fmt(x.dEntrega).indexOf(q)>=0||x.entrega.indexOf(q)>=0;});}return list.slice(0,40);}
 function renderSug(){var list=search(input.value);if(!list.length){sug.innerHTML='<div class="sug"><span class="nm" style="color:var(--txt3)">Nenhum processo encontrado</span></div>';sug.classList.add('show');return;}sug.innerHTML=list.map(function(x){var st=x.done?'<span class="st done">Resolvido</span>':'<span class="st wait">Aguardando</span>';return '<div class="sug" data-nome="'+encodeURIComponent(x.nome)+'" data-ent="'+x.entrega+'"><div><div class="nm">'+x.nome+'</div><div class="dt">Entrega: '+fmt(x.dEntrega)+'</div></div><div style="display:flex;gap:6px;align-items:center">'+planilhaTag(planilhaDe(x))+st+'</div></div>';}).join('');sug.classList.add('show');Array.prototype.forEach.call(sug.querySelectorAll('.sug'),function(el){if(!el.dataset.nome)return;el.onclick=function(){var x=DATA.find(function(d){return d.nome===decodeURIComponent(el.dataset.nome)&&d.entrega===el.dataset.ent;});select(x);};});}
-input.addEventListener('input',renderSug);input.addEventListener('focus',renderSug);
+function updateClearBtn(){var w=input.closest('.search-wrap');if(w){if(input.value.length>0)w.classList.add('has-text');else w.classList.remove('has-text');}}
+function resetProcView(){document.documentElement.classList.remove('has-proc');var res=document.getElementById('result');if(res){res.style.display='none';res.innerHTML='';}try{chartInstances.forEach(function(c){try{c.destroy();}catch(e){}});chartInstances=[];}catch(e){}var emp=document.getElementById('empty');if(emp)emp.style.display='block';var sh=document.getElementById('searchHint');if(sh)sh.style.display='none';}
+function clearSearch(){input.value='';updateClearBtn();sug.classList.remove('show');resetProcView();input.focus();renderSug();}
+window.clearSearch=clearSearch;
+input.addEventListener('input',function(){updateClearBtn();if(input.value.trim()===''){resetProcView();}renderSug();});
+input.addEventListener('focus',renderSug);
+input.addEventListener('keydown',function(e){if(e.key==='Escape'){clearSearch();}});
 document.addEventListener('click',function(e){if(!e.target.closest('.search-wrap'))sug.classList.remove('show');});
 Array.prototype.forEach.call(document.querySelectorAll('.chip[data-f]'),function(c){c.onclick=function(){document.querySelectorAll('.chip[data-f]').forEach(function(k){k.classList.remove('on');});c.classList.add('on');activeFilter=c.dataset.f;renderSug();};});
 function computeProjection(x){var pos=waiting.findIndex(function(w){return w.nome===x.nome&&w.entrega===x.entrega;})+1;var ahead=pos-1;var aheadResolved=resolved.filter(function(r){return r.dEntrega<=x.dEntrega;}).length;var frontTotal=aheadResolved+ahead;var pctFrontDone=frontTotal>0?Math.round(aheadResolved/frontTotal*100):0;var d90=new Date(TODAY.getTime()-90*864e5);var aheadResolved90=resolved.filter(function(r){return r.dEntrega<=x.dEntrega&&r.dResol>=d90;}).length;var afterResolved=resolved.filter(function(r){return r.dEntrega>x.dEntrega;}).length;var afterTotal=DATA.filter(function(r){return r.dEntrega>x.dEntrega;}).length;var pctAfterDone=afterTotal>0?Math.round(afterResolved/afterTotal*100):0;function eta(rate){var d=Math.round(ahead/rate*30.44);return {d:d,date:new Date(TODAY.getTime()+d*864e5)};}return {pos:pos,ahead:ahead,aheadResolved:aheadResolved,frontTotal:frontTotal,pctFrontDone:pctFrontDone,aheadResolved90:aheadResolved90,afterResolved:afterResolved,afterTotal:afterTotal,pctAfterDone:pctAfterDone,opt:eta(Math.max(thrPico,1)),real:eta(Math.max(thrMedTrim,1)),cons:eta(Math.max(Math.round(thrSem*0.7),1)),total:waiting.length};}
 function mesAno(d){var M=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];return M[d.getMonth()]+'/'+String(d.getFullYear()).slice(2);}
-function select(x){input.value=x.nome;sug.classList.remove('show');document.getElementById('empty').style.display='none';document.documentElement.classList.add('has-proc');var sh=document.getElementById('searchHint');if(sh)sh.style.display='none';var res=document.getElementById('result');res.style.display='block';chartInstances.forEach(function(c){try{c.destroy();}catch(e){}});chartInstances=[];if(x.done){renderDone(x);return;}var P=computeProjection(x);var pctAhead=Math.round((1-P.pos/P.total)*100);var famNote=x.nome.toLowerCase().indexOf('irm')>=0?' · possível pasta familiar':'';var plk=planilhaDe(x);var html='';
+function select(x){input.value=x.nome;updateClearBtn();sug.classList.remove('show');document.getElementById('empty').style.display='none';document.documentElement.classList.add('has-proc');var sh=document.getElementById('searchHint');if(sh)sh.style.display='none';var res=document.getElementById('result');res.style.display='block';chartInstances.forEach(function(c){try{c.destroy();}catch(e){}});chartInstances=[];if(x.done){renderDone(x);return;}var P=computeProjection(x);var pctAhead=Math.round((1-P.pos/P.total)*100);var famNote=x.nome.toLowerCase().indexOf('irm')>=0?' · possível pasta familiar':'';var plk=planilhaDe(x);var html='';
 html+='<div class="sec-t" id="s-pos">Posição na fila do grupo — '+x.nome+' '+planilhaTag(plk)+'</div>';
 html+='<div class="posb"><div class="num">'+P.pos+'º</div><div class="txt"><b>'+x.nome+'</b><p>Entrega: '+fmt(x.dEntrega)+' · '+x.espera+' dias aguardando · '+P.ahead+' à frente'+famNote+'</p></div><div class="prog"><div class="progress"><i style="width:'+pctAhead+'%"></i><span>Adiante de ~'+pctAhead+'% da fila do grupo</span></div><div style="font-size:11px;color:var(--txt3);margin-top:6px">⚠️ vale só para membros do grupo — a fila oficial é maior</div></div></div>';
 var afterWaiting=P.afterTotal-P.afterResolved;
@@ -531,10 +558,10 @@ var STEPS=[
 {n:8,ic:'🗳️',t:'Inclusão na lista eleitoral',d:'Incluído nas listas eleitorais do Comune. ✅ Apto a votar no exterior.',dt:1,dl:'Data da inclusão'},
 {n:9,ic:'🔄',t:'Comunicação do Comune ao Consulado',d:'O Comune comunica ao Consulado a conclusão do AIRE. <span style="color:var(--txt3)">Nem todos avisam o cidadão.</span>',dt:1,dl:'Data da comunicação'},
 {n:10,ic:'💻',t:'Atualização dos sistemas consulares e Fast It',d:'Atualização do status AIRE no <b>Fast It</b>. ✅ Já é possível iniciar a CIE.',tags:'<span class="jtag tip">quase lá 🚀</span>',dt:1,dl:'Data da atualização Fast It'},
-{n:11,ic:'🪪',t:'Solicitação da CIE',d:'Agendamento para emissão da identidade italiana, com coleta biométrica.',dt:1,dl:'Data da solicitação da CIE'},
-{n:12,ic:'📬',t:'Emissão e recebimento da CIE',d:'A CIE é produzida na Itália e enviada. ✅ Válida em toda a União Europeia.',dt:1,dl:'Data de recebimento da CIE'},
-{n:13,ic:'🛂',t:'Solicitação do Passaporte Italiano',d:'Após os 180 dias. Agendamento, taxa consular, coleta biométrica e conferência.',dt:1,dl:'Data da solicitação do passaporte'},
-{n:14,ic:'✈️',t:'Emissão e recebimento do Passaporte',d:'Emissão concluída. ✅ Apto para viagens internacionais.',dt:1,dl:'Data de recebimento do passaporte'},
+{n:11,ic:'🛂',t:'Solicitação do Passaporte Italiano',d:'Após os 180 dias do "Já Sou Italiano". Agendamento, taxa consular, coleta biométrica e conferência.',dt:1,dl:'Data da solicitação do passaporte'},
+{n:12,ic:'✈️',t:'Emissão e recebimento do Passaporte',d:'Emissão concluída. ✅ Apto para viagens internacionais.',dt:1,dl:'Data de recebimento do passaporte'},
+{n:13,ic:'🪪',t:'Solicitação da CIE',d:'Agendamento para emissão da identidade italiana, com coleta biométrica.',dt:1,dl:'Data da solicitação da CIE'},
+{n:14,ic:'📬',t:'Emissão e recebimento da CIE',d:'A CIE é produzida na Itália e enviada. ✅ Válida em toda a União Europeia.',dt:1,dl:'Data de recebimento da CIE'},
 {n:15,ic:'🔓',t:'Habilitação dos serviços ao cidadão',d:'Acesso pleno: CIE, passaporte, Fast It, voto, certidões e serviços digitais italianos.'},
 {n:16,ic:'🎉',t:'Jornada Concluída',d:'<b>Parabéns!</b> Cidadania reconhecida perante Comune, AIRE, ANPR, Consulado e Estado Italiano.<br><b>🇮🇹 Benvenuto nella comunità dei cittadini italiani!</b>',tags:'<span class="jtag tip">🎉 fim</span>'}
 ];
@@ -551,7 +578,7 @@ function jsetDate(n,v,el){
   if(v)jstate.dates[n]=v;else delete jstate.dates[n];
   jsave();updateCountdown();
 }
-function updateCountdown(){var inner=document.getElementById('pass180');if(!inner)return;var hasDate=jstate.done>=3&&jstate.dates[3];if(hasDate){var base=pd(jstate.dates[3]);var alvo=new Date(base.getTime()+180*864e5);var rest=days(TODAY,alvo);var elapsed=Math.max(0,Math.min(180,days(base,TODAY)));var pct=Math.min(100,Math.round(elapsed/180*100));var status;if(jstate.done>=14)status='📬 Passaporte emitido';else if(jstate.done>=13)status='🛂 Passaporte solicitado';else if(rest<=0)status='✅ Liberado para solicitação';else if(rest<=30)status='🟡 Menos de 30 dias para liberação';else status='⏳ Em contagem dos 180 dias';var vTxt=rest>0?('Faltam '+rest+' dias'):'✅ Já pode agendar o passaporte!';var sHtml=rest>0?('Poderá agendar a partir de <b>'+fmt(alvo)+'</b> (180 dias após '+fmt(base)+').'):('Os 180 dias se completaram em <b>'+fmt(alvo)+'</b>.');var barcol=rest<=0?'linear-gradient(90deg,var(--teal),var(--accent))':(rest<=30?'linear-gradient(90deg,#b45309,#f59e0b)':'linear-gradient(90deg,#1d4ed8,#3b82f6)');inner.innerHTML='<div class="countdown"><div class="cd-t">🛂 Contador dos 180 dias para o Passaporte</div><div class="cd-v">'+vTxt+'</div><div class="cd-s">'+sHtml+'</div><div style="display:flex;gap:14px;flex-wrap:wrap;margin:10px 0;font-size:12px;color:var(--txt2)"><span>📅 E-mail: <b style="color:var(--txt)">'+fmt(base)+'</b></span><span>🎯 Liberação: <b style="color:var(--txt)">'+fmt(alvo)+'</b></span><span>⏱️ Decorridos: <b style="color:var(--txt)">'+elapsed+' d</b></span><span>⌛ Restantes: <b style="color:var(--txt)">'+Math.max(0,rest)+' d</b></span></div><div class="legalbar"><i style="width:'+pct+'%;background:'+barcol+'"></i><span>'+pct+'%</span></div><div class="cd-s" style="margin-top:8px">Status: <b>'+status+'</b></div></div>';}else{inner.innerHTML='<div class="countdown"><div class="cd-t">🛂 Contador dos 180 dias para o Passaporte</div><div class="cd-s" style="margin-top:6px">Marque a <b>data do e-mail "Já Sou Italiano"</b> acima (📅) para calcular.</div></div>';}}
+function updateCountdown(){var inner=document.getElementById('pass180');if(!inner)return;var hasDate=jstate.done>=3&&jstate.dates[3];if(hasDate){var base=pd(jstate.dates[3]);var alvo=new Date(base.getTime()+180*864e5);var rest=days(TODAY,alvo);var elapsed=Math.max(0,Math.min(180,days(base,TODAY)));var pct=Math.min(100,Math.round(elapsed/180*100));var status;if(jstate.done>=12)status='📬 Passaporte emitido';else if(jstate.done>=11)status='🛂 Passaporte solicitado';else if(rest<=0)status='✅ Liberado para solicitação';else if(rest<=30)status='🟡 Menos de 30 dias para liberação';else status='⏳ Em contagem dos 180 dias';var vTxt=rest>0?('Faltam '+rest+' dias'):'✅ Já pode agendar o passaporte!';var sHtml=rest>0?('Poderá agendar a partir de <b>'+fmt(alvo)+'</b> (180 dias após '+fmt(base)+').'):('Os 180 dias se completaram em <b>'+fmt(alvo)+'</b>.');var barcol=rest<=0?'linear-gradient(90deg,var(--teal),var(--accent))':(rest<=30?'linear-gradient(90deg,#b45309,#f59e0b)':'linear-gradient(90deg,#1d4ed8,#3b82f6)');inner.innerHTML='<div class="countdown"><div class="cd-t">🛂 Contador dos 180 dias para o Passaporte</div><div class="cd-v">'+vTxt+'</div><div class="cd-s">'+sHtml+'</div><div style="display:flex;gap:14px;flex-wrap:wrap;margin:10px 0;font-size:12px;color:var(--txt2)"><span>📅 E-mail: <b style="color:var(--txt)">'+fmt(base)+'</b></span><span>🎯 Liberação: <b style="color:var(--txt)">'+fmt(alvo)+'</b></span><span>⏱️ Decorridos: <b style="color:var(--txt)">'+elapsed+' d</b></span><span>⌛ Restantes: <b style="color:var(--txt)">'+Math.max(0,rest)+' d</b></span></div><div class="legalbar"><i style="width:'+pct+'%;background:'+barcol+'"></i><span>'+pct+'%</span></div><div class="cd-s" style="margin-top:8px">Status: <b>'+status+'</b></div></div>';}else{inner.innerHTML='<div class="countdown"><div class="cd-t">🛂 Contador dos 180 dias para o Passaporte</div><div class="cd-s" style="margin-top:6px">Marque a <b>data do e-mail "Já Sou Italiano"</b> acima (📅) para calcular.</div></div>';}}
 jload();renderJourney();
 // ---- EXPORTAR JORNADA EM PDF (funciona no PC e no celular) ----
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
@@ -664,7 +691,7 @@ if('serviceWorker' in navigator){window.addEventListener('load',function(){navig
         return true;
       })
       .catch(function(e){
-        jsonStatus('⚠️ dados.json indisponível. Usando base embutida no HTML. Detalhe: '+(e && e.message ? e.message : e));
+        jsonStatus('ℹ️ Exibindo a base local do site (dados.json não encontrado ou vazio — normal em uso avulso). Para atualizar, use "📂 Carregar planilha (.xlsx)".');
         return false;
       });
   };
@@ -731,10 +758,67 @@ if('serviceWorker' in navigator){window.addEventListener('load',function(){navig
   function favSave(a){try{localStorage.setItem('fila_favs',JSON.stringify(a));}catch(e){}}
   window.isFav=function(x){return favLoad().some(function(f){return f.nome===x.nome&&f.entrega===x.entrega;});};
   window.toggleFav=function(nome,entrega){var a=favLoad();var i=a.findIndex(function(f){return f.nome===nome&&f.entrega===entrega;});if(i>=0){a.splice(i,1);toast('Removido dos favoritos');}else{a.push({nome:nome,entrega:entrega});toast('⭐ Adicionado aos favoritos');}favSave(a);renderFavs();var b=q('v5favbtn');if(b){var on=isFav({nome:nome,entrega:entrega});b.className='fav-btn'+(on?' on':'');b.innerHTML=(on?'⭐ Nos favoritos':'☆ Favoritar');}};
-  window.renderFavs=function(){var el=q('v5favlist');if(!el)return;var a=favLoad();if(!a.length){el.innerHTML='<div class="fav-empty">Nenhum favorito ainda. Abra um processo e toque em ☆ Favoritar para acompanhá-lo aqui.</div>';return;}el.innerHTML=a.map(function(f){return '<span class="fav-chip" data-n="'+encodeURIComponent(f.nome)+'" data-e="'+f.entrega+'"><span class="op">📌 '+f.nome+'</span> <span class="x" data-rm="1">✕</span></span>';}).join('');Array.prototype.forEach.call(el.querySelectorAll('.fav-chip'),function(c){c.onclick=function(ev){var nome=decodeURIComponent(c.dataset.n),ent=c.dataset.e;if(ev.target.dataset.rm){window.toggleFav(nome,ent);return;}var x=DATA.find(function(d){return d.nome===nome&&d.entrega===ent;});if(x)select(x);};});};
+  window.renderFavs=function(){var el=q('v5favlist');if(!el)return;var a=favLoad();var sec=q('v5-favs-sec'),pan=q('v5-favs-panel');var show=a.length>0;if(sec)sec.style.display=show?'':'none';if(pan)pan.style.display=show?'':'none';if(!show){el.innerHTML='';return;}el.innerHTML=a.map(function(f){return '<span class="fav-chip" data-n="'+encodeURIComponent(f.nome)+'" data-e="'+f.entrega+'"><span class="op">📌 '+f.nome+'</span> <span class="x" data-rm="1">✕</span></span>';}).join('');Array.prototype.forEach.call(el.querySelectorAll('.fav-chip'),function(c){c.onclick=function(ev){var nome=decodeURIComponent(c.dataset.n),ent=c.dataset.e;if(ev.target.dataset.rm){window.toggleFav(nome,ent);return;}var x=DATA.find(function(d){return d.nome===nome&&d.entrega===ent;});if(x)select(x);};});};
 
   /* ---------- COMPARTILHAR ---------- */
-  window.shareProc=function(nome){var url=location.origin+location.pathname+'?proc='+encodeURIComponent(nome);if(navigator.share){navigator.share({title:'Consultor de Fila',text:'Acompanhe o processo '+nome,url:url}).catch(function(){});}else if(navigator.clipboard){navigator.clipboard.writeText(url).then(function(){toast('🔗 Link copiado!');});}else{prompt('Copie o link:',url);}};
+  function buildShareUrl(nome){
+    var base=location.href.split('#')[0].split('?')[0];
+    // se aberto localmente (file://) o link não abre para terceiros — usa mesmo assim mas avisa
+    return base+'?proc='+encodeURIComponent(nome);
+  }
+  function copyText(txt,okMsg){
+    // 1) API moderna (precisa de HTTPS)
+    if(navigator.clipboard&&window.isSecureContext){
+      navigator.clipboard.writeText(txt).then(function(){toast(okMsg||'🔗 Link copiado!');},function(){fallbackCopy(txt,okMsg);});
+      return;
+    }
+    fallbackCopy(txt,okMsg);
+  }
+  function fallbackCopy(txt,okMsg){
+    try{var ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.top='-1000px';document.body.appendChild(ta);ta.focus();ta.select();var ok=document.execCommand('copy');document.body.removeChild(ta);toast(ok?(okMsg||'🔗 Link copiado!'):'Selecione e copie o link manualmente');}catch(e){toast('Selecione e copie o link manualmente');}
+  }
+  window.shareProc=function(nome){
+    var url=buildShareUrl(nome);
+    var isFile=location.protocol==='file:';
+    // tenta o compartilhamento nativo do celular primeiro (só em HTTPS)
+    if(navigator.share&&window.isSecureContext&&!isFile){
+      navigator.share({title:'Consultor de Fila · '+nome,text:'Acompanhe o processo '+nome+' na fila da cidadania italiana',url:url})
+        .then(function(){},function(){openShareModal(nome,url,isFile);});
+      return;
+    }
+    openShareModal(nome,url,isFile);
+  };
+  function openShareModal(nome,url,isFile){
+    var ov=document.getElementById('v5shareov');
+    if(!ov){
+      ov=document.createElement('div');ov.id='v5shareov';ov.className='share-ov';
+      ov.innerHTML='<div class="share-modal" onclick="event.stopPropagation()">'+
+        '<h3>🔗 Compartilhar processo</h3>'+
+        '<p id="v5sharep"></p>'+
+        '<div class="share-url"><input type="text" id="v5shareurl" readonly><button onclick="v5copyShare()">📋 Copiar</button></div>'+
+        '<div class="share-opts">'+
+          '<a class="share-opt" id="v5wa" target="_blank" rel="noopener">💬 WhatsApp</a>'+
+          '<a class="share-opt" id="v5tg" target="_blank" rel="noopener">✈️ Telegram</a>'+
+          '<a class="share-opt" id="v5em">✉️ E-mail</a>'+
+          '<span class="share-opt" onclick="v5copyShare()">📋 Copiar link</span>'+
+        '</div>'+
+        '<button class="share-close" onclick="closeShareModal()">Fechar</button>'+
+      '</div>';
+      ov.onclick=closeShareModal;
+      document.body.appendChild(ov);
+    }
+    var inp=document.getElementById('v5shareurl');inp.value=url;
+    var txt='Acompanhe o processo '+nome+' na fila da cidadania italiana: '+url;
+    document.getElementById('v5wa').href='https://wa.me/?text='+encodeURIComponent(txt);
+    document.getElementById('v5tg').href='https://t.me/share/url?url='+encodeURIComponent(url)+'&text='+encodeURIComponent('Processo '+nome);
+    document.getElementById('v5em').href='mailto:?subject='+encodeURIComponent('Consultor de Fila · '+nome)+'&body='+encodeURIComponent(txt);
+    document.getElementById('v5sharep').innerHTML=isFile
+      ? '⚠️ O site está aberto localmente (arquivo). O link abaixo só funcionará para outras pessoas quando o site estiver publicado (GitHub Pages/OneDrive). Você já pode copiá-lo.'
+      : 'Copie o link ou envie direto pelos apps abaixo. Ao abrir, o processo <b>'+nome+'</b> já aparece selecionado.';
+    ov.classList.add('show');
+  }
+  window.closeShareModal=function(){var ov=document.getElementById('v5shareov');if(ov)ov.classList.remove('show');};
+  window.v5copyShare=function(){var inp=document.getElementById('v5shareurl');if(inp){inp.focus();inp.select();copyText(inp.value,'🔗 Link copiado!');}};
 
   /* ---------- ESTATÍSTICA (histograma + boxplot) ---------- */
   window.renderStats=function(){
@@ -774,7 +858,7 @@ if('serviceWorker' in navigator){window.addEventListener('load',function(){navig
   };
 
   /* ---------- RADAR DE ESTÁGIOS (jornada macro) ---------- */
-  var RSTAGES=[{i:'📂',t:'Balcão (B)',k:'B'},{i:'🇮🇹',t:'JSI',k:'JSI'},{i:'📧',t:'PEC',k:'PEC'},{i:'🏛️',t:'Comune',k:'CM'},{i:'🌎',t:'AIRE',k:'AIRE'},{i:'💻',t:'Fast It',k:'FI'},{i:'🪪',t:'CIE',k:'CIE'},{i:'🛂',t:'Passaporte',k:'PP'}];
+  var RSTAGES=[{i:'📂',t:'Balcão (B)',k:'B'},{i:'🇮🇹',t:'JSI',k:'JSI'},{i:'📧',t:'PEC',k:'PEC'},{i:'🏛️',t:'Comune',k:'CM'},{i:'🌎',t:'AIRE',k:'AIRE'},{i:'💻',t:'Fast It',k:'FI'},{i:'🛂',t:'Passaporte',k:'PP'},{i:'🪪',t:'CIE',k:'CIE'}];
   window.renderRadar=function(){
     var el=q('v5radar');if(!el)return;
     // etapa atual macro derivada da jornada pessoal (jstate) se existir
@@ -787,8 +871,8 @@ if('serviceWorker' in navigator){window.addEventListener('load',function(){navig
 
   /* ---------- CHECKLIST PÓS-CIDADANIA ---------- */
   var CHK=[
-    {k:'cie',t:'CIE',d:'Carta d\'Identità Elettronica'},
-    {k:'pass',t:'Passaporte',d:'Após os 180 dias'},
+    {k:'pass',t:'Passaporte',d:'Após os 180 dias do "Já Sou Italiano"'},
+    {k:'cie',t:'CIE',d:'Carta d\'Identità Elettronica (após AIRE)'},
     {k:'cf',t:'Codice Fiscale',d:'via Consulado / Agenzia Entrate'},
     {k:'spid',t:'SPID',d:'Identidade digital italiana'},
     {k:'ts',t:'Tessera Sanitaria',d:'se residir na Itália'},
@@ -822,7 +906,7 @@ if('serviceWorker' in navigator){window.addEventListener('load',function(){navig
     var c=confianca(P);var j=janela(x,P);
     var wrap=document.createElement('div');
     var jTxt=j?('<div class="info-block" style="margin:10px 0 0"><b>🎯 Janela provável de convocação:</b> entre <b style="color:var(--teal)">'+fmt(j.dLo)+'</b> e <b style="color:#ff8a8a">'+fmt(j.dHi)+'</b> — central em <b style="color:var(--accent)">'+fmt(j.dMid)+'</b>.</div>'):'';
-    wrap.innerHTML='<div class="sec-t">🎯 Confiabilidade da estimativa</div>'+
+    wrap.innerHTML='<div class="sec-t" id="s-conf">🎯 Confiabilidade da estimativa</div>'+
       '<div class="panel"><div class="conf"><div class="conf-ring" data-v="'+c.score+'%" style="--pct:'+c.score+'"></div>'+
       '<div style="flex:1;min-width:200px"><span class="conf-badge '+c.nivel+'">'+c.label+'</span>'+
       '<p style="color:var(--txt2);font-size:12.5px;margin-top:8px">Índice baseado no <b>volume de casos à sua frente</b> ('+P.frontTotal+'), no <b>tamanho da amostra</b> ('+resolved.length+' resolvidos), no <b>fluxo recente</b> ('+(P.aheadResolved90||0)+' nos últimos 90 dias) e na <b>dispersão</b> dos tempos. Quanto maior, mais estável tende a ser a projeção.</p>'+jTxt+'</div></div></div>';
