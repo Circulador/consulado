@@ -222,18 +222,58 @@ html.nav-unpinned.nav-open .app-official .side{transform:translateX(0)}
 html.nav-unpinned .navtoggle{display:inline-flex}
 html.nav-unpinned.nav-open .nav-overlay{opacity:1;pointer-events:auto}
 @media print{
-  @page{margin:12mm}*{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}
+  @page{margin:12mm}
+  html,body,*{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}
+  /* FORÇA TEMA CLARO na impressão: redefine as variáveis para que TODOS os
+     componentes (mesmo os do tema escuro) fiquem com fundo claro e texto escuro. */
+  :root,:root[data-theme="light"]{
+    --bg:#fff !important;--panel:#fff !important;--panel2:#f3f6fa !important;
+    --line:#c9d2df !important;--txt:#12233a !important;--txt2:#3a4a60 !important;
+    --txt3:#5a6a80 !important;--inputbg:#fff !important;
+    --side-grad1:#fff !important;--side-grad2:#fff !important;
+  }
+  /* Componentes com fundo escuro "hardcoded" (não usam variável) → clarear */
+  .searchbox,.posb{background:#eef5ff !important;border:1px solid #b4d2f5 !important}
+  .searchbox *,.posb *{color:#12233a !important}
+  .countdown{background:#fff8ec !important;border:1px solid #f0d79a !important}
+  .countdown *{color:#5f4300 !important}
+  .scen.opt{background:#f2fbf6 !important;border:1px solid #a7e0c4 !important}
+  .scen.real{background:#eef5ff !important;border:1px solid #b4d2f5 !important}
+  .scen.cons{background:#fff8ec !important;border:1px solid #f0d79a !important}
+  .scen,.scen *{color:#12233a !important}
+  /* Campos de data da jornada: fundo branco + texto escuro (corrige datas invisíveis) */
+  .jdate input{background:#fff !important;color:#12233a !important;border:1px solid #c9d2df !important}
+  /* Cabeçalho de tabela e células legíveis */
+  .gtable thead th{background:#eef2f7 !important;color:#3a4a60 !important}
+  .gtable td,.gtable td *{color:#12233a !important}
   body{background:#fff !important;color:#111 !important;font-size:12px}
   .app{display:block}.side{display:none !important}.navtoggle,.nav-overlay{display:none !important}.main{padding:0}
   .dlbtn,.themebtn,.instbtn,.top>div:last-child{display:none !important}
   .searchbox,.suggestions,.filters,.tbl-controls{display:none !important}
   .panel,.posb,.legalbox,.kpi,.scen,.risk,.donebox{background:#fff !important;border:1px solid #ccc !important;box-shadow:none !important;break-inside:avoid}
   .top h2,.sec-t,h4,.kpi .v,.kpi .l,.kpi .s,p,td,th,li{color:#111 !important}
-  .jstep .jt{color:#111 !important}.jstep .jd{color:#333 !important}
+  /* Textos gerais sempre legíveis no papel (dashboard cards preservam suas cores) */
+  .info-block,.info-block *,.update-panel,.update-panel *,.sheet-link,.sheet-link *,.legal-note,.jhint{color:#222 !important}
+  .dcard .dl,.dcard .ds{color:#555 !important}
+  /* Jornada: títulos e descrições escuros (corrige verde/âmbar/cinza apagados) */
+  .jstep .jt,.jstep .jt *{color:#111 !important}
+  .jstep .jd,.jstep .jd *{color:#333 !important}
+  .jstep .jdate,.jstep .jdate *{color:#222 !important}
+  .jstep .jcheck{color:#555 !important}.jstep.done .jcheck{color:#0d7a52 !important}
+  /* Barras de progresso: texto ESCURO sem sombra (corrige "X de 16 etapas" apagado) */
+  .jprogress span,.progress span,.legalbar span,.bar span{color:#0f2033 !important;text-shadow:none !important;font-weight:800 !important}
+  .jprogress,.progress,.legalbar{border:1px solid #bbb !important}
+  /* Tags/badges: mantêm o fundo, texto escuro para contraste */
+  .jtag,.pill,.badge,.st-tag,.pl-tag,.conf-badge{color:#1a1a1a !important}
   .jbtns,#xlsxFile,.up-actions,.side-install{display:none !important}
+  canvas{max-width:100% !important}
+  /* Cabeçalho oficial: azul com texto branco */
+  .official-header{background:#0062BC !important}.official-header .oh-txt h1,.official-header .oh-txt p,.official-header .oh-txt *{color:#fff !important}
+  /* Banner NÃO OFICIAL: fundo claro + texto vermelho escuro no ELEMENTO e nos filhos (corrige texto branco invisível) */
+  .naooficial-banner{background:#fff4f4 !important;border:2px solid #CE2B37 !important;color:#8a1a1f !important}.naooficial-banner *{color:#8a1a1f !important}
+  /* Rodapé de aviso + texto base (corrige cinza claro apagado) */
+  .foot{color:#333 !important}
   .foot>div{background:#fff4f4 !important;border:2px solid #CE2B37 !important;color:#8a1a1f !important}.foot>div *{color:#8a1a1f !important}
-  canvas{max-width:100% !important}.official-header{background:#0062BC !important}
-  .naooficial-banner{background:#fff4f4 !important;border:2px solid #CE2B37 !important}.naooficial-banner *{color:#8a1a1f !important}
 }
 @media(max-width:1024px){
   .app-official{grid-template-columns:1fr}
@@ -314,7 +354,11 @@ html.nav-unpinned.nav-open .nav-overlay{opacity:1;pointer-events:auto}
 <div class="app app-official">
   <header class="official-header">
     <button class="navtoggle" onclick="toggleNav()" aria-label="Abrir menu">&#9776;</button>
-    <img class="emblem" src="icon-192.png?v=7" width="52" height="52" alt="Fila Cidadania RIO" style="border-radius:11px;box-shadow:0 2px 6px rgba(0,0,0,.25)">
+    <svg class="emblem" viewBox="0 0 36 48" width="52" height="52" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bandeira da Itália">
+      <rect x="0" y="0" width="12" height="48" rx="2" fill="#009246"/>
+      <rect x="12" y="0" width="12" height="48" fill="#ffffff"/>
+      <rect x="24" y="0" width="12" height="48" rx="2" fill="#CE2B37"/>
+    </svg>
     <div class="oh-txt"><h1>🇮🇹 Consultor Comunitário da Fila</h1><p>Cidadania Italiana (Jure Sanguinis) · RJ e ES — projeto colaborativo não oficial</p></div>
     <div class="tricolor"><i></i><i></i><i></i></div>
   </header>
@@ -388,7 +432,7 @@ html.nav-unpinned.nav-open .nav-overlay{opacity:1;pointer-events:auto}
     <div class="panel">
       <p style="color:var(--txt2);font-size:12.5px;margin-bottom:6px">Acompanhe cada etapa do seu processo, do <b>agendamento no Consulado</b> até a <b>emissão dos seus documentos italianos</b> (16 etapas). <b>Clique em cada passo</b> conforme avança e registre as datas — seu progresso fica salvo neste navegador. 🔒 Nada é enviado para lugar nenhum.</p>
       <div class="jprogress-wrap"><div class="jprogress"><i id="jbar"></i><span id="jbarTxt">0 de 16 etapas concluídas</span></div><div class="jhint" id="jhint">Toque nos passos abaixo para marcar seu progresso</div></div>
-      <div class="jbtns"><button class="jbtn primary" onclick="journeyAdvance()">✅ Concluí a etapa atual</button><button class="jbtn pdf" onclick="exportJourneySimplePDF()">📄 Exportar Jornada Simplificada</button><button class="jbtn pdf" onclick="exportJourneyFullPDF()">📘 Exportar Jornada Completa</button><button class="jbtn" onclick="journeyReset()">↺ Reiniciar</button></div>
+      <div class="jbtns"><button class="jbtn primary" onclick="journeyAdvance()">✅ Concluí a etapa atual</button><button class="jbtn pdf" onclick="exportJourneySimplePDF()">🖨️ Exportar Jornada Simplificada (PDF)</button><button class="jbtn pdf" onclick="exportJourneyFullPDF()">📘 Exportar Jornada Completa (PDF)</button><button class="jbtn" onclick="journeyReset()">↺ Reiniciar</button></div>
       <div class="journey" id="journey"></div>
       <div class="info-block" style="margin-top:14px">🔒 <b>Privacidade:</b> seu progresso e datas ficam salvos apenas <b>neste navegador/dispositivo</b> (localStorage). Não são compartilhados nem enviados para a comunidade.</div>
     </div>
@@ -570,7 +614,7 @@ function buildJourneyReportHTML(){
   '<div class="summary"><div class="scard"><div class="l">Progresso</div><div class="v">'+jstate.done+' de '+STEPS.length+' etapas</div></div><div class="scard"><div class="l">Etapa atual</div><div class="v">'+esc(atual)+'</div></div><div class="scard"><div class="l">Próxima etapa</div><div class="v">'+esc(prox)+'</div></div><div class="scard"><div class="l">Passaporte</div><div class="v">'+esc(journeyPassportInfo())+'</div></div></div>'+
   '<ol>'+rows+'</ol>'+buildRadarReportHTML()+
   '<div class="ft">⚠️ FERRAMENTA NÃO OFICIAL — Projeto voluntário da comunidade, sem vínculo com o Consulado Geral da Itália ou governos. Datas e progresso são de preenchimento pessoal e caráter informativo. Somente o Consulado detém os registros e prazos oficiais.<br>Consultor de Fila Consular · Cidadania Italiana — RJ e ES.</div>'+
-  '<scr'+'ipt>function _rptH2C(cb){if(window.html2canvas)return cb();var C=["https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js","https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js","https://unpkg.com/html2canvas@1.4.1/dist/html2canvas.min.js"];var i=0;(function t(){if(window.html2canvas)return cb();if(i>=C.length)return cb(new Error("x"));var s=document.createElement("script");s.src=C[i++];s.onload=function(){window.html2canvas?cb():t();};s.onerror=t;document.head.appendChild(s);})();}function baixarImagemPNG(){var fname=(document.title||"minha-jornada").replace(/[^a-z0-9]+/gi,"-").replace(/^-+|-+$/g,"").toLowerCase();var btns=document.querySelectorAll(".pbtn,.printbtn,.imgbtn");var ib=document.querySelector(".imgbtn");var oldT=ib?ib.textContent:"";if(ib)ib.textContent="⏳ Gerando imagem em alta resolucao, aguarde...";_rptH2C(function(err){if(err){if(ib)ib.textContent=oldT;alert("Nao foi possivel carregar o gerador de imagem. E preciso internet na primeira vez.");return;}var disp=[];for(var k=0;k<btns.length;k++){disp[k]=btns[k].style.display;btns[k].style.display="none";}setTimeout(function(){html2canvas(document.body,{scale:3,backgroundColor:"#ffffff",useCORS:true,windowWidth:900}).then(function(canvas){for(var k=0;k<btns.length;k++)btns[k].style.display=disp[k]||"";if(ib)ib.textContent=oldT;var a=document.createElement("a");a.download=fname+"-"+Date.now()+".png";a.href=canvas.toDataURL("image/png");document.body.appendChild(a);a.click();document.body.removeChild(a);}).catch(function(e){for(var k=0;k<btns.length;k++)btns[k].style.display=disp[k]||"";if(ib)ib.textContent=oldT;alert("Erro ao gerar imagem: "+e.message);});},40);});}<\/script></body></html>';
+  '<scr'+'ipt>function _rptH2C(cb){if(window.html2canvas)return cb();var C=["https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js","https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js","https://unpkg.com/html2canvas@1.4.1/dist/html2canvas.min.js"];var i=0;(function t(){if(window.html2canvas)return cb();if(i>=C.length)return cb(new Error("x"));var s=document.createElement("script");s.src=C[i++];s.onload=function(){window.html2canvas?cb():t();};s.onerror=t;document.head.appendChild(s);})();}function baixarImagemPNG(){var fname=(document.title||"minha-jornada").replace(/[^a-z0-9]+/gi,"-").replace(/^-+|-+$/g,"").toLowerCase();var btns=document.querySelectorAll(".pbtn,.printbtn,.imgbtn");for(var k=0;k<btns.length;k++)btns[k].style.visibility="hidden";var ib=document.querySelector(".imgbtn");var oldT=ib?ib.textContent:"";if(ib){ib.style.visibility="visible";ib.textContent="⏳ Gerando imagem...";}_rptH2C(function(err){if(err){for(var k=0;k<btns.length;k++)btns[k].style.visibility="";if(ib)ib.textContent=oldT;alert("Nao foi possivel carregar o gerador de imagem. E preciso internet na primeira vez.");return;}html2canvas(document.body,{scale:2,backgroundColor:"#ffffff",useCORS:true,windowWidth:document.documentElement.scrollWidth,windowHeight:document.documentElement.scrollHeight}).then(function(canvas){for(var k=0;k<btns.length;k++)btns[k].style.visibility="";if(ib)ib.textContent=oldT;var a=document.createElement("a");a.download=fname+"-"+Date.now()+".png";a.href=canvas.toDataURL("image/png");document.body.appendChild(a);a.click();document.body.removeChild(a);}).catch(function(e){for(var k=0;k<btns.length;k++)btns[k].style.visibility="";if(ib)ib.textContent=oldT;alert("Erro ao gerar imagem: "+e.message);});});}<\/script></body></html>';
 }
 function journeyStatus(n){
   if(n<=jstate.done)return {label:'Concluída',cls:'done',icon:'✔'};
@@ -600,7 +644,7 @@ function buildJourneyFullReportHTML(){
   '<style>*{box-sizing:border-box;margin:0;padding:0;font-family:Segoe UI,system-ui,sans-serif}body{background:#f5f7fb;color:#142033;padding:20px;line-height:1.45}.printbtn{display:block;width:100%;background:#0062BC;color:#fff;border:none;padding:14px;border-radius:10px;font-size:15px;font-weight:800;margin:0 0 16px;cursor:pointer}.cover{background:#fff;border:1px solid #dbe3ef;border-radius:16px;padding:22px;border-top:6px solid #0062BC;margin-bottom:14px}.cover h1{font-size:24px;color:#0062BC;margin-bottom:4px}.cover p{font-size:12px;color:#536276}.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}.card{background:#f0f5ff;border:1px solid #cfe0fb;border-radius:12px;padding:12px}.card .l{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:#667085;font-weight:700}.card .v{font-size:15px;font-weight:800;margin-top:4px;color:#142033}.bar{background:#e6ebf2;border-radius:20px;height:24px;position:relative;overflow:hidden;margin:14px 0 4px}.bar>i{display:block;height:100%;background:linear-gradient(90deg,#1baf7a,#0062BC);border-radius:20px}.bar span{position:absolute;inset:0;text-align:center;line-height:24px;font-size:12px;font-weight:800;color:#fff}.step{display:flex;gap:14px;background:#fff;border:1px solid #dbe3ef;border-radius:14px;padding:16px;margin:10px 0;break-inside:avoid}.step.done{border-left:5px solid #1baf7a}.step.cur{border-left:5px solid #1e6fd9}.step.pend{border-left:5px solid #aeb7c5}.num{width:34px;height:34px;border-radius:50%;background:#e8eef7;color:#142033;display:flex;align-items:center;justify-content:center;font-weight:900;flex:0 0 auto}.step.done .num{background:#1baf7a;color:#fff}.step.cur .num{background:#1e6fd9;color:#fff}.ct{flex:1}.meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:6px;font-size:11px;color:#667085}.status{font-weight:800;padding:3px 9px;border-radius:20px}.status.done{background:#e3f6ee;color:#08764f}.status.cur{background:#e6f0ff;color:#1e5bb8}.status.pend{background:#eef0f3;color:#697386}h2{font-size:17px;margin:3px 0 6px;color:#142033}.desc{font-size:13px;color:#344054}.desc b{color:#142033}.note{background:#fff7e8;border:1px solid #f0d79a;border-radius:10px;padding:10px;margin-top:10px;font-size:12px;color:#5f4300}.foot{margin-top:18px;background:#fff4f4;border:2px solid #CE2B37;border-radius:12px;padding:12px;color:#8a1a1f;font-size:10.5px;line-height:1.5}.radar-h{font-size:14px;color:#0062BC;margin:6px 0 4px}.radar-p{font-size:11px;color:#536276;margin-bottom:10px}.radar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.rstg{border:1px solid #dbe3ef;border-radius:12px;padding:12px 8px;text-align:center;background:#f7f9fc}.rstg .ri{font-size:20px}.rstg .rt{font-size:11px;font-weight:700;margin-top:4px;color:#142033}.rstg .rc{font-size:14px;font-weight:800;margin-top:3px;color:#8493a8}.rstg.rdone{border-color:#1baf7a}.rstg.rdone .rc{color:#1baf7a}.rstg.rcur{border-color:#1e6fd9}.rstg.rcur .rc{color:#1e6fd9}.radarbox{background:#fff;border:1px solid #dbe3ef;border-radius:14px;padding:16px;margin:10px 0;break-inside:avoid}@media(max-width:760px){.summary{grid-template-columns:1fr 1fr}.step{padding:13px}.cover h1{font-size:20px}}@media print{body{background:#fff;padding:0}.printbtn,.imgbtn{display:none}.summary{grid-template-columns:repeat(4,1fr)}@page{margin:12mm}}</style></head><body>'+
   '<button class="printbtn" onclick="window.print()">🖨️ Salvar como PDF / Imprimir</button><button class="imgbtn" onclick="baixarImagemPNG()" style="display:block;width:100%;background:#1baf7a;color:#fff;border:none;padding:14px;border-radius:10px;font-size:15px;font-weight:800;margin:0 0 16px;cursor:pointer">🖼️ Baixar como imagem (PNG)</button><div class="cover"><h1>🇮🇹 Minha Jornada Completa — Cidadania Italiana</h1><p>Relatório detalhado de acompanhamento personalizado · gerado em '+hoje+'</p><div class="bar"><i style="width:'+pct+'%"></i><span>'+pct+'%</span></div><div class="summary"><div class="card"><div class="l">Progresso</div><div class="v">'+jstate.done+' de '+STEPS.length+' etapas</div></div><div class="card"><div class="l">Etapa atual</div><div class="v">'+esc(atual)+'</div></div><div class="card"><div class="l">Próxima etapa</div><div class="v">'+esc(prox)+'</div></div><div class="card"><div class="l">Passaporte</div><div class="v">'+esc(journeyPassportInfo())+'</div></div></div><div class="note"><b>🪪 CIE:</b> '+esc(journeyCieInfo())+'</div></div>'+rows+
   '<div class="radarbox">'+buildRadarReportHTML()+'</div>'+
-  '<div class="foot"><b>⚠️ FERRAMENTA NÃO OFICIAL</b><br>Projeto voluntário da comunidade, sem vínculo com o Consulado Geral da Itália, Governo Italiano ou Governo Brasileiro. Datas e progresso são de preenchimento pessoal e caráter informativo. Somente o Consulado detém os registros e prazos oficiais.<br>Consultor de Fila Consular · Cidadania Italiana — RJ e ES.</div><script>function _rptH2C(cb){if(window.html2canvas)return cb();var C=["https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js","https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js","https://unpkg.com/html2canvas@1.4.1/dist/html2canvas.min.js"];var i=0;(function t(){if(window.html2canvas)return cb();if(i>=C.length)return cb(new Error("x"));var s=document.createElement("script");s.src=C[i++];s.onload=function(){window.html2canvas?cb():t();};s.onerror=t;document.head.appendChild(s);})();}function baixarImagemPNG(){var fname=(document.title||"minha-jornada").replace(/[^a-z0-9]+/gi,"-").replace(/^-+|-+$/g,"").toLowerCase();var btns=document.querySelectorAll(".pbtn,.printbtn,.imgbtn");var ib=document.querySelector(".imgbtn");var oldT=ib?ib.textContent:"";if(ib)ib.textContent="⏳ Gerando imagem em alta resolucao, aguarde...";_rptH2C(function(err){if(err){if(ib)ib.textContent=oldT;alert("Nao foi possivel carregar o gerador de imagem. E preciso internet na primeira vez.");return;}var disp=[];for(var k=0;k<btns.length;k++){disp[k]=btns[k].style.display;btns[k].style.display="none";}setTimeout(function(){html2canvas(document.body,{scale:3,backgroundColor:"#ffffff",useCORS:true,windowWidth:900}).then(function(canvas){for(var k=0;k<btns.length;k++)btns[k].style.display=disp[k]||"";if(ib)ib.textContent=oldT;var a=document.createElement("a");a.download=fname+"-"+Date.now()+".png";a.href=canvas.toDataURL("image/png");document.body.appendChild(a);a.click();document.body.removeChild(a);}).catch(function(e){for(var k=0;k<btns.length;k++)btns[k].style.display=disp[k]||"";if(ib)ib.textContent=oldT;alert("Erro ao gerar imagem: "+e.message);});},40);});}<\/script></body></html>';
+  '<div class="foot"><b>⚠️ FERRAMENTA NÃO OFICIAL</b><br>Projeto voluntário da comunidade, sem vínculo com o Consulado Geral da Itália, Governo Italiano ou Governo Brasileiro. Datas e progresso são de preenchimento pessoal e caráter informativo. Somente o Consulado detém os registros e prazos oficiais.<br>Consultor de Fila Consular · Cidadania Italiana — RJ e ES.</div><script>function _rptH2C(cb){if(window.html2canvas)return cb();var C=["https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js","https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js","https://unpkg.com/html2canvas@1.4.1/dist/html2canvas.min.js"];var i=0;(function t(){if(window.html2canvas)return cb();if(i>=C.length)return cb(new Error("x"));var s=document.createElement("script");s.src=C[i++];s.onload=function(){window.html2canvas?cb():t();};s.onerror=t;document.head.appendChild(s);})();}function baixarImagemPNG(){var fname=(document.title||"minha-jornada").replace(/[^a-z0-9]+/gi,"-").replace(/^-+|-+$/g,"").toLowerCase();var btns=document.querySelectorAll(".pbtn,.printbtn,.imgbtn");for(var k=0;k<btns.length;k++)btns[k].style.visibility="hidden";var ib=document.querySelector(".imgbtn");var oldT=ib?ib.textContent:"";if(ib){ib.style.visibility="visible";ib.textContent="⏳ Gerando imagem...";}_rptH2C(function(err){if(err){for(var k=0;k<btns.length;k++)btns[k].style.visibility="";if(ib)ib.textContent=oldT;alert("Nao foi possivel carregar o gerador de imagem. E preciso internet na primeira vez.");return;}html2canvas(document.body,{scale:2,backgroundColor:"#ffffff",useCORS:true,windowWidth:document.documentElement.scrollWidth,windowHeight:document.documentElement.scrollHeight}).then(function(canvas){for(var k=0;k<btns.length;k++)btns[k].style.visibility="";if(ib)ib.textContent=oldT;var a=document.createElement("a");a.download=fname+"-"+Date.now()+".png";a.href=canvas.toDataURL("image/png");document.body.appendChild(a);a.click();document.body.removeChild(a);}).catch(function(e){for(var k=0;k<btns.length;k++)btns[k].style.visibility="";if(ib)ib.textContent=oldT;alert("Erro ao gerar imagem: "+e.message);});});}<\/script></body></html>';
 }
 function openJourneyReport(htmlDoc){
   var isMobile=/android|iphone|ipad|ipod|mobile/i.test(navigator.userAgent);
@@ -609,14 +653,19 @@ function openJourneyReport(htmlDoc){
     var url=URL.createObjectURL(blob);
     var w=window.open(url,'_blank');
     if(w){
-      /* Abre o relatorio SEM imprimir automaticamente: o usuario escolhe
-         "Salvar como PDF" ou "Baixar como imagem" pelos botoes do proprio relatorio. */
+      if(!isMobile){
+        var tries=0,t=setInterval(function(){
+          tries++;
+          try{if(w.closed){clearInterval(t);return;}if(w.document&&w.document.readyState==='complete'){clearInterval(t);w.focus();w.print();}}catch(e){clearInterval(t);}
+          if(tries>60)clearInterval(t);
+        },200);
+      }
       setTimeout(function(){URL.revokeObjectURL(url);},120000);
       return;
     }
     var a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(url);},120000);return;
   }catch(e){
-    try{var w2=window.open('','_blank');if(w2&&w2.document){w2.document.open();w2.document.write(htmlDoc);w2.document.close();return;}}catch(e2){}
+    try{var w2=window.open('','_blank');if(w2&&w2.document){w2.document.open();w2.document.write(htmlDoc);w2.document.close();if(!isMobile){var t2=setInterval(function(){if(w2.document.readyState==='complete'){clearInterval(t2);try{w2.focus();w2.print();}catch(er){}}},200);}return;}}catch(e2){}
     alert('Nao foi possivel abrir o relatorio. Verifique se o navegador esta bloqueando pop-ups.');
   }
 }
@@ -874,14 +923,14 @@ if('serviceWorker' in navigator){window.addEventListener('load',function(){navig
   window.baixarPaginaImagem=function(){
     var main=document.querySelector('.main');if(!main)return;
     var btn=document.getElementById('imgPageBtn');var oldT=btn?btn.textContent:'';if(btn){btn.textContent='\u23F3 Gerando...';btn.disabled=true;}
-    var btnRow=btn?btn.parentNode:null;var prevDisp=btnRow?btnRow.style.display:null;if(btnRow)btnRow.style.display='none';
+    var btnRow=btn?btn.parentNode:null;var prevVis=btnRow?btnRow.style.visibility:null;if(btnRow)btnRow.style.visibility='hidden';
     var isLight=document.documentElement.getAttribute('data-theme')==='light';
     var bg=isLight?'#eef2f7':'#0f1420';
-    function done(){if(btnRow)btnRow.style.display=prevDisp||'';if(btn){btn.textContent=oldT;btn.disabled=false;}}
+    function done(){if(btnRow)btnRow.style.visibility=prevVis||'';if(btn){btn.textContent=oldT;btn.disabled=false;}}
     loadH2C(function(err){
       if(err){done();alert('Nao foi possivel carregar o gerador de imagem. E preciso internet na primeira vez.');return;}
       try{window.scrollTo(0,0);}catch(e){}
-      html2canvas(main,{scale:3,backgroundColor:bg,useCORS:true,windowWidth:Math.max(main.scrollWidth,1000),scrollX:0,scrollY:0}).then(function(canvas){
+      html2canvas(main,{scale:2,backgroundColor:bg,useCORS:true,windowWidth:main.scrollWidth,windowHeight:main.scrollHeight,scrollX:0,scrollY:0}).then(function(canvas){
         done();
         var a=document.createElement('a');a.download='fila-cidadania-rio-'+Date.now()+'.png';a.href=canvas.toDataURL('image/png');document.body.appendChild(a);a.click();document.body.removeChild(a);
       }).catch(function(e){done();alert('Erro ao gerar imagem: '+e.message);});
