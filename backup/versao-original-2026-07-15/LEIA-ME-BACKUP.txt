@@ -1,0 +1,34 @@
+================================================================================
+  BACKUP DA VERSÃO ORIGINAL — Consultor de Fila Consular
+  Data: 15/07/2026
+================================================================================
+
+O QUE É ESTE BACKUP?
+--------------------
+Cópia de segurança dos arquivos principais do site ANTES de qualquer
+melhoria de design (UX/UI). Se você não gostar das mudanças, pode voltar
+para esta versão.
+
+ARQUIVOS GUARDADOS AQUI:
+------------------------
+  • index.html    — página principal (layout, cores, textos, funções)
+  • manifest.json — configuração do app instalável (PWA)
+  • sw.js         — service worker (funciona offline)
+
+COMO RESTAURAR (versão fácil):
+------------------------------
+1. Abra a pasta do projeto: consulado
+2. Entre em: backup\versao-original-2026-07-15
+3. Copie os 3 arquivos (index.html, manifest.json, sw.js)
+4. Cole na pasta consulado (substituir quando o Windows perguntar)
+5. Atualize o site no navegador com Ctrl+F5 (ou Ctrl+Shift+R)
+
+Se publicar no GitHub Pages: faça commit e push dos arquivos restaurados.
+
+PARA QUEM PRECISAR DE AJUDA:
+----------------------------
+Mostre este arquivo a quem mantém o site. A restauração leva cerca de
+1 minuto e não apaga dados dos usuários (favoritos e jornada ficam no
+navegador de cada pessoa, não nestes arquivos).
+
+================================================================================

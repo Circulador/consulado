@@ -347,70 +347,13 @@ html.nav-unpinned.nav-open .nav-overlay{opacity:1;pointer-events:auto}
 .share-opt:hover{border-color:var(--accent)}
 .share-close{margin-top:14px;width:100%;background:transparent;border:1px solid var(--line);color:var(--txt2);border-radius:9px;padding:10px;font-size:13px;cursor:pointer}
 .share-close:hover{border-color:var(--accent);color:var(--txt)}
-/* ===== UX/UI melhorias (v2) ===== */
-.skip-link{position:absolute;top:-100px;left:16px;background:var(--accent);color:#fff;padding:12px 18px;border-radius:9px;font-size:14px;font-weight:700;z-index:300;text-decoration:none}
-.skip-link:focus{top:16px;outline:3px solid #fff;outline-offset:2px}
-button:focus-visible,a:focus-visible,.chip:focus-visible,.jstep:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
-.naooficial-banner.compact{padding:10px 16px;font-size:13px;line-height:1.45}
-.naooficial-banner .banner-more{background:transparent;border:none;color:#fff;text-decoration:underline;font-size:inherit;font-weight:700;cursor:pointer;padding:0;margin-left:6px}
-.naooficial-banner .banner-full{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.25);font-size:12px;font-weight:400;line-height:1.55;display:none}
-.naooficial-banner.expanded .banner-full{display:block}
-.searchbox.hero{margin-top:8px;padding:24px 22px;border-width:2px}
-.searchbox.hero h3{font-size:17px}
-.searchbox.hero p{font-size:14px;line-height:1.55}
-.search-wrap input{font-size:16px;padding:15px 44px 15px 16px;min-height:48px}
-.onboard{background:linear-gradient(135deg,#0d2340,#122a4a);border:1px solid #1d4d7a;border-radius:14px;padding:18px 20px;margin:14px 0 8px}
-.onboard h3{font-size:15px;margin-bottom:10px}
-.onboard ol{margin:0 0 12px 20px;color:var(--txt2);font-size:14px;line-height:1.65}
-.onboard ol li{margin:6px 0}
-.onboard .ob-actions{display:flex;gap:10px;flex-wrap:wrap}
-.onboard .ob-btn{background:var(--accent);color:#fff;border:none;border-radius:9px;padding:12px 18px;font-size:14px;font-weight:700;cursor:pointer;min-height:44px}
-.onboard .ob-skip{background:transparent;border:1px solid var(--line);color:var(--txt2);border-radius:9px;padding:12px 18px;font-size:13px;cursor:pointer;min-height:44px}
-:root[data-theme="light"] .onboard{background:#eef5ff;border-color:#b4d2f5}
-.update-panel.collapsible .up-head{display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;min-height:44px}
-.update-panel.collapsible .up-body{display:none;margin-top:12px}
-.update-panel.collapsible.open .up-body{display:block}
-.update-panel.collapsible .up-chev{font-size:12px;color:var(--txt3);transition:transform .2s}
-.update-panel.collapsible.open .up-chev{transform:rotate(180deg)}
-.loading-bar{height:3px;background:var(--line);border-radius:3px;overflow:hidden;margin:8px 0;display:none}
-.loading-bar.show{display:block}
-.loading-bar i{display:block;height:100%;width:35%;background:var(--accent);animation:loadslide 1.2s ease-in-out infinite}
-@keyframes loadslide{0%{transform:translateX(-100%)}100%{transform:translateX(320%)}}
-.proc-notfound{background:rgba(255,107,107,.12);border:1px solid #ff6b6b;border-radius:11px;padding:14px 16px;margin:12px 0;color:var(--txt);font-size:14px;line-height:1.5}
-.chart-summary{font-size:12.5px;color:var(--txt2);margin-top:10px;line-height:1.55;padding:10px 12px;background:var(--panel2);border-radius:9px;border-left:3px solid var(--accent)}
-.scen.real{border-width:2px;box-shadow:0 0 0 1px rgba(42,120,214,.35)}
-.scen.real .lb::after{content:' · estimativa central';font-weight:600;text-transform:none;letter-spacing:0;font-size:10px;opacity:.85}
-.nav a.nav-proc[title]{cursor:pointer}
-.nav-hint{font-size:10px;color:var(--txt3);margin:0 12px 8px;line-height:1.4;padding:8px 10px;background:var(--panel);border-radius:8px;border:1px solid var(--line)}
-html.has-proc .nav-hint{display:none}
-.top-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.more-menu-wrap{position:relative;display:none}
-.more-btn{background:var(--panel2);color:var(--txt);border:1px solid var(--line);padding:10px 16px;border-radius:9px;font-size:14px;font-weight:700;cursor:pointer;min-height:44px;min-width:44px}
-.more-menu{position:absolute;top:calc(100% + 6px);right:0;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:8px;min-width:200px;box-shadow:0 12px 32px rgba(0,0,0,.45);display:none;z-index:60;flex-direction:column;gap:6px}
-.more-menu.show{display:flex}
-.more-menu button,.more-menu .more-link{width:100%;justify-content:flex-start;text-align:left}
-.top-actions .top-secondary{display:flex;gap:10px;flex-wrap:wrap}
-.chip,.up-btn,.dlbtn,.themebtn,.instbtn,.jbtn,.fav-btn,.share-btn{min-height:44px}
-.jstep{min-height:44px}
-.jstep[role="button"]:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-.suggestions[role="listbox"] .sug[aria-selected="true"]{background:var(--panel2);border-left:3px solid var(--accent)}
-@media(max-width:640px){
-  .more-menu-wrap{display:block}
-  .top-actions .top-secondary{display:none}
-  .top-actions .top-secondary.mobile-open{display:flex;flex-direction:column;position:absolute;top:calc(100% + 6px);right:12px;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:8px;z-index:55;box-shadow:0 12px 32px rgba(0,0,0,.45);min-width:220px}
-  .top>div:last-child{position:relative}
-  .searchbox.hero h3{font-size:18px}
-  .chip{padding:8px 14px;font-size:13px}
-}
 </style>
 </head>
 <body>
-<a class="skip-link" href="#conteudo-principal">Ir para o conteúdo principal</a>
-<div class="nav-overlay" onclick="closeNav()" aria-hidden="true"></div>
+<div class="nav-overlay" onclick="closeNav()"></div>
 <div class="app app-official">
   <header class="official-header">
-    <button class="navtoggle" onclick="toggleNav()" aria-label="Abrir menu de navegação" aria-expanded="false" id="navToggleBtn">&#9776;</button>
+    <button class="navtoggle" onclick="toggleNav()" aria-label="Abrir menu">&#9776;</button>
     <svg class="emblem" viewBox="0 0 36 48" width="52" height="52" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bandeira da Itália">
       <rect x="0" y="0" width="12" height="48" rx="2" fill="#009246"/>
       <rect x="12" y="0" width="12" height="48" fill="#ffffff"/>
@@ -419,87 +362,66 @@ html.has-proc .nav-hint{display:none}
     <div class="oh-txt"><h1>🇮🇹 Consultor Comunitário da Fila</h1><p>Cidadania Italiana (Jure Sanguinis) · RJ e ES — projeto colaborativo não oficial</p></div>
     <div class="tricolor"><i></i><i></i><i></i></div>
   </header>
-  <div class="naooficial-banner compact" id="bannerNaoOficial">⚠️ <b>FERRAMENTA NÃO OFICIAL</b> — Projeto comunitário, sem vínculo com o Consulado. Somente o Consulado possui dados oficiais.<button type="button" class="banner-more" onclick="toggleBannerDetails()" aria-expanded="false" id="bannerMoreBtn">Saiba mais</button><div class="banner-full" id="bannerFull">Desenvolvido de forma voluntária pela comunidade para compartilhar informações, estatísticas e estimativas de acompanhamento. Não há qualquer vínculo com o Consulado Geral da Itália, com o Governo Italiano ou com o Governo Brasileiro. As informações oficiais dos processos são de acesso exclusivo do Consulado, que permanece como a única fonte oficial para consultas e atualizações.</div></div>
+  <div class="naooficial-banner">⚠️ <b>FERRAMENTA NÃO OFICIAL</b> — Projeto desenvolvido de forma voluntária pela comunidade para a comunidade, visando compartilhar informações, estatísticas e estimativas de acompanhamento do andamento dos processos. Não há qualquer vínculo com o Consulado Geral da Itália, com o Governo Italiano ou com o Governo Brasileiro. As informações oficiais dos processos são de acesso exclusivo do Consulado, que permanece como a única fonte oficial para consultas e atualizações.</div>
   <aside class="side">
     <div class="brand"><div><h1>Consultor de Fila</h1><small>Cidadania Italiana · RJ</small></div><button class="pinbtn" id="pinbtn" onclick="togglePin()" title="Fixar / desfixar menu">📌</button></div>
-    <nav class="nav" aria-label="Menu principal">
-      <a href="#busca" class="active" onclick="return navClick(event,function(){document.getElementById('search').focus();closeNavIfMobile();})">🔍 Buscar meu processo</a>
-      <p class="nav-hint" id="navHint">Itens abaixo ficam ativos depois que você buscar seu processo.</p>
+    <nav class="nav">
+      <a class="active" onclick="document.getElementById('search').focus();closeNavIfMobile()">🔍 Buscar meu processo</a>
       <div class="nav-group">Análise do seu processo</div>
-      <a href="#s-pos" class="nav-proc" title="Disponível após buscar seu processo" onclick="return navClick(event,function(){scrollToId('s-pos');})">📍 Posição na fila</a>
-      <a href="#s-conf" class="nav-proc" title="Disponível após buscar seu processo" onclick="return navClick(event,function(){scrollToId('s-conf');})">🎯 Confiabilidade</a>
-      <a href="#s-mov" class="nav-proc" title="Disponível após buscar seu processo" onclick="return navClick(event,function(){scrollToId('s-mov');})">📊 Movimento da fila</a>
-      <a href="#s-ritmo" class="nav-proc" title="Disponível após buscar seu processo" onclick="return navClick(event,function(){scrollToId('s-ritmo');})">📈 Ritmo mensal</a>
-      <a href="#s-cen" class="nav-proc" title="Disponível após buscar seu processo" onclick="return navClick(event,function(){scrollToId('s-cen');})">📅 Cenários</a>
-      <a href="#s-risk" class="nav-proc" title="Disponível após buscar seu processo" onclick="return navClick(event,function(){scrollToId('s-risk');})">⚠️ Riscos</a>
+      <a class="nav-proc" onclick="scrollToId('s-pos')">📍 Posição na fila</a>
+      <a class="nav-proc" onclick="scrollToId('s-conf')">🎯 Confiabilidade</a>
+      <a class="nav-proc" onclick="scrollToId('s-mov')">📊 Movimento da fila</a>
+      <a class="nav-proc" onclick="scrollToId('s-ritmo')">📈 Ritmo mensal</a>
+      <a class="nav-proc" onclick="scrollToId('s-cen')">🎯 Cenários</a>
+      <a class="nav-proc" onclick="scrollToId('s-risk')">⚠️ Riscos</a>
       <div class="nav-group">Visão da comunidade</div>
-      <a href="#v5-dash-sec" onclick="return navClick(event,function(){scrollToId('v5-dash-sec');})">📊 Painel geral</a>
-      <a href="#v5-stats-sec" onclick="return navClick(event,function(){scrollToId('v5-stats-sec');})">📈 Estatísticas</a>
-      <a href="#s-tabela" onclick="return navClick(event,function(){scrollToId('s-tabela');})">📋 Tabela geral</a>
+      <a onclick="scrollToId('v5-dash-sec')">📊 Painel geral</a>
+      <a onclick="scrollToId('v5-stats-sec')">📈 Estatísticas</a>
+      <a onclick="scrollToId('s-tabela')">📋 Tabela geral</a>
       <div class="nav-group">Minhas ferramentas</div>
-      <a href="#v5-favs-sec" onclick="return navClick(event,function(){scrollToId('v5-favs-sec');})">⭐ Meus favoritos</a>
-      <a href="#s-jornada" onclick="return navClick(event,function(){scrollToId('s-jornada');})">🗺️ Minha jornada</a>
-      <a href="#v5-radar-sec" onclick="return navClick(event,function(){scrollToId('v5-radar-sec');})">🧭 Radar de estágios</a>
+      <a onclick="scrollToId('v5-favs-sec')">⭐ Meus favoritos</a>
+      <a onclick="scrollToId('s-jornada')">🗺️ Minha jornada</a>
+      <a onclick="scrollToId('v5-radar-sec')">🧭 Radar de estágios</a>
       <div class="nav-group">Ajuda &amp; referências</div>
-      <a href="#s-planilhas" onclick="return navClick(event,function(){scrollToId('s-planilhas');})">📚 As 3 planilhas</a>
-      <a href="#v5-links-sec" onclick="return navClick(event,function(){scrollToId('v5-links-sec');})">🔗 Links úteis</a>
-      <a href="#s-atualizar" onclick="return navClick(event,function(){scrollToId('s-atualizar');toggleUpdatePanel(true);})">🔄 Atualizar dados</a>
+      <a onclick="scrollToId('s-planilhas')">📚 As 3 planilhas</a>
+      <a onclick="scrollToId('v5-links-sec')">🔗 Links úteis</a>
     </nav>
-    <div class="side-foot">
-      <div class="lbl">Resumo da comunidade</div>
-      <div class="big" id="sf-total">—</div>
-      <div class="s">processos na base</div>
-      <div class="stage-mini">
-        <span>✅ Concluídos: <b id="sf-done">—</b></span>
-        <span>⏳ Aguardando: <b id="sf-wait">—</b></span>
-        <span>📎 Pendências: <b id="sf-pend">—</b></span>
-      </div>
-    </div>
     <button class="side-install" id="sideInstall" onclick="promptInstall()">📲 Instalar app</button>
   </aside>
-  <main class="main" id="conteudo-principal">
-    <div class="top"><div><h2>Consultor de Expectativa de Atendimento</h2><div class="meta"><span>👥 Ferramenta aberta à comunidade</span><span class="upd-chip">🔄 Planilha: <b id="sf-date">07/08/2026</b> · Fonte: <span id="sf-source">grupo de WhatsApp</span> · <b style="color:var(--amber)">Dados não oficiais</b></span><span id="lastUpdate" style="display:none">🔄 Dados: 07/08/2026</span></div><div class="loading-bar" id="dataLoading" aria-hidden="true"><i></i></div></div>
-    <div class="top-actions"><button class="themebtn" id="themeToggle" onclick="toggleTheme()">🌙 Tema escuro</button>
-    <div class="more-menu-wrap"><button type="button" class="more-btn" id="moreMenuBtn" onclick="toggleMoreMenu()" aria-expanded="false" aria-haspopup="true">⋯ Mais</button></div>
-    <div class="top-secondary" id="topSecondary"><button class="instbtn" id="topInstall" onclick="promptInstall()">📲 Instalar app</button><button class="dlbtn" id="imgPageBtn" onclick="baixarPaginaImagem();toggleMoreMenu(false)" style="background:#1baf7a">🖼️ Salvar imagem</button><button class="dlbtn" onclick="window.print();toggleMoreMenu(false)">⬇️ Imprimir / PDF</button></div></div></div>
-
-    <div class="onboard" id="onboardPanel" style="display:none" role="region" aria-label="Como usar">
-      <h3>👋 Como usar em 3 passos</h3>
-      <ol>
-        <li><b>Digite suas iniciais</b> no campo abaixo (ex.: RGC) ou a data de entrega.</li>
-        <li><b>Toque no seu nome</b> na lista que aparecer.</li>
-        <li><b>Veja sua posição</b>, cenários e prazo estimado — tudo na mesma página.</li>
-      </ol>
-      <div class="ob-actions"><button type="button" class="ob-btn" onclick="dismissOnboard(true)">Entendi — ir para busca</button><button type="button" class="ob-skip" onclick="dismissOnboard(false)">Pular explicação</button></div>
+  <main class="main">    <div class="top"><div><h2>Consultor de Expectativa de Atendimento</h2><div class="meta"><span>👥 Ferramenta aberta à comunidade</span><span class="upd-chip">🔄 Planilha: <b id="sf-date">07/08/2026</b> · Fonte: <span id="sf-source">grupo de WhatsApp</span> · <b style="color:var(--amber)">Dados não oficiais</b></span><span id="lastUpdate" style="display:none">🔄 Dados: 07/08/2026</span></div></div><div style="display:flex;gap:10px"><button class="instbtn" id="topInstall" onclick="promptInstall()">📲 Instalar app</button><button class="themebtn" id="themeToggle" onclick="toggleTheme()">🌙 Tema escuro</button><button class="dlbtn" id="imgPageBtn" onclick="baixarPaginaImagem()" style="background:#1baf7a">🖼️ Salvar imagem</button><button class="dlbtn" onclick="window.print()">⬇️ Imprimir / PDF</button></div></div>
+    <div class="update-panel">
+      <h3>🔄 Manter os dados atualizados</h3>
+      <p>Esta ferramenta usa uma cópia da planilha "B — Balcão". Para atualizar com a versão mais recente, baixe o arquivo do OneDrive e carregue aqui — a análise é <b>reprocessada automaticamente</b>, sem precisar mexer no código.</p>
+      <div class="up-actions"><button class="up-btn" onclick="document.getElementById('xlsxFile').click()">📂 Carregar planilha (.xlsx)</button><input type="file" id="xlsxFile" accept=".xlsx,.xls,.csv" style="display:none"><button class="up-btn sec" id="cloudBtn" onclick="loadDadosJson()">☁️ Tentar atualizar da nuvem</button><span class="up-status" id="upStatus"></span></div>
+      <div class="sheet-links">
+        <a class="sheet-link" href="https://1drv.ms/x/c/ba23482b38fbdc1e/EVyxoIPnz65Du-mLBAl7CuUBOsLybUkq3f-TJiOIyW9HBA?e=frZ3Ms" target="_blank" rel="noopener noreferrer"><div class="sl-t">📊 Planilha B — Balcão</div><div class="sl-d">Fila após entrega até o e-mail "Já sou Italiano" (base desta análise)</div><div class="sl-go">Abrir no OneDrive →</div></a>
+        <a class="sheet-link" href="https://1drv.ms/x/c/ba23482b38fbdc1e/ETkw9cQ64L5Ko2WicjOlg04BiOc1mm4MLMiqKWcidPm6iA?e=4zXpjS" target="_blank" rel="noopener noreferrer"><div class="sl-t">🇮🇹 Planilha JSI — Já sou Italiano</div><div class="sl-d">Etapa seguinte: espera pelo e-mail PEC de finalização consular</div><div class="sl-go">Abrir no OneDrive →</div></a>
+        <a class="sheet-link" href="https://1drv.ms/x/c/ba23482b38fbdc1e/EekjF_2Qd5tJoDqaLQ8-IokB436GSnReRCEBHgeuyg72uA?e=az9sGs" target="_blank" rel="noopener noreferrer"><div class="sl-t">📎 Planilha P — Pendências</div><div class="sl-d">Tempo de resolução de pendências / SEDEX</div><div class="sl-go">Abrir no OneDrive →</div></a>
+      </div>
+      <p style="margin-top:10px;font-size:11.5px;color:var(--txt3)">ℹ️ A atualização automática direto do link não é possível num arquivo HTML avulso (o OneDrive exige login e bloqueia acesso externo por segurança). Por isso o método confiável é <b>carregar o .xlsx</b> — leva 5 segundos e não depende de ninguém.</p>
     </div>
-
-    <div class="searchbox hero" id="busca">
-      <h3>🔍 Busque seu processo</h3>
-      <p>Digite suas <b>iniciais ou sigla</b> (ex.: RGC) ou a <b>data de entrega</b> (ex.: 11/08/2025). Toque no resultado para ver sua análise.</p>
-      <label for="search" class="sr-only" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0">Buscar processo por sigla ou data</label>
-      <div class="search-wrap"><input type="text" id="search" placeholder="Ex.: RGC, 11/08/2025..." autocomplete="off" aria-autocomplete="list" aria-controls="suggestions" aria-expanded="false"><span class="search-ic" aria-hidden="true">🔎</span><button type="button" class="search-clear" id="searchClear" onclick="clearSearch()" aria-label="Limpar busca" title="Limpar">✕</button><div class="suggestions" id="suggestions" role="listbox" aria-label="Sugestões de processos"></div></div>
-      <div class="filters"><span class="chip on" data-f="todos" tabindex="0" role="button">Todos</span><span class="chip" data-f="aguardando" tabindex="0" role="button">Só aguardando</span><span class="chip" data-f="B" tabindex="0" role="button">📊 B — Balcão</span><span class="chip" data-f="JSI" tabindex="0" role="button">🇮🇹 JSI</span><span class="chip" data-f="P" tabindex="0" role="button">📎 Pendência</span></div>
-      <div id="searchHint" style="display:none;margin-top:12px;padding:12px 14px;background:rgba(237,161,0,.15);border:1px solid #6b5210;border-radius:9px;color:#f5c860;font-size:14px">👆 Primeiro <b>busque e selecione o seu processo</b> acima — aí aparecem posição, cenários e prazos.</div>
-      <div id="procNotFound" class="proc-notfound" style="display:none" role="alert"></div>
-    </div>
-
-    <div class="sec-t" id="v5-favs-sec" style="display:none">⭐ Meus favoritos</div>
-    <div class="panel" id="v5-favs-panel" style="display:none"><p style="color:var(--txt2);font-size:13px;margin-bottom:10px">Processos que você marcou para acompanhar. Ficam salvos <b>só neste celular ou computador</b>. 🔒</p>
-      <div class="fav-list" id="v5favlist"></div>
-    </div>
-    <div id="empty"><span class="em">🇮🇹</span><b>Comece buscando seu processo acima</b><p style="margin-top:8px;font-size:14px">Digite parte da sua sigla ou sua data de entrega para ver posição na fila, cenários e projeção de convocação.</p></div>
-    <div id="result"></div>
-
     <div class="sec-t" id="v5-dash-sec">📊 Painel geral da comunidade</div>
     <div class="dash"><div class="dash-grid" id="v5dash"></div>
       <div class="info-block" id="v5lastjsi" style="margin-top:12px"></div>
     </div>
-
+    <div class="searchbox">
+      <h3>🔍 Busque seu processo</h3>
+      <p>Digite sua <b>sigla/nome</b> ou a <b>data de entrega</b> (ex.: 11/08/2025). A análise é recalculada automaticamente para o seu caso.</p>
+      <div class="search-wrap"><input type="text" id="search" placeholder="Ex.: RGC, 11/08/2025..." autocomplete="off"><span class="search-ic">🔎</span><button type="button" class="search-clear" id="searchClear" onclick="clearSearch()" aria-label="Limpar busca" title="Limpar">✕</button><div class="suggestions" id="suggestions"></div></div>
+      <div class="filters"><span class="chip on" data-f="todos">Todos</span><span class="chip" data-f="aguardando">Só aguardando</span></div>
+      <div id="searchHint" style="display:none;margin-top:12px;padding:10px 14px;background:rgba(237,161,0,.15);border:1px solid #6b5210;border-radius:9px;color:#f5c860;font-size:12.5px">👆 Primeiro <b>busque e selecione o seu processo</b> acima — aí as seções aparecem com a sua análise.</div>
+    </div>
+    <div class="sec-t" id="v5-favs-sec" style="display:none">⭐ Meus favoritos</div>
+    <div class="panel" id="v5-favs-panel" style="display:none"><p style="color:var(--txt2);font-size:12.5px;margin-bottom:10px">Processos que você marcou para acompanhar. Ficam salvos <b>neste navegador</b>. 🔒</p>
+      <div class="fav-list" id="v5favlist"></div>
+    </div>
+    <div id="empty"><span class="em">🇮🇹</span><b>Comece buscando seu processo acima</b><p style="margin-top:8px">Digite parte da sua sigla ou sua data de entrega para ver posição na fila, cenários e projeção de convocação.</p></div>
+    <div id="result"></div>
     <div class="sec-t" id="v5-stats-sec">📈 Estatísticas dos tempos de espera</div>
     <div class="row">
-      <div class="panel"><h4>Distribuição (histograma)</h4><div class="chartbox"><canvas id="v5hist" aria-label="Histograma de dias de espera" role="img"></canvas></div><div class="chart-summary" id="v5histSummary"></div></div>
+      <div class="panel"><h4>Distribuição (histograma)</h4><div class="chartbox"><canvas id="v5hist"></canvas></div></div>
     </div>
-    <div class="panel" style="margin-top:14px"><h4>🔥 Ranking de velocidade por mês</h4><div id="v5rank" style="overflow-x:auto"></div><div class="chart-summary" id="v5rankSummary"></div></div>
+    <div class="panel" style="margin-top:14px"><h4>🔥 Ranking de velocidade por mês</h4><div id="v5rank" style="overflow-x:auto"></div></div>
     <div class="sec-t" id="s-tabela">📋 Tabela geral — todos os processos</div>
     <div class="panel" style="padding:16px">
       <div class="tbl-controls"><div class="tbl-search"><input type="text" id="tblSearch" placeholder="Filtrar por nome ou data..."></div><div class="filters" style="margin-top:0"><span class="chip on" data-tf="todos">Todos</span><span class="chip" data-tf="B">📊 B — Balcão</span><span class="chip" data-tf="JSI">🇮🇹 JSI</span><span class="chip" data-tf="P">📎 Pendência</span></div><span class="tbl-count" id="tblCount"></span></div>
@@ -538,25 +460,6 @@ html.has-proc .nav-hint{display:none}
     </div>
       <p style="margin-top:12px;font-size:11.5px;color:var(--txt3);line-height:1.6">ℹ️ <b>IndicePA — Comuni:</b> índice oficial das administrações públicas italianas. Pesquise pelo nome do <b>Comune</b> para localizar o endereço, os contatos e, principalmente, a <b>PEC</b> (e-mail certificado) do <b>Ufficio di Stato Civile</b> — canal formal para acompanhar ou cobrar a <b>transcrição</b> do seu registro.</p>
     </div>
-
-    <div class="sec-t" id="s-atualizar">🔄 Atualizar dados da planilha</div>
-    <div class="update-panel collapsible" id="updatePanel">
-      <div class="up-head" onclick="toggleUpdatePanel()" role="button" tabindex="0" aria-expanded="false" id="updatePanelHead">
-        <h3 style="margin:0">📂 Como manter os dados atualizados</h3>
-        <span class="up-chev" aria-hidden="true">▼</span>
-      </div>
-      <div class="up-body" id="updatePanelBody">
-      <p>Esta ferramenta usa uma cópia da planilha "B — Balcão". Baixe a versão mais recente no OneDrive e carregue aqui — a análise é <b>reprocessada automaticamente</b>.</p>
-      <div class="up-actions"><button class="up-btn" onclick="document.getElementById('xlsxFile').click()">📂 Carregar planilha (.xlsx)</button><input type="file" id="xlsxFile" accept=".xlsx,.xls,.csv" style="display:none"><button class="up-btn sec" id="cloudBtn" onclick="loadDadosJson()">☁️ Tentar atualizar da nuvem</button><span class="up-status" id="upStatus"></span></div>
-      <div class="sheet-links">
-        <a class="sheet-link" href="https://1drv.ms/x/c/ba23482b38fbdc1e/EVyxoIPnz65Du-mLBAl7CuUBOsLybUkq3f-TJiOIyW9HBA?e=frZ3Ms" target="_blank" rel="noopener noreferrer"><div class="sl-t">📊 Planilha B — Balcão</div><div class="sl-d">Fila após entrega até o e-mail "Já sou Italiano" (base desta análise)</div><div class="sl-go">Abrir no OneDrive →</div></a>
-        <a class="sheet-link" href="https://1drv.ms/x/c/ba23482b38fbdc1e/ETkw9cQ64L5Ko2WicjOlg04BiOc1mm4MLMiqKWcidPm6iA?e=4zXpjS" target="_blank" rel="noopener noreferrer"><div class="sl-t">🇮🇹 Planilha JSI — Já sou Italiano</div><div class="sl-d">Etapa seguinte: espera pelo e-mail PEC de finalização consular</div><div class="sl-go">Abrir no OneDrive →</div></a>
-        <a class="sheet-link" href="https://1drv.ms/x/c/ba23482b38fbdc1e/EekjF_2Qd5tJoDqaLQ8-IokB436GSnReRCEBHgeuyg72uA?e=az9sGs" target="_blank" rel="noopener noreferrer"><div class="sl-t">📎 Planilha P — Pendências</div><div class="sl-d">Tempo de resolução de pendências / SEDEX</div><div class="sl-go">Abrir no OneDrive →</div></a>
-      </div>
-      <p style="margin-top:10px;font-size:12px;color:var(--txt3)">ℹ️ O OneDrive exige login — por isso o método mais confiável é <b>baixar e carregar o .xlsx</b> (leva cerca de 5 segundos).</p>
-      </div>
-    </div>
-
     <div class="foot" style="margin-top:40px">
       <div style="background:var(--panel2);border:1px solid var(--line);border-left:4px solid var(--vermelho);border-radius:10px;padding:14px 16px;margin-bottom:16px;text-align:left;color:var(--txt2)"><b style="color:var(--vermelho)">⚠️ AVISO IMPORTANTE</b><br>As informações deste painel são <b>colaborativas</b> e baseadas em dados compartilhados pelos participantes da comunidade. Podem existir <b>processos não cadastrados, informações desatualizadas ou casos já concluídos</b> sem atualização.<br><br>Os indicadores, gráficos e previsões possuem <b>caráter exclusivamente informativo e estimativo</b>, não representando prazos oficiais nem compromisso institucional.<br><br><b>Somente o Consulado Geral da Itália detém os registros oficiais dos processos e pode fornecer informações, status e prazos oficiais. Este painel não substitui os canais oficiais de comunicação do Consulado.</b></div>
       Base: planilhas voluntárias "B — Balcão", "JSI" e "P — Pendências" (grupo de WhatsApp).<br>Consultor de Expectativa de Atendimento — Cidadania Italiana · RJ e ES.
@@ -588,41 +491,25 @@ function updateSidebar(){var pend=waiting.filter(function(x){return x.nome.toLow
 function updateStamp(dateStr,source){var d=document.getElementById('sf-date');if(d&&dateStr)d.textContent=dateStr;var s=document.getElementById('sf-source');if(s&&source)s.textContent=source;}
 updateSidebar();
 var input=document.getElementById('search'),sug=document.getElementById('suggestions'),activeFilter='todos',chartInstances=[];
-function matchFilter(x){if(activeFilter==='todos')return true;if(activeFilter==='aguardando')return !x.done;if(activeFilter==='B'||activeFilter==='JSI'||activeFilter==='P')return planilhaDe(x)===activeFilter;return x.grupo===activeFilter;}
+function matchFilter(x){if(activeFilter==='todos')return true;if(activeFilter==='aguardando')return !x.done;return x.grupo===activeFilter;}
 function search(q){q=q.trim().toLowerCase();var list=DATA.filter(matchFilter);if(q){list=list.filter(function(x){return x.nome.toLowerCase().indexOf(q)>=0||fmt(x.dEntrega).indexOf(q)>=0||x.entrega.indexOf(q)>=0;});}return list.slice(0,40);}
-function hideProcNotFound(){var el=document.getElementById('procNotFound');if(el){el.style.display='none';el.textContent='';}}
-function showProcNotFound(nome){var el=document.getElementById('procNotFound');if(!el)return;el.style.display='block';el.innerHTML='❌ Não encontramos o processo <b>"'+nome.replace(/</g,'&lt;')+'"</b> na base comunitária. Verifique a sigla ou busque na tabela geral abaixo.';document.getElementById('busca').scrollIntoView({behavior:'smooth',block:'center'});}
-var sugActiveIndex=-1;
-function renderSug(){var list=search(input.value);sugActiveIndex=-1;input.setAttribute('aria-expanded',list.length?'true':'false');if(!list.length){sug.innerHTML='<div class="sug" role="option"><span class="nm" style="color:var(--txt3)">Nenhum processo encontrado</span></div>';sug.classList.add('show');return;}sug.innerHTML=list.map(function(x,i){var st=x.done?'<span class="st done">Resolvido</span>':'<span class="st wait">Aguardando</span>';return '<div class="sug" role="option" id="sug-'+i+'" data-nome="'+encodeURIComponent(x.nome)+'" data-ent="'+x.entrega+'"><div><div class="nm">'+x.nome+'</div><div class="dt">Entrega: '+fmt(x.dEntrega)+'</div></div><div style="display:flex;gap:6px;align-items:center">'+planilhaTag(planilhaDe(x))+st+'</div></div>';}).join('');sug.classList.add('show');Array.prototype.forEach.call(sug.querySelectorAll('.sug'),function(el){if(!el.dataset.nome)return;el.onclick=function(){var x=DATA.find(function(d){return d.nome===decodeURIComponent(el.dataset.nome)&&d.entrega===el.dataset.ent;});select(x);};});}
-function setSugActive(i){var items=sug.querySelectorAll('.sug[data-nome]');if(!items.length)return;sugActiveIndex=Math.max(0,Math.min(i,items.length-1));items.forEach(function(el,j){el.setAttribute('aria-selected',j===sugActiveIndex?'true':'false');});items[sugActiveIndex].scrollIntoView({block:'nearest'});}
-function pickSugActive(){var items=sug.querySelectorAll('.sug[data-nome]');if(sugActiveIndex<0||!items[sugActiveIndex])return;var el=items[sugActiveIndex];var x=DATA.find(function(d){return d.nome===decodeURIComponent(el.dataset.nome)&&d.entrega===el.dataset.ent;});if(x)select(x);}
+function renderSug(){var list=search(input.value);if(!list.length){sug.innerHTML='<div class="sug"><span class="nm" style="color:var(--txt3)">Nenhum processo encontrado</span></div>';sug.classList.add('show');return;}sug.innerHTML=list.map(function(x){var st=x.done?'<span class="st done">Resolvido</span>':'<span class="st wait">Aguardando</span>';return '<div class="sug" data-nome="'+encodeURIComponent(x.nome)+'" data-ent="'+x.entrega+'"><div><div class="nm">'+x.nome+'</div><div class="dt">Entrega: '+fmt(x.dEntrega)+'</div></div><div style="display:flex;gap:6px;align-items:center">'+planilhaTag(planilhaDe(x))+st+'</div></div>';}).join('');sug.classList.add('show');Array.prototype.forEach.call(sug.querySelectorAll('.sug'),function(el){if(!el.dataset.nome)return;el.onclick=function(){var x=DATA.find(function(d){return d.nome===decodeURIComponent(el.dataset.nome)&&d.entrega===el.dataset.ent;});select(x);};});}
 function updateClearBtn(){var w=input.closest('.search-wrap');if(w){if(input.value.length>0)w.classList.add('has-text');else w.classList.remove('has-text');}}
-function resetProcView(){document.documentElement.classList.remove('has-proc');var res=document.getElementById('result');if(res){res.style.display='none';res.innerHTML='';}try{chartInstances.forEach(function(c){try{c.destroy();}catch(e){}});chartInstances=[];}catch(e){}var emp=document.getElementById('empty');if(emp)emp.style.display='block';var sh=document.getElementById('searchHint');if(sh)sh.style.display='none';hideProcNotFound();}
-function clearSearch(){input.value='';updateClearBtn();sug.classList.remove('show');input.setAttribute('aria-expanded','false');resetProcView();input.focus();renderSug();}
+function resetProcView(){document.documentElement.classList.remove('has-proc');var res=document.getElementById('result');if(res){res.style.display='none';res.innerHTML='';}try{chartInstances.forEach(function(c){try{c.destroy();}catch(e){}});chartInstances=[];}catch(e){}var emp=document.getElementById('empty');if(emp)emp.style.display='block';var sh=document.getElementById('searchHint');if(sh)sh.style.display='none';}
+function clearSearch(){input.value='';updateClearBtn();sug.classList.remove('show');resetProcView();input.focus();renderSug();}
 window.clearSearch=clearSearch;
-input.addEventListener('input',function(){updateClearBtn();hideProcNotFound();if(input.value.trim()===''){resetProcView();}renderSug();});
+input.addEventListener('input',function(){updateClearBtn();if(input.value.trim()===''){resetProcView();}renderSug();});
 input.addEventListener('focus',renderSug);
-input.addEventListener('keydown',function(e){
-  if(e.key==='Escape'){clearSearch();return;}
-  if(!sug.classList.contains('show'))return;
-  var items=sug.querySelectorAll('.sug[data-nome]');
-  if(e.key==='ArrowDown'){e.preventDefault();setSugActive(sugActiveIndex+1);return;}
-  if(e.key==='ArrowUp'){e.preventDefault();setSugActive(sugActiveIndex<=0?0:sugActiveIndex-1);return;}
-  if(e.key==='Enter'&&sugActiveIndex>=0&&items.length){e.preventDefault();pickSugActive();}
-});
-document.addEventListener('click',function(e){if(!e.target.closest('.search-wrap')){sug.classList.remove('show');input.setAttribute('aria-expanded','false');}});
-function activateChip(c,attr){document.querySelectorAll('.chip['+attr+']').forEach(function(k){k.classList.remove('on');});c.classList.add('on');}
-Array.prototype.forEach.call(document.querySelectorAll('.chip[data-f]'),function(c){
-  c.onclick=function(){activateChip(c,'data-f');activeFilter=c.dataset.f;renderSug();};
-  c.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();c.click();}};
-});
+input.addEventListener('keydown',function(e){if(e.key==='Escape'){clearSearch();}});
+document.addEventListener('click',function(e){if(!e.target.closest('.search-wrap'))sug.classList.remove('show');});
+Array.prototype.forEach.call(document.querySelectorAll('.chip[data-f]'),function(c){c.onclick=function(){document.querySelectorAll('.chip[data-f]').forEach(function(k){k.classList.remove('on');});c.classList.add('on');activeFilter=c.dataset.f;renderSug();};});
 function computeProjection(x){var pos=waiting.findIndex(function(w){return w.nome===x.nome&&w.entrega===x.entrega;})+1;var ahead=pos-1;var aheadResolved=resolved.filter(function(r){return r.dEntrega<=x.dEntrega;}).length;var frontTotal=aheadResolved+ahead;var pctFrontDone=frontTotal>0?Math.round(aheadResolved/frontTotal*100):0;var d90=new Date(TODAY.getTime()-90*864e5);var aheadResolved90=resolved.filter(function(r){return r.dEntrega<=x.dEntrega&&r.dResol>=d90;}).length;var afterResolved=resolved.filter(function(r){return r.dEntrega>x.dEntrega;}).length;var afterTotal=DATA.filter(function(r){return r.dEntrega>x.dEntrega;}).length;var pctAfterDone=afterTotal>0?Math.round(afterResolved/afterTotal*100):0;function eta(rate){var d=Math.round(ahead/rate*30.44);return {d:d,date:new Date(TODAY.getTime()+d*864e5)};}return {pos:pos,ahead:ahead,aheadResolved:aheadResolved,frontTotal:frontTotal,pctFrontDone:pctFrontDone,aheadResolved90:aheadResolved90,afterResolved:afterResolved,afterTotal:afterTotal,pctAfterDone:pctAfterDone,opt:eta(Math.max(thrPico,1)),real:eta(Math.max(thrMedTrim,1)),cons:eta(Math.max(Math.round(thrSem*0.7),1)),total:waiting.length};}
 function mesAno(d){var M=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];return M[d.getMonth()]+'/'+String(d.getFullYear()).slice(2);}
-function select(x){hideProcNotFound();input.value=x.nome;updateClearBtn();sug.classList.remove('show');input.setAttribute('aria-expanded','false');document.getElementById('empty').style.display='none';document.documentElement.classList.add('has-proc');var sh=document.getElementById('searchHint');if(sh)sh.style.display='none';var res=document.getElementById('result');res.style.display='block';chartInstances.forEach(function(c){try{c.destroy();}catch(e){}});chartInstances=[];if(x.done){renderDone(x);return;}var P=computeProjection(x);var pctAhead=Math.round((1-P.pos/P.total)*100);var famNote=x.nome.toLowerCase().indexOf('irm')>=0?' · possível pasta familiar':'';var plk=planilhaDe(x);var html='';
+function select(x){input.value=x.nome;updateClearBtn();sug.classList.remove('show');document.getElementById('empty').style.display='none';document.documentElement.classList.add('has-proc');var sh=document.getElementById('searchHint');if(sh)sh.style.display='none';var res=document.getElementById('result');res.style.display='block';chartInstances.forEach(function(c){try{c.destroy();}catch(e){}});chartInstances=[];if(x.done){renderDone(x);return;}var P=computeProjection(x);var pctAhead=Math.round((1-P.pos/P.total)*100);var famNote=x.nome.toLowerCase().indexOf('irm')>=0?' · possível pasta familiar':'';var plk=planilhaDe(x);var html='';
 html+='<div class="sec-t" id="s-pos">Posição na fila do grupo — '+x.nome+' '+planilhaTag(plk)+'</div>';
 html+='<div class="posb"><div class="num">'+P.pos+'º</div><div class="txt"><b>'+x.nome+'</b><p>Entrega: '+fmt(x.dEntrega)+' · '+x.espera+' dias aguardando · '+P.ahead+' à frente'+famNote+'</p></div><div class="prog"><div class="progress"><i style="width:'+pctAhead+'%"></i><span>Adiante de ~'+pctAhead+'% da fila do grupo</span></div><div style="font-size:11px;color:var(--txt3);margin-top:6px">⚠️ vale só para membros do grupo — a fila oficial é maior</div></div></div>';
 var afterWaiting=P.afterTotal-P.afterResolved;
-html+='<div class="sec-t" id="s-mov">📊 Movimento da fila — antes e depois de você</div><div class="row r23"><div class="panel"><h4>Quem entrou antes × depois de você</h4><div class="chartbox"><canvas id="cFluxo" aria-label="Gráfico de processos antes e depois de você" role="img"></canvas></div><div class="chart-summary">Resumo: <b>'+P.aheadResolved+'</b> à sua frente já foram atendidos; <b>'+P.ahead+'</b> ainda aguardam. Depois de você, <b>'+P.afterResolved+'</b> de '+P.afterTotal+' já concluíram.</div></div><div class="panel"><h4>Como ler estes números</h4><div class="info-block" style="margin:0 0 10px"><b style="color:var(--teal)">🚶 Sua frente:</b> dos <b>'+P.frontTotal+'</b> que entraram antes/junto, <b style="color:var(--teal)">'+P.aheadResolved+'</b> já foram atendidos ('+P.pctFrontDone+'%) e <b style="color:var(--amber)">'+P.ahead+'</b> aguardam.'+(P.aheadResolved90>0?' Nos últimos 90 dias, <b>'+P.aheadResolved90+'</b> saíram. 🚀':'')+'</div><div class="info-block" style="margin:0"><b style="color:var(--amber)">⏭️ Depois de você:</b> <b>'+P.afterResolved+'</b> de '+P.afterTotal+' ('+P.pctAfterDone+'%) já foram atendidos — a fila não é ordem estrita de chegada.</div></div></div>';
+html+='<div class="sec-t" id="s-mov">📊 Movimento da fila — antes e depois de você</div><div class="row r23"><div class="panel"><h4>Quem entrou antes × depois de você</h4><div class="chartbox"><canvas id="cFluxo"></canvas></div></div><div class="panel"><h4>Como ler estes números</h4><div class="info-block" style="margin:0 0 10px"><b style="color:var(--teal)">🚶 Sua frente:</b> dos <b>'+P.frontTotal+'</b> que entraram antes/junto, <b style="color:var(--teal)">'+P.aheadResolved+'</b> já foram atendidos ('+P.pctFrontDone+'%) e <b style="color:var(--amber)">'+P.ahead+'</b> aguardam.'+(P.aheadResolved90>0?' Nos últimos 90 dias, <b>'+P.aheadResolved90+'</b> saíram. 🚀':'')+'</div><div class="info-block" style="margin:0"><b style="color:var(--amber)">⏭️ Depois de você:</b> <b>'+P.afterResolved+'</b> de '+P.afterTotal+' ('+P.pctAfterDone+'%) já foram atendidos — a fila não é ordem estrita de chegada.</div></div></div>';
 html+='<div class="sec-t">Indicadores</div><div class="kpis"><div class="kpi a"><div class="l">Posição no grupo</div><div class="v">'+P.pos+'º</div><div class="s">de '+P.total+' aguardando</div></div><div class="kpi"><div class="l">À frente</div><div class="v">'+P.ahead+'</div><div class="s">ainda aguardando</div></div><div class="kpi g"><div class="l">Frente já atendida</div><div class="v">'+P.pctFrontDone+'%</div><div class="s">'+P.aheadResolved+' de '+P.frontTotal+'</div></div><div class="kpi r"><div class="l">Dias aguardando</div><div class="v">'+x.espera+'</div><div class="s">desde '+fmt(x.dEntrega)+'</div></div><div class="kpi g"><div class="l">Média geral</div><div class="v">'+mediaGeral+'</div><div class="s">dias</div></div><div class="kpi w"><div class="l">Mediana geral</div><div class="v">'+medianaGeral+'</div><div class="s">dias</div></div></div>';
 var LIMITE=730,pctLegal=Math.min(Math.round(x.espera/LIMITE*100),100),restLegal=LIMITE-x.espera,dataLimite=new Date(x.dEntrega.getTime()+LIMITE*864e5);
 var corLegal=pctLegal>=90?'linear-gradient(90deg,#b91c1c,#ef4444)':(pctLegal>=60?'linear-gradient(90deg,#b45309,#f59e0b)':'linear-gradient(90deg,var(--teal),var(--accent))');
@@ -680,16 +567,8 @@ function jsave(){try{localStorage.setItem('fila_journey',JSON.stringify(jstate))
 function isoToBR(iso){var p=String(iso).split('-');return p.length===3?(p[2]+'/'+p[1]+'/'+p[0]):iso;}
 function brToISO(br){var m=String(br).match(/^(\d{2})\/(\d{2})\/(\d{4})$/);if(!m)return null;var d=+m[1],mo=+m[2],y=+m[3];if(d<1||d>31||mo<1||mo>12)return null;return m[3]+'-'+m[2]+'-'+m[1];}
 function maskBR(el){var v=el.value.replace(/\D/g,'').slice(0,8);if(v.length>=5)v=v.slice(0,2)+'/'+v.slice(2,4)+'/'+v.slice(4);else if(v.length>=3)v=v.slice(0,2)+'/'+v.slice(2);el.value=v;}
-function renderJourney(){var el=document.getElementById('journey');if(!el)return;el.innerHTML=STEPS.map(function(s){var done=s.n<=jstate.done,cur=s.n===jstate.done+1;var cls='jstep'+(done?' done':'')+(cur?' current':'');var extra='';if(s.dt&&done){var dv=jstate.dates[s.n]?isoToBR(jstate.dates[s.n]):'';extra+='<div class="jdate">📅 '+(s.dl||'Data')+': <input type="text" inputmode="numeric" placeholder="dd/mm/aaaa" maxlength="10" value="'+dv+'" onclick="event.stopPropagation()" oninput="maskBR(this)" onchange="jsetDateBR('+s.n+',this.value,this)"></div>';}if(s.marks180&&done){extra+='<div id="pass180" style="margin-top:8px"></div>';}var head=(s.ic?s.ic+' ':'')+s.t;var check=done?'✔ concluído':(cur?'toque para marcar':'');return '<div class="'+cls+'" role="button" tabindex="0" aria-label="Etapa '+s.n+'" onclick="journeyGoto('+s.n+')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();journeyGoto('+s.n+');}"><div class="jrow"><div class="jn">'+(done?'✓':s.n)+'</div><div class="jc"><div class="jt">'+head+' '+(s.tags||'')+'</div><div class="jd">'+s.d+'</div>'+extra+'</div><div class="jcheck">'+check+'</div></div></div>';}).join('');var pct=Math.round(jstate.done/STEPS.length*100);document.getElementById('jbar').style.width=pct+'%';document.getElementById('jbarTxt').textContent=jstate.done+' de '+STEPS.length+' etapas concluídas ('+pct+'%)';var hint=document.getElementById('jhint');if(jstate.done>=STEPS.length)hint.innerHTML='🎉 <b style="color:var(--teal)">Parabéns! Jornada concluída — você é cidadão italiano!</b>';else if(jstate.done>0)hint.textContent='Próxima etapa: '+STEPS[jstate.done].t;else hint.textContent='Toque nos passos abaixo para marcar seu progresso';updateCountdown();}
-function journeyGoto(n){
-  if(n===jstate.done+1){jstate.done=n;}
-  else if(n<=jstate.done){jstate.done=n-1;}
-  else{
-    if(!confirm('Marcar a etapa '+n+' ("'+STEPS[n-1].t+'")?\n\nIsso pula etapas intermediárias. Confirme só se já passou por elas.'))return;
-    jstate.done=n;
-  }
-  if(jstate.done<0)jstate.done=0;jsave();renderJourney();
-}
+function renderJourney(){var el=document.getElementById('journey');if(!el)return;el.innerHTML=STEPS.map(function(s){var done=s.n<=jstate.done,cur=s.n===jstate.done+1;var cls='jstep'+(done?' done':'')+(cur?' current':'');var extra='';if(s.dt&&done){var dv=jstate.dates[s.n]?isoToBR(jstate.dates[s.n]):'';extra+='<div class="jdate">📅 '+(s.dl||'Data')+': <input type="text" inputmode="numeric" placeholder="dd/mm/aaaa" maxlength="10" value="'+dv+'" onclick="event.stopPropagation()" oninput="maskBR(this)" onchange="jsetDateBR('+s.n+',this.value,this)"></div>';}if(s.marks180&&done){extra+='<div id="pass180" style="margin-top:8px"></div>';}var head=(s.ic?s.ic+' ':'')+s.t;var check=done?'✔ concluído':(cur?'toque para marcar':'');return '<div class="'+cls+'" onclick="journeyGoto('+s.n+')"><div class="jrow"><div class="jn">'+(done?'✓':s.n)+'</div><div class="jc"><div class="jt">'+head+' '+(s.tags||'')+'</div><div class="jd">'+s.d+'</div>'+extra+'</div><div class="jcheck">'+check+'</div></div></div>';}).join('');var pct=Math.round(jstate.done/STEPS.length*100);document.getElementById('jbar').style.width=pct+'%';document.getElementById('jbarTxt').textContent=jstate.done+' de '+STEPS.length+' etapas concluídas ('+pct+'%)';var hint=document.getElementById('jhint');if(jstate.done>=STEPS.length)hint.innerHTML='🎉 <b style="color:var(--teal)">Parabéns! Jornada concluída — você é cidadão italiano!</b>';else if(jstate.done>0)hint.textContent='Próxima etapa: '+STEPS[jstate.done].t;else hint.textContent='Toque nos passos abaixo para marcar seu progresso';updateCountdown();}
+function journeyGoto(n){if(n===jstate.done+1)jstate.done=n;else if(n<=jstate.done)jstate.done=n-1;else jstate.done=n;if(jstate.done<0)jstate.done=0;jsave();renderJourney();}
 function journeyAdvance(){if(jstate.done<STEPS.length){jstate.done++;jsave();renderJourney();}}
 function journeyReset(){if(confirm('Reiniciar seu acompanhamento? Isso apagará seu progresso salvo.')){jstate={done:0,dates:{}};jsave();renderJourney();}}
 function jsetDateBR(n,v,el){
@@ -805,17 +684,8 @@ function buildRadarReportHTML(){
 function exportJourneySimplePDF(){openJourneyReport(buildJourneyReportHTML());}
 function exportJourneyFullPDF(){openJourneyReport(buildJourneyFullReportHTML());}
 function exportJourneyPDF(){exportJourneySimplePDF();}
-function toggleNav(){var open=document.documentElement.classList.toggle('nav-open');var btn=document.getElementById('navToggleBtn');if(btn){btn.setAttribute('aria-expanded',open?'true':'false');btn.setAttribute('aria-label',open?'Fechar menu':'Abrir menu de navegação');}}
-function closeNav(){document.documentElement.classList.remove('nav-open');var btn=document.getElementById('navToggleBtn');if(btn){btn.setAttribute('aria-expanded','false');btn.setAttribute('aria-label','Abrir menu de navegação');}}
-function navClick(e,fn){if(e)e.preventDefault();fn();return false;}
-function toggleBannerDetails(){var b=document.getElementById('bannerNaoOficial');var btn=document.getElementById('bannerMoreBtn');if(!b)return;var exp=b.classList.toggle('expanded');if(btn){btn.setAttribute('aria-expanded',exp?'true':'false');btn.textContent=exp?'Mostrar menos':'Saiba mais';}}
-function toggleUpdatePanel(forceOpen){var p=document.getElementById('updatePanel');var h=document.getElementById('updatePanelHead');if(!p)return;var open=forceOpen===true?true:(forceOpen===false?false:!p.classList.contains('open'));p.classList.toggle('open',open);if(h)h.setAttribute('aria-expanded',open?'true':'false');}
-function toggleMoreMenu(force){var m=document.getElementById('topSecondary');var btn=document.getElementById('moreMenuBtn');if(!m)return;var show=force===true?true:(force===false?false:!m.classList.contains('mobile-open'));m.classList.toggle('mobile-open',show);if(btn)btn.setAttribute('aria-expanded',show?'true':'false');}
-function dismissOnboard(focusSearch){var p=document.getElementById('onboardPanel');if(p)p.style.display='none';try{localStorage.setItem('fila_onboard_done','1');}catch(e){}if(focusSearch){var s=document.getElementById('search');if(s){s.focus();document.getElementById('busca').scrollIntoView({behavior:'smooth',block:'center'});}}}
-function initOnboard(){try{if(localStorage.getItem('fila_onboard_done')==='1')return;}catch(e){}var p=document.getElementById('onboardPanel');if(p)p.style.display='block';}
-function setDataLoading(on){var bar=document.getElementById('dataLoading');if(bar){bar.classList.toggle('show',!!on);bar.setAttribute('aria-hidden',on?'false':'true');}}
-document.addEventListener('click',function(e){if(!e.target.closest('.top-actions')&&!e.target.closest('.more-menu-wrap'))toggleMoreMenu(false);});
-(function(){var h=document.getElementById('updatePanelHead');if(h){h.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleUpdatePanel();}};}})();
+function toggleNav(){document.documentElement.classList.toggle('nav-open');}
+function closeNav(){document.documentElement.classList.remove('nav-open');}
 function closeNavIfMobile(){if(window.innerWidth<=1024)closeNav();}
 function togglePin(){var un=document.documentElement.classList.toggle('nav-unpinned');try{localStorage.setItem('fila_navpin2',un?'unpinned':'pinned');}catch(e){}var b=document.getElementById('pinbtn');if(b){b.textContent=un?'📍':'📌';}if(!un)closeNav();}
 (function(){var s='pinned';try{s=localStorage.getItem('fila_navpin2')||'pinned';}catch(e){}if(s==='unpinned'){document.documentElement.classList.add('nav-unpinned');var b=document.getElementById('pinbtn');if(b)b.textContent='📍';}})();
@@ -852,7 +722,6 @@ if('serviceWorker' in navigator){window.addEventListener('load',function(){navig
     return oldPlanilhaDe ? oldPlanilhaDe(x) : 'B';
   };
   window.loadDadosJson = function(){
-    if(typeof setDataLoading==='function')setDataLoading(true);
     jsonStatus('🔄 Verificando dados.json...');
     return fetch('./dados.json?ts='+Date.now(), {cache:'no-store'})
       .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
@@ -877,8 +746,7 @@ if('serviceWorker' in navigator){window.addEventListener('load',function(){navig
       .catch(function(e){
         jsonStatus('ℹ️ Exibindo a base local do site. Para atualizar, use "📂 Carregar planilha (.xlsx)".');
         return false;
-      })
-      .finally(function(){if(typeof setDataLoading==='function')setDataLoading(false);});
+      });
   };
   window.addEventListener('load', function(){
     if(location.search.indexOf('nojson=1')>=0) return;
@@ -958,9 +826,9 @@ if('serviceWorker' in navigator){window.addEventListener('load',function(){navig
   function openShareModal(nome,url,isFile){
     var ov=document.getElementById('v5shareov');
     if(!ov){
-      ov=document.createElement('div');ov.id='v5shareov';ov.className='share-ov';ov.setAttribute('role','presentation');
-      ov.innerHTML='<div class="share-modal" role="dialog" aria-modal="true" aria-labelledby="v5shareTitle" onclick="event.stopPropagation()">'+
-        '<h3 id="v5shareTitle">🔗 Compartilhar processo</h3>'+
+      ov=document.createElement('div');ov.id='v5shareov';ov.className='share-ov';
+      ov.innerHTML='<div class="share-modal" onclick="event.stopPropagation()">'+
+        '<h3>🔗 Compartilhar processo</h3>'+
         '<p id="v5sharep"></p>'+
         '<div class="share-url"><input type="text" id="v5shareurl" readonly><button onclick="v5copyShare()">📋 Copiar</button></div>'+
         '<div class="share-opts">'+
@@ -983,7 +851,6 @@ if('serviceWorker' in navigator){window.addEventListener('load',function(){navig
       ? '⚠️ O site está aberto localmente (arquivo). O link abaixo só funcionará para outras pessoas quando o site estiver publicado (GitHub Pages/OneDrive). Você já pode copiá-lo.'
       : 'Copie o link ou envie direto pelos apps abaixo. Ao abrir, o processo <b>'+nome+'</b> já aparece selecionado.';
     ov.classList.add('show');
-    setTimeout(function(){var m=ov.querySelector('.share-modal');if(m){var f=m.querySelector('button,.share-opt');if(f)f.focus();}},50);
   }
   window.closeShareModal=function(){var ov=document.getElementById('v5shareov');if(ov)ov.classList.remove('show');};
   window.v5copyShare=function(){var inp=document.getElementById('v5shareurl');if(inp){inp.focus();inp.select();copyText(inp.value,'🔗 Link copiado!');}};
@@ -991,7 +858,6 @@ if('serviceWorker' in navigator){window.addEventListener('load',function(){navig
     if(!chartReady){setTimeout(window.renderStats,400);return;}
     var AZ='#2a78d6',TE='#1baf7a',AM='#eda100';var grid='rgba(255,255,255,.06)';
     var hc=q('v5hist');
-    var hs=q('v5histSummary');
     if(hc&&resTimes.length){
       if(window._histChart)try{window._histChart.destroy();}catch(e){}
       var min=Math.min.apply(null,resTimes),max=Math.max.apply(null,resTimes);
@@ -1000,13 +866,9 @@ if('serviceWorker' in navigator){window.addEventListener('load',function(){navig
       resTimes.forEach(function(v){var k=Math.floor(v/binW)*binW;bins[k]=(bins[k]||0)+1;});
       var vals=Object.keys(bins).map(function(k){return bins[k];});
       window._histChart=new Chart(hc,{type:'bar',data:{labels:labels,datasets:[{data:vals,backgroundColor:AZ,borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{title:function(c){return c[0].label+' dias';},label:function(c){return c.parsed.y+' processos';}}}},scales:{x:{grid:{display:false},title:{display:true,text:'dias de espera'}},y:{grid:{color:grid},beginAtZero:true,title:{display:true,text:'nº de processos'}}}}});
-      if(hs)hs.innerHTML='📊 <b>'+resolved.length+'</b> processos concluídos · tempo médio <b>'+mediaGeral+'</b> dias · mediana <b>'+medianaGeral+'</b> dias · faixa de <b>'+min+'</b> a <b>'+max+'</b> dias na base.';
-    }else if(hs){hs.textContent='Sem dados suficientes para o histograma.';}
-    var rk=q('v5rank');
-    var rs=q('v5rankSummary');
-    if(rk){var M=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];var keys=Object.keys(monthCounts).sort().slice(-8);var maxv=Math.max.apply(null,keys.map(function(k){return monthCounts[k];})||[1]);rk.innerHTML='<table><thead><tr><th>Mês</th><th>Resoluções</th><th></th></tr></thead><tbody>'+keys.reverse().map(function(k){var v=monthCounts[k];var top=v===maxv;return '<tr><td>'+M[+k.split('-')[1]-1]+'/'+k.split('-')[0].slice(2)+(top?' <span class="pl-tag pl-jsi">🔥</span>':'')+'</td><td><b>'+v+'</b></td><td style="width:55%"><div style="background:var(--inputbg);border-radius:10px;height:14px;overflow:hidden"><i style="display:block;height:100%;width:'+Math.round(v/maxv*100)+'%;background:linear-gradient(90deg,var(--teal),var(--accent))"></i></div></td></tr>';}).join('')+'</tbody></table>';
-      if(rs&&keys.length){var bestK=keys.reduce(function(a,k){return monthCounts[k]>monthCounts[a]?k:a;},keys[0]);rs.innerHTML='🔥 Melhor mês recente: <b>'+M[+bestK.split('-')[1]-1]+'/'+bestK.split('-')[0].slice(2)+'</b> com <b>'+monthCounts[bestK]+'</b> resoluções. Últimos '+keys.length+' meses exibidos.';}
     }
+    var rk=q('v5rank');
+    if(rk){var M=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];var keys=Object.keys(monthCounts).sort().slice(-8);var maxv=Math.max.apply(null,keys.map(function(k){return monthCounts[k];})||[1]);rk.innerHTML='<table><thead><tr><th>Mês</th><th>Resoluções</th><th></th></tr></thead><tbody>'+keys.reverse().map(function(k){var v=monthCounts[k];var top=v===maxv;return '<tr><td>'+M[+k.split('-')[1]-1]+'/'+k.split('-')[0].slice(2)+(top?' <span class="pl-tag pl-jsi">🔥</span>':'')+'</td><td><b>'+v+'</b></td><td style="width:55%"><div style="background:var(--inputbg);border-radius:10px;height:14px;overflow:hidden"><i style="display:block;height:100%;width:'+Math.round(v/maxv*100)+'%;background:linear-gradient(90deg,var(--teal),var(--accent))"></i></div></td></tr>';}).join('')+'</tbody></table>';}
   };
   var RSTAGES=[{i:'📂',t:'Balcão (B)',k:'B'},{i:'🇮🇹',t:'JSI',k:'JSI'},{i:'📧',t:'PEC',k:'PEC'},{i:'🏛️',t:'Comune',k:'CM'},{i:'🌎',t:'AIRE',k:'AIRE'},{i:'💻',t:'Fast It',k:'FI'},{i:'🛂',t:'Passaporte',k:'PP'},{i:'🪪',t:'CIE',k:'CIE'}];
   window.renderRadar=function(){
@@ -1042,7 +904,7 @@ if('serviceWorker' in navigator){window.addEventListener('load',function(){navig
     var anchor=q('s-mov');
     if(anchor&&anchor.parentNode){anchor.parentNode.insertBefore(wrap,anchor);}else{res.appendChild(wrap);}
   }
-  function openFromURL(){var p=new URLSearchParams(location.search).get('proc');if(!p)return;var x=DATA.find(function(d){return d.nome.toLowerCase()===p.toLowerCase();})||DATA.find(function(d){return d.nome.toLowerCase().indexOf(p.toLowerCase())>=0;});if(x){setTimeout(function(){select(x);},400);}else{showProcNotFound(p);}}
+  function openFromURL(){var p=new URLSearchParams(location.search).get('proc');if(!p)return;var x=DATA.find(function(d){return d.nome.toLowerCase()===p.toLowerCase();})||DATA.find(function(d){return d.nome.toLowerCase().indexOf(p.toLowerCase())>=0;});if(x)setTimeout(function(){select(x);},400);}
   var _origEnrich=(typeof enrich==='function')?enrich:null;
   if(_origEnrich){enrich=function(){_origEnrich();try{renderDashboard();renderStats();}catch(e){}};}
   window.addEventListener('load',function(){
@@ -1050,7 +912,6 @@ if('serviceWorker' in navigator){window.addEventListener('load',function(){navig
     try{renderStats();}catch(e){}
     try{renderFavs();}catch(e){}
     try{renderRadar();}catch(e){}
-    try{initOnboard();}catch(e){}
     openFromURL();
   });
   if(typeof renderJourney==='function'){var _rj=renderJourney;renderJourney=function(){_rj();try{renderRadar();}catch(e){}};}
