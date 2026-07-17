@@ -221,6 +221,11 @@ details.chart-fold summary{cursor:pointer;font-weight:600;font-size:13px;padding
 details.chart-fold summary::-webkit-details-marker{display:none}
 details.chart-fold .chart-inner{padding:0 16px 16px}
 details.chart-fold .chartbox{height:160px}
+details.chart-fold .chartbox-km{height:200px}
+.charts-stack{display:flex;flex-direction:column;gap:18px;padding-bottom:8px}
+.chart-block{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.chart-block h5{font-size:12.5px;font-weight:700;margin-bottom:4px;color:var(--txt)}
+.chart-cap{font-size:11px;color:var(--txt3);margin-bottom:10px;line-height:1.4}
 .comm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
 .comm-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
 .comm-card .cc-h{font-size:13px;font-weight:700;margin-bottom:10px}
@@ -283,6 +288,12 @@ details.chart-fold .chartbox{height:160px}
 <div id="view-comunidade" class="view-hidden">
 <div class="panel"><p style="color:var(--txt2);font-size:13px;line-height:1.6;margin-bottom:12px">Cada fila mede <b>etapa diferente</b>. Uma mesma pessoa pode migrar B → JSI → P — <b>não some</b> os totais abaixo.</p>
 <div class="comm-grid" id="commGrid"></div>
+<details class="chart-fold"><summary>📈 Panorama estatístico (3 filas)</summary>
+<div class="chart-inner charts-stack">
+<div class="chart-block"><h5>Throughput mensal (média 3 meses)</h5><div class="chart-cap">Gargalo na fila JSI (~3,7/mês vs ~14/mês na B)</div><div class="chartbox"><canvas id="cCommTP"></canvas></div></div>
+<div class="chart-block"><h5>Curvas Kaplan-Meier</h5><div class="chart-cap">% ainda aguardando ao longo dos dias — cada fila é independente</div><div class="chartbox chartbox-km"><canvas id="cCommKM"></canvas></div></div>
+<div class="chart-block"><h5>Distribuição de tempos (resolvidos)</h5><div class="chart-cap">Histograma por faixa de dias até resolução</div><div class="chartbox"><canvas id="cCommHist"></canvas></div></div>
+</div></details>
 <div class="comm-warn" id="commWarn"></div></div></div>
 
 <div id="view-jornada" class="view-hidden">
@@ -345,6 +356,7 @@ var activeFilter = 'todos';
 var chartInstances = [];
 var chartReady = false;
 var pendingRender = null;
+var pendingCommunityCharts = false;
 var TODAY = new Date();
 TODAY.setHours(0, 0, 0, 0);
 
@@ -354,11 +366,11 @@ TODAY.setHours(0, 0, 0, 0);
     'https://cdnjs.cloudflare.com/ajax/libs/chart.js/4.4.1/chart.umd.min.js'
   ];
   function t(i) {
-    if (typeof Chart !== 'undefined') { chartReady = true; if (pendingRender) pendingRender(); return; }
+    if (typeof Chart !== 'undefined') { chartReady = true; if (pendingRender) pendingRender(); if (pendingCommunityCharts) renderCommunityCharts(); return; }
     if (i >= CDNS.length) return;
     var s = document.createElement('script');
     s.src = CDNS[i];
-    s.onload = function () { if (typeof Chart !== 'undefined') { chartReady = true; if (pendingRender) pendingRender(); } else t(i + 1); };
+    s.onload = function () { if (typeof Chart !== 'undefined') { chartReady = true; if (pendingRender) pendingRender(); if (pendingCommunityCharts) renderCommunityCharts(); } else t(i + 1); };
     s.onerror = function () { t(i + 1); };
     document.head.appendChild(s);
   }
@@ -582,6 +594,129 @@ function renderCommunityView() {
       '• Homônimos (mesma sigla, pessoas diferentes) existem — confirme com a <b>data de entrega</b>.<br>' +
       '• JSI é o gargalo operacional (~3,7 resoluções/mês vs ~14 na B).';
   }
+  renderCommunityCharts();
+}
+
+function chartTheme() {
+  var light = document.documentElement.getAttribute('data-theme') === 'light';
+  return {
+    txt: light ? '#5c5348' : '#b8afa3',
+    grid: light ? 'rgba(0,0,0,.07)' : 'rgba(255,255,255,.07)',
+    terra: 'rgba(200,90,40,.85)',
+    salvia: 'rgba(107,143,113,.85)',
+    amber: 'rgba(212,160,23,.85)',
+    kmB: 'rgba(200,90,40,1)',
+    kmJSI: 'rgba(107,143,113,1)',
+    kmP: 'rgba(212,160,23,1)',
+    marker: '#CE2B37',
+    mediana: 'rgba(107,143,113,.9)'
+  };
+}
+
+function destroyCharts() {
+  chartInstances.forEach(function (c) { try { c.destroy(); } catch (e) {} });
+  chartInstances = [];
+}
+
+function kmSeriesFromInsights(pid) {
+  var surv = INSIGHTS && INSIGHTS.survival && INSIGHTS.survival[pid];
+  if (!surv || !surv.S_em) return null;
+  var days = Object.keys(surv.S_em).map(Number).sort(function (a, b) { return a - b; });
+  return { days: days, pct: days.map(function (d) { return Math.round(surv.S_em[String(d)] * 1000) / 10; }) };
+}
+
+function hazardFromInsights(pid) {
+  var h = INSIGHTS && INSIGHTS.hazard && INSIGHTS.hazard[pid];
+  if (!h || !h.length) return null;
+  return h.filter(function (b) { return b.fim <= 400 || b.hazard > 0; }).map(function (b) {
+    return { label: b.ini + '–' + b.fim, val: Math.round(b.hazard * 1000) / 10, hi: b.ini >= 240 && b.fim <= 330 };
+  });
+}
+
+function histogramBins(pid) {
+  var times = (SHEET_STATS[pid] || {}).resTimes || [];
+  var bins = [
+    { l: '0–90', min: 0, max: 90, n: 0 },
+    { l: '91–180', min: 91, max: 180, n: 0 },
+    { l: '181–270', min: 181, max: 270, n: 0 },
+    { l: '271–365', min: 271, max: 365, n: 0 },
+    { l: '365+', min: 366, max: 99999, n: 0 }
+  ];
+  times.forEach(function (t) {
+    var i;
+    for (i = 0; i < bins.length; i++) {
+      if (t >= bins[i].min && t <= bins[i].max) { bins[i].n++; break; }
+    }
+  });
+  return bins;
+}
+
+function baseChartOpts(ct, yMax) {
+  var opts = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { labels: { color: ct.txt, boxWidth: 12, font: { size: 11 } } } },
+    scales: {
+      x: { ticks: { color: ct.txt, maxRotation: 45, font: { size: 10 } }, grid: { color: ct.grid } },
+      y: { ticks: { color: ct.txt }, grid: { color: ct.grid }, beginAtZero: true }
+    }
+  };
+  if (yMax) opts.scales.y.max = yMax;
+  return opts;
+}
+
+function addChart(canvas, config) {
+  if (!canvas || typeof Chart === 'undefined') return;
+  Chart.defaults.font.family = "'Segoe UI',system-ui";
+  chartInstances.push(new Chart(canvas, config));
+}
+
+function renderCommunityCharts() {
+  if (!chartReady || !INSIGHTS) { pendingCommunityCharts = true; return; }
+  pendingCommunityCharts = false;
+  var commView = document.getElementById('view-comunidade');
+  if (!commView || commView.classList.contains('view-hidden')) return;
+  destroyCharts();
+  var ct = chartTheme();
+  var tp = INSIGHTS.throughput_mensal_3m || {};
+  var cTP = document.getElementById('cCommTP');
+  if (cTP) {
+    addChart(cTP, {
+      type: 'bar',
+      data: {
+        labels: ['B — Balcão', 'JSI', 'P — Pendências'],
+        datasets: [{ label: 'Resoluções/mês', data: [tp.B || 0, tp.JSI || 0, tp.P || 0], backgroundColor: [ct.terra, ct.salvia, ct.amber], borderRadius: 6 }]
+      },
+      options: baseChartOpts(ct)
+    });
+  }
+  var cKM = document.getElementById('cCommKM');
+  if (cKM) {
+    var cols = { B: ct.kmB, JSI: ct.kmJSI, P: ct.kmP };
+    var datasets = ['B', 'JSI', 'P'].map(function (pid) {
+      var km = kmSeriesFromInsights(pid);
+      if (!km) return null;
+      return { label: 'Fila ' + pid, data: km.days.map(function (d, i) { return { x: d, y: km.pct[i] }; }), borderColor: cols[pid], backgroundColor: 'transparent', tension: 0.3, pointRadius: 1, borderWidth: 2 };
+    }).filter(Boolean);
+    var kmOpts = baseChartOpts(ct, 100);
+    kmOpts.scales.x = { type: 'linear', title: { display: true, text: 'Dias', color: ct.txt }, ticks: { color: ct.txt }, grid: { color: ct.grid } };
+    kmOpts.scales.y.title = { display: true, text: '% ainda aguardando', color: ct.txt };
+    addChart(cKM, { type: 'line', data: { datasets: datasets }, options: kmOpts });
+  }
+  var cHist = document.getElementById('cCommHist');
+  if (cHist) {
+    var labels = histogramBins('B').map(function (b) { return b.l + 'd'; });
+    addChart(cHist, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: ['B', 'JSI', 'P'].map(function (pid, i) {
+          return { label: 'Fila ' + pid, data: histogramBins(pid).map(function (b) { return b.n; }), backgroundColor: [ct.terra, ct.salvia, ct.amber][i], borderRadius: 4 };
+        })
+      },
+      options: baseChartOpts(ct)
+    });
+  }
 }
 
 function mesAno(d) {
@@ -791,8 +926,7 @@ function resetProcView() {
   document.documentElement.classList.remove('has-proc');
   var res = document.getElementById('result');
   if (res) { res.style.display = 'none'; res.innerHTML = ''; }
-  chartInstances.forEach(function (c) { try { c.destroy(); } catch (e) {} });
-  chartInstances = [];
+  destroyCharts();
   var emp = document.getElementById('empty');
   if (emp) emp.style.display = 'block';
 }
@@ -844,8 +978,7 @@ function select(x) {
   document.documentElement.classList.add('has-proc');
   var res = document.getElementById('result');
   res.style.display = 'block';
-  chartInstances.forEach(function (c) { try { c.destroy(); } catch (e) {} });
-  chartInstances = [];
+  destroyCharts();
   if (x.done) { renderDone(x); setUrlParams({ sheet: activeSheet, proc: x.nome }); return; }
   var P = computeProjection(x);
   var pid = P.pid;
@@ -881,7 +1014,12 @@ function select(x) {
     html += '<div class="legalbox"><h4>⚖️ Prazo legal (730 dias — só Balcão)</h4><div class="legalbar"><i style="width:' + pctLegal + '%;background:' + cor + '"></i><span>' + x.espera + ' / 730 dias</span></div><div class="legal-note">' + note + '</div></div>';
   }
   html += sheetNote(pid);
-  html += '<details class="chart-fold"><summary>📊 Ver ritmo mensal da fila ' + pid + '</summary><div class="chart-inner"><div class="chartbox"><canvas id="cVazao"></canvas></div></div></details>';
+  html += '<details class="chart-fold"><summary>📈 Análise estatística da fila ' + pid + '</summary><div class="chart-inner charts-stack">' +
+    '<div class="chart-block"><h5>Curva Kaplan-Meier</h5><div class="chart-cap">% ainda aguardando — estrela vermelha = você (' + x.espera + 'd); ponto verde = mediana da fila</div><div class="chartbox chartbox-km"><canvas id="cKM"></canvas></div></div>' +
+    '<div class="chart-block"><h5>Risco de resolução (hazard)</h5><div class="chart-cap">Picos indicam janelas de lote — barras vermelhas ≈ 270–300d na B</div><div class="chartbox"><canvas id="cHazard"></canvas></div></div>' +
+    '<div class="chart-block"><h5>Distribuição de tempos (resolvidos)</h5><div class="chart-cap">Quantos processos levaram cada faixa de dias nesta planilha</div><div class="chartbox"><canvas id="cHist"></canvas></div></div>' +
+    '<div class="chart-block"><h5>Resoluções mensais</h5><div class="chart-cap">Ritmo observado mês a mês nesta fila</div><div class="chartbox"><canvas id="cVazao"></canvas></div></div>' +
+    '</div></details>';
   html += '<div class="disc" style="margin:0"><h3>⚠️ Sobre esta estimativa</h3><ul><li>Dados voluntários só da planilha <b>' + pid + '</b>.</li><li>Probabilidades vêm de Kaplan-Meier — não substituem consulta oficial.</li></ul></div>';
   html += '</div>';
   res.innerHTML = html;
@@ -892,19 +1030,92 @@ function select(x) {
 
 function drawCharts(x, P) {
   if (!chartReady) { pendingRender = function () { drawCharts(x, P); }; return; }
-  var st = SHEET_STATS[P.pid] || {};
+  destroyCharts();
+  var pid = P.pid;
+  var ct = chartTheme();
+  var km = kmSeriesFromInsights(pid);
+  var ckm = document.getElementById('cKM');
+  if (ckm && km) {
+    var med = getKmMedian(pid);
+    var userY = kmSAt(pid, x.espera);
+    var datasets = [{
+      label: 'Ainda aguardando (%)',
+      data: km.days.map(function (d, i) { return { x: d, y: km.pct[i] }; }),
+      borderColor: ct.terra,
+      backgroundColor: 'rgba(200,90,40,.12)',
+      fill: true,
+      tension: 0.3,
+      pointRadius: 2
+    }];
+    if (userY != null) {
+      datasets.push({
+        label: 'Você (' + x.espera + 'd)',
+        data: [{ x: x.espera, y: Math.round(userY * 1000) / 10 }],
+        type: 'scatter',
+        backgroundColor: ct.marker,
+        borderColor: '#fff',
+        borderWidth: 2,
+        pointRadius: 10,
+        pointStyle: 'star'
+      });
+    }
+    if (med) {
+      var medY = kmSAt(pid, med);
+      datasets.push({
+        label: 'Mediana (' + med + 'd)',
+        data: [{ x: med, y: medY != null ? Math.round(medY * 1000) / 10 : 50 }],
+        type: 'scatter',
+        backgroundColor: ct.mediana,
+        pointRadius: 8
+      });
+    }
+    var kmOpts = baseChartOpts(ct, 100);
+    kmOpts.scales.x = { type: 'linear', title: { display: true, text: 'Dias de espera', color: ct.txt }, ticks: { color: ct.txt }, grid: { color: ct.grid } };
+    kmOpts.scales.y.title = { display: true, text: '% ainda na fila', color: ct.txt };
+    addChart(ckm, { type: 'line', data: { datasets: datasets }, options: kmOpts });
+  }
+  var haz = hazardFromInsights(pid);
+  var cHz = document.getElementById('cHazard');
+  if (cHz && haz && haz.length) {
+    addChart(cHz, {
+      type: 'bar',
+      data: {
+        labels: haz.map(function (b) { return b.label; }),
+        datasets: [{
+          label: 'Hazard (%/30d)',
+          data: haz.map(function (b) { return b.val; }),
+          backgroundColor: haz.map(function (b) { return b.hi ? 'rgba(206,43,55,.85)' : 'rgba(200,90,40,.5)'; }),
+          borderRadius: 4
+        }]
+      },
+      options: baseChartOpts(ct)
+    });
+  }
+  var bins = histogramBins(pid);
+  var cHist = document.getElementById('cHist');
+  if (cHist && bins.some(function (b) { return b.n > 0; })) {
+    addChart(cHist, {
+      type: 'bar',
+      data: {
+        labels: bins.map(function (b) { return b.l + 'd'; }),
+        datasets: [{ label: 'Resolvidos', data: bins.map(function (b) { return b.n; }), backgroundColor: ct.salvia, borderRadius: 5 }]
+      },
+      options: baseChartOpts(ct)
+    });
+  }
+  var st = SHEET_STATS[pid] || {};
   var mcMap = st.monthCounts || {};
   function gmc(y, m) { return mcMap[y + '-' + p2(m)] || 0; }
   var labels = ['ago/25', 'set/25', 'out/25', 'nov/25', 'dez/25', 'jan/26', 'fev/26', 'mar/26', 'abr/26', 'mai/26', 'jun/26', 'jul/26'];
   var vals = [gmc(2025, 8), gmc(2025, 9), gmc(2025, 10), gmc(2025, 11), gmc(2025, 12), gmc(2026, 1), gmc(2026, 2), gmc(2026, 3), gmc(2026, 4), gmc(2026, 5), gmc(2026, 6), gmc(2026, 7)];
   var cv = document.getElementById('cVazao');
-  if (!cv) return;
-  Chart.defaults.font.family = "'Segoe UI',system-ui";
-  chartInstances.push(new Chart(cv, {
-    type: 'bar',
-    data: { labels: labels, datasets: [{ data: vals, backgroundColor: 'rgba(42,120,214,.55)', borderRadius: 5 }] },
-    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } }, y: { beginAtZero: true } } }
-  }));
+  if (cv) {
+    addChart(cv, {
+      type: 'bar',
+      data: { labels: labels, datasets: [{ label: 'Resoluções', data: vals, backgroundColor: ct.terra, borderRadius: 5 }] },
+      options: baseChartOpts(ct)
+    });
+  }
 }
 
 function setStatus(m) { var el = document.getElementById('upStatus'); if (el) el.textContent = m; }
