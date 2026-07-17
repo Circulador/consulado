@@ -1,0 +1,1570 @@
+{
+ "qualidade": {
+  "B": {
+   "n": 194,
+   "done": 103,
+   "cens": 91,
+   "neg_dur": 0,
+   "exact_dup": 0,
+   "homonimos": 7,
+   "resol_futuro": 0,
+   "pct_censura": 46.9
+  },
+  "JSI": {
+   "n": 150,
+   "done": 65,
+   "cens": 85,
+   "neg_dur": 0,
+   "exact_dup": 1,
+   "homonimos": 1,
+   "resol_futuro": 0,
+   "pct_censura": 56.7
+  },
+  "P": {
+   "n": 19,
+   "done": 10,
+   "cens": 9,
+   "neg_dur": 0,
+   "exact_dup": 1,
+   "homonimos": 0,
+   "resol_futuro": 0,
+   "pct_censura": 47.4
+  }
+ },
+ "descritivas": {
+  "B": {
+   "n_done": 103,
+   "n_cens": 91,
+   "media": 193.5,
+   "mediana": 234.0,
+   "std": 97.7,
+   "var": 9554.0,
+   "cv": 0.51,
+   "min": 0.0,
+   "max": 324.0,
+   "p10": 46.0,
+   "p25": 86.5,
+   "p50": 234.0,
+   "p75": 277.0,
+   "p90": 289.8,
+   "p95": 291.0,
+   "iqr": 190.5,
+   "skew": -0.65,
+   "kurt": -1.05,
+   "cens_media": 294.7,
+   "cens_max": 504.0
+  },
+  "JSI": {
+   "n_done": 65,
+   "n_cens": 85,
+   "media": 117.5,
+   "mediana": 119.0,
+   "std": 78.1,
+   "var": 6104.0,
+   "cv": 0.67,
+   "min": 0.0,
+   "max": 271.0,
+   "p10": 37.0,
+   "p25": 42.0,
+   "p50": 119.0,
+   "p75": 174.0,
+   "p90": 224.0,
+   "p95": 245.39999999999995,
+   "iqr": 132.0,
+   "skew": 0.28,
+   "kurt": -1.11,
+   "cens_media": 189.7,
+   "cens_max": 522.0
+  },
+  "P": {
+   "n_done": 10,
+   "n_cens": 9,
+   "media": 91.6,
+   "mediana": 82.5,
+   "std": 66.7,
+   "var": 4444.5,
+   "cv": 0.73,
+   "min": 7.0,
+   "max": 180.0,
+   "p10": 26.8,
+   "p25": 33.25,
+   "p50": 82.5,
+   "p75": 152.5,
+   "p90": 176.4,
+   "p95": 178.2,
+   "iqr": 119.2,
+   "skew": 0.17,
+   "kurt": -1.58,
+   "cens_media": 229.6,
+   "cens_max": 641.0
+  }
+ },
+ "distribuicoes": {
+  "B": {
+   "n": 102,
+   "shapiro_p": 0.0,
+   "shapiro_log_p": 0.0,
+   "bic": {
+    "1": 305.9,
+    "2": 175.9,
+    "3": 164.9,
+    "4": 162.3
+   },
+   "k_otimo": 4,
+   "componentes": [
+    {
+     "peso": 0.09,
+     "centro_dias": 10.0,
+     "sigma_log": 1.13
+    },
+    {
+     "peso": 0.17,
+     "centro_dias": 71.0,
+     "sigma_log": 0.23
+    },
+    {
+     "peso": 0.26,
+     "centro_dias": 189.0,
+     "sigma_log": 0.23
+    },
+    {
+     "peso": 0.47,
+     "centro_dias": 274.0,
+     "sigma_log": 0.07
+    }
+   ]
+  },
+  "JSI": {
+   "n": 62,
+   "shapiro_p": 0.0016,
+   "shapiro_log_p": 0.0,
+   "bic": {
+    "1": 160.8,
+    "2": 153.7,
+    "3": 111.9,
+    "4": 118.6
+   },
+   "k_otimo": 3,
+   "componentes": [
+    {
+     "peso": 0.03,
+     "centro_dias": 6.0,
+     "sigma_log": 0.0
+    },
+    {
+     "peso": 0.3,
+     "centro_dias": 44.0,
+     "sigma_log": 0.13
+    },
+    {
+     "peso": 0.66,
+     "centro_dias": 155.0,
+     "sigma_log": 0.37
+    }
+   ]
+  },
+  "P": {
+   "n": 10,
+   "shapiro_p": 0.1431,
+   "shapiro_log_p": 0.1529,
+   "bic": {
+    "1": 33.0,
+    "2": 25.6,
+    "3": 23.9,
+    "4": 6.2
+   },
+   "k_otimo": 4,
+   "componentes": [
+    {
+     "peso": 0.1,
+     "centro_dias": 7.0,
+     "sigma_log": 0.0
+    },
+    {
+     "peso": 0.2,
+     "centro_dias": 29.0,
+     "sigma_log": 0.0
+    },
+    {
+     "peso": 0.2,
+     "centro_dias": 49.0,
+     "sigma_log": 0.06
+    },
+    {
+     "peso": 0.5,
+     "centro_dias": 148.0,
+     "sigma_log": 0.2
+    }
+   ]
+  }
+ },
+ "clusterizacao": {
+  "B": {
+   "n": 102,
+   "kmeans_silhouette": {
+    "2": 0.783,
+    "3": 0.76,
+    "4": 0.75
+   },
+   "dbscan_clusters": 2,
+   "dbscan_ruido": 1
+  },
+  "JSI": {
+   "n": 62,
+   "kmeans_silhouette": {
+    "2": 0.69,
+    "3": 0.721,
+    "4": 0.643
+   },
+   "dbscan_clusters": 1,
+   "dbscan_ruido": 2
+  },
+  "P": {
+   "n": 10,
+   "nota": "amostra insuficiente"
+  }
+ },
+ "survival": {
+  "B": {
+   "mediana_sobrevivencia": 287,
+   "S_em": {
+    "30": 0.9536,
+    "60": 0.933,
+    "90": 0.8608,
+    "120": 0.8557,
+    "150": 0.8299,
+    "180": 0.8041,
+    "240": 0.7193,
+    "300": 0.3937,
+    "365": 0.3586,
+    "450": 0.3586,
+    "547": 0.3586,
+    "730": 0.3586
+   },
+   "n": 194,
+   "eventos": 103
+  },
+  "JSI": {
+   "mediana_sobrevivencia": 218,
+   "S_em": {
+    "30": 0.9667,
+    "60": 0.8201,
+    "90": 0.7754,
+    "120": 0.7279,
+    "150": 0.6379,
+    "180": 0.5753,
+    "240": 0.4403,
+    "300": 0.3891,
+    "365": 0.3891,
+    "450": 0.3891,
+    "547": 0.3891,
+    "730": 0.3891
+   },
+   "n": 150,
+   "eventos": 65
+  },
+  "P": {
+   "mediana_sobrevivencia": 163,
+   "S_em": {
+    "30": 0.8359,
+    "60": 0.7073,
+    "90": 0.7073,
+    "120": 0.6287,
+    "150": 0.5501,
+    "180": 0.3144,
+    "240": 0.3144,
+    "300": 0.3144,
+    "365": 0.3144,
+    "450": 0.3144,
+    "547": 0.3144,
+    "730": 0.3144
+   },
+   "n": 19,
+   "eventos": 10
+  }
+ },
+ "hazard": {
+  "B": [
+   {
+    "ini": 0,
+    "fim": 30,
+    "risco": 194,
+    "eventos": 9,
+    "cens": 0,
+    "hazard": 0.046
+   },
+   {
+    "ini": 30,
+    "fim": 60,
+    "risco": 185,
+    "eventos": 4,
+    "cens": 0,
+    "hazard": 0.022
+   },
+   {
+    "ini": 60,
+    "fim": 90,
+    "risco": 181,
+    "eventos": 14,
+    "cens": 0,
+    "hazard": 0.077
+   },
+   {
+    "ini": 90,
+    "fim": 120,
+    "risco": 167,
+    "eventos": 1,
+    "cens": 0,
+    "hazard": 0.006
+   },
+   {
+    "ini": 120,
+    "fim": 150,
+    "risco": 166,
+    "eventos": 5,
+    "cens": 0,
+    "hazard": 0.03
+   },
+   {
+    "ini": 150,
+    "fim": 180,
+    "risco": 161,
+    "eventos": 4,
+    "cens": 0,
+    "hazard": 0.025
+   },
+   {
+    "ini": 180,
+    "fim": 210,
+    "risco": 157,
+    "eventos": 8,
+    "cens": 2,
+    "hazard": 0.051
+   },
+   {
+    "ini": 210,
+    "fim": 240,
+    "risco": 147,
+    "eventos": 8,
+    "cens": 9,
+    "hazard": 0.056
+   },
+   {
+    "ini": 240,
+    "fim": 270,
+    "risco": 130,
+    "eventos": 14,
+    "cens": 16,
+    "hazard": 0.115
+   },
+   {
+    "ini": 270,
+    "fim": 300,
+    "risco": 100,
+    "eventos": 33,
+    "cens": 28,
+    "hazard": 0.384
+   },
+   {
+    "ini": 300,
+    "fim": 330,
+    "risco": 39,
+    "eventos": 3,
+    "cens": 13,
+    "hazard": 0.092
+   },
+   {
+    "ini": 330,
+    "fim": 360,
+    "risco": 23,
+    "eventos": 0,
+    "cens": 14,
+    "hazard": 0.0
+   },
+   {
+    "ini": 360,
+    "fim": 390,
+    "risco": 9,
+    "eventos": 0,
+    "cens": 6,
+    "hazard": 0.0
+   },
+   {
+    "ini": 390,
+    "fim": 420,
+    "risco": 3,
+    "eventos": 0,
+    "cens": 2,
+    "hazard": 0.0
+   },
+   {
+    "ini": 420,
+    "fim": 450,
+    "risco": 1,
+    "eventos": 0,
+    "cens": 0,
+    "hazard": 0.0
+   },
+   {
+    "ini": 450,
+    "fim": 480,
+    "risco": 1,
+    "eventos": 0,
+    "cens": 0,
+    "hazard": 0.0
+   },
+   {
+    "ini": 480,
+    "fim": 510,
+    "risco": 1,
+    "eventos": 0,
+    "cens": 1,
+    "hazard": 0.0
+   },
+   {
+    "ini": 510,
+    "fim": 540,
+    "risco": 0,
+    "eventos": 0,
+    "cens": 0,
+    "hazard": 0
+   }
+  ],
+  "JSI": [
+   {
+    "ini": 0,
+    "fim": 30,
+    "risco": 150,
+    "eventos": 5,
+    "cens": 13,
+    "hazard": 0.035
+   },
+   {
+    "ini": 30,
+    "fim": 60,
+    "risco": 132,
+    "eventos": 19,
+    "cens": 14,
+    "hazard": 0.152
+   },
+   {
+    "ini": 60,
+    "fim": 90,
+    "risco": 99,
+    "eventos": 5,
+    "cens": 10,
+    "hazard": 0.053
+   },
+   {
+    "ini": 90,
+    "fim": 120,
+    "risco": 84,
+    "eventos": 5,
+    "cens": 5,
+    "hazard": 0.061
+   },
+   {
+    "ini": 120,
+    "fim": 150,
+    "risco": 74,
+    "eventos": 8,
+    "cens": 2,
+    "hazard": 0.11
+   },
+   {
+    "ini": 150,
+    "fim": 180,
+    "risco": 64,
+    "eventos": 7,
+    "cens": 3,
+    "hazard": 0.112
+   },
+   {
+    "ini": 180,
+    "fim": 210,
+    "risco": 54,
+    "eventos": 4,
+    "cens": 2,
+    "hazard": 0.075
+   },
+   {
+    "ini": 210,
+    "fim": 240,
+    "risco": 48,
+    "eventos": 8,
+    "cens": 3,
+    "hazard": 0.172
+   },
+   {
+    "ini": 240,
+    "fim": 270,
+    "risco": 37,
+    "eventos": 3,
+    "cens": 4,
+    "hazard": 0.086
+   },
+   {
+    "ini": 270,
+    "fim": 300,
+    "risco": 30,
+    "eventos": 1,
+    "cens": 4,
+    "hazard": 0.036
+   },
+   {
+    "ini": 300,
+    "fim": 330,
+    "risco": 25,
+    "eventos": 0,
+    "cens": 4,
+    "hazard": 0.0
+   },
+   {
+    "ini": 330,
+    "fim": 360,
+    "risco": 21,
+    "eventos": 0,
+    "cens": 8,
+    "hazard": 0.0
+   },
+   {
+    "ini": 360,
+    "fim": 390,
+    "risco": 13,
+    "eventos": 0,
+    "cens": 2,
+    "hazard": 0.0
+   },
+   {
+    "ini": 390,
+    "fim": 420,
+    "risco": 11,
+    "eventos": 0,
+    "cens": 1,
+    "hazard": 0.0
+   },
+   {
+    "ini": 420,
+    "fim": 450,
+    "risco": 10,
+    "eventos": 0,
+    "cens": 0,
+    "hazard": 0.0
+   },
+   {
+    "ini": 450,
+    "fim": 480,
+    "risco": 10,
+    "eventos": 0,
+    "cens": 7,
+    "hazard": 0.0
+   },
+   {
+    "ini": 480,
+    "fim": 510,
+    "risco": 3,
+    "eventos": 0,
+    "cens": 2,
+    "hazard": 0.0
+   },
+   {
+    "ini": 510,
+    "fim": 540,
+    "risco": 1,
+    "eventos": 0,
+    "cens": 1,
+    "hazard": 0.0
+   },
+   {
+    "ini": 540,
+    "fim": 570,
+    "risco": 0,
+    "eventos": 0,
+    "cens": 0,
+    "hazard": 0
+   }
+  ],
+  "P": [
+   {
+    "ini": 0,
+    "fim": 30,
+    "risco": 19,
+    "eventos": 3,
+    "cens": 1,
+    "hazard": 0.162
+   },
+   {
+    "ini": 30,
+    "fim": 60,
+    "risco": 15,
+    "eventos": 2,
+    "cens": 2,
+    "hazard": 0.143
+   },
+   {
+    "ini": 60,
+    "fim": 90,
+    "risco": 11,
+    "eventos": 0,
+    "cens": 1,
+    "hazard": 0.0
+   },
+   {
+    "ini": 90,
+    "fim": 120,
+    "risco": 10,
+    "eventos": 1,
+    "cens": 1,
+    "hazard": 0.105
+   },
+   {
+    "ini": 120,
+    "fim": 150,
+    "risco": 8,
+    "eventos": 1,
+    "cens": 0,
+    "hazard": 0.125
+   },
+   {
+    "ini": 150,
+    "fim": 180,
+    "risco": 7,
+    "eventos": 2,
+    "cens": 0,
+    "hazard": 0.286
+   },
+   {
+    "ini": 180,
+    "fim": 210,
+    "risco": 5,
+    "eventos": 1,
+    "cens": 0,
+    "hazard": 0.2
+   },
+   {
+    "ini": 210,
+    "fim": 240,
+    "risco": 4,
+    "eventos": 0,
+    "cens": 1,
+    "hazard": 0.0
+   },
+   {
+    "ini": 240,
+    "fim": 270,
+    "risco": 3,
+    "eventos": 0,
+    "cens": 0,
+    "hazard": 0.0
+   },
+   {
+    "ini": 270,
+    "fim": 300,
+    "risco": 3,
+    "eventos": 0,
+    "cens": 0,
+    "hazard": 0.0
+   },
+   {
+    "ini": 300,
+    "fim": 330,
+    "risco": 3,
+    "eventos": 0,
+    "cens": 0,
+    "hazard": 0.0
+   },
+   {
+    "ini": 330,
+    "fim": 360,
+    "risco": 3,
+    "eventos": 0,
+    "cens": 1,
+    "hazard": 0.0
+   },
+   {
+    "ini": 360,
+    "fim": 390,
+    "risco": 2,
+    "eventos": 0,
+    "cens": 0,
+    "hazard": 0.0
+   },
+   {
+    "ini": 390,
+    "fim": 420,
+    "risco": 2,
+    "eventos": 0,
+    "cens": 0,
+    "hazard": 0.0
+   },
+   {
+    "ini": 420,
+    "fim": 450,
+    "risco": 2,
+    "eventos": 0,
+    "cens": 0,
+    "hazard": 0.0
+   },
+   {
+    "ini": 450,
+    "fim": 480,
+    "risco": 2,
+    "eventos": 0,
+    "cens": 0,
+    "hazard": 0.0
+   },
+   {
+    "ini": 480,
+    "fim": 510,
+    "risco": 2,
+    "eventos": 0,
+    "cens": 0,
+    "hazard": 0.0
+   },
+   {
+    "ini": 510,
+    "fim": 540,
+    "risco": 2,
+    "eventos": 0,
+    "cens": 0,
+    "hazard": 0.0
+   },
+   {
+    "ini": 540,
+    "fim": 570,
+    "risco": 2,
+    "eventos": 0,
+    "cens": 0,
+    "hazard": 0.0
+   },
+   {
+    "ini": 570,
+    "fim": 600,
+    "risco": 2,
+    "eventos": 0,
+    "cens": 0,
+    "hazard": 0.0
+   },
+   {
+    "ini": 600,
+    "fim": 630,
+    "risco": 2,
+    "eventos": 0,
+    "cens": 0,
+    "hazard": 0.0
+   },
+   {
+    "ini": 630,
+    "fim": 660,
+    "risco": 2,
+    "eventos": 0,
+    "cens": 2,
+    "hazard": 0.0
+   },
+   {
+    "ini": 660,
+    "fim": 690,
+    "risco": 0,
+    "eventos": 0,
+    "cens": 0,
+    "hazard": 0
+   }
+  ]
+ },
+ "fifo": {
+  "B": {
+   "pares": 5253,
+   "inversoes": 1358,
+   "pct_inversao": 25.9,
+   "aguardando_ultrapassados": 91,
+   "total_aguardando": 91,
+   "exemplos": [
+    {
+     "cedo": "CPR",
+     "cedo_ent": "2025-03-18",
+     "cedo_res": "2025-11-27",
+     "tarde": "LFPG-LP",
+     "tarde_ent": "2025-06-30",
+     "tarde_res": "2025-08-15",
+     "gap_entrada": 104,
+     "gap_saida": 104
+    },
+    {
+     "cedo": "CPR",
+     "cedo_ent": "2025-03-18",
+     "cedo_res": "2025-11-27",
+     "tarde": "KFCG",
+     "tarde_ent": "2025-06-30",
+     "tarde_res": "2025-08-15",
+     "gap_entrada": 104,
+     "gap_saida": 104
+    },
+    {
+     "cedo": "CPR",
+     "cedo_ent": "2025-03-18",
+     "cedo_res": "2025-11-27",
+     "tarde": "RPC(IRMAÕ DO RPC)",
+     "tarde_ent": "2025-07-01",
+     "tarde_res": "2025-08-19",
+     "gap_entrada": 105,
+     "gap_saida": 100
+    },
+    {
+     "cedo": "CPR",
+     "cedo_ent": "2025-03-18",
+     "cedo_res": "2025-11-27",
+     "tarde": "VMR-LP",
+     "tarde_ent": "2025-07-02",
+     "tarde_res": "2025-11-11",
+     "gap_entrada": 106,
+     "gap_saida": 16
+    },
+    {
+     "cedo": "CPR",
+     "cedo_ent": "2025-03-18",
+     "cedo_res": "2025-11-27",
+     "tarde": "EMM-RMM",
+     "tarde_ent": "2025-07-07",
+     "tarde_res": "2025-09-22",
+     "gap_entrada": 111,
+     "gap_saida": 66
+    },
+    {
+     "cedo": "CPR",
+     "cedo_ent": "2025-03-18",
+     "cedo_res": "2025-11-27",
+     "tarde": "LCC-RM",
+     "tarde_ent": "2025-07-08",
+     "tarde_res": "2025-08-22",
+     "gap_entrada": 112,
+     "gap_saida": 97
+    },
+    {
+     "cedo": "CPR",
+     "cedo_ent": "2025-03-18",
+     "cedo_res": "2025-11-27",
+     "tarde": "AGS-AGP",
+     "tarde_ent": "2025-07-11",
+     "tarde_res": "2025-10-07",
+     "gap_entrada": 115,
+     "gap_saida": 51
+    },
+    {
+     "cedo": "CPR",
+     "cedo_ent": "2025-03-18",
+     "cedo_res": "2025-11-27",
+     "tarde": "RHL",
+     "tarde_ent": "2025-07-21",
+     "tarde_res": "2025-11-25",
+     "gap_entrada": 125,
+     "gap_saida": 2
+    }
+   ]
+  },
+  "JSI": {
+   "pares": 2080,
+   "inversoes": 376,
+   "pct_inversao": 18.1,
+   "aguardando_ultrapassados": 46,
+   "total_aguardando": 85,
+   "exemplos": [
+    {
+     "cedo": "MCGM -LP",
+     "cedo_ent": "2025-03-07",
+     "cedo_res": "2025-11-11",
+     "tarde": "NFL",
+     "tarde_ent": "2025-04-07",
+     "tarde_res": "2025-09-17",
+     "gap_entrada": 31,
+     "gap_saida": 55
+    },
+    {
+     "cedo": "MCGM -LP",
+     "cedo_ent": "2025-03-07",
+     "cedo_res": "2025-11-11",
+     "tarde": "LRPT",
+     "tarde_ent": "2025-04-07",
+     "tarde_res": "2025-09-08",
+     "gap_entrada": 31,
+     "gap_saida": 64
+    },
+    {
+     "cedo": "MCGM -LP",
+     "cedo_ent": "2025-03-07",
+     "cedo_res": "2025-11-11",
+     "tarde": "WA-BRR",
+     "tarde_ent": "2025-04-08",
+     "tarde_res": "2025-09-17",
+     "gap_entrada": 32,
+     "gap_saida": 55
+    },
+    {
+     "cedo": "MCGM -LP",
+     "cedo_ent": "2025-03-07",
+     "cedo_res": "2025-11-11",
+     "tarde": "JCP-LB",
+     "tarde_ent": "2025-04-09",
+     "tarde_res": "2025-08-29",
+     "gap_entrada": 33,
+     "gap_saida": 74
+    },
+    {
+     "cedo": "MCGM -LP",
+     "cedo_ent": "2025-03-07",
+     "cedo_res": "2025-11-11",
+     "tarde": "WOT",
+     "tarde_ent": "2025-04-09",
+     "tarde_res": "2025-09-30",
+     "gap_entrada": 33,
+     "gap_saida": 42
+    },
+    {
+     "cedo": "MCGM -LP",
+     "cedo_ent": "2025-03-07",
+     "cedo_res": "2025-11-11",
+     "tarde": "JDPB",
+     "tarde_ent": "2025-04-14",
+     "tarde_res": "2025-09-01",
+     "gap_entrada": 38,
+     "gap_saida": 71
+    },
+    {
+     "cedo": "MCGM -LP",
+     "cedo_ent": "2025-03-07",
+     "cedo_res": "2025-11-11",
+     "tarde": "PRDCJ",
+     "tarde_ent": "2025-04-15",
+     "tarde_res": "2025-09-02",
+     "gap_entrada": 39,
+     "gap_saida": 70
+    },
+    {
+     "cedo": "MCGM -LP",
+     "cedo_ent": "2025-03-07",
+     "cedo_res": "2025-11-11",
+     "tarde": "KAFB",
+     "tarde_ent": "2025-04-17",
+     "tarde_res": "2025-09-01",
+     "gap_entrada": 41,
+     "gap_saida": 71
+    }
+   ]
+  },
+  "P": {
+   "pares": 45,
+   "inversoes": 9,
+   "pct_inversao": 20.0,
+   "aguardando_ultrapassados": 4,
+   "total_aguardando": 9,
+   "exemplos": [
+    {
+     "cedo": "LCR",
+     "cedo_ent": "2025-06-18",
+     "cedo_res": "2025-12-15",
+     "tarde": "MS",
+     "tarde_ent": "2025-07-14",
+     "tarde_res": "2025-08-12",
+     "gap_entrada": 26,
+     "gap_saida": 125
+    },
+    {
+     "cedo": "LCR",
+     "cedo_ent": "2025-06-18",
+     "cedo_res": "2025-12-15",
+     "tarde": "SRG",
+     "tarde_ent": "2025-07-24",
+     "tarde_res": "2025-09-08",
+     "gap_entrada": 36,
+     "gap_saida": 98
+    },
+    {
+     "cedo": "LCR",
+     "cedo_ent": "2025-06-18",
+     "cedo_res": "2025-12-15",
+     "tarde": "JS",
+     "tarde_ent": "2025-08-04",
+     "tarde_res": "2025-09-25",
+     "gap_entrada": 47,
+     "gap_saida": 81
+    },
+    {
+     "cedo": "NSS - ISIS",
+     "cedo_ent": "2025-07-14",
+     "cedo_res": "2025-12-24",
+     "tarde": "JS",
+     "tarde_ent": "2025-08-04",
+     "tarde_res": "2025-09-25",
+     "gap_entrada": 21,
+     "gap_saida": 90
+    },
+    {
+     "cedo": "NSS - ISIS",
+     "cedo_ent": "2025-07-14",
+     "cedo_res": "2025-12-24",
+     "tarde": "MB",
+     "tarde_ent": "2025-12-09",
+     "tarde_res": "2025-12-16",
+     "gap_entrada": 148,
+     "gap_saida": 8
+    },
+    {
+     "cedo": "NNG",
+     "cedo_ent": "2025-09-08",
+     "cedo_res": "2025-12-30",
+     "tarde": "MB",
+     "tarde_ent": "2025-12-09",
+     "tarde_res": "2025-12-16",
+     "gap_entrada": 92,
+     "gap_saida": 14
+    },
+    {
+     "cedo": "JT",
+     "cedo_ent": "2025-12-08",
+     "cedo_res": "2026-04-08",
+     "tarde": "CPR",
+     "tarde_ent": "2025-12-31",
+     "tarde_res": "2026-01-29",
+     "gap_entrada": 23,
+     "gap_saida": 69
+    }
+   ]
+  }
+ },
+ "lote": {
+  "B": {
+   "dias_com_evento": 72,
+   "media_por_dia": 1.43,
+   "max_em_um_dia": 5,
+   "p_poisson_max": 0.01549,
+   "lotes_grandes": [
+    [
+     "2026-01-09",
+     5
+    ],
+    [
+     "2026-03-18",
+     4
+    ],
+    [
+     "2026-06-23",
+     4
+    ],
+    [
+     "2025-10-07",
+     3
+    ],
+    [
+     "2025-10-08",
+     3
+    ],
+    [
+     "2026-05-18",
+     3
+    ],
+    [
+     "2026-06-12",
+     3
+    ],
+    [
+     "2026-06-19",
+     3
+    ]
+   ],
+   "concentracao_top10pct": 24.3
+  },
+  "JSI": {
+   "dias_com_evento": 42,
+   "media_por_dia": 1.55,
+   "max_em_um_dia": 6,
+   "p_poisson_max": 0.00517,
+   "lotes_grandes": [
+    [
+     "2026-02-19",
+     6
+    ],
+    [
+     "2026-02-03",
+     4
+    ],
+    [
+     "2025-12-03",
+     4
+    ],
+    [
+     "2025-10-29",
+     3
+    ],
+    [
+     "2026-03-18",
+     3
+    ]
+   ],
+   "concentracao_top10pct": 26.2
+  },
+  "P": {
+   "dias_com_evento": 10,
+   "media_por_dia": 1.0,
+   "max_em_um_dia": 1,
+   "p_poisson_max": 0.63212,
+   "lotes_grandes": [],
+   "concentracao_top10pct": 10.0
+  }
+ },
+ "regime": {
+  "B": {
+   "serie_mensal": [
+    [
+     "2025-04",
+     1,
+     294.0
+    ],
+    [
+     "2025-05",
+     1,
+     85.0
+    ],
+    [
+     "2025-08",
+     9,
+     28.0
+    ],
+    [
+     "2025-09",
+     3,
+     6.0
+    ],
+    [
+     "2025-10",
+     9,
+     77.0
+    ],
+    [
+     "2025-11",
+     5,
+     132.0
+    ],
+    [
+     "2025-12",
+     4,
+     150.0
+    ],
+    [
+     "2026-01",
+     10,
+     158.0
+    ],
+    [
+     "2026-02",
+     6,
+     208.0
+    ],
+    [
+     "2026-03",
+     13,
+     238.0
+    ],
+    [
+     "2026-04",
+     4,
+     258.0
+    ],
+    [
+     "2026-05",
+     18,
+     275.0
+    ],
+    [
+     "2026-06",
+     17,
+     288.0
+    ],
+    [
+     "2026-07",
+     3,
+     301.0
+    ]
+   ],
+   "change_point": {
+    "mes_ruptura": "2025-08",
+    "t_stat": 4.88,
+    "media_antes": 1.0,
+    "media_depois": 8.4
+   }
+  },
+  "JSI": {
+   "serie_mensal": [
+    [
+     "2025-04",
+     1,
+     70.0
+    ],
+    [
+     "2025-08",
+     2,
+     74.0
+    ],
+    [
+     "2025-09",
+     10,
+     150.0
+    ],
+    [
+     "2025-10",
+     4,
+     40.0
+    ],
+    [
+     "2025-11",
+     6,
+     204.0
+    ],
+    [
+     "2025-12",
+     9,
+     82.0
+    ],
+    [
+     "2026-01",
+     5,
+     164.0
+    ],
+    [
+     "2026-02",
+     14,
+     72.0
+    ],
+    [
+     "2026-03",
+     3,
+     0.0
+    ],
+    [
+     "2026-05",
+     9,
+     88.0
+    ],
+    [
+     "2026-06",
+     2,
+     120.0
+    ]
+   ],
+   "change_point": {
+    "mes_ruptura": "2025-09",
+    "t_stat": 3.88,
+    "media_antes": 1.5,
+    "media_depois": 6.9
+   }
+  },
+  "P": {
+   "serie_mensal": [
+    [
+     "2025-04",
+     1,
+     176.0
+    ],
+    [
+     "2025-08",
+     1,
+     29.0
+    ],
+    [
+     "2025-09",
+     2,
+     49.0
+    ],
+    [
+     "2025-12",
+     4,
+     138.0
+    ],
+    [
+     "2026-01",
+     1,
+     29.0
+    ],
+    [
+     "2026-04",
+     1,
+     121.0
+    ]
+   ],
+   "change_point": {
+    "mes_ruptura": "2025-09",
+    "t_stat": 1.41,
+    "media_antes": 1.0,
+    "media_depois": 2.0
+   }
+  }
+ },
+ "pasta_familiar": {
+  "B": {
+   "n_familia": 18,
+   "n_solo": 84,
+   "mediana_familia": 131.0,
+   "mediana_solo": 254.0,
+   "media_familia": 120.0,
+   "media_solo": 212.0,
+   "mannwhitney_p": 0.0002,
+   "familia_mais_rapida": true,
+   "grupos_familiares": 5
+  },
+  "JSI": {
+   "n_familia": 11,
+   "n_solo": 51,
+   "mediana_familia": 41.0,
+   "mediana_solo": 140.0,
+   "media_familia": 69.0,
+   "media_solo": 135.0,
+   "mannwhitney_p": 0.0071,
+   "familia_mais_rapida": true,
+   "grupos_familiares": 4
+  },
+  "P": {
+   "n_familia": 0,
+   "n_solo": 10,
+   "nota": "amostra insuficiente p/ teste"
+  }
+ },
+ "bayes": {
+  "B": {
+   "centro_rapido": 65.0,
+   "centro_lento": 263.0,
+   "peso_rapido": 0.42,
+   "P_rapido_dado_dias": {
+    "45": 1.0,
+    "70": 1.0,
+    "100": 1.0,
+    "150": 1.0,
+    "220": 0.13,
+    "310": 0.08
+   }
+  },
+  "JSI": {
+   "centro_rapido": 53.0,
+   "centro_lento": 176.0,
+   "peso_rapido": 0.51,
+   "P_rapido_dado_dias": {
+    "45": 1.0,
+    "70": 0.99,
+    "100": 0.72,
+    "150": 0.14,
+    "220": 0.08,
+    "310": 0.17
+   }
+  },
+  "P": {}
+ },
+ "outliers": {
+  "B": {
+   "limite_iqr": 563.0,
+   "n_outliers": 0,
+   "outliers": [],
+   "aguardando_extremos": [
+    {
+     "nome": "JMV-MM",
+     "dias": 504,
+     "entrega": "2025-02-28"
+    },
+    {
+     "nome": "NPS-LP",
+     "dias": 396,
+     "entrega": "2025-06-16"
+    },
+    {
+     "nome": "MB (PENDENCIA 24/11/2, OU SEJA : APÓS 158 DE ESPERA) )",
+     "dias": 393,
+     "entrega": "2025-06-19"
+    },
+    {
+     "nome": "RMB",
+     "dias": 381,
+     "entrega": "2025-07-01"
+    },
+    {
+     "nome": "LOD",
+     "dias": 379,
+     "entrega": "2025-07-03"
+    },
+    {
+     "nome": "BVS",
+     "dias": 372,
+     "entrega": "2025-07-10"
+    }
+   ]
+  },
+  "JSI": {
+   "limite_iqr": 372.0,
+   "n_outliers": 0,
+   "outliers": [],
+   "aguardando_extremos": [
+    {
+     "nome": "JCA",
+     "dias": 522,
+     "entrega": "2025-02-10"
+    },
+    {
+     "nome": "GPL",
+     "dias": 506,
+     "entrega": "2025-02-26"
+    },
+    {
+     "nome": "FSR",
+     "dias": 504,
+     "entrega": "2025-02-28"
+    },
+    {
+     "nome": "PECC-RC",
+     "dias": 478,
+     "entrega": "2025-03-26"
+    },
+    {
+     "nome": "Gu",
+     "dias": 469,
+     "entrega": "2025-04-04"
+    },
+    {
+     "nome": "WG",
+     "dias": 466,
+     "entrega": "2025-04-07"
+    }
+   ]
+  },
+  "P": {
+   "limite_iqr": 331.0,
+   "n_outliers": 0,
+   "outliers": [],
+   "aguardando_extremos": [
+    {
+     "nome": "WA-BRR",
+     "dias": 641,
+     "entrega": "2024-10-14"
+    },
+    {
+     "nome": "JSP - RPR",
+     "dias": 631,
+     "entrega": "2024-10-24"
+    },
+    {
+     "nome": "SB-TK",
+     "dias": 337,
+     "entrega": "2025-08-14"
+    },
+    {
+     "nome": "JPPC",
+     "dias": 220,
+     "entrega": "2025-12-09"
+    },
+    {
+     "nome": "VS",
+     "dias": 94,
+     "entrega": "2026-04-14"
+    },
+    {
+     "nome": "ISPL. FALTA DATA SEDEX",
+     "dias": 60,
+     "entrega": "2026-05-18"
+    }
+   ]
+  }
+ },
+ "simulacao": {
+  "B_entrada_2025-08-11": {
+   "elapsed": 340,
+   "S_agora": 0.36,
+   "teto_conclusao_observavel": 0.0,
+   "P_mais_90d": 0.0,
+   "P_mais_180d": 0.0,
+   "P_mais_365d": 0.0,
+   "residual_p25": null,
+   "residual_p50": null,
+   "residual_p75": null
+  },
+  "JSI_entrada_2026-01-01": {
+   "elapsed": 197,
+   "S_agora": 0.54,
+   "teto_conclusao_observavel": 0.28,
+   "P_mais_90d": 0.28,
+   "P_mais_180d": 0.28,
+   "P_mais_365d": 0.28,
+   "residual_p25": 69,
+   "residual_p50": null,
+   "residual_p75": null
+  },
+  "P_entrada_2026-03-01": {
+   "elapsed": 138,
+   "S_agora": 0.55,
+   "teto_conclusao_observavel": 0.43,
+   "P_mais_90d": 0.43,
+   "P_mais_180d": 0.43,
+   "P_mais_365d": 0.43,
+   "residual_p25": 38,
+   "residual_p50": null,
+   "residual_p75": null
+  }
+ },
+ "throughput_mensal_3m": {
+  "B": 14.0,
+  "JSI": 3.7,
+  "P": 0.0
+ },
+ "backlog": {
+  "B": {
+   "observado_aguardando": 91,
+   "throughput_mensal": 14.0,
+   "f_70pct": {
+    "fila_real_estimada": 130,
+    "nao_observados": 39,
+    "meses_p_zerar": 9.3
+   },
+   "f_50pct": {
+    "fila_real_estimada": 182,
+    "nao_observados": 91,
+    "meses_p_zerar": 13.0
+   },
+   "f_30pct": {
+    "fila_real_estimada": 303,
+    "nao_observados": 212,
+    "meses_p_zerar": 21.6
+   }
+  },
+  "JSI": {
+   "observado_aguardando": 85,
+   "throughput_mensal": 3.7,
+   "f_70pct": {
+    "fila_real_estimada": 121,
+    "nao_observados": 36,
+    "meses_p_zerar": 32.7
+   },
+   "f_50pct": {
+    "fila_real_estimada": 170,
+    "nao_observados": 85,
+    "meses_p_zerar": 45.9
+   },
+   "f_30pct": {
+    "fila_real_estimada": 283,
+    "nao_observados": 198,
+    "meses_p_zerar": 76.5
+   }
+  },
+  "P": {
+   "observado_aguardando": 9,
+   "throughput_mensal": 0.0,
+   "f_70pct": {
+    "fila_real_estimada": 13,
+    "nao_observados": 4,
+    "meses_p_zerar": null
+   },
+   "f_50pct": {
+    "fila_real_estimada": 18,
+    "nao_observados": 9,
+    "meses_p_zerar": null
+   },
+   "f_30pct": {
+    "fila_real_estimada": 30,
+    "nao_observados": 21,
+    "meses_p_zerar": null
+   }
+  }
+ }
+}

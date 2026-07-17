@@ -1,5 +1,5 @@
-// Service Worker — Consultor de Fila (v4 — filas segregadas)
-const CACHE = 'fila-consulado-v4';
+// Service Worker — Consultor de Fila (v5 — KPIs estatísticos)
+const CACHE = 'fila-consulado-v5';
 const CORE = ['./', './index.html', './icon-192.png', './icon-512.png', './icon-512-maskable.png', './manifest.json'];
 
 self.addEventListener('install', e => {
@@ -23,7 +23,7 @@ self.addEventListener('fetch', e => {
 
   const p = u.pathname;
   const isHTML = p === '/' || p.endsWith('/') || p.endsWith('/index.html');
-  const isData = p.endsWith('/dados.json');
+  const isData = p.endsWith('/dados.json') || p.endsWith('/insights.json');
 
   // HTML e dados dinâmicos: SEMPRE rede primeiro, sem cache velho.
   if (isHTML || isData) {

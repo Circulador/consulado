@@ -166,8 +166,35 @@ details.advanced summary{cursor:pointer;font-weight:600;font-size:13px;color:var
 :root[data-theme="light"] .searchbox{background:#eef5ff;border-color:#b4d2f5}:root[data-theme="light"] .posb{background:#eef5ff;border-color:#b4d2f5}
 :root[data-theme="light"] .scen.opt{background:#f2fbf6}:root[data-theme="light"] .scen.real{background:#eef5ff}:root[data-theme="light"] .scen.cons{background:#fff8ec}
 :root[data-theme="light"] .conf-ring::after{background:#fff}
+.onepage{display:flex;flex-direction:column;gap:12px}
+.regime{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:14px 16px;display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.regime-tag{font-size:11px;font-weight:800;padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:.3px;flex:0 0 auto}
+.regime-tag.rapido{background:rgba(27,175,122,.18);color:#4fd6a0}.regime-tag.normal{background:rgba(42,120,214,.18);color:#7db4f5}
+.regime-tag.lote{background:rgba(237,161,0,.2);color:#f5c860}.regime-tag.preso{background:rgba(255,107,107,.18);color:#ff8a8a}
+.warn-fifo{background:linear-gradient(135deg,#2e1a08,#2a1509);border:1px solid #6b4010;border-left:4px solid var(--amber);border-radius:12px;padding:12px 14px;font-size:12.5px;color:#f0e2c0;line-height:1.5}
+:root[data-theme="light"] .warn-fifo{background:#fff8ec;color:#5a4020}
+.prob-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.prob-box{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;text-align:center}
+.prob-box .pb-l{font-size:10.5px;color:var(--txt3);text-transform:uppercase}.prob-box .pb-v{font-size:22px;font-weight:800;color:var(--accent);margin:4px 0}
+.prob-box .pb-s{font-size:11px;color:var(--txt2)}
+.pos-honest{font-size:11.5px;color:var(--txt3);margin-top:4px;line-height:1.45}
+.sheet-note{font-size:12px;color:var(--txt2);padding:10px 12px;background:var(--panel2);border-radius:9px;border-left:3px solid var(--accent);line-height:1.5}
+details.chart-fold{border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden}
+details.chart-fold summary{cursor:pointer;font-weight:600;font-size:13px;padding:12px 16px;color:var(--accent);list-style:none}
+details.chart-fold summary::-webkit-details-marker{display:none}
+details.chart-fold .chart-inner{padding:0 16px 16px}
+details.chart-fold .chartbox{height:160px}
+.comm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+.comm-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+.comm-card .cc-h{font-size:13px;font-weight:700;margin-bottom:10px}
+.comm-card .cc-row{display:flex;justify-content:space-between;font-size:12px;color:var(--txt2);margin:6px 0}
+.comm-card .cc-row b{color:var(--txt);font-size:14px}
+.comm-warn{background:var(--panel2);border-radius:11px;padding:14px;margin-top:14px;font-size:12.5px;color:var(--txt2);line-height:1.6}
+.landing-cta{text-align:center;margin:8px 0 20px}
+.landing-cta a{color:var(--accent);font-size:13px;font-weight:600;cursor:pointer;text-decoration:none}
+.landing-cta a:hover{text-decoration:underline}
 @media(max-width:1024px){.app-official{grid-template-columns:1fr}.app-official .side{position:fixed;top:0;left:0;width:270px;height:100vh;z-index:50;transform:translateX(-100%)}html.nav-open .app-official .side{transform:translateX(0)}html.nav-open .nav-overlay{opacity:1;pointer-events:auto}.navtoggle{display:inline-flex}.pinbtn{display:none}}
-@media(max-width:800px){.queue-grid,.links-grid,.sheet-links,.forecast-unified .scenarios,.kpis3{grid-template-columns:1fr}}
+@media(max-width:800px){.queue-grid,.links-grid,.sheet-links,.forecast-unified .scenarios,.kpis3,.prob-row,.comm-grid{grid-template-columns:1fr}}
 @media(max-width:640px){.official-header .oh-txt p{display:none}.main{padding:14px 12px 50px}.posb .num{font-size:36px}}
 @media print{.side,.navtoggle,.nav-overlay,.back-btn,.searchbox,.suggestions,.act-row,.jbtns,.up-actions,details.advanced{display:none!important}.main{padding:0}body{background:#fff;color:#111}}
 </style>
@@ -186,6 +213,7 @@ details.advanced summary{cursor:pointer;font-weight:600;font-size:13px;color:var
 <div class="brand"><div><h1>Consultor de Fila</h1><small>Cidadania Italiana · RJ</small></div><button class="pinbtn" id="pinbtn" onclick="togglePin()" title="Fixar menu">📌</button></div>
 <nav class="nav">
 <a class="active" data-view="buscar" onclick="showView('buscar')">🔍 Buscar</a>
+<a data-view="comunidade" onclick="showView('comunidade')">👥 Comunidade</a>
 <a data-view="jornada" onclick="showView('jornada')">🗺️ Minha jornada</a>
 <a data-view="links" onclick="showView('links')">🔗 Links úteis</a>
 <a data-view="sobre" onclick="showView('sobre')">ℹ️ Sobre</a>
@@ -198,7 +226,7 @@ details.advanced summary{cursor:pointer;font-weight:600;font-size:13px;color:var
 <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="instbtn" id="topInstall" onclick="promptInstall()">📲 Instalar</button><button class="themebtn" id="themeToggle" onclick="toggleTheme()">🌙 Tema escuro</button><button class="dlbtn" onclick="window.print()">⬇️ Imprimir / PDF</button></div></div>
 
 <div id="view-buscar">
-<div id="landing"><div class="landing-h"><h2>Onde você está?</h2><p>Escolha a fila da sua etapa atual — cada planilha é analisada separadamente.</p></div><div class="queue-grid" id="queueGrid"></div></div>
+<div id="landing"><div class="landing-h"><h2>Onde você está?</h2><p>Escolha a fila da sua etapa atual — cada planilha é analisada separadamente.</p></div><div class="queue-grid" id="queueGrid"></div><div class="landing-cta"><a onclick="showView('comunidade')">👥 Ver panorama da comunidade (sem somar filas)</a></div></div>
 <div id="sheetView" class="view-hidden">
 <button type="button" class="back-btn" onclick="backToLanding()">← Voltar às filas</button>
 <div id="activeSheetBadge"></div>
@@ -210,6 +238,11 @@ details.advanced summary{cursor:pointer;font-weight:600;font-size:13px;color:var
 <div class="panel" id="favPanel" style="margin-top:14px;display:none"><h4>⭐ Meus favoritos</h4><div class="fav-list" id="favList"></div></div>
 </div>
 </div>
+
+<div id="view-comunidade" class="view-hidden">
+<div class="panel"><p style="color:var(--txt2);font-size:13px;line-height:1.6;margin-bottom:12px">Cada fila mede <b>etapa diferente</b>. Uma mesma pessoa pode migrar B → JSI → P — <b>não some</b> os totais abaixo.</p>
+<div class="comm-grid" id="commGrid"></div>
+<div class="comm-warn" id="commWarn"></div></div></div>
 
 <div id="view-jornada" class="view-hidden">
 <div class="panel"><p style="color:var(--txt2);font-size:12.5px;margin-bottom:10px">16 etapas do agendamento até os documentos italianos. Progresso salvo neste navegador. 🔒</p>
@@ -257,6 +290,7 @@ var SHEET_LABELS = {
   P: 'Pendências — fila SEDEX'
 };
 var SHEET_ICONS = { B: '📊', JSI: '🇮🇹', P: '📎' };
+var INSIGHTS = null;
 var activeSheet = null;
 var activeFilter = 'todos';
 var chartInstances = [];
@@ -355,6 +389,7 @@ function enrich() {
   renderQueueGrid();
   updateSidebar();
   renderFavs();
+  renderCommunityView();
 }
 
 function partitionAndApply(records) {
@@ -395,6 +430,108 @@ function computeProjection(x) {
     total: waiting.length, thrPico: st.thrPico, thrMedTrim: st.thrMedTrim, thrSem: st.thrSem,
     pid: pid
   };
+}
+
+function loadInsights() {
+  return fetch('./insights.json?ts=' + Date.now(), { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (j) { INSIGHTS = j; renderCommunityView(); return j; })
+    .catch(function () { INSIGHTS = null; return null; });
+}
+
+function kmSAt(pid, days) {
+  var surv = INSIGHTS && INSIGHTS.survival && INSIGHTS.survival[pid];
+  if (!surv || !surv.S_em) return null;
+  var pts = Object.keys(surv.S_em).map(Number).sort(function (a, b) { return a - b; });
+  if (!pts.length) return null;
+  if (days <= pts[0]) return surv.S_em[String(pts[0])];
+  if (days >= pts[pts.length - 1]) return surv.S_em[String(pts[pts.length - 1])];
+  var lo = pts[0], hi = pts[pts.length - 1], i;
+  for (i = 0; i < pts.length - 1; i++) {
+    if (days >= pts[i] && days <= pts[i + 1]) { lo = pts[i]; hi = pts[i + 1]; break; }
+  }
+  var sLo = surv.S_em[String(lo)], sHi = surv.S_em[String(hi)];
+  var t = hi === lo ? 0 : (days - lo) / (hi - lo);
+  return sLo + (sHi - sLo) * t;
+}
+
+function probConcludeWithin(pid, waited, horizon) {
+  var s0 = kmSAt(pid, waited);
+  var s1 = kmSAt(pid, waited + horizon);
+  if (s0 === null || s1 === null || s0 <= 0) return null;
+  return Math.max(0, Math.min(1, (s0 - s1) / s0));
+}
+
+function getKmMedian(pid) {
+  var surv = INSIGHTS && INSIGHTS.survival && INSIGHTS.survival[pid];
+  return surv ? surv.mediana_sobrevivencia : null;
+}
+
+function fmtPct(p) { return p === null || p === undefined ? '—' : Math.round(p * 100) + '%'; }
+
+function countOvertaken(x) {
+  if (!x || x.done) return 0;
+  var resolved = (SHEET_STATS[planilhaDe(x)] || {}).resolved || [];
+  return resolved.filter(function (r) { return r.dEntrega > x.dEntrega; }).length;
+}
+
+function inferRegime(x, pid) {
+  var desc = INSIGHTS && INSIGHTS.descritivas && INSIGHTS.descritivas[pid];
+  var e = x.espera;
+  if (pid === 'B' && e >= 240 && e <= 310) {
+    return { cls: 'lote', label: 'Janela de lote', tip: 'Pico histórico de resoluções entre ~270–300 dias (processamento em lote).' };
+  }
+  if (desc) {
+    if (e <= desc.p25) return { cls: 'rapido', label: 'Ritmo rápido', tip: 'Abaixo do 1º quartil (' + Math.round(desc.p25) + 'd) dos resolvidos nesta fila.' };
+    if (e >= desc.p90) return { cls: 'preso', label: 'Acima do p90', tip: 'Acima do percentil 90 (' + Math.round(desc.p90) + 'd) — casos mais lentos ou complexos.' };
+  }
+  var med = getKmMedian(pid);
+  if (med && e > med) {
+    return { cls: 'preso', label: 'Acima da mediana KM', tip: 'Já esperou mais que a mediana Kaplan-Meier (' + med + 'd) desta fila.' };
+  }
+  return { cls: 'normal', label: 'Ritmo típico', tip: 'Dentro da faixa observada para esta fila.' };
+}
+
+function getFifoInfo(pid) {
+  return (INSIGHTS && INSIGHTS.fifo && INSIGHTS.fifo[pid]) ? INSIGHTS.fifo[pid] : null;
+}
+
+function sheetNote(pid) {
+  if (pid === 'JSI') return '<div class="sheet-note">🇮🇹 <b>Gargalo JSI:</b> throughput ~3,7 resoluções/mês vs ~14 na B. Posição por data não reflete ritmo real.</div>';
+  if (pid === 'P') return '<div class="sheet-note">📎 <b>Amostra pequena (n≈19):</b> probabilidades são apenas indicativas.</div>';
+  if (pid === 'B') return '<div class="sheet-note">📊 <b>Lotes ~270–300d:</b> hazard histórico concentra resoluções nesta janela — não espere FIFO estrito.</div>';
+  return '';
+}
+
+function renderCommunityView() {
+  var grid = document.getElementById('commGrid');
+  var warn = document.getElementById('commWarn');
+  if (!grid) return;
+  grid.innerHTML = ['B', 'JSI', 'P'].map(function (pid) {
+    var st = SHEET_STATS[pid] || {};
+    var q = INSIGHTS && INSIGHTS.qualidade && INSIGHTS.qualidade[pid];
+    var surv = INSIGHTS && INSIGHTS.survival && INSIGHTS.survival[pid];
+    var tp = INSIGHTS && INSIGHTS.throughput_mensal_3m && INSIGHTS.throughput_mensal_3m[pid];
+    var w = (st.waiting || []).length;
+    var tot = (SHEETS[pid] || []).length;
+    var done = (st.resolved || []).length;
+    var med = surv ? surv.mediana_sobrevivencia : (st.mediana || '—');
+    return '<div class="comm-card"><div class="cc-h">' + SHEET_ICONS[pid] + ' Fila ' + pid + '</div>' +
+      '<div class="cc-row"><span>Aguardando</span><b>' + w + '</b></div>' +
+      '<div class="cc-row"><span>Resolvidos / total</span><b>' + done + ' / ' + tot + '</b></div>' +
+      '<div class="cc-row"><span>Mediana KM</span><b>' + med + 'd</b></div>' +
+      '<div class="cc-row"><span>Throughput (3m)</span><b>' + (tp != null ? tp + '/mês' : '—') + '</b></div>' +
+      (q ? '<div class="cc-row"><span>Censura</span><b>' + q.pct_censura + '%</b></div>' : '') +
+      '</div>';
+  }).join('');
+  if (warn) {
+    var fifoB = getFifoInfo('B');
+    warn.innerHTML = '<b>⚠️ Leitura honesta</b><br>' +
+      '• Não some as filas — são etapas diferentes.<br>' +
+      '• Ordem não é FIFO: na fila B, ~' + (fifoB ? fifoB.pct_inversao : '?') + '% dos pares invertem quem sai primeiro.<br>' +
+      '• Homônimos (mesma sigla, pessoas diferentes) existem — confirme com a <b>data de entrega</b>.<br>' +
+      '• JSI é o gargalo operacional (~3,7 resoluções/mês vs ~14 na B).';
+  }
 }
 
 function mesAno(d) {
@@ -463,13 +600,25 @@ function backToLanding() {
 }
 
 function showView(name) {
-  ['buscar', 'jornada', 'links', 'sobre'].forEach(function (v) {
+  ['buscar', 'comunidade', 'jornada', 'links', 'sobre'].forEach(function (v) {
     var el = document.getElementById('view-' + v);
     if (el) el.classList.toggle('view-hidden', v !== name);
   });
   document.querySelectorAll('.nav a').forEach(function (a) {
     a.classList.toggle('active', a.dataset.view === name);
   });
+  if (name === 'comunidade') {
+    document.getElementById('mainTitle').textContent = 'Panorama da comunidade';
+    renderCommunityView();
+  } else if (name === 'buscar') {
+    document.getElementById('mainTitle').textContent = activeSheet ? ('Fila ' + activeSheet) : 'Consultor de Expectativa';
+  } else if (name === 'jornada') {
+    document.getElementById('mainTitle').textContent = 'Minha jornada';
+  } else if (name === 'links') {
+    document.getElementById('mainTitle').textContent = 'Links úteis';
+  } else if (name === 'sobre') {
+    document.getElementById('mainTitle').textContent = 'Sobre';
+  }
   closeNavIfMobile();
 }
 
@@ -581,12 +730,14 @@ Array.prototype.forEach.call(document.querySelectorAll('.chip[data-f]'), functio
 });
 
 function renderDone(x) {
-  var st = SHEET_STATS[planilhaDe(x)] || {};
+  var pid = planilhaDe(x);
+  var st = SHEET_STATS[pid] || {};
+  var kmMed = getKmMedian(pid) || st.mediana || '—';
   var res = document.getElementById('result');
-  res.innerHTML = '<div class="donebox"><span class="em">✅</span><h3>Processo concluído nesta fila</h3><p style="font-size:14px">' + x.nome + ' · ' + fmt(x.dEntrega) + ' → ' + fmt(x.dResol) + '</p>' +
+  res.innerHTML = '<div class="onepage"><div class="donebox"><span class="em">✅</span><h3>Processo concluído nesta fila</h3><p style="font-size:14px">' + x.nome + ' · ' + fmt(x.dEntrega) + ' → ' + fmt(x.dResol) + '</p>' +
     '<div class="kpis3" style="margin-top:16px"><div class="kpi g"><div class="l">Tempo total</div><div class="v">' + x.espera + '</div><div class="s">dias</div></div>' +
-    '<div class="kpi a"><div class="l">Média fila</div><div class="v">' + (st.media || '—') + '</div><div class="s">dias</div></div>' +
-    '<div class="kpi w"><div class="l">Mediana fila</div><div class="v">' + (st.mediana || '—') + '</div><div class="s">dias</div></div></div></div>';
+    '<div class="kpi a"><div class="l">Mediana KM fila</div><div class="v">' + kmMed + '</div><div class="s">dias (histórico)</div></div>' +
+    '<div class="kpi w"><div class="l">Média resolvidos</div><div class="v">' + (st.media || '—') + '</div><div class="s">dias</div></div></div></div></div>';
   afterSelect(x);
 }
 
@@ -603,31 +754,42 @@ function select(x) {
   chartInstances = [];
   if (x.done) { renderDone(x); setUrlParams({ sheet: activeSheet, proc: x.nome }); return; }
   var P = computeProjection(x);
-  var st = SHEET_STATS[P.pid] || {};
+  var pid = P.pid;
   var pctAhead = P.total ? Math.round((1 - P.pos / P.total) * 100) : 0;
-  var c = confianca(P, st);
-  var html = '';
-  html += '<div class="posb"><div class="num">' + P.pos + 'º</div><div class="txt"><b>' + x.nome + '</b> ' + planilhaTag(P.pid) +
-    '<p>Entrega ' + fmt(x.dEntrega) + ' · ' + x.espera + ' dias · ' + P.ahead + ' à frente</p></div>' +
-    '<div class="progress"><i style="width:' + pctAhead + '%"></i><span>~' + pctAhead + '% da fila ' + P.pid + ' atrás de você</span></div></div>';
-  html += '<div class="sec-t">Indicadores</div><div class="kpis3">' +
-    '<div class="kpi a"><div class="l">Posição</div><div class="v">' + P.pos + 'º</div><div class="s">de ' + P.total + ' aguardando</div></div>' +
+  var kmMed = getKmMedian(pid);
+  var regime = inferRegime(x, pid);
+  var overtaken = countOvertaken(x);
+  var fifo = getFifoInfo(pid);
+  var p90 = probConcludeWithin(pid, x.espera, 90);
+  var p180 = probConcludeWithin(pid, x.espera, 180);
+  var html = '<div class="onepage">';
+  html += '<div class="posb"><div class="num">' + P.pos + 'º</div><div class="txt"><b>' + x.nome + '</b> ' + planilhaTag(pid) +
+    '<p>Entrega ' + fmt(x.dEntrega) + ' · ' + x.espera + ' dias aguardando · ' + P.ahead + ' à frente na fila</p>' +
+    '<p class="pos-honest">Posição por <b>data de entrega</b> — fila não é estrita' +
+    (fifo ? ' (~' + fifo.pct_inversao + '% dos pares invertem ordem)' : '') + '.</p></div>' +
+    '<div class="progress"><i style="width:' + pctAhead + '%"></i><span>~' + pctAhead + '% da fila ' + pid + ' atrás de você</span></div></div>';
+  html += '<div class="kpis3">' +
+    '<div class="kpi a"><div class="l">Posição na fila</div><div class="v">' + P.pos + 'º</div><div class="s">de ' + P.total + ' aguardando (ordem entrega)</div></div>' +
     '<div class="kpi w"><div class="l">Dias aguardando</div><div class="v">' + x.espera + '</div><div class="s">desde entrega</div></div>' +
-    '<div class="kpi g"><div class="l">Previsão central</div><div class="v" style="font-size:18px">' + mesAno(P.real.date) + '</div><div class="s">' + fmt(P.real.date) + '</div></div></div>';
-  if (P.pid === 'B') {
+    '<div class="kpi g"><div class="l">Mediana KM</div><div class="v">' + (kmMed != null ? kmMed : '—') + '</div><div class="s">dias (sobrevivência fila ' + pid + ')</div></div></div>';
+  html += '<div class="regime"><span class="regime-tag ' + regime.cls + '">' + regime.label + '</span><div><b>Regime inferido</b><p style="color:var(--txt2);font-size:12px;margin-top:4px;line-height:1.45">' + regime.tip + '</p></div></div>';
+  if (overtaken > 0) {
+    html += '<div class="warn-fifo">⚠️ <b>' + overtaken + '</b> processo(s) com entrega <b>posterior</b> à sua já foram resolvidos nesta fila — a ordem não é FIFO.</div>';
+  }
+  html += '<div class="prob-row">' +
+    '<div class="prob-box"><div class="pb-l">P(concluir em 90d)</div><div class="pb-v">' + fmtPct(p90) + '</div><div class="pb-s">condicional · já esperou ' + x.espera + 'd</div></div>' +
+    '<div class="prob-box"><div class="pb-l">P(concluir em 180d)</div><div class="pb-v">' + fmtPct(p180) + '</div><div class="pb-s">Kaplan-Meier · fila ' + pid + '</div></div></div>';
+  if (pid === 'B') {
     var LIMITE = 730, pctLegal = Math.min(Math.round(x.espera / LIMITE * 100), 100), rest = LIMITE - x.espera;
     var dataLim = new Date(x.dEntrega.getTime() + LIMITE * 864e5);
     var cor = pctLegal >= 90 ? '#ef4444' : (pctLegal >= 60 ? '#f59e0b' : 'linear-gradient(90deg,var(--teal),var(--accent))');
     var note = rest < 0 ? '<b style="color:#ff6b6b">Prazo legal ultrapassado</b> em ' + Math.abs(rest) + ' dias.' : 'Restam <b>' + rest + '</b> dias (limite ' + fmt(dataLim) + ').';
     html += '<div class="legalbox"><h4>⚖️ Prazo legal (730 dias — só Balcão)</h4><div class="legalbar"><i style="width:' + pctLegal + '%;background:' + cor + '"></i><span>' + x.espera + ' / 730 dias</span></div><div class="legal-note">' + note + '</div></div>';
   }
-  html += '<div class="forecast-unified"><h4 style="margin-bottom:10px">🎯 Cenários e confiança</h4><div class="scenarios">' +
-    scenMini('opt', '🚀 Otimista', P.opt, P.thrPico) + scenMini('real', '🎯 Realista', P.real, P.thrMedTrim) + scenMini('cons', '🕐 Conservador', P.cons, Math.round(P.thrSem * 0.7)) +
-    '</div><div class="conf"><div class="conf-ring" data-v="' + c.score + '%" style="--pct:' + c.score + '"></div><div><span class="conf-badge ' + c.nivel + '">' + c.label + '</span>' +
-    '<p style="color:var(--txt2);font-size:12px;margin-top:6px">Base: ' + P.frontTotal + ' à frente · ' + (st.resolved || []).length + ' resolvidos nesta fila · ' + (P.aheadResolved90 || 0) + ' saíram em 90 dias.</p></div></div>' +
-    '<div class="risk-line">⚠️ <b>Riscos:</b> planilha parcial da comunidade; ordem não é estrita; pendências e pastas familiares podem alterar o ritmo. Use como orientação, não prazo oficial.</div></div>';
-  html += '<div class="sec-t">Ritmo mensal — fila ' + P.pid + '</div><div class="panel"><div class="chartbox"><canvas id="cVazao"></canvas></div></div>';
-  html += '<div class="disc"><h3>⚠️ Sobre esta estimativa</h3><ul><li>Dados voluntários só da planilha <b>' + P.pid + '</b>.</li><li>Não substitui consulta oficial ao Consulado.</li></ul></div>';
+  html += sheetNote(pid);
+  html += '<details class="chart-fold"><summary>📊 Ver ritmo mensal da fila ' + pid + '</summary><div class="chart-inner"><div class="chartbox"><canvas id="cVazao"></canvas></div></div></details>';
+  html += '<div class="disc" style="margin:0"><h3>⚠️ Sobre esta estimativa</h3><ul><li>Dados voluntários só da planilha <b>' + pid + '</b>.</li><li>Probabilidades vêm de Kaplan-Meier — não substituem consulta oficial.</li></ul></div>';
+  html += '</div>';
   res.innerHTML = html;
   drawCharts(x, P);
   afterSelect(x);
@@ -1067,6 +1229,7 @@ window.select = select;
 window.addEventListener('load', function () {
   renderQueueGrid();
   renderFavs();
+  loadInsights();
   openFromURL();
 });
 
