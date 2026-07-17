@@ -1,6 +1,6 @@
-// Service Worker — Consultor de Fila (v14 — metodologia e relacionados)
-const CACHE = 'fila-consulado-v14';
-const CORE = ['./', './index.html', './icon-192.png', './icon-512.png', './icon-512-maskable.png', './manifest.json'];
+// Service Worker — Consolare (v15 — identidade visual)
+const CACHE = 'consolare-v15';
+const CORE = ['./', './index.html', './assets/logo.svg', './icon-192.png', './icon-512.png', './icon-512-maskable.png', './manifest.json'];
 
 self.addEventListener('install', e => {
   self.skipWaiting();
