@@ -43,23 +43,43 @@ function isoFromCell(v) {
 const BAD = /^(MEDIA|MÉDIA|MENOR|MAIOR|TOTAL|ULTIMO|ÚLTIMO|ESTAMOS|DATA DE|NOME|RECEBIDO|GRUPO|N[ºo°]|B PLAN|PLANILHA|ATUALIZAD|DIAS)/i;
 
 function rowsToRecords(rows, pid) {
-  const recs = [];
-  for (const r of rows) {
-    if (!r || r.length < 2) continue;
-    const entrega = isoFromCell(r[0]);
-    const nome = typeof r[1] === 'string' ? r[1].trim() : '';
-    if (!entrega || !nome || BAD.test(nome)) continue;
-    const resol = isoFromCell(r[4]);
-    recs.push({
-      entrega,
-      nome: nome.replace(/\s+/g, ' '),
-      grupo: r[2] != null ? String(r[2]).trim() || '-' : '-',
-      resol: resol || null,
-      planilha: pid,
-      origem: pid,
-    });
+  function parseWithLayout(entregaCol, nomeCol, resolCol) {
+    const recs = [];
+    for (const r of rows) {
+      if (!r || r.length <= Math.max(entregaCol, nomeCol)) continue;
+      const entrega = isoFromCell(r[entregaCol]);
+      const nome = typeof r[nomeCol] === 'string' ? r[nomeCol].trim() : '';
+      if (!entrega || !nome || BAD.test(nome)) continue;
+      const resol = resolCol != null ? isoFromCell(r[resolCol]) : null;
+      recs.push({
+        entrega,
+        nome: nome.replace(/\s+/g, ' '),
+        grupo: r[2] != null ? String(r[2]).trim() || '-' : '-',
+        resol: resol || null,
+        planilha: pid,
+        origem: pid,
+      });
+    }
+    return recs;
   }
-  return recs;
+  const layouts = pid === 'P'
+    ? [[0, 1, 4], [1, 0, 3], [0, 2, 5], [1, 2, 4]]
+    : [[0, 1, 4]];
+  for (const [ec, nc, rc] of layouts) {
+    const recs = parseWithLayout(ec, nc, rc);
+    if (recs.length >= 3) return recs;
+  }
+  return parseWithLayout(0, 1, 4);
+}
+
+function dedupeRecords(records) {
+  const seen = new Set();
+  return records.filter((r) => {
+    const key = `${r.planilha}|${r.entrega}|${r.nome.toLowerCase()}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
 }
 
 function b64url(s) {
@@ -170,9 +190,16 @@ async function processSheet(sheet) {
   }
   const wb = XLSX.read(buf, { type: 'buffer', cellDates: true });
   console.log(`   📗 Abas: ${wb.SheetNames.join(', ')}`);
-  const ws = wb.Sheets[wb.SheetNames[0]];
-  const rows = XLSX.utils.sheet_to_json(ws, { header: 1, raw: true });
-  const recs = rowsToRecords(rows, sheet.id);
+  let recs = [];
+  for (const sheetName of wb.SheetNames) {
+    const ws = wb.Sheets[sheetName];
+    const rows = XLSX.utils.sheet_to_json(ws, { header: 1, raw: true });
+    const part = rowsToRecords(rows, sheet.id);
+    if (part.length) console.log(`   · aba "${sheetName}": ${part.length}`);
+    else if (rows.length) console.log(`   · aba "${sheetName}": 0 — amostra: ${JSON.stringify((rows[0] || []).slice(0, 6))}`);
+    recs = recs.concat(part);
+  }
+  recs = dedupeRecords(recs);
   console.log(`   ✅ ${recs.length} registros`);
   return recs;
 }
