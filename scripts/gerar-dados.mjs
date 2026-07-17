@@ -1,7 +1,8 @@
-// scripts/gerar-dados.mjs  (v5 — Badger + merge por migração B→JSI→P)
+// scripts/gerar-dados.mjs  (v6 — Badger + merge com suporte a homônimos)
 import * as XLSX from 'xlsx';
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { dirname } from 'node:path';
+import { mergeMigratingRecords } from './merge-records.mjs';
 
 const SHEETS = [
   {
@@ -25,7 +26,6 @@ const OUT = 'dados.json';
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
 const BADGER_APP_ID = '1141147648';
 const BADGER_APP_UUID = '5cbed6ac-a083-4e14-b191-b4ba07653de2';
-const STAGE_PRIORITY = { P: 3, JSI: 2, B: 1 };
 
 function p2(n) { return String(n).padStart(2, '0'); }
 function isoFromCell(v) {
@@ -67,52 +67,6 @@ function rowsToRecords(rows, pid) {
     });
   }
   return recs;
-}
-
-function normNome(n) {
-  return String(n).trim().replace(/\s+/g, ' ').toUpperCase();
-}
-
-function stagePriority(r) {
-  return STAGE_PRIORITY[r.planilha] || 0;
-}
-
-function pickBetterRecord(a, b) {
-  const priA = stagePriority(a);
-  const priB = stagePriority(b);
-  if (priA !== priB) return priA > priB ? a : b;
-  if (!!a.resol !== !!b.resol) return a.resol ? b : a;
-  return a.entrega >= b.entrega ? a : b;
-}
-
-/** Mescla planilhas: cada nome aparece uma vez; prioridade P > JSI > B (migração). */
-function mergeMigratingRecords(records) {
-  const byName = new Map();
-  const dropped = [];
-  for (const r of records) {
-    const key = normNome(r.nome);
-    const existing = byName.get(key);
-    if (!existing) {
-      byName.set(key, r);
-      continue;
-    }
-    const kept = pickBetterRecord(existing, r);
-    const removed = kept === existing ? r : existing;
-    dropped.push({
-      nome: key,
-      kept: kept.planilha,
-      removed: removed.planilha,
-      entregaKept: kept.entrega,
-      entregaRemoved: removed.entrega,
-    });
-    byName.set(key, kept);
-  }
-  return {
-    records: [...byName.values()],
-    dropped,
-    before: records.length,
-    after: byName.size,
-  };
 }
 
 function b64url(s) {
@@ -248,18 +202,10 @@ async function main() {
   console.log(`\n===== MERGE (migração B→JSI→P) =====`);
   console.log(`Bruto (3 planilhas): ${rawTotal}`);
   console.log(`Únicos (por nome):   ${merged.after}`);
-  console.log(`Duplicatas removidas: ${merged.dropped.length}`);
-  if (merged.dropped.length) {
-    const byPair = {};
-    for (const d of merged.dropped) {
-      const k = `${d.removed}→${d.kept}`;
-      byPair[k] = (byPair[k] || 0) + 1;
-    }
-    console.log('Por transição:', JSON.stringify(byPair));
-    merged.dropped.slice(0, 15).forEach((d) => {
-      console.log(`  · ${d.nome}: mantido ${d.kept} (${d.entregaKept}), removido ${d.removed} (${d.entregaRemoved})`);
-    });
-    if (merged.dropped.length > 15) console.log(`  … e mais ${merged.dropped.length - 15}`);
+  console.log(`Duplicatas removidas (migração): ${merged.dropped.length}`);
+  if (merged.homonyms.length) {
+    console.log(`Homônimos/ambiguidades detectados: ${merged.homonyms.length}`);
+    merged.homonyms.slice(0, 10).forEach((h) => console.log(`  · ${h.nome} [${h.tipo}]`, JSON.stringify(h)));
   }
 
   console.log(`\n===== RESUMO =====\n${report.join('\n')}\nTotal único: ${merged.after}`);
@@ -272,10 +218,12 @@ async function main() {
   const payload = {
     meta: {
       generated_at: new Date().toISOString(),
-      source: 'OneDrive (B + JSI + P, merge por migração)',
+      source: 'OneDrive (B + JSI + P, merge com homônimos)',
       sheets_raw: report,
       raw_total: rawTotal,
-      duplicates_removed: merged.dropped.length,
+      migrations_collapsed: merged.dropped.length,
+      homonym_warnings: merged.homonyms.length,
+      homonyms: merged.homonyms.slice(0, 50),
       total: merged.after,
     },
     records: merged.records,

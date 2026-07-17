@@ -542,8 +542,42 @@ function excelToRecords(rows,sheetId){var bad=/^(MEDIA|MÉDIA|MENOR|MAIOR|TOTAL|
 function detectSheetId(filename){var f=(filename||'').toLowerCase();if(/\bjsi\b|ja sou italiano|finalizac/.test(f))return 'JSI';if(/\bp[\s_-]|pendenc|sedex/.test(f))return 'P';return 'B';}
 var STAGE_PRIORITY={P:3,JSI:2,B:1};
 function normNomeMerge(n){return String(n).trim().replace(/\s+/g,' ').toUpperCase();}
-function pickBetterRecord(a,b){var pa=STAGE_PRIORITY[a.planilha]||0,pb=STAGE_PRIORITY[b.planilha]||0;if(pa!==pb)return pa>pb?a:b;if(!!a.resol!==!!b.resol)return a.resol?b:a;return a.entrega>=b.entrega?a:b;}
-function mergeMigratingRecords(records){var byName={},dropped=[];records.forEach(function(r){var key=normNomeMerge(r.nome);var ex=byName[key];if(!ex){byName[key]=r;return;}var kept=pickBetterRecord(ex,r);var rem=kept===ex?r:ex;dropped.push({nome:key,kept:kept.planilha,removed:rem.planilha});byName[key]=kept;});return{records:Object.keys(byName).map(function(k){return byName[k];}),dropped:dropped,before:records.length,after:Object.keys(byName).length};}
+function recordIdMerge(r){return r.planilha+'|'+r.entrega+'|'+normNomeMerge(r.nome);}
+function mergeMigratingRecords(records){
+  var byExact={},list=[],i,r,k;
+  for(i=0;i<records.length;i++){r=records[i];byExact[recordIdMerge(r)]=r;}
+  for(k in byExact)list.push(byExact[k]);
+  var toDrop={},dropped=[],homonyms=[],byNome={},nome,recs,bs,jsis,ps,j,b,p,candidates,best,ci,unmatchedB;
+  for(i=0;i<list.length;i++){r=list[i];nome=normNomeMerge(r.nome);if(!byNome[nome])byNome[nome]=[];byNome[nome].push(r);}
+  for(nome in byNome){
+    recs=byNome[nome];bs=[];jsis=[];ps=[];
+    for(i=0;i<recs.length;i++){if(recs[i].planilha==='B')bs.push(recs[i]);else if(recs[i].planilha==='JSI')jsis.push(recs[i]);else if(recs[i].planilha==='P')ps.push(recs[i]);}
+    if(bs.length>1){var ds={};for(i=0;i<bs.length;i++)ds[bs[i].entrega]=1;if(Object.keys(ds).length>1)homonyms.push({nome:nome,tipo:'homonimo_B',registros:bs.length,entregas:bs.map(function(x){return x.entrega;})});}
+    var pairedB={};
+    for(j=0;j<jsis.length;j++){
+      candidates=[];for(i=0;i<bs.length;i++){b=bs[i];if(!pairedB[recordIdMerge(b)]&&!toDrop[recordIdMerge(b)]&&b.entrega<jsis[j].entrega)candidates.push(b);}
+      if(!candidates.length)continue;
+      if(candidates.length===1)best=candidates[0];
+      else{
+        var wr=[];for(i=0;i<candidates.length;i++)if(candidates[i].resol&&candidates[i].resol<=jsis[j].entrega)wr.push(candidates[i]);
+        if(wr.length===1)best=wr[0];
+        else if(wr.length>1)best=wr.slice().sort(function(a,b){return b.entrega.localeCompare(a.entrega);})[0];
+        else best=candidates.slice().sort(function(a,b){return b.entrega.localeCompare(a.entrega);})[0];
+        homonyms.push({nome:nome,tipo:'pareamento_B_JSI_ambiguo',jsi_entrega:jsis[j].entrega,b_escolhido:best.entrega,b_alternativas:candidates.filter(function(c){return c!==best;}).map(function(c){return c.entrega;})});
+      }
+      toDrop[recordIdMerge(best)]=1;pairedB[recordIdMerge(best)]=1;
+      dropped.push({nome:nome,kept:'JSI',removed:'B',entregaB:best.entrega,entregaJSI:jsis[j].entrega,tipo:'migracao'});
+    }
+    for(p=0;p<ps.length;p++){
+      unmatchedB=[];for(i=0;i<bs.length;i++){b=bs[i];if(!toDrop[recordIdMerge(b)]&&!pairedB[recordIdMerge(b)])unmatchedB.push(b);}
+      if(unmatchedB.length!==1){if(unmatchedB.length>1)homonyms.push({nome:nome,tipo:'P_multiplos_B',p_entrega:ps[p].entrega,b_entregas:unmatchedB.map(function(x){return x.entrega;})});continue;}
+      b=unmatchedB[0];
+      if(/pend/i.test(b.nome)||/pend/i.test(ps[p].nome)||!b.resol){toDrop[recordIdMerge(b)]=1;dropped.push({nome:nome,kept:'P',removed:'B',entregaB:b.entrega,tipo:'pendencia'});}
+    }
+  }
+  var final=[];for(i=0;i<list.length;i++)if(!toDrop[recordIdMerge(list[i])])final.push(list[i]);
+  return{records:final,dropped:dropped,homonyms:homonyms,before:list.length,after:final.length};
+}
 function loadSheetJS(cb){if(typeof XLSX!=='undefined')return cb();var CDNS=["https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js","https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js","https://unpkg.com/xlsx@0.18.5/dist/xlsx.full.min.js"];var i=0;(function t(){if(typeof XLSX!=='undefined')return cb();if(i>=CDNS.length)return cb(new Error('no-xlsx'));var s=document.createElement('script');s.src=CDNS[i++];s.onload=function(){typeof XLSX!=='undefined'?cb():t();};s.onerror=t;document.head.appendChild(s);})();}
 function enrich(){DATA.forEach(function(x){x.dEntrega=pd(x.entrega);x.dResol=x.resol?pd(x.resol):null;x.done=!!x.resol;x.espera=x.done?days(x.dEntrega,x.dResol):days(x.dEntrega,TODAY);});resolved=DATA.filter(function(x){return x.done;});waiting=DATA.filter(function(x){return !x.done;}).sort(function(a,b){return a.dEntrega-b.dEntrega;});resTimes=resolved.map(function(x){return x.espera;});mediaGeral=resTimes.length?Math.round(resTimes.reduce(function(a,b){return a+b;},0)/resTimes.length):0;medianaGeral=resTimes.length?Math.round(median(resTimes)):0;monthCounts={};resolved.forEach(function(x){var k=x.dResol.getFullYear()+'-'+p2(x.dResol.getMonth()+1);monthCounts[k]=(monthCounts[k]||0)+1;});thrPico=Math.max(mc(2026,5),mc(2026,6),1);thrMedTrim=Math.max(Math.round((mc(2026,4)+mc(2026,5)+mc(2026,6))/3),1);thrSem=Math.max(Math.round((mc(2026,1)+mc(2026,2)+mc(2026,3)+mc(2026,4)+mc(2026,5)+mc(2026,6))/6),1);filaPos={};waiting.forEach(function(w,i){filaPos[w.nome+'|'+w.entrega]=i+1;});DATA.forEach(function(x){x.posFila=x.done?null:(filaPos[x.nome+'|'+x.entrega]||null);});updateSidebar();}
 function applyRecords(recs,src,stampDate){if(!recs||recs.length<10){setStatus('⚠️ Poucos registros ('+(recs?recs.length:0)+'). Confirme a planilha B.');return false;}DATA=recs;enrich();renderTable();document.getElementById('result').style.display='none';document.getElementById('empty').style.display='block';document.documentElement.classList.remove('has-proc');document.getElementById('search').value='';var dStr=stampDate||fmt(new Date());var lu=document.getElementById('lastUpdate');if(lu)lu.textContent='🔄 Dados: '+dStr+' ('+src+')';updateStamp(dStr,src);setStatus('✅ Atualizado ('+src+')! '+recs.length+' processos · '+resolved.length+' resolvidos · '+waiting.length+' aguardando.');return true;}
