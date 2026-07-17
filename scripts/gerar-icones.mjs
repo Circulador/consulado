@@ -1,5 +1,5 @@
 /**
- * Gera ícones PWA simples (bandeira IT + azul consular).
+ * Ícones PWA — ampulheta comum + faixa tricolor (comunidade, não oficial).
  * Requer: Node 18+ (sem dependências externas).
  */
 import { writeFileSync } from 'fs';
@@ -9,6 +9,13 @@ import { fileURLToPath } from 'url';
 
 const __dir = dirname(fileURLToPath(import.meta.url));
 const root = join(__dir, '..');
+
+const BG = [26, 22, 18];
+const TERRA = [200, 90, 40];
+const SAND = [243, 236, 227];
+const VERDE = [0, 146, 70];
+const BIANCO = [255, 255, 255];
+const ROSSO = [206, 43, 55];
 
 function crc32(buf) {
   let c = ~0;
@@ -35,9 +42,6 @@ function pngSolid(size, draw) {
   ihdr.writeUInt32BE(size, 4);
   ihdr[8] = 8;
   ihdr[9] = 6;
-  ihdr[10] = 0;
-  ihdr[11] = 0;
-  ihdr[12] = 0;
   const row = Buffer.alloc(1 + size * 4);
   const raw = Buffer.alloc((1 + size * 4) * size);
   for (let y = 0; y < size; y++) {
@@ -61,36 +65,63 @@ function pngSolid(size, draw) {
   ]);
 }
 
+function inRoundRect(x, y, size, rx, ry, rw, rh, rad) {
+  const cx = Math.max(rx + rad, Math.min(x, rx + rw - rad - 1));
+  const cy = Math.max(ry + rad, Math.min(y, ry + rh - rad - 1));
+  const dx = x < rx + rad ? x - (rx + rad) : x >= rx + rw - rad ? x - (rx + rw - rad - 1) : 0;
+  const dy = y < ry + rad ? y - (ry + rad) : y >= ry + rh - rad ? y - (ry + rh - rad - 1) : 0;
+  if (Math.abs(x - cx) <= rad && Math.abs(y - cy) <= rad) return dx * dx + dy * dy <= rad * rad;
+  return x >= rx && x < rx + rw && y >= ry && y < ry + rh;
+}
+
+function inHourglass(x, y, size) {
+  const cx = size / 2;
+  const cy = size * 0.46;
+  const w = size * 0.22;
+  const h = size * 0.34;
+  const nx = (x - cx) / w;
+  const ny = (y - cy) / h;
+  if (Math.abs(nx) > 1) return false;
+  const top = ny < 0 && Math.abs(ny) <= 1 - Math.abs(nx) * 0.15;
+  const bot = ny > 0 && Math.abs(ny) <= 1 - Math.abs(nx) * 0.15;
+  const neck = Math.abs(nx) < 0.12 && Math.abs(ny) < 0.08;
+  return top || bot || neck;
+}
+
 function drawIcon(x, y, size) {
-  const pad = Math.round(size * 0.08);
-  const inner = size - pad * 2;
-  const ix = x - pad;
-  const iy = y - pad;
-  if (ix < 0 || iy < 0 || ix >= inner || iy >= inner) return [0, 98, 188, 255];
-  const third = inner / 3;
-  if (ix < third) return [0, 146, 70, 255];
-  if (ix < third * 2) return [255, 255, 255, 255];
-  return [206, 43, 55, 255];
+  const pad = size * 0.1;
+  const rad = size * 0.18;
+  if (!inRoundRect(x, y, size, pad, pad, size - pad * 2, size - pad * 2, rad)) {
+    return [0, 0, 0, 0];
+  }
+  const stripeH = size * 0.1;
+  const stripeY = size - pad - stripeH;
+  if (y >= stripeY) {
+    const third = (size - pad * 2) / 3;
+    const lx = x - pad;
+    if (lx < third) return [...VERDE, 255];
+    if (lx < third * 2) return [...BIANCO, 255];
+    return [...ROSSO, 255];
+  }
+  if (inHourglass(x, y, size)) return [...SAND, 255];
+  return [...TERRA, 255];
 }
 
 function drawMaskable(x, y, size) {
   const cx = size / 2;
   const cy = size / 2;
-  const r = size * 0.42;
+  const r = size * 0.44;
   const dx = x - cx + 0.5;
   const dy = y - cy + 0.5;
-  if (dx * dx + dy * dy > r * r) return [15, 20, 32, 255];
+  if (dx * dx + dy * dy > r * r) return [...BG, 255];
   return drawIcon(x, y, size);
 }
 
-const files = [
+for (const [name, size, fn] of [
   ['icon-192.png', 192, drawIcon],
   ['icon-512.png', 512, drawIcon],
   ['icon-512-maskable.png', 512, drawMaskable],
-];
-
-for (const [name, size, fn] of files) {
-  const out = join(root, name);
-  writeFileSync(out, pngSolid(size, fn));
-  console.log('OK', name, size + 'x' + size);
+]) {
+  writeFileSync(join(root, name), pngSolid(size, fn));
+  console.log('OK', name);
 }

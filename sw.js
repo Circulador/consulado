@@ -1,5 +1,5 @@
-// Service Worker — Consultor de Fila (v7)
-const CACHE = 'fila-consulado-v7';
+// Service Worker — Consultor de Fila (v8 — tema Mediterrâneo)
+const CACHE = 'fila-consulado-v8';
 const CORE = ['./', './index.html', './icon-192.png', './icon-512.png', './icon-512-maskable.png', './manifest.json'];
 
 self.addEventListener('install', e => {
