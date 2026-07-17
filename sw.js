@@ -1,5 +1,5 @@
-// Service Worker — Consultor de Fila (v6 — stats por planilha)
-const CACHE = 'fila-consulado-v6';
+// Service Worker — Consultor de Fila (v7)
+const CACHE = 'fila-consulado-v7';
 const CORE = ['./', './index.html', './icon-192.png', './icon-512.png', './icon-512-maskable.png', './manifest.json'];
 
 self.addEventListener('install', e => {

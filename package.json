@@ -1,0 +1,11 @@
+{
+  "name": "consulado-fila",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "gerar-dados": "node scripts/gerar-dados.mjs"
+  },
+  "dependencies": {
+    "xlsx": "0.18.5"
+  }
+}
