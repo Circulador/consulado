@@ -1,11 +1,6 @@
-// scripts/gerar-dados.mjs  (v3 — múltiplas estratégias + fallback do dataset embutido)
-// Baixa a Planilha B do OneDrive e gera dados.json na raiz do repositório.
-// Roda no servidor do GitHub Actions => sem CORS e sem login (se o link for público).
-//
-// Node 20+ (fetch nativo). Dependência única: xlsx.
-
+// scripts/gerar-dados.mjs  (v4 — Badger auth para links /x/c/ + 3 planilhas)
 import * as XLSX from 'xlsx';
-import { writeFileSync, mkdirSync, readFileSync } from 'node:fs';
+import { writeFileSync, mkdirSync } from 'node:fs';
 import { dirname } from 'node:path';
 
 const SHEETS = [
@@ -13,13 +8,23 @@ const SHEETS = [
     id: 'B',
     nome: 'Planilha B — Balcão',
     url: 'https://1drv.ms/x/c/ba23482b38fbdc1e/EVyxoIPnz65Du-mLBAl7CuUBOsLybUkq3f-TJiOIyW9HBA?e=frZ3Ms',
-    base: true,
+  },
+  {
+    id: 'JSI',
+    nome: 'Planilha JSI — Já sou Italiano',
+    url: 'https://1drv.ms/x/c/ba23482b38fbdc1e/ETkw9cQ64L5Ko2WicjOlg04BiOc1mm4MLMiqKWcidPm6iA?e=4zXpjS',
+  },
+  {
+    id: 'P',
+    nome: 'Planilha P — Pendências',
+    url: 'https://1drv.ms/x/c/ba23482b38fbdc1e/EekjF_2Qd5tJoDqaLQ8-IokB436GSnReRCEBHgeuyg72uA?e=az9sGs',
   },
 ];
 
 const OUT = 'dados.json';
-const INDEX = 'index.html';
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
+const BADGER_APP_ID = '1141147648';
+const BADGER_APP_UUID = '5cbed6ac-a083-4e14-b191-b4ba07653de2';
 
 function p2(n) { return String(n).padStart(2, '0'); }
 function isoFromCell(v) {
@@ -45,149 +50,172 @@ function rowsToRecords(rows, pid) {
     const nome = typeof r[1] === 'string' ? r[1].trim() : '';
     if (!entrega || !nome || BAD.test(nome)) continue;
     const resol = isoFromCell(r[4]);
-    recs.push({ entrega, nome: nome.replace(/\s+/g, ' '), grupo: r[2] != null ? String(r[2]).trim() || '-' : '-', resol: resol || null, planilha: pid, origem: pid });
+    recs.push({
+      entrega,
+      nome: nome.replace(/\s+/g, ' '),
+      grupo: r[2] != null ? String(r[2]).trim() || '-' : '-',
+      resol: resol || null,
+      planilha: pid,
+      origem: pid,
+    });
   }
   return recs;
 }
 
-function b64url(s) { return Buffer.from(s, 'utf-8').toString('base64').replace(/=+$/, '').replace(/\//g, '_').replace(/\+/g, '-'); }
-
-function decodeJsonUrl(raw) {
-  return raw.replace(/\\u0026/g, '&').replace(/\\\//g, '/').replace(/\\"/g, '"');
-}
-
-function downloadUrls(shareUrl) {
-  const enc = 'u!' + b64url(shareUrl);
-  const withDl = shareUrl.includes('?') ? shareUrl + '&download=1' : shareUrl + '?download=1';
-  return [
-    { tag: 'api.shares/root/content', url: `https://api.onedrive.com/v1.0/shares/${enc}/root/content` },
-    { tag: 'api.shares/driveItem/content', url: `https://api.onedrive.com/v1.0/shares/${enc}/driveItem/content` },
-    { tag: '1drv.ms?download=1', url: withDl },
-    { tag: 'share-page', url: shareUrl, html: true },
-  ];
+function b64url(s) {
+  return Buffer.from(s, 'utf-8').toString('base64').replace(/=+$/, '').replace(/\//g, '_').replace(/\+/g, '-');
 }
 
 function looksLikeXlsx(buf) {
   return buf && buf.length > 4 && buf[0] === 0x50 && buf[1] === 0x4B;
 }
 
-async function fetchBuffer(url, tag) {
-  const res = await fetch(url, { redirect: 'follow', headers: { 'User-Agent': UA, Accept: '*/*' } });
-  const ct = res.headers.get('content-type') || '';
-  if (!res.ok) { console.log(`   ↳ [${tag}] HTTP ${res.status} (${ct})`); return null; }
-  const buf = Buffer.from(await res.arrayBuffer());
-  console.log(`   ↳ [${tag}] HTTP 200 · ${buf.length} bytes · ${ct}`);
-  return buf;
+async function getBadgerHeaders() {
+  const res = await fetch('https://api-badgerp.svc.ms/v1.0/token', {
+    method: 'POST',
+    headers: { AppId: BADGER_APP_ID, 'Content-Type': 'application/json', 'User-Agent': UA },
+    body: JSON.stringify({ appId: BADGER_APP_UUID }),
+  });
+  if (!res.ok) throw new Error(`Badger token HTTP ${res.status}`);
+  const data = await res.json();
+  if (!data.token) throw new Error('Badger token ausente na resposta');
+  return {
+    Authorization: `Badger ${data.token}`,
+    Prefer: 'autoredeem',
+    'User-Agent': UA,
+    Accept: 'application/json',
+  };
 }
 
-function urlsFromShareHtml(html, finalUrl) {
-  const found = [];
-  for (const re of [
-    /"(?:downloadUrl|@content\.downloadUrl)"\s*:\s*"([^"]+)"/g,
-    /migratedDirectDownloadUrl\s*=\s*'([^']+)'/g,
-  ]) {
-    let m;
-    while ((m = re.exec(html))) found.push(decodeJsonUrl(m[1]));
+async function downloadFromUrl(url, headers, tag) {
+  const res = await fetch(url, { redirect: 'follow', headers: { ...headers, Accept: '*/*' } });
+  if (!res.ok) {
+    console.log(`   ↳ [${tag}] HTTP ${res.status}`);
+    return null;
   }
-  try {
-    const u = new URL(finalUrl);
-    const resid = u.searchParams.get('resid') || u.searchParams.get('id');
-    const authkey = u.searchParams.get('authkey');
-    if (resid && authkey) {
-      found.push(`https://onedrive.live.com/download.aspx?resid=${encodeURIComponent(resid)}&authkey=${encodeURIComponent(authkey)}`);
+  const buf = Buffer.from(await res.arrayBuffer());
+  console.log(`   ↳ [${tag}] ${buf.length} bytes`);
+  return looksLikeXlsx(buf) ? buf : null;
+}
+
+async function getDownloadUrl(shareUrl, headers) {
+  const enc = 'u!' + b64url(shareUrl);
+
+  // Links /x/c/ (contas migradas) — API personal content + Badger
+  const personalMeta = `https://my.microsoftpersonalcontent.com/_api/v2.0/shares/${enc}/driveItem`;
+  let res = await fetch(personalMeta, { headers });
+  if (res.ok) {
+    const meta = await res.json();
+    const dl = meta['@content.downloadUrl'] || meta.file?.['@microsoft.graph.downloadUrl'];
+    if (dl) return { url: dl, tag: 'badger-personal' };
+  } else {
+    console.log(`   ↳ [badger-personal-meta] HTTP ${res.status}`);
+  }
+
+  // Segue redirect do link curto com Badger (extrai redeem ou authkey)
+  res = await fetch(shareUrl, { redirect: 'follow', headers: { ...headers, Accept: 'text/html,*/*' } });
+  const finalUrl = res.url;
+  console.log(`   ↳ redirect final: ${finalUrl.slice(0, 100)}...`);
+
+  let u;
+  try { u = new URL(finalUrl); } catch { return null; }
+
+  const redeem = u.searchParams.get('redeem');
+  if (redeem) {
+    const redeemMeta = `https://my.microsoftpersonalcontent.com/_api/v2.0/shares/u!${redeem}/driveItem`;
+    const r2 = await fetch(redeemMeta, { headers });
+    if (r2.ok) {
+      const meta = await r2.json();
+      const dl = meta['@content.downloadUrl'];
+      if (dl) return { url: dl, tag: 'badger-redeem' };
     }
-  } catch (_) { /* ignore */ }
-  return [...new Set(found)];
+  }
+
+  const resid = u.searchParams.get('resid') || u.searchParams.get('id');
+  const authkey = u.searchParams.get('authkey');
+  const cid = u.searchParams.get('cid');
+  if (resid && authkey && cid) {
+    const legacyMeta = `https://api.onedrive.com/v1.0/drives/${cid}/items/${encodeURIComponent(resid)}?authkey=${encodeURIComponent(authkey)}`;
+    const r3 = await fetch(legacyMeta, { headers: { 'User-Agent': UA, Accept: 'application/json' } });
+    if (r3.ok) {
+      const meta = await r3.json();
+      const dl = meta['@content.downloadUrl'];
+      if (dl) return { url: dl, tag: 'authkey-legacy' };
+    }
+  }
+
+  return null;
 }
 
 async function tryDownload(sheet) {
-  const attempts = downloadUrls(sheet.url);
-  for (const a of attempts) {
-    try {
-      if (a.html) {
-        const res = await fetch(a.url, { redirect: 'follow', headers: { 'User-Agent': UA, Accept: 'text/html,*/*' } });
-        const html = await res.text();
-        const extra = urlsFromShareHtml(html, res.url);
-        for (const url of extra) {
-          const buf = await fetchBuffer(url, `${a.tag}-parsed`);
-          if (buf && looksLikeXlsx(buf)) {
-            console.log(`   ↳ [${a.tag}-parsed] ✅ XLSX válido`);
-            return buf;
-          }
-        }
-        continue;
-      }
-      const buf = await fetchBuffer(a.url, a.tag);
-      if (!buf) continue;
-      if (looksLikeXlsx(buf)) { console.log(`   ↳ [${a.tag}] ✅ é um XLSX válido (assinatura PK)`); return buf; }
-      const head = buf.slice(0, 120).toString('utf-8').replace(/\s+/g, ' ');
-      console.log(`   ↳ [${a.tag}] ⚠️ não é XLSX. Início: "${head}"`);
-    } catch (e) {
-      console.log(`   ↳ [${a.tag}] ❌ ${e.message}`);
+  console.log(`\n📥 Baixando ${sheet.id} — ${sheet.nome}`);
+  try {
+    const headers = await getBadgerHeaders();
+    const dl = await getDownloadUrl(sheet.url, headers);
+    if (dl) {
+      const buf = await downloadFromUrl(dl.url, headers, dl.tag);
+      if (buf) return buf;
     }
+  } catch (e) {
+    console.log(`   ↳ [badger] ❌ ${e.message}`);
   }
   return null;
 }
 
-function extractEmbeddedRecords() {
-  try {
-    const html = readFileSync(INDEX, 'utf-8');
-    const m = html.match(/<script id="dataset"[^>]*>([\s\S]*?)<\/script>/);
-    if (!m) return [];
-    const records = JSON.parse(m[1]);
-    console.log(`   ↳ dataset embutido: ${records.length} registros`);
-    return records.map((r) => ({ ...r, planilha: r.planilha || 'B', origem: r.origem || 'B' }));
-  } catch (e) {
-    console.log(`   ↳ dataset embutido: ❌ ${e.message}`);
+async function processSheet(sheet) {
+  const buf = await tryDownload(sheet);
+  if (!buf) {
+    console.log(`   ⛔ Falha ao baixar ${sheet.id}`);
     return [];
   }
-}
-
-async function processSheet(sheet) {
-  console.log(`\n📥 Baixando ${sheet.id} — ${sheet.nome}`);
-  const buf = await tryDownload(sheet);
-  if (!buf) { console.log(`   ⛔ Nenhuma estratégia trouxe um XLSX para ${sheet.id}.`); return []; }
   const wb = XLSX.read(buf, { type: 'buffer', cellDates: true });
-  console.log(`   📗 Abas encontradas: ${wb.SheetNames.join(', ')}`);
+  console.log(`   📗 Abas: ${wb.SheetNames.join(', ')}`);
   const ws = wb.Sheets[wb.SheetNames[0]];
   const rows = XLSX.utils.sheet_to_json(ws, { header: 1, raw: true });
-  console.log(`   📊 Linhas lidas na 1ª aba: ${rows.length}`);
-  rows.slice(0, 3).forEach((r, i) => console.log(`      linha[${i}] = ${JSON.stringify((r || []).slice(0, 6))}`));
   const recs = rowsToRecords(rows, sheet.id);
-  console.log(`   ✅ Registros válidos extraídos: ${recs.length}`);
+  console.log(`   ✅ ${recs.length} registros`);
   return recs;
 }
 
+function dedupeRecords(records) {
+  const seen = new Set();
+  return records.filter((r) => {
+    const key = `${r.planilha}|${r.entrega}|${r.nome.toLowerCase()}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
 async function main() {
-  let base = [];
-  let source = 'OneDrive (GitHub Actions)';
+  let all = [];
   const report = [];
   for (const s of SHEETS) {
     const recs = await processSheet(s);
-    report.push(`${s.id}: ${recs.length} registros`);
-    if (s.base) base = recs;
+    report.push(`${s.id}: ${recs.length}`);
+    all = all.concat(recs);
   }
+  all = dedupeRecords(all);
 
-  if (!base.length) {
-    console.log('\n⚠️ OneDrive indisponível via API. Usando dataset embutido do index.html...');
-    base = extractEmbeddedRecords();
-    source = 'dataset embutido (fallback)';
-  }
+  console.log(`\n===== RESUMO =====\n${report.join('\n')}\nTotal único: ${all.length}`);
 
-  console.log(`\n===== RESUMO =====\n${report.join('\n')}\nTotal final: ${base.length}`);
-
-  if (!base.length) {
-    console.error('\n⛔ Nenhum registro disponível. Abortando.');
+  if (!all.length) {
+    console.error('\n⛔ Nenhum registro baixado do OneDrive. Verifique os links de compartilhamento.');
     process.exit(1);
   }
 
   const payload = {
-    meta: { generated_at: new Date().toISOString(), source, total: base.length },
-    records: base,
+    meta: {
+      generated_at: new Date().toISOString(),
+      source: 'OneDrive (B + JSI + P)',
+      sheets: report,
+      total: all.length,
+    },
+    records: all,
   };
   mkdirSync(dirname(OUT) || '.', { recursive: true });
   writeFileSync(OUT, JSON.stringify(payload, null, 2), 'utf-8');
-  console.log(`\n💾 Gerado ${OUT} com ${base.length} registros (${source}).`);
+  console.log(`\n💾 ${OUT} atualizado com ${all.length} registros.`);
 }
 
 main().catch((e) => { console.error(e); process.exit(1); });
