@@ -1,223 +1,102 @@
 # 🇮🇹 Consultor de Fila Consular — Cidadania Italiana (RJ e ES)
 
-Painel **comunitário, interativo e colaborativo** para acompanhamento da fila de reconhecimento da cidadania italiana (*Jure Sanguinis*) junto ao Consulado Geral da Itália no Rio de Janeiro.
+Painel **comunitário** para acompanhar a fila de reconhecimento da cidadania italiana (*Jure Sanguinis*) junto ao Consulado Geral da Itália no Rio de Janeiro.
 
-> ⚠️ **FERRAMENTA NÃO OFICIAL** — Desenvolvida voluntariamente pela comunidade. Não possui vínculo com o Consulado Geral da Itália, com o Governo Italiano ou com o Governo Brasileiro. Somente o Consulado possui acesso aos dados oficiais dos processos.
-
----
-
-## 🔎 O que a ferramenta faz
-
-### 📍 Acompanhamento individual
-
-- Busca do processo por **sigla, nome ou data de entrega**.
-- Cálculo da **posição estimada na fila**.
-- Indicadores de progresso e tempo de espera.
-- Acompanhamento do **prazo legal máximo de 730 dias** com barra de progresso.
-- Projeção de convocação em três cenários:
-  - 🚀 **Otimista**
-  - 🎯 **Realista**
-  - 🕐 **Conservador**
-- Exibição de **janela provável de convocação**.
-- Índice de **confiabilidade da estimativa**.
-- Análise do movimento da fila, mostrando:
-  - quantos processos à frente já foram atendidos;
-  - quantos ainda aguardam;
-  - quantos processos posteriores já foram concluídos.
-
-### 📊 Visão da comunidade
-
-- Painel geral da comunidade.
-- Total de processos cadastrados na base.
-- Quantidade de processos concluídos e aguardando.
-- Estatísticas dos tempos de espera.
-- Histograma de distribuição dos prazos.
-- Percentis e mediana.
-- Ranking mensal de velocidade das convocações.
-- Tabela geral pesquisável, filtrável e ordenável.
-
-### ⭐ Recursos pessoais
-
-- Sistema de **favoritos** para acompanhar processos específicos.
-- Compartilhamento de processos por link.
-- Tema claro e escuro.
-- Exportação/impressão em PDF.
-- Layout responsivo para celular, tablet e computador.
-- Instalação como aplicativo (**PWA**).
-- Salvamento local das preferências do usuário.
-
-### 🗺️ Minha jornada
-
-A ferramenta permite acompanhar as **16 etapas** do processo de cidadania:
-
-1. Agendamento no Consulado
-2. Entrega da documentação
-3. E-mail de deferimento ou pendência
-4. Conclusão da etapa consular via PEC
-5. Envio da documentação ao Comune
-6. Transcrição no Registro Civil Italiano
-7. Inscrição no AIRE e cadastro no ANPR
-8. Inclusão na lista eleitoral
-9. Comunicação do Comune ao Consulado
-10. Atualização dos sistemas consulares e Fast It
-11. Solicitação do passaporte italiano
-12. Emissão e recebimento do passaporte
-13. Solicitação da CIE
-14. Emissão e recebimento da CIE
-15. Habilitação dos serviços ao cidadão
-16. Jornada concluída
-
-Também inclui:
-
-- Contador automático dos **180 dias** para solicitação do passaporte.
-- Registro de datas importantes.
-- Barra de progresso da jornada.
-- Radar visual dos estágios do processo.
-- Exportação da jornada para PDF.
+> ⚠️ **FERRAMENTA NÃO OFICIAL** — Desenvolvida voluntariamente pela comunidade. Somente o Consulado possui registros oficiais dos processos.
 
 ---
 
 ## 🌐 Acesso
 
-👉 **Acesso ao painel:** [Consultor de Fila Consular](https://circulador.github.io/consulado/)
+👉 **[circulador.github.io/consulado](https://circulador.github.io/consulado/)**
 
 Repositório: [github.com/Circulador/consulado](https://github.com/Circulador/consulado)
 
 ---
 
-## 📊 Fonte dos dados
+## Como usar (2–3 cliques)
 
-As estatísticas são baseadas em planilhas **voluntárias e colaborativas** mantidas pela comunidade:
+1. **Escolha sua fila** — Balcão, JSI ou Pendências
+2. **Busque** sua sigla ou data de entrega (ex.: `RGC`, `11/08/2025`)
+3. **Veja** posição na fila, dias de espera e previsão estimada
 
-### 📊 B — Balcão
-
-Fila após a entrega dos documentos até o recebimento do e-mail **"Já Sou Italiano"** ou de eventual pendência.
-
-### 🇮🇹 JSI — Já Sou Italiano
-
-Período posterior ao reconhecimento, acompanhando a espera pelo e-mail PEC de conclusão da etapa consular.
-
-### 📎 P — Pendências
-
-Tempo de resolução de pendências documentais enviadas ao Consulado via SEDEX.
+Cada planilha é uma **fila independente**. Quem está no Balcão não compete na fila JSI, e vice-versa.
 
 ---
 
-## 🔄 Atualização dos dados
+## As 3 filas comunitárias
 
-A plataforma suporta diferentes formas de atualização da base:
+| Fila | Planilha | O que mede | “Resolvido” = |
+|------|----------|----------|---------------|
+| **📊 B — Balcão** | Entrega no consulado | Tempo até o e-mail *Já sou Italiano* | Recebeu o JSI |
+| **🇮🇹 JSI** | Após o JSI | Tempo até o e-mail PEC de fim da etapa consular | Recebeu a PEC |
+| **📎 P — Pendências** | Após envio SEDEX | Tempo até resolução da pendência | Pendência resolvida |
 
-### ✅ Atualização por `dados.json`
+Links OneDrive (atualizados pela comunidade):
 
-O site pode carregar automaticamente um arquivo `dados.json`, gerado a partir dos dados consolidados do projeto.
-
-Esse formato é o mais indicado para uso com **GitHub Pages** e automação via **GitHub Actions**.
-
-### ✅ Upload manual da planilha
-
-Também é possível carregar manualmente arquivos:
-
-- `.xlsx`
-- `.xls`
-- `.csv`
-
-Após o carregamento, a ferramenta reprocessa os dados automaticamente no navegador, sem necessidade de alteração no código.
+- [Planilha B — Balcão](https://1drv.ms/x/c/ba23482b38fbdc1e/EVyxoIPnz65Du-mLBAl7CuUBOsLybUkq3f-TJiOIyW9HBA?e=frZ3Ms)
+- [Planilha JSI](https://1drv.ms/x/c/ba23482b38fbdc1e/ETkw9cQ64L5Ko2WicjOlg04BiOc1mm4MLMiqKWcidPm6iA?e=4zXpjS)
+- [Planilha P — Pendências](https://1drv.ms/x/c/ba23482b38fbdc1e/EekjF_2Qd5tJoDqaLQ8-IokB436GSnReRCEBHgeuyg72uA?e=az9sGs)
 
 ---
 
-## 📱 Aplicativo (PWA)
+## O que a ferramenta faz
 
-O site pode ser instalado diretamente no dispositivo como aplicativo:
+### Por fila (B, JSI ou P)
 
-- Android
-- iPhone / iPad
-- Windows
-- macOS
+- Busca por **sigla/nome** ou **data de entrega**
+- **Posição na fila** — calculada só entre processos da mesma planilha
+- **Dias de espera** e previsão em 3 cenários (otimista, realista, conservador)
+- Índice de **confiabilidade** da estimativa
+- Gráfico de **resoluções mensais** da fila escolhida
+- **Prazo legal de 730 dias** (somente fila B — Balcão)
 
-Quando instalado, pode ser aberto de forma semelhante a um aplicativo independente.
+### Recursos pessoais
 
----
-
-## 🔒 Privacidade
-
-Os dados pessoais de uso da ferramenta ficam armazenados apenas no navegador do usuário, por meio de `localStorage`.
-
-Ficam salvos localmente:
-
-- favoritos;
-- progresso da jornada;
-- datas registradas;
-- preferência de tema;
-- configurações visuais.
-
-Essas informações **não são enviadas para servidores externos** pela aplicação.
+- **Favoritos** e **compartilhar link** (`?sheet=B&proc=RGC`)
+- **Minha jornada** — 16 etapas do agendamento até passaporte/CIE (salvo no navegador)
+- Exportar jornada em PDF
+- Tema claro/escuro · PWA (instalar como app)
 
 ---
 
-## ⚠️ Aviso importante
+## Dados e sincronização
 
-As informações apresentadas neste painel são **colaborativas** e baseadas em dados compartilhados voluntariamente pelos participantes da comunidade.
-
-Por esse motivo, podem existir:
-
-- processos não cadastrados;
-- informações desatualizadas;
-- processos já concluídos sem atualização;
-- divergências em relação aos registros oficiais;
-- diferenças entre a fila comunitária e a fila real do Consulado.
-
-Os indicadores, gráficos e projeções possuem **caráter exclusivamente informativo e estimativo**. Eles não representam prazo oficial, garantia de atendimento ou compromisso institucional.
-
-**Somente o Consulado Geral da Itália possui acesso aos registros oficiais dos processos e permanece como a única fonte oficial para consulta de status, prazos e informações. Este painel não substitui os canais oficiais de comunicação do Consulado.**
+- As planilhas são **atualizadas manualmente no OneDrive** por um responsável da comunidade
+- O site baixa **B + JSI + P** separadamente — **sem misturar filas**
+- Duplicatas exatas na mesma planilha são removidas; **homônimos** (mesma sigla, datas diferentes) são preservados
+- Sincronização automática a cada **6 h** (GitHub Actions) + botão **Atualizar agora** no site
+- Fallback: arquivo `dados.json` no repositório
 
 ---
 
-## 🛠️ Tecnologias utilizadas
-
-- HTML5
-- CSS3
-- JavaScript ES6+
-- Chart.js
-- Progressive Web App (PWA)
-- GitHub Pages
-- GitHub Actions
-- JSON Dataset (`dados.json`)
-- LocalStorage
-
----
-
-## 📁 Estrutura sugerida do projeto
+## Estrutura do projeto
 
 ```text
 consulado/
-├── index.html
-├── dados.json
+├── index.html              # App (HTML + CSS + JS)
+├── dados.json              # Base gerada automaticamente
+├── scripts/
+│   ├── gerar-dados.mjs     # Download OneDrive + geração do JSON
+│   └── merge-records.mjs   # Dedupe por planilha (sem merge cross-sheet)
+├── .github/workflows/
+│   └── atualizar-dados.yml # Cron 6 h + execução manual
 ├── manifest.json
 ├── sw.js
-├── icon-192.png
-├── icon-512.png
 └── README.md
 ```
 
 ---
 
-## 💙 Sobre o projeto
+## Privacidade
 
-Este projeto nasceu inicialmente como uma ferramenta pessoal para acompanhar o processo de cidadania dos meus irmãos e reduzir a ansiedade natural da longa espera consular.
-
-Com o tempo, a ferramenta evoluiu e passou a ser compartilhada com a comunidade, transformando-se em um painel colaborativo de acompanhamento estatístico. A ideia é ajudar outras pessoas a terem uma visão mais clara da evolução da fila, sempre com transparência sobre as limitações de uma base comunitária e não oficial.
-
-Feedbacks, sugestões, correções e contribuições são sempre bem-vindos.
-
-Juntos, tornamos a informação mais acessível, organizada e útil para toda a comunidade.
+Favoritos, progresso da jornada e preferências ficam apenas no **localStorage** do seu navegador. Nada é enviado a servidores externos pela aplicação.
 
 ---
 
-## 🤝 Contribuições
+## ⚠️ Aviso
 
-Sugestões de melhorias, correções de bugs e novas funcionalidades podem ser discutidas diretamente no grupo da comunidade ou por meio deste repositório.
-
-Caso identifique algum dado incorreto ou desatualizado, informe a comunidade para que a base possa ser ajustada.
+Informações **colaborativas** — podem estar incompletas ou desatualizadas. Projeções têm caráter **estimativo**. O Consulado Geral da Itália é a **única fonte oficial**.
 
 ---
 

@@ -1,6 +1,5 @@
-// Service Worker — Consultor de Fila (v3)
-// v3: força atualização do cache e NUNCA serve HTML/dados.json velhos do cache.
-const CACHE = 'fila-consulado-v3';
+// Service Worker — Consultor de Fila (v4 — filas segregadas)
+const CACHE = 'fila-consulado-v4';
 const CORE = ['./', './index.html', './icon-192.png', './icon-512.png', './icon-512-maskable.png', './manifest.json'];
 
 self.addEventListener('install', e => {

@@ -1,8 +1,8 @@
-// scripts/gerar-dados.mjs  (v6 — Badger + merge com suporte a homônimos)
+// scripts/gerar-dados.mjs — Badger + 3 planilhas segregadas (sem merge cross-sheet)
 import * as XLSX from 'xlsx';
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { dirname } from 'node:path';
-import { mergeMigratingRecords } from './merge-records.mjs';
+import { dedupeSheetRecords } from './merge-records.mjs';
 
 const SHEETS = [
   {
@@ -180,10 +180,9 @@ async function processSheet(sheet) {
     const rows = XLSX.utils.sheet_to_json(ws, { header: 1, raw: true });
     const part = rowsToRecords(rows, sheet.id);
     if (part.length) console.log(`   · aba "${sheetName}": ${part.length}`);
-    else if (rows.length) console.log(`   · aba "${sheetName}": 0 — amostra: ${JSON.stringify((rows[0] || []).slice(0, 6))}`);
     recs = recs.concat(part);
   }
-  console.log(`   ✅ ${recs.length} registros brutos (${sheet.id})`);
+  console.log(`   ✅ ${recs.length} registros (${sheet.id})`);
   return recs;
 }
 
@@ -197,20 +196,19 @@ async function main() {
   }
 
   const rawTotal = all.length;
-  const merged = mergeMigratingRecords(all);
+  const deduped = dedupeSheetRecords(all);
 
-  console.log(`\n===== MERGE (migração B→JSI→P) =====`);
+  console.log(`\n===== FILAS SEGREGADAS =====`);
   console.log(`Bruto (3 planilhas): ${rawTotal}`);
-  console.log(`Únicos (por nome):   ${merged.after}`);
-  console.log(`Duplicatas removidas (migração): ${merged.dropped.length}`);
-  if (merged.homonyms.length) {
-    console.log(`Homônimos/ambiguidades detectados: ${merged.homonyms.length}`);
-    merged.homonyms.slice(0, 10).forEach((h) => console.log(`  · ${h.nome} [${h.tipo}]`, JSON.stringify(h)));
+  console.log(`Após dedupe interno: ${deduped.after}`);
+  console.log(`Por planilha: B=${deduped.by_sheet.B} JSI=${deduped.by_sheet.JSI} P=${deduped.by_sheet.P}`);
+  if (deduped.homonyms.length) {
+    console.log(`Homônimos: ${deduped.homonyms.length}`);
   }
 
-  console.log(`\n===== RESUMO =====\n${report.join('\n')}\nTotal único: ${merged.after}`);
+  console.log(`\n===== RESUMO =====\n${report.join('\n')}\nTotal: ${deduped.after}`);
 
-  if (!merged.records.length) {
+  if (!deduped.records.length) {
     console.error('\n⛔ Nenhum registro baixado do OneDrive.');
     process.exit(1);
   }
@@ -218,19 +216,20 @@ async function main() {
   const payload = {
     meta: {
       generated_at: new Date().toISOString(),
-      source: 'OneDrive (B + JSI + P, merge com homônimos)',
+      source: 'OneDrive (B + JSI + P, filas segregadas)',
       sheets_raw: report,
       raw_total: rawTotal,
-      migrations_collapsed: merged.dropped.length,
-      homonym_warnings: merged.homonyms.length,
-      homonyms: merged.homonyms.slice(0, 50),
-      total: merged.after,
+      duplicates_removed: deduped.duplicates_removed,
+      homonym_warnings: deduped.homonyms.length,
+      homonyms: deduped.homonyms.slice(0, 50),
+      by_sheet: deduped.by_sheet,
+      total: deduped.after,
     },
-    records: merged.records,
+    records: deduped.records,
   };
   mkdirSync(dirname(OUT) || '.', { recursive: true });
   writeFileSync(OUT, JSON.stringify(payload, null, 2), 'utf-8');
-  console.log(`\n💾 ${OUT} atualizado com ${merged.after} registros únicos.`);
+  console.log(`\n💾 ${OUT} atualizado com ${deduped.after} registros (${deduped.by_sheet.B} B + ${deduped.by_sheet.JSI} JSI + ${deduped.by_sheet.P} P).`);
 }
 
 main().catch((e) => { console.error(e); process.exit(1); });
