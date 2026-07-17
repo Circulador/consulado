@@ -14,13 +14,14 @@ Repositório: [github.com/Circulador/consulado](https://github.com/Circulador/co
 
 ---
 
-## Como usar (2–3 cliques)
+## Como usar (1–2 cliques)
 
-1. **Escolha sua fila** — Balcão (B), JSI ou Pendências (P)
-2. **Busque** sua sigla ou data de entrega (ex.: `RGC`, `11/08/2025`)
-3. **Veja** posição, dias de espera, probabilidades e gráficos estatísticos
+1. **Digite** sua sigla ou data de entrega na busca da página inicial (ex.: `RGC`, `11/08/2025`)
+2. **Clique** no seu processo — resultado imediato com posição, probabilidades e gráficos
 
-Cada planilha é uma **fila independente**. Quem está no Balcão não compete na fila JSI, e vice-versa.
+A busca procura **nas 3 filas ao mesmo tempo** e abre automaticamente a planilha correta (B, JSI ou P). Filtros opcionais: só aguardando, ou fila específica.
+
+Cada planilha é uma **fila independente** — estatísticas sempre só da planilha do seu processo.
 
 ---
 
