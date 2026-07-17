@@ -231,6 +231,12 @@ details.advanced summary{cursor:pointer;font-weight:600;font-size:13px;color:var
 .speed-line{font-size:12.5px;color:var(--txt2);padding:10px 14px;background:var(--panel2);border-radius:10px;border-left:3px solid var(--salvia);line-height:1.5}
 .speed-line b{color:var(--txt)}
 .forecast-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:4px 0}
+.forecast-disclaimer{font-size:11.5px;color:var(--txt3);margin:0 0 8px;line-height:1.45}
+.hero-synth .hs-caveat{font-size:11.5px;color:var(--amber);display:block;margin-top:6px;font-weight:600}
+.methodology{font-size:12.5px;color:var(--txt2);line-height:1.6}
+.methodology h6{font-size:12px;color:var(--txt);margin:14px 0 6px;font-weight:700}
+.methodology ul{margin:0 0 8px 18px;padding:0}
+.methodology li{margin:4px 0}
 .fc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center}
 .fc.fc-main{border-color:var(--accent);background:var(--accent-soft)}
 .fc .fc-l{font-size:11px;font-weight:700;text-transform:uppercase;color:var(--txt2)}
@@ -262,7 +268,7 @@ details.advanced summary{cursor:pointer;font-weight:600;font-size:13px;color:var
 .hm-cell.l3{background:rgba(200,90,40,.95);border-color:rgba(200,90,40,.5)}
 .hm-legend{display:flex;align-items:center;gap:6px;font-size:10px;color:var(--txt3);margin-top:10px}
 .hm-legend .hm-cell{width:12px;height:12px}
-@media(max-width:800px){.kh-grid,.forecast-row{grid-template-columns:1fr 1fr}}
+@media(max-width:800px){.kh-grid,.forecast-row{grid-template-columns:1fr}}
 @media(max-width:480px){.kh-grid,.forecast-row{grid-template-columns:1fr}}
 .hero-synth{background:linear-gradient(135deg,rgba(200,90,40,.12),rgba(107,143,113,.1));border:1px solid var(--accent);border-radius:12px;padding:14px 16px;font-size:14px;line-height:1.55;color:var(--txt)}
 .hero-synth b{color:var(--accent)}.hero-synth .hs-sep{color:var(--txt3);margin:0 4px}.hero-synth .hs-hint{font-size:11.5px;color:var(--txt3);display:block;margin-top:4px}
@@ -744,20 +750,22 @@ function queueEvolutionSeries(pid) {
 
 function forecastHtml(P) {
   var mainDate = P.hybrid ? mesAno(P.hybrid.date) : mesAno(P.real.date);
-  return '<div class="forecast-row print-zone">' +
-    '<div class="fc scen-cons"><div class="fc-l">🕐 Conservador</div><div class="fc-d">' + mesAno(P.cons.date) + '</div><div class="fc-s">+' + P.cons.d + ' dias · ~' + (P.consRate || Math.max(Math.round((P.thrSem || 1) * 0.7), 1)) + '/mês</div></div>' +
-    '<div class="fc fc-main"><div class="fc-l">🎯 Híbrido (posição+KM)</div><div class="fc-d">' + mainDate + '</div><div class="fc-s">+' + (P.hybrid ? P.hybrid.d : P.real.d) + ' dias · posição ' + mesAno(P.real.date) + '</div></div>' +
-    '<div class="fc scen-opt"><div class="fc-l">🚀 Otimista</div><div class="fc-d">' + mesAno(P.opt.date) + '</div><div class="fc-s">+' + P.opt.d + ' dias · ~' + P.thrPico + '/mês</div></div></div>';
+  return '<p class="forecast-disclaimer print-zone">⚠️ <b>Não são previsões garantidas</b> — três cenários calculados a partir de dados incompletos e fila não-FIFO. Use como referência, não como certeza.</p>' +
+    '<div class="forecast-row print-zone">' +
+    '<div class="fc scen-cons"><div class="fc-l">🕐 1 · Conservador</div><div class="fc-d">' + mesAno(P.cons.date) + '</div><div class="fc-s">+' + P.cons.d + ' dias · ritmo lento (~' + (P.consRate || Math.max(Math.round((P.thrSem || 1) * 0.7), 1)) + '/mês)</div></div>' +
+    '<div class="fc fc-main"><div class="fc-l">🎯 2 · Híbrido (indicativo)</div><div class="fc-d">' + mainDate + '</div><div class="fc-s">+' + (P.hybrid ? P.hybrid.d : P.real.d) + ' dias · média posição+KM</div></div>' +
+    '<div class="fc scen-opt"><div class="fc-l">🚀 3 · Otimista</div><div class="fc-d">' + mesAno(P.opt.date) + '</div><div class="fc-s">+' + P.opt.d + ' dias · ritmo alto (~' + P.thrPico + '/mês)</div></div></div>';
 }
 
 function heroSynthHtml(P) {
   var d6 = new Date(TODAY.getTime() + 180 * 864e5);
   var probTxt = P.prob6m != null ? fmtPct(P.prob6m) + ' até ' + mesAno(d6) : '—';
   var main = P.hybrid ? P.hybrid : P.real;
-  return '<div class="hero-synth print-zone">📍 <b>Estimativa principal:</b> ' + mesAno(main.date) +
-    ' <span class="hs-sep">·</span> ' + probTxt + ' de chance nos próximos 6 meses (KM)' +
+  return '<div class="hero-synth print-zone">📍 <b>Estimativa indicativa (não oficial):</b> ' + mesAno(main.date) +
+    ' <span class="hs-sep">·</span> ' + probTxt + ' de chance nos próximos 6 meses (KM, condicional)' +
     (P.prob12m != null ? ' <span class="hs-sep">·</span> ' + fmtPct(P.prob12m) + ' em 12 meses' : '') +
-    (P.hybrid && P.hybrid.kmRemain != null ? '<span class="hs-hint">Combina fila (+' + P.real.d + 'd) e mediana KM (+' + P.hybrid.kmRemain + 'd restantes)</span>' : '') + '</div>';
+    (P.hybrid && P.hybrid.kmRemain != null ? '<span class="hs-hint">Cenário híbrido: média entre fila (+' + P.real.d + 'd) e histórico KM (+' + P.hybrid.kmRemain + 'd restantes até mediana)</span>' : '') +
+    '<span class="hs-caveat">Nenhum número aqui é garantia de data — a fila não é FIFO e os dados são voluntários.</span></div>';
 }
 
 function qualityBannerHtml(pid) {
@@ -792,28 +800,73 @@ function saveVisitSnapshot(x, P) {
   visitSave(snap);
 }
 
+function extractNomeTokens(nome) {
+  return normNome(nome).replace(/\([^)]*\)/g, ' ').split(/\s+E\s+|\s*-\s*|\//).map(function (p) {
+    return p.trim();
+  }).filter(function (p) { return p.length >= 3; });
+}
+
+function nomesRelacionados(a, b) {
+  if (a === b) return false;
+  var na = normNome(a), nb = normNome(b);
+  if (na === nb) return false;
+  if (na.indexOf(nb) >= 0 || nb.indexOf(na) >= 0) return true;
+  var ta = extractNomeTokens(a), tb = extractNomeTokens(b), i;
+  for (i = 0; i < ta.length; i++) {
+    if (tb.indexOf(ta[i]) >= 0) return true;
+  }
+  return false;
+}
+
+function isGrupoPlanilha(g) {
+  if (!g || g === '-') return false;
+  if (/^\d+$/.test(String(g).trim())) return false;
+  if (/^(JSI|P|B)$/i.test(String(g).trim())) return false;
+  return true;
+}
+
 function relatedProcessesHtml(x, pid) {
   var pool = sheetPool(pid);
   var related = [], seen = {};
-  function add(r) {
+  function add(r, motivo) {
     var k = recordKey(r);
     if (seen[k] || (r.nome === x.nome && r.entrega === x.entrega)) return;
     seen[k] = 1;
+    r._relMotivo = motivo;
     related.push(r);
   }
-  if (x.grupo && x.grupo !== '-') pool.forEach(function (r) { if (r.grupo === x.grupo) add(r); });
-  var base = normNome(x.nome).replace(/\s*\([^)]*\)\s*/g, '').split('-')[0].trim();
-  if (base.length >= 2) {
+  pool.forEach(function (r) {
+    if (r.entrega === x.entrega && nomesRelacionados(x.nome, r.nome)) add(r, 'mesma entrega · sigla');
+  });
+  pool.forEach(function (r) {
+    if (r.entrega !== x.entrega && nomesRelacionados(x.nome, r.nome)) add(r, 'sigla compartilhada');
+  });
+  if (isGrupoPlanilha(x.grupo)) {
     pool.forEach(function (r) {
-      var nn = normNome(r.nome);
-      if ((nn.indexOf(base) === 0 || nn.indexOf(base + ' ') === 0) && r.nome !== x.nome) add(r);
+      if (r.grupo === x.grupo && r.entrega === x.entrega) add(r, 'grupo ' + x.grupo);
     });
   }
   if (!related.length) return '';
-  return '<div class="related-proc"><div class="rel-title">👨‍👩‍👧 Processos relacionados (grupo / família)</div>' +
-    related.slice(0, 8).map(function (r) {
-      return '<div class="rel-row"><span>' + (r.done ? '✅' : '⏳') + '</span><b>' + r.nome + '</b> · ' + fmt(r.dEntrega) + (r.grupo && r.grupo !== '-' ? ' · ' + r.grupo : '') + '</div>';
+  return '<div class="related-proc"><div class="rel-title">👨‍👩‍👧 Possível mesmo requerente / entrega conjunta</div>' +
+    '<div class="rel-note" style="font-size:11px;color:var(--txt3);margin-bottom:8px">Só por sigla ou mesma data de entrega — a coluna “grupo” da planilha (ex.: JSI) <b>não</b> indica família.</div>' +
+    related.slice(0, 6).map(function (r) {
+      return '<div class="rel-row"><span>' + (r.done ? '✅' : '⏳') + '</span><b>' + r.nome + '</b> · ' + fmt(r.dEntrega) +
+        ' <span style="color:var(--txt3);font-size:10px">(' + r._relMotivo + ')</span></div>';
     }).join('') + '</div>';
+}
+
+function methodologyHtml(pid) {
+  return '<div class="methodology">' +
+    '<p><b>Esta ferramenta não afirma datas com 100% de certeza.</b> Todos os números são estimativas estatísticas sobre dados voluntários e incompletos.</p>' +
+    '<h6>Posição na fila</h6><ul><li>Ordenação por <b>data de entrega</b> na planilha ' + pid + '.</li><li>Não é FIFO: processos com entrega posterior podem ser resolvidos antes (lotes, prioridades internas).</li></ul>' +
+    '<h6>Cenários de forecast (da esquerda para a direita)</h6><ul>' +
+    '<li><b>1 · Conservador</b> — posição ÷ ritmo lento (70% da média de resoluções dos últimos 6 meses). Cenário “se a fila desacelerar”.</li>' +
+    '<li><b>2 · Híbrido (indicativo)</b> — média aritmética entre: (a) dias até sua posição com throughput dos últimos 3 meses; (b) dias restantes até a mediana Kaplan-Meier dos resolvidos. Não é previsão única — é ponto central entre fila e histórico.</li>' +
+    '<li><b>3 · Otimista</b> — posição ÷ pico mensal recente (melhor mês dos últimos 6). Cenário “se mantiver o ritmo máximo observado”.</li></ul>' +
+    '<h6>Kaplan-Meier (probabilidades)</h6><ul><li>Curva de sobrevivência dos tempos já observados nesta fila.</li><li>P(concluir em X meses) é <b>condicional</b>: dado que você já esperou N dias, qual a chance de sair nos próximos X dias — com base no passado, não em promessa.</li><li>Mediana KM ≈ dia em que metade dos casos históricos já tinha sido resolvida.</li></ul>' +
+    '<h6>Throughput e gráficos</h6><ul><li>Resoluções mensais: janela móvel dos últimos 12 meses.</li><li>Evolução da fila: entradas, saídas e backlog por mês.</li><li>Heatmap/hazard: picos ~270–300d na B sugerem despachos em lote, não calendário fixo.</li></ul>' +
+    '<h6>Processos “relacionados”</h6><ul><li>Listamos só quem compartilha <b>sigla</b> (ex.: RGC e RGC IRMÃOS) ou <b>mesma data de entrega</b>.</li><li>O campo <b>grupo</b> da planilha (valores como JSI, 1, 2) é anotação interna da comunidade — <b>não</b> usamos JSI/P/B como critério de família.</li></ul>' +
+    '<h6>Limitações importantes</h6><ul><li>Dados não cobrem 100% dos processos do consulado.</li><li>Homônimos (mesma sigla, pessoas diferentes) podem confundir a busca.</li><li>Regime de lote, pendências e mudanças internas do consulado não estão modelados.</li><li>Somente o <a href="https://consriodejaneiro.esteri.it/" target="_blank" rel="noopener">Consulado</a> tem informação oficial.</li></ul></div>';
 }
 
 function percentileContextHtml(pid, userDays) {
@@ -1447,7 +1500,8 @@ function select(x) {
     '<div class="chart-block"><h5>Risco de resolução (hazard)</h5><div class="chart-cap">Picos indicam janelas de lote — barras vermelhas ≈ 270–300d na B</div><div class="chartbox"><canvas id="cHazard"></canvas></div></div>' +
     '<div class="chart-block"><h5>Distribuição de tempos (resolvidos)</h5><div class="chart-cap">Quantos processos levaram cada faixa de dias nesta planilha</div><div class="chartbox"><canvas id="cHist"></canvas></div></div>' +
     '</div></details>';
-  html += '<details class="chart-fold"><summary>ℹ️ Metodologia e limitações</summary><div class="chart-inner"><div class="disc" style="margin:0"><ul><li>Dados voluntários só da planilha <b>' + pid + '</b>.</li><li>Forecast híbrido: posição ÷ throughput + mediana Kaplan-Meier.</li><li>Não substitui consulta oficial ao Consulado.</li></ul><p class="report-link">Dados divergentes? <a href="' + REPORT_ISSUE_URL + '" target="_blank" rel="noopener">Reportar divergência no GitHub</a></p></div></div></details>';
+  html += '<details class="chart-fold"><summary>ℹ️ Metodologia e limitações</summary><div class="chart-inner">' + methodologyHtml(pid) +
+    '<p class="report-link">Dados divergentes? <a href="' + REPORT_ISSUE_URL + '" target="_blank" rel="noopener">Reportar divergência no GitHub</a></p></div></details>';
   html += '</div>';
   res.innerHTML = html;
   showSheetContext();
