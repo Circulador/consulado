@@ -1,13 +1,13 @@
 {
   "meta": {
-    "generated_at": "2026-07-17T12:49:38.692Z",
+    "generated_at": "2026-07-17T12:57:24.075Z",
     "source": "OneDrive (B + JSI + P)",
     "sheets": [
       "B: 194",
-      "JSI: 150",
-      "P: 0"
+      "JSI: 149",
+      "P: 18"
     ],
-    "total": 343
+    "total": 361
   },
   "records": [
     {
@@ -2753,6 +2753,150 @@
       "resol": null,
       "planilha": "JSI",
       "origem": "JSI"
+    },
+    {
+      "entrega": "2024-10-24",
+      "nome": "JSP - RPR",
+      "grupo": "CMP",
+      "resol": null,
+      "planilha": "P",
+      "origem": "P"
+    },
+    {
+      "entrega": "2025-07-14",
+      "nome": "MS",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "P",
+      "origem": "P"
+    },
+    {
+      "entrega": "2025-07-14",
+      "nome": "NSS - ISIS",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "P",
+      "origem": "P"
+    },
+    {
+      "entrega": "2025-07-24",
+      "nome": "SRG",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "P",
+      "origem": "P"
+    },
+    {
+      "entrega": "2025-08-04",
+      "nome": "JS",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "P",
+      "origem": "P"
+    },
+    {
+      "entrega": "2025-08-14",
+      "nome": "SB-TK",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "P",
+      "origem": "P"
+    },
+    {
+      "entrega": "2024-10-14",
+      "nome": "WA-BRR",
+      "grupo": "JSI",
+      "resol": null,
+      "planilha": "P",
+      "origem": "P"
+    },
+    {
+      "entrega": "2025-09-08",
+      "nome": "NNG",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "P",
+      "origem": "P"
+    },
+    {
+      "entrega": "2025-06-18",
+      "nome": "LCR",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "P",
+      "origem": "P"
+    },
+    {
+      "entrega": "2025-12-08",
+      "nome": "JT",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "P",
+      "origem": "P"
+    },
+    {
+      "entrega": "2025-12-09",
+      "nome": "JPPC",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "P",
+      "origem": "P"
+    },
+    {
+      "entrega": "2025-12-09",
+      "nome": "MB",
+      "grupo": "2",
+      "resol": null,
+      "planilha": "P",
+      "origem": "P"
+    },
+    {
+      "entrega": "2026-06-17",
+      "nome": "VCC",
+      "grupo": "-",
+      "resol": null,
+      "planilha": "P",
+      "origem": "P"
+    },
+    {
+      "entrega": "2025-12-31",
+      "nome": "CPR",
+      "grupo": "-",
+      "resol": null,
+      "planilha": "P",
+      "origem": "P"
+    },
+    {
+      "entrega": "2026-06-16",
+      "nome": "GSBG",
+      "grupo": "-",
+      "resol": null,
+      "planilha": "P",
+      "origem": "P"
+    },
+    {
+      "entrega": "2026-04-14",
+      "nome": "VS",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "P",
+      "origem": "P"
+    },
+    {
+      "entrega": "2026-06-25",
+      "nome": "LBDS FAKLTA SEDEX",
+      "grupo": "-",
+      "resol": null,
+      "planilha": "P",
+      "origem": "P"
+    },
+    {
+      "entrega": "2026-05-18",
+      "nome": "ISPL. FALTA DATA SEDEX",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "P",
+      "origem": "P"
     }
   ]
 }
