@@ -555,7 +555,7 @@ function mergeMigratingRecords(records){
     if(bs.length>1){var ds={};for(i=0;i<bs.length;i++)ds[bs[i].entrega]=1;if(Object.keys(ds).length>1)homonyms.push({nome:nome,tipo:'homonimo_B',registros:bs.length,entregas:bs.map(function(x){return x.entrega;})});}
     var pairedB={};
     for(j=0;j<jsis.length;j++){
-      candidates=[];for(i=0;i<bs.length;i++){b=bs[i];if(!pairedB[recordIdMerge(b)]&&!toDrop[recordIdMerge(b)]&&b.entrega<jsis[j].entrega)candidates.push(b);}
+      candidates=[];for(i=0;i<bs.length;i++){b=bs[i];if(!pairedB[recordIdMerge(b)]&&!toDrop[recordIdMerge(b)]&&(b.entrega<jsis[j].entrega||(b.resol&&b.entrega<=jsis[j].entrega)))candidates.push(b);}
       if(!candidates.length)continue;
       if(candidates.length===1)best=candidates[0];
       else{
