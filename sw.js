@@ -1,5 +1,5 @@
-// Service Worker — Consultor de Fila (v12 — heatmap + analise avancada)
-const CACHE = 'fila-consulado-v12';
+// Service Worker — Consultor de Fila (v13 — notificacoes + melhorias)
+const CACHE = 'fila-consulado-v13';
 const CORE = ['./', './index.html', './icon-192.png', './icon-512.png', './icon-512-maskable.png', './manifest.json'];
 
 self.addEventListener('install', e => {
@@ -15,6 +15,20 @@ self.addEventListener('activate', e => {
   );
 });
 
+self.addEventListener('message', e => {
+  if (!e.data || e.data.type !== 'notify') return;
+  const title = e.data.title || 'Consultor de Fila';
+  const body = e.data.body || '';
+  e.waitUntil(
+    self.registration.showNotification(title, {
+      body,
+      icon: './icon-192.png',
+      badge: './icon-192.png',
+      tag: 'fila-' + Date.now()
+    })
+  );
+});
+
 self.addEventListener('fetch', e => {
   const q = e.request;
   if (q.method !== 'GET') return;
@@ -25,7 +39,6 @@ self.addEventListener('fetch', e => {
   const isHTML = p === '/' || p.endsWith('/') || p.endsWith('/index.html');
   const isData = p.endsWith('/dados.json') || p.endsWith('/insights.json');
 
-  // HTML e dados dinâmicos: SEMPRE rede primeiro, sem cache velho.
   if (isHTML || isData) {
     e.respondWith(
       fetch(q, { cache: 'no-store' })
@@ -34,7 +47,6 @@ self.addEventListener('fetch', e => {
     return;
   }
 
-  // Demais assets (ícones, etc.): rede primeiro, atualizando o cache.
   e.respondWith(
     fetch(q).then(r => {
       const c = r.clone();

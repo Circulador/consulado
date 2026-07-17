@@ -264,6 +264,27 @@ details.advanced summary{cursor:pointer;font-weight:600;font-size:13px;color:var
 .hm-legend .hm-cell{width:12px;height:12px}
 @media(max-width:800px){.kh-grid,.forecast-row{grid-template-columns:1fr 1fr}}
 @media(max-width:480px){.kh-grid,.forecast-row{grid-template-columns:1fr}}
+.hero-synth{background:linear-gradient(135deg,rgba(200,90,40,.12),rgba(107,143,113,.1));border:1px solid var(--accent);border-radius:12px;padding:14px 16px;font-size:14px;line-height:1.55;color:var(--txt)}
+.hero-synth b{color:var(--accent)}.hero-synth .hs-sep{color:var(--txt3);margin:0 4px}.hero-synth .hs-hint{font-size:11.5px;color:var(--txt3);display:block;margin-top:4px}
+.visit-delta{font-size:12.5px;color:var(--salvia);padding:8px 12px;background:rgba(107,143,113,.1);border-radius:9px;border-left:3px solid var(--salvia);line-height:1.5}
+.homonym-warn{background:rgba(206,43,55,.12);border:1px solid rgba(206,43,55,.35);border-left:4px solid var(--it-rosso);border-radius:10px;padding:11px 14px;font-size:12.5px;color:var(--txt);line-height:1.5;margin-bottom:4px}
+.freshness-chip{font-size:11px;color:var(--txt3)}.freshness-chip.stale{color:var(--amber)}.freshness-chip.old{color:var(--it-rosso)}
+.quality-warn{font-size:12px;color:var(--txt2);padding:9px 12px;background:var(--panel2);border-radius:9px;border-left:3px solid var(--amber);line-height:1.45}
+.related-proc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.rel-title{font-size:12px;font-weight:600;color:var(--txt2);margin-bottom:8px}
+.rel-row{font-size:12px;color:var(--txt2);padding:5px 0;display:flex;gap:8px;align-items:center}
+.rel-row b{color:var(--txt)}
+.done-next{font-size:13px;color:var(--txt2);margin-top:12px;line-height:1.5}
+.watch-btn{background:var(--panel2);border:1px solid var(--line);color:var(--txt2);border-radius:9px;padding:9px 14px;font-size:13px;font-weight:600;cursor:pointer}
+.watch-btn.on{background:rgba(107,143,113,.15);border-color:var(--salvia);color:var(--salvia)}
+.report-link{font-size:12px;color:var(--txt3);margin-top:8px}.report-link a{color:var(--accent)}
+.sug-homonym{padding:8px 12px;font-size:11.5px;color:var(--it-rosso);background:rgba(206,43,55,.08);border-bottom:1px solid var(--line)}
+@media print{
+  html.print-brief .side,html.print-brief .navtoggle,html.print-brief .nav-overlay,html.print-brief .back-btn,html.print-brief .searchbox,html.print-brief .suggestions,html.print-brief .act-row,html.print-brief .chip-row,html.print-brief .queue-fold,html.print-brief .favPanel,html.print-brief .top button,html.print-brief .official-header,html.print-brief .naooficial-banner,html.print-brief .app-footer,html.print-brief details.chart-fold,html.print-brief .neighbors,html.print-brief .legalbox,html.print-brief .visit-delta,html.print-brief .quality-warn,html.print-brief .related-proc{display:none!important}
+  html.print-brief .charts-main .chart-block:not(#forecastBlock){display:none!important}
+  html.print-brief .main{padding:0}
+  html.print-brief body{background:#fff;color:#111}
+}
 .pos-honest{font-size:11.5px;color:var(--txt3);margin-top:4px;line-height:1.45}
 .sheet-note{font-size:12px;color:var(--txt2);padding:10px 12px;background:var(--panel2);border-radius:9px;border-left:3px solid var(--accent);line-height:1.5}
 details.chart-fold{border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden}
@@ -315,8 +336,8 @@ details.chart-fold .chartbox-km{height:200px}
 <button class="side-install" id="sideInstall" onclick="promptInstall()">📲 Instalar app</button>
 </aside>
 <main class="main">
-<div class="top"><div><h2 id="mainTitle">Consultor de Expectativa</h2><div class="meta"><span class="upd-chip">🔄 <b id="sf-date">—</b> · <span id="sf-source">carregando...</span></span></div></div>
-<div style="display:flex;gap:10px;flex-wrap:wrap"><button class="instbtn" id="topInstall" onclick="promptInstall()">📲 Instalar</button><button class="themebtn" id="themeToggle" onclick="toggleTheme()">🌙 Tema escuro</button><button class="dlbtn" onclick="window.print()">⬇️ Imprimir / PDF</button></div></div>
+<div class="top"><div><h2 id="mainTitle">Consultor de Expectativa</h2><div class="meta"><span class="upd-chip">🔄 <b id="sf-date">—</b> · <span id="sf-source">carregando...</span></span> <span class="freshness-chip" id="freshnessChip"></span></div></div>
+<div style="display:flex;gap:10px;flex-wrap:wrap"><button class="instbtn" id="topInstall" onclick="promptInstall()">📲 Instalar</button><button class="themebtn" id="themeToggle" onclick="toggleTheme()">🌙 Tema escuro</button><button class="dlbtn" onclick="printBrief()">⬇️ Resumo PDF</button></div></div>
 
 <div id="view-buscar">
 <div class="searchbox home-search"><h3>🔍 Busque seu processo</h3><p>Digite sua <b>sigla</b> ou <b>data de entrega</b> — busca em todas as filas de uma vez.</p>
@@ -363,6 +384,7 @@ details.chart-fold .chartbox-km{height:200px}
 <div class="panel"><h4>ℹ️ Sobre este consultor</h4>
 <p style="color:var(--txt2);font-size:12.5px;line-height:1.6;margin-bottom:12px">Ferramenta colaborativa da comunidade de cidadania italiana (RJ/ES). Cada fila usa <b>somente os dados da sua planilha</b> — sem mesclar etapas.</p>
 <div class="info-block"><b>📊 B — Balcão</b> — fila até e-mail "Já sou Italiano"<br><b>🇮🇹 JSI</b> — fila até e-mail PEC de finalização consular<br><b>📎 P — Pendências</b> — fila SEDEX após envio de pendência</div>
+<p style="font-size:12px;margin:12px 0"><a href="https://github.com/Circulador/consulado/issues/new?labels=dados" target="_blank" rel="noopener">Reportar divergência nos dados</a></p>
 <div class="sheet-links">
 <a class="sheet-link" href="https://1drv.ms/x/c/ba23482b38fbdc1e/EVyxoIPnz65Du-mLBAl7CuUBOsLybUkq3f-TJiOIyW9HBA?e=frZ3Ms" target="_blank" rel="noopener"><div class="sl-t">📊 Planilha B</div><div class="sl-d">Balcão — até JSI</div></a>
 <a class="sheet-link" href="https://1drv.ms/x/c/ba23482b38fbdc1e/ETkw9cQ64L5Ko2WicjOlg04BiOc1mm4MLMiqKWcidPm6iA?e=4zXpjS" target="_blank" rel="noopener"><div class="sl-t">🇮🇹 Planilha JSI</div><div class="sl-d">Até PEC consular</div></a>
@@ -397,6 +419,12 @@ var SHEET_LABELS = {
 var SHEET_ICONS = { B: '📊', JSI: '🇮🇹', P: '📎' };
 var INSIGHTS = null;
 var DATA_LEGACY_MERGE = false;
+var DATA_META = {};
+var HOMONYM_MAP = {};
+var REPORT_ISSUE_URL = 'https://github.com/Circulador/consulado/issues/new?labels=dados&title=Reportar%20diverg%C3%AAncia%20na%20planilha';
+var VISIT_KEY = 'fila_visit_snap';
+var NOTIFY_KEY = 'fila_notify_watch';
+var MONTHS_SHORT = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
 var LAST_SOURCE = '';
 var activeSheet = null;
 var activeFilter = 'todos';
@@ -458,6 +486,65 @@ function median(arr) {
 
 function mc(stats, y, m) { return stats.monthCounts[y + '-' + p2(m)] || 0; }
 
+function rollingMonthKeys(count, fromDate) {
+  fromDate = fromDate || TODAY;
+  var end = new Date(fromDate.getFullYear(), fromDate.getMonth(), 1);
+  var out = [], i;
+  for (i = count - 1; i >= 0; i--) {
+    var d = new Date(end.getFullYear(), end.getMonth() - i, 1);
+    out.push({ y: d.getFullYear(), m: d.getMonth() + 1, key: d.getFullYear() + '-' + p2(d.getMonth() + 1), label: MONTHS_SHORT[d.getMonth()] + '/' + String(d.getFullYear()).slice(2) });
+  }
+  return out;
+}
+
+function computeRollingThroughput(monthCounts) {
+  var m3 = rollingMonthKeys(3), m6 = rollingMonthKeys(6), m12 = rollingMonthKeys(12);
+  function sum(months) { return months.reduce(function (a, m) { return a + (monthCounts[m.key] || 0); }, 0); }
+  var thrMedTrim = Math.max(Math.round(sum(m3) / 3), 1);
+  var thrSem = Math.max(Math.round(sum(m6) / 6), 1);
+  var thrPico = 1;
+  m6.forEach(function (m) { thrPico = Math.max(thrPico, monthCounts[m.key] || 0); });
+  return { thrPico: thrPico, thrMedTrim: thrMedTrim, thrSem: thrSem, consRate: Math.max(Math.round(thrSem * 0.7), 1), months12: m12 };
+}
+
+function setDataMeta(meta) {
+  DATA_META = meta || {};
+  HOMONYM_MAP = {};
+  (DATA_META.homonyms || []).forEach(function (h) {
+    HOMONYM_MAP[h.planilha + '|' + normNome(h.nome)] = h;
+  });
+  updateFreshnessChip();
+}
+
+function updateFreshnessChip() {
+  var el = document.getElementById('freshnessChip');
+  if (!el || !DATA_META.generated_at) { if (el) el.textContent = ''; return; }
+  var m = String(DATA_META.generated_at).match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (!m) { el.textContent = ''; return; }
+  var gen = new Date(+m[1], +m[2] - 1, +m[3]);
+  var age = days(gen, TODAY);
+  el.textContent = '· planilha há ' + age + ' dia' + (age === 1 ? '' : 's');
+  el.classList.toggle('stale', age >= 3 && age < 7);
+  el.classList.toggle('old', age >= 7);
+}
+
+function homonymFor(nome, sheet) {
+  var k = (sheet || '') + '|' + normNome(nome);
+  if (HOMONYM_MAP[k]) return HOMONYM_MAP[k];
+  var found = null;
+  Object.keys(HOMONYM_MAP).forEach(function (key) {
+    if (key.split('|')[1] === normNome(nome)) found = HOMONYM_MAP[key];
+  });
+  return found;
+}
+
+function homonymBannerHtml(nome, sheet) {
+  var h = homonymFor(nome, sheet);
+  if (!h) return '';
+  var dates = (h.entregas || []).map(function (e) { return isoToBR(e); }).join(', ');
+  return '<div class="homonym-warn">⚠️ Sigla <b>' + h.nome + '</b> usada por <b>' + h.registros + '</b> pessoas na fila ' + h.planilha + '. Confirme pela <b>data de entrega</b>: ' + dates + '.</div>';
+}
+
 function enrichSheet(pid) {
   var pool = sheetPool(pid);
   pool.forEach(function (x) {
@@ -475,9 +562,7 @@ function enrichSheet(pid) {
     var k = x.dResol.getFullYear() + '-' + p2(x.dResol.getMonth() + 1);
     monthCounts[k] = (monthCounts[k] || 0) + 1;
   });
-  var thrPico = Math.max(mc({ monthCounts: monthCounts }, 2026, 5), mc({ monthCounts: monthCounts }, 2026, 6), 1);
-  var thrMedTrim = Math.max(Math.round((mc({ monthCounts: monthCounts }, 2026, 4) + mc({ monthCounts: monthCounts }, 2026, 5) + mc({ monthCounts: monthCounts }, 2026, 6)) / 3), 1);
-  var thrSem = Math.max(Math.round((mc({ monthCounts: monthCounts }, 2026, 1) + mc({ monthCounts: monthCounts }, 2026, 2) + mc({ monthCounts: monthCounts }, 2026, 3) + mc({ monthCounts: monthCounts }, 2026, 4) + mc({ monthCounts: monthCounts }, 2026, 5) + mc({ monthCounts: monthCounts }, 2026, 6)) / 6), 1);
+  var roll = computeRollingThroughput(monthCounts);
   SHEET_STATS[pid] = {
     resolved: resolved,
     waiting: waiting,
@@ -485,9 +570,11 @@ function enrichSheet(pid) {
     media: resTimes.length ? Math.round(resTimes.reduce(function (a, b) { return a + b; }, 0) / resTimes.length) : 0,
     mediana: resTimes.length ? Math.round(median(resTimes)) : 0,
     monthCounts: monthCounts,
-    thrPico: thrPico,
-    thrMedTrim: thrMedTrim,
-    thrSem: thrSem
+    thrPico: roll.thrPico,
+    thrMedTrim: roll.thrMedTrim,
+    thrSem: roll.thrSem,
+    consRate: roll.consRate,
+    months12: roll.months12
   };
 }
 
@@ -499,6 +586,7 @@ function enrich() {
   renderFavs();
   renderCommunityView();
   if (activeSheet) renderSheetStats(activeSheet);
+  runNotificationCheck();
 }
 
 function partitionAndApply(records) {
@@ -531,12 +619,22 @@ function computeProjection(x) {
     var d = Math.round(ahead / Math.max(rate, 1) * 30.44);
     return { d: d, date: new Date(TODAY.getTime() + d * 864e5) };
   }
+  var opt = eta(st.thrPico || 1);
+  var real = eta(st.thrMedTrim || 1);
+  var cons = eta(st.consRate || Math.max(Math.round((st.thrSem || 1) * 0.7), 1));
+  var kmMed = getKmMedian(pid);
+  var kmRemain = kmMed != null ? Math.max(0, kmMed - x.espera) : null;
+  var hybridDays = kmRemain != null ? Math.round(real.d * 0.5 + kmRemain * 0.5) : real.d;
+  var hybridDate = new Date(TODAY.getTime() + hybridDays * 864e5);
+  var prob6m = probConcludeWithin(pid, x.espera, 180);
+  var prob12m = probConcludeWithin(pid, x.espera, 365);
   return {
     pos: pos, ahead: ahead, aheadResolved: aheadResolved, frontTotal: frontTotal,
     pctFrontDone: pctFrontDone, aheadResolved90: aheadResolved90,
-    opt: eta(st.thrPico || 1), real: eta(st.thrMedTrim || 1),
-    cons: eta(Math.max(Math.round((st.thrSem || 1) * 0.7), 1)),
-    total: waiting.length, thrPico: st.thrPico, thrMedTrim: st.thrMedTrim, thrSem: st.thrSem,
+    opt: opt, real: real, cons: cons,
+    hybrid: { d: hybridDays, date: hybridDate, kmRemain: kmRemain },
+    prob6m: prob6m, prob12m: prob12m,
+    total: waiting.length, thrPico: st.thrPico, thrMedTrim: st.thrMedTrim, thrSem: st.thrSem, consRate: st.consRate,
     pid: pid
   };
 }
@@ -588,7 +686,7 @@ function kmHorizonTable(pid, waited) {
 
 function renderKmHorizonsHtml(pid, waited) {
   var rows = kmHorizonTable(pid, waited);
-  return '<div class="km-horizons"><div class="kh-title">Chance de conclusão nos próximos meses (Kaplan-Meier · condicional a ' + waited + ' dias já esperados)</div><div class="kh-grid">' +
+  return '<div class="km-horizons print-zone"><div class="kh-title">Chance de conclusão nos próximos meses (Kaplan-Meier · condicional a ' + waited + ' dias já esperados)</div><div class="kh-grid">' +
     rows.map(function (r) {
       return '<div class="kh-cell"><div class="kh-l">' + r.label + '</div><div class="kh-v">' + (r.cum != null ? r.cum + '%' : '—') + '</div></div>';
     }).join('') + '</div></div>';
@@ -645,10 +743,77 @@ function queueEvolutionSeries(pid) {
 }
 
 function forecastHtml(P) {
-  return '<div class="forecast-row">' +
-    '<div class="fc scen-cons"><div class="fc-l">🕐 Conservador</div><div class="fc-d">' + mesAno(P.cons.date) + '</div><div class="fc-s">+' + P.cons.d + ' dias · ~' + Math.max(Math.round((P.thrSem || 1) * 0.7), 1) + '/mês</div></div>' +
-    '<div class="fc fc-main"><div class="fc-l">🎯 Cenário esperado</div><div class="fc-d">' + mesAno(P.real.date) + '</div><div class="fc-s">+' + P.real.d + ' dias · ~' + P.thrMedTrim + '/mês</div></div>' +
+  var mainDate = P.hybrid ? mesAno(P.hybrid.date) : mesAno(P.real.date);
+  return '<div class="forecast-row print-zone">' +
+    '<div class="fc scen-cons"><div class="fc-l">🕐 Conservador</div><div class="fc-d">' + mesAno(P.cons.date) + '</div><div class="fc-s">+' + P.cons.d + ' dias · ~' + (P.consRate || Math.max(Math.round((P.thrSem || 1) * 0.7), 1)) + '/mês</div></div>' +
+    '<div class="fc fc-main"><div class="fc-l">🎯 Híbrido (posição+KM)</div><div class="fc-d">' + mainDate + '</div><div class="fc-s">+' + (P.hybrid ? P.hybrid.d : P.real.d) + ' dias · posição ' + mesAno(P.real.date) + '</div></div>' +
     '<div class="fc scen-opt"><div class="fc-l">🚀 Otimista</div><div class="fc-d">' + mesAno(P.opt.date) + '</div><div class="fc-s">+' + P.opt.d + ' dias · ~' + P.thrPico + '/mês</div></div></div>';
+}
+
+function heroSynthHtml(P) {
+  var d6 = new Date(TODAY.getTime() + 180 * 864e5);
+  var probTxt = P.prob6m != null ? fmtPct(P.prob6m) + ' até ' + mesAno(d6) : '—';
+  var main = P.hybrid ? P.hybrid : P.real;
+  return '<div class="hero-synth print-zone">📍 <b>Estimativa principal:</b> ' + mesAno(main.date) +
+    ' <span class="hs-sep">·</span> ' + probTxt + ' de chance nos próximos 6 meses (KM)' +
+    (P.prob12m != null ? ' <span class="hs-sep">·</span> ' + fmtPct(P.prob12m) + ' em 12 meses' : '') +
+    (P.hybrid && P.hybrid.kmRemain != null ? '<span class="hs-hint">Combina fila (+' + P.real.d + 'd) e mediana KM (+' + P.hybrid.kmRemain + 'd restantes)</span>' : '') + '</div>';
+}
+
+function qualityBannerHtml(pid) {
+  var n = ((SHEET_STATS[pid] || {}).resolved || []).length;
+  if (n >= 40) return '';
+  var msg = n < 15
+    ? 'Poucos resolvidos (' + n + ') — forecast e KM menos confiáveis nesta fila.'
+    : 'Amostra moderada (' + n + ' resolvidos) — considere cenários conservador e otimista.';
+  return '<div class="quality-warn">ℹ️ ' + msg + '</div>';
+}
+
+function visitLoad() { try { return JSON.parse(localStorage.getItem(VISIT_KEY) || '{}'); } catch (e) { return {}; } }
+function visitSave(o) { try { localStorage.setItem(VISIT_KEY, JSON.stringify(o)); } catch (e) {} }
+
+function visitDeltaHtml(x, P) {
+  var prev = visitLoad()[recordKey(x)];
+  if (!prev) return '';
+  var parts = [];
+  var posDelta = prev.pos - P.pos;
+  if (posDelta > 0) parts.push('você avançou <b>' + posDelta + '</b> posição(ões)');
+  else if (posDelta < 0) parts.push('sua posição recuou <b>' + Math.abs(posDelta) + '</b> (novas entregas na fila)');
+  var dayDelta = x.espera - prev.espera;
+  if (dayDelta > 0) parts.push('+' + dayDelta + ' dias de espera');
+  if (prev.dataGen && DATA_META.generated_at && prev.dataGen !== DATA_META.generated_at) parts.push('planilha atualizada');
+  if (!parts.length) return '';
+  return '<div class="visit-delta">📈 Desde a última visita: ' + parts.join(' · ') + '</div>';
+}
+
+function saveVisitSnapshot(x, P) {
+  var snap = visitLoad();
+  snap[recordKey(x)] = { pos: P.pos, espera: x.espera, dataGen: DATA_META.generated_at || '', ts: Date.now() };
+  visitSave(snap);
+}
+
+function relatedProcessesHtml(x, pid) {
+  var pool = sheetPool(pid);
+  var related = [], seen = {};
+  function add(r) {
+    var k = recordKey(r);
+    if (seen[k] || (r.nome === x.nome && r.entrega === x.entrega)) return;
+    seen[k] = 1;
+    related.push(r);
+  }
+  if (x.grupo && x.grupo !== '-') pool.forEach(function (r) { if (r.grupo === x.grupo) add(r); });
+  var base = normNome(x.nome).replace(/\s*\([^)]*\)\s*/g, '').split('-')[0].trim();
+  if (base.length >= 2) {
+    pool.forEach(function (r) {
+      var nn = normNome(r.nome);
+      if ((nn.indexOf(base) === 0 || nn.indexOf(base + ' ') === 0) && r.nome !== x.nome) add(r);
+    });
+  }
+  if (!related.length) return '';
+  return '<div class="related-proc"><div class="rel-title">👨‍👩‍👧 Processos relacionados (grupo / família)</div>' +
+    related.slice(0, 8).map(function (r) {
+      return '<div class="rel-row"><span>' + (r.done ? '✅' : '⏳') + '</span><b>' + r.nome + '</b> · ' + fmt(r.dEntrega) + (r.grupo && r.grupo !== '-' ? ' · ' + r.grupo : '') + '</div>';
+    }).join('') + '</div>';
 }
 
 function percentileContextHtml(pid, userDays) {
@@ -668,8 +833,8 @@ function percentileContextHtml(pid, userDays) {
 function neighborsHtml(x, P) {
   var waiting = (SHEET_STATS[P.pid] || {}).waiting || [];
   var idx = P.pos - 1;
-  var start = Math.max(0, idx - 15);
-  var end = Math.min(waiting.length, idx + 16);
+  var start = Math.max(0, idx - 30);
+  var end = Math.min(waiting.length, idx + 31);
   var rows = [], i;
   for (i = start; i < end; i++) {
     var w = waiting[i];
@@ -1107,12 +1272,31 @@ function search(q) {
 function renderSug() {
   if (!input || !sug) return;
   var list = search(input.value);
+  var homonymNote = '';
+  if (input.value.trim()) {
+    var byNome = {};
+    list.forEach(function (x) {
+      var n = normNome(x.nome);
+      if (!byNome[n]) byNome[n] = [];
+      byNome[n].push(x);
+    });
+    Object.keys(byNome).forEach(function (n) {
+      var g = byNome[n];
+      if (g.length > 1 && new Set(g.map(function (x) { return x.entrega; })).size > 1) {
+        homonymNote = homonymBannerHtml(g[0].nome, planilhaDe(g[0]));
+      }
+    });
+    if (!homonymNote) {
+      var h = homonymFor(input.value.trim(), activeSheet);
+      if (h && list.length > 1) homonymNote = homonymBannerHtml(h.nome, h.planilha);
+    }
+  }
   if (!list.length) {
-    sug.innerHTML = '<div class="sug"><span class="nm" style="color:var(--txt3)">Nenhum processo encontrado' + (activeSheet ? ' na fila ' + activeSheet : '') + '</span></div>';
+    sug.innerHTML = (homonymNote || '') + '<div class="sug"><span class="nm" style="color:var(--txt3)">Nenhum processo encontrado' + (activeSheet ? ' na fila ' + activeSheet : '') + '</span></div>';
     sug.classList.add('show');
     return;
   }
-  sug.innerHTML = list.map(function (x) {
+  sug.innerHTML = (homonymNote || '') + list.map(function (x) {
     var st = x.done ? '<span class="st done">Resolvido</span>' : '<span class="st wait">Aguardando</span>';
     var pid = planilhaDe(x);
     return '<div class="sug" data-nome="' + encodeURIComponent(x.nome) + '" data-ent="' + x.entrega + '" data-sheet="' + pid + '"><div><div class="nm">' + x.nome + ' ' + planilhaTag(pid) + '</div><div class="dt">' + fmt(x.dEntrega) + '</div></div>' + st + '</div>';
@@ -1178,12 +1362,27 @@ window.clearSearch = clearSearch;
 function renderDone(x) {
   var pid = planilhaDe(x);
   var st = SHEET_STATS[pid] || {};
+  var desc = INSIGHTS && INSIGHTS.descritivas && INSIGHTS.descritivas[pid];
   var kmMed = getKmMedian(pid) || st.mediana || '—';
+  var percLabel = '—';
+  if (desc && desc.p50) {
+    if (x.espera < desc.p25) percLabel = 'Mais rápido que ~75% dos casos';
+    else if (x.espera <= desc.p75) percLabel = 'Dentro do típico (p25–p75)';
+    else if (x.espera <= desc.p90) percLabel = 'Acima da mediana, abaixo do p90';
+    else percLabel = 'Mais lento que 90% dos resolvidos';
+  }
+  var nextMap = { B: 'JSI', JSI: null, P: null };
+  var next = nextMap[pid];
+  var nextHtml = next
+    ? '<p class="done-next">Próxima etapa: acompanhe na fila <b>' + next + '</b> após o e-mail correspondente.</p>'
+    : '<p class="done-next">Etapa concluída nesta fila.</p>';
   var res = document.getElementById('result');
-  res.innerHTML = '<div class="onepage"><div class="donebox"><span class="em">✅</span><h3>Processo concluído nesta fila</h3><p style="font-size:14px">' + x.nome + ' · ' + fmt(x.dEntrega) + ' → ' + fmt(x.dResol) + '</p>' +
+  res.innerHTML = '<div class="onepage print-zone"><div class="donebox"><span class="em">✅</span><h3>Processo concluído nesta fila</h3><p style="font-size:14px">' + x.nome + ' · ' + fmt(x.dEntrega) + ' → ' + fmt(x.dResol) + '</p>' +
     '<div class="kpis3" style="margin-top:16px"><div class="kpi g"><div class="l">Tempo total</div><div class="v">' + x.espera + '</div><div class="s">dias</div></div>' +
     '<div class="kpi a"><div class="l">Mediana KM fila</div><div class="v">' + kmMed + '</div><div class="s">dias (histórico)</div></div>' +
-    '<div class="kpi w"><div class="l">Média resolvidos</div><div class="v">' + (st.media || '—') + '</div><div class="s">dias</div></div></div></div></div>';
+    '<div class="kpi w"><div class="l">Seu percentil</div><div class="v" style="font-size:15px">' + percLabel + '</div><div class="s">vs. resolvidos · média ' + (st.media || '—') + 'd</div></div></div>' +
+    nextHtml +
+    '<button class="share-btn" style="margin-top:14px" onclick="showView(\'jornada\')">🗺️ Registrar na Minha jornada</button></div></div>';
   afterSelect(x);
 }
 
@@ -1209,12 +1408,18 @@ function select(x) {
   var regime = inferRegime(x, pid);
   var overtaken = countOvertaken(x);
   var fifo = getFifoInfo(pid);
+  var advOpen = pid === 'B' && x.espera >= 240 && x.espera <= 310;
+  var homonym = homonymBannerHtml(x.nome, pid);
   var html = '<div class="onepage">';
-  html += '<div class="posb"><div class="num">' + P.pos + 'º</div><div class="txt"><b>' + x.nome + '</b> ' + planilhaTag(pid) +
+  if (homonym) html += homonym;
+  html += '<div class="posb print-zone"><div class="num">' + P.pos + 'º</div><div class="txt"><b>' + x.nome + '</b> ' + planilhaTag(pid) +
     '<p>Entrega ' + fmt(x.dEntrega) + ' · <b>' + x.espera + ' dias</b> aguardando · ' + P.ahead + ' à frente · ' + P.total + ' na fila</p>' +
     '<p class="pos-honest">Ordem por data de entrega — não é FIFO' +
     (fifo ? ' (~' + fifo.pct_inversao + '% invertem)' : '') + ' · regime: <b>' + regime.label + '</b></p></div>' +
     '<div class="progress"><i style="width:' + pctAhead + '%"></i><span>~' + pctAhead + '% da fila atrás de você</span></div></div>';
+  html += heroSynthHtml(P);
+  html += visitDeltaHtml(x, P);
+  html += qualityBannerHtml(pid);
   if (overtaken > 0) {
     html += '<div class="warn-fifo">⚠️ <b>' + overtaken + '</b> com entrega posterior à sua já foram resolvidos — posição por data não garante ordem de saída.</div>';
   }
@@ -1222,6 +1427,7 @@ function select(x) {
   html += forecastHtml(P);
   html += renderKmHorizonsHtml(pid, x.espera);
   html += percentileContextHtml(pid, x.espera);
+  html += relatedProcessesHtml(x, pid);
   if (pid === 'B') {
     var LIMITE = 730, pctLegal = Math.min(Math.round(x.espera / LIMITE * 100), 100), rest = LIMITE - x.espera;
     var dataLim = new Date(x.dEntrega.getTime() + LIMITE * 864e5);
@@ -1229,24 +1435,26 @@ function select(x) {
     var note = rest < 0 ? '<b style="color:#ff6b6b">Prazo legal ultrapassado</b> em ' + Math.abs(rest) + ' dias.' : 'Restam <b>' + rest + '</b> dias (limite ' + fmt(dataLim) + ').';
     html += '<div class="legalbox"><h4>⚖️ Prazo legal (730 dias — só Balcão)</h4><div class="legalbar"><i style="width:' + pctLegal + '%;background:' + cor + '"></i><span>' + x.espera + ' / 730 dias</span></div><div class="legal-note">' + note + '</div></div>';
   }
-  html += '<div class="charts-main charts-stack">' +
+  html += '<div class="charts-main charts-stack print-zone">' +
     '<div class="chart-block"><h5>1 · Evolução da fila</h5><div class="chart-cap">Aguardando, entradas e concluídos por mês</div><div class="chartbox chartbox-km"><canvas id="cEvolucao"></canvas></div></div>' +
-    '<div class="chart-block"><h5>2 · Taxa de resolução mensal</h5><div class="chart-cap">Quantos processos saíram da fila a cada mês</div><div class="chartbox"><canvas id="cVazao"></canvas></div></div>' +
-    '<div class="chart-block"><h5>3 · Curva Kaplan-Meier</h5><div class="chart-cap">★ você · ponto verde = mediana histórica</div><div class="chartbox chartbox-km"><canvas id="cKM"></canvas></div></div>' +
+    '<div class="chart-block" id="forecastBlock"><h5>2 · Linha do tempo (forecast)</h5><div class="chart-cap">Dias até cada cenário a partir de hoje</div><div class="chartbox"><canvas id="cForecast"></canvas></div></div>' +
+    '<div class="chart-block"><h5>3 · Taxa de resolução mensal</h5><div class="chart-cap">Últimos 12 meses (janela móvel)</div><div class="chartbox"><canvas id="cVazao"></canvas></div></div>' +
+    '<div class="chart-block"><h5>4 · Curva Kaplan-Meier</h5><div class="chart-cap">★ você · ponto verde = mediana histórica</div><div class="chartbox chartbox-km"><canvas id="cKM"></canvas></div></div>' +
     '</div>';
   html += neighborsHtml(x, P);
-  html += '<details class="chart-fold" id="advancedCharts"><summary>🔬 Análise avançada</summary><div class="chart-inner charts-stack">' +
+  html += '<details class="chart-fold" id="advancedCharts"' + (advOpen ? ' open' : '') + '><summary>🔬 Análise avançada' + (advOpen ? ' (regime de lote — expandido)' : '') + '</summary><div class="chart-inner charts-stack">' +
     resolutionHeatmapHtml(pid) +
     '<div class="chart-block"><h5>Risco de resolução (hazard)</h5><div class="chart-cap">Picos indicam janelas de lote — barras vermelhas ≈ 270–300d na B</div><div class="chartbox"><canvas id="cHazard"></canvas></div></div>' +
     '<div class="chart-block"><h5>Distribuição de tempos (resolvidos)</h5><div class="chart-cap">Quantos processos levaram cada faixa de dias nesta planilha</div><div class="chartbox"><canvas id="cHist"></canvas></div></div>' +
     '</div></details>';
-  html += '<details class="chart-fold"><summary>ℹ️ Metodologia e limitações</summary><div class="chart-inner"><div class="disc" style="margin:0"><ul><li>Dados voluntários só da planilha <b>' + pid + '</b>.</li><li>Forecast por posição ÷ throughput; KM por histórico de tempos.</li><li>Não substitui consulta oficial ao Consulado.</li></ul></div></div></details>';
+  html += '<details class="chart-fold"><summary>ℹ️ Metodologia e limitações</summary><div class="chart-inner"><div class="disc" style="margin:0"><ul><li>Dados voluntários só da planilha <b>' + pid + '</b>.</li><li>Forecast híbrido: posição ÷ throughput + mediana Kaplan-Meier.</li><li>Não substitui consulta oficial ao Consulado.</li></ul><p class="report-link">Dados divergentes? <a href="' + REPORT_ISSUE_URL + '" target="_blank" rel="noopener">Reportar divergência no GitHub</a></p></div></div></details>';
   html += '</div>';
   res.innerHTML = html;
   showSheetContext();
   drawCharts(x, P);
-  setupAdvancedCharts(x, P);
+  setupAdvancedCharts(x, P, advOpen);
   afterSelect(x);
+  saveVisitSnapshot(x, P);
   setUrlParams({ sheet: activeSheet, proc: x.nome });
 }
 
@@ -1273,15 +1481,37 @@ function drawCharts(x, P) {
   }
   var st = SHEET_STATS[pid] || {};
   var mcMap = st.monthCounts || {};
-  function gmc(y, m) { return mcMap[y + '-' + p2(m)] || 0; }
-  var labels = ['ago/25', 'set/25', 'out/25', 'nov/25', 'dez/25', 'jan/26', 'fev/26', 'mar/26', 'abr/26', 'mai/26', 'jun/26', 'jul/26'];
-  var vals = [gmc(2025, 8), gmc(2025, 9), gmc(2025, 10), gmc(2025, 11), gmc(2025, 12), gmc(2026, 1), gmc(2026, 2), gmc(2026, 3), gmc(2026, 4), gmc(2026, 5), gmc(2026, 6), gmc(2026, 7)];
+  var months12 = st.months12 || rollingMonthKeys(12);
+  var labels = months12.map(function (m) { return m.label; });
+  var vals = months12.map(function (m) { return mcMap[m.key] || 0; });
   var cv = document.getElementById('cVazao');
   if (cv) {
     addChart(cv, {
       type: 'bar',
       data: { labels: labels, datasets: [{ label: 'Resoluções', data: vals, backgroundColor: ct.terra, borderRadius: 5 }] },
       options: baseChartOpts(ct)
+    });
+  }
+  var cFc = document.getElementById('cForecast');
+  if (cFc && P.hybrid) {
+    var hDays = P.hybrid.d;
+    addChart(cFc, {
+      type: 'line',
+      data: {
+        labels: ['Hoje', 'Meta'],
+        datasets: [
+          { label: 'Conservador (+' + P.cons.d + 'd)', data: [0, P.cons.d], borderColor: ct.amber, borderDash: [6, 4], tension: 0, pointRadius: 4 },
+          { label: 'Posição (+' + P.real.d + 'd)', data: [0, P.real.d], borderColor: ct.terra, tension: 0, pointRadius: 4 },
+          { label: 'Híbrido KM (+' + hDays + 'd)', data: [0, hDays], borderColor: ct.marker, borderWidth: 2.5, tension: 0, pointRadius: 5 },
+          { label: 'Otimista (+' + P.opt.d + 'd)', data: [0, P.opt.d], borderColor: ct.salvia, borderDash: [3, 3], tension: 0, pointRadius: 4 }
+        ]
+      },
+      options: (function () {
+        var o = baseChartOpts(ct);
+        o.scales.x = { ticks: { color: ct.txt }, grid: { color: ct.grid } };
+        o.scales.y.title = { display: true, text: 'Dias a partir de hoje', color: ct.txt };
+        return o;
+      })()
     });
   }
   var km = kmSeriesFromInsights(pid);
@@ -1364,14 +1594,15 @@ function drawAdvancedCharts(x, P) {
   }
 }
 
-function setupAdvancedCharts(x, P) {
+function setupAdvancedCharts(x, P, advOpen) {
   var det = document.getElementById('advancedCharts');
   if (!det) return;
   function tryRender() {
     if (det.open) drawAdvancedCharts(x, P);
   }
   det.addEventListener('toggle', tryRender);
-  tryRender();
+  if (advOpen) tryRender();
+  else tryRender();
 }
 
 function setStatus(m) { var el = document.getElementById('upStatus'); if (el) el.textContent = m; }
@@ -1499,6 +1730,7 @@ function loadFromDadosJson() {
     var brDate = br.length === 3 ? (br[2] + '/' + br[1] + '/' + br[0]) : fmt(new Date());
     var src = (payload.meta && payload.meta.source) ? payload.meta.source : 'dados.json';
     var isLegacyMerge = /merge/i.test(src) || ((payload.meta && payload.meta.migrations_collapsed) > 0);
+    setDataMeta(payload.meta || {});
     showLegacyMergeWarn(isLegacyMerge);
     if (applyRecordsFromAll(bySheet, src, brDate)) return 'json';
     throw new Error('apply');
@@ -1571,6 +1803,10 @@ function loadFromDadosJson() {
     if (location.search.indexOf('nojson=1') >= 0) return;
     setTimeout(function () { refreshData(false); }, 600);
     setInterval(function () { refreshData(false); }, REFRESH_MS);
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden) runNotificationCheck();
+    });
+    setInterval(runNotificationCheck, 30 * 60 * 1000);
   });
 })();
 
@@ -1596,6 +1832,96 @@ function toggleFav(nome, entrega, sheet) {
   if (b) { var on = isFav({ nome: nome, entrega: entrega, planilha: sheet }); b.className = 'fav-btn' + (on ? ' on' : ''); b.innerHTML = on ? '⭐ Favorito' : '☆ Favoritar'; }
 }
 window.toggleFav = toggleFav;
+
+function notifyWatchLoad() { try { return JSON.parse(localStorage.getItem(NOTIFY_KEY) || '[]'); } catch (e) { return []; } }
+function notifyWatchSave(a) { try { localStorage.setItem(NOTIFY_KEY, JSON.stringify(a)); } catch (e) {} }
+
+function isWatching(x) { return notifyWatchLoad().indexOf(recordKey(x)) >= 0; }
+
+function toggleWatch(nome, entrega, sheet) {
+  var x = { nome: nome, entrega: entrega, planilha: sheet };
+  var key = recordKey(x);
+  var a = notifyWatchLoad();
+  var i = a.indexOf(key);
+  function refreshBtn() {
+    var b = document.getElementById('watchBtn');
+    if (b) {
+      var on = a.indexOf(key) >= 0;
+      b.className = 'watch-btn' + (on ? ' on' : '');
+      b.innerHTML = on ? '🔔 Avisos ativos' : '🔕 Avisar mudanças';
+    }
+  }
+  if (i >= 0) {
+    a.splice(i, 1);
+    notifyWatchSave(a);
+    toast('Avisos desativados');
+    refreshBtn();
+    return;
+  }
+  function enable() {
+    a.push(key);
+    notifyWatchSave(a);
+    var rec = sheetPool(sheet).find(function (d) { return d.nome === nome && d.entrega === entrega; });
+    if (rec && !rec.done) {
+      var P = computeProjection(rec);
+      saveVisitSnapshot(rec, P);
+    }
+    toast('🔔 Avisos ativados — avisamos se a posição mudar');
+    refreshBtn();
+  }
+  if ('Notification' in window && Notification.permission === 'default') {
+    Notification.requestPermission().then(function (p) { if (p === 'granted') enable(); else toast('Permissão negada'); });
+    return;
+  }
+  if ('Notification' in window && Notification.permission === 'denied') {
+    toast('Notificações bloqueadas — libere nas configurações do navegador');
+    return;
+  }
+  enable();
+}
+window.toggleWatch = toggleWatch;
+
+function showAppNotification(title, body) {
+  var opts = { body: body, icon: './icon-192.png', badge: './icon-192.png' };
+  if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+    navigator.serviceWorker.controller.postMessage({ type: 'notify', title: title, body: body });
+    return;
+  }
+  if ('Notification' in window && Notification.permission === 'granted') {
+    try { new Notification(title, opts); } catch (e) {}
+  }
+}
+
+function runNotificationCheck() {
+  if (!('Notification' in window) || Notification.permission !== 'granted') return;
+  var watch = notifyWatchLoad();
+  if (!watch.length) return;
+  var snaps = visitLoad();
+  var changed = false;
+  watch.forEach(function (key) {
+    var x = DATA.find(function (d) { return recordKey(d) === key; });
+    if (!x || x.done) return;
+    var prev = snaps[key];
+    if (!prev) return;
+    var P = computeProjection(x);
+    if (P.pos < prev.pos) {
+      showAppNotification('Fila ' + planilhaDe(x) + ' · ' + x.nome, 'Posição: ' + prev.pos + 'º → ' + P.pos + 'º');
+      snaps[key] = { pos: P.pos, espera: x.espera, dataGen: DATA_META.generated_at || '', ts: Date.now() };
+      changed = true;
+    } else if (DATA_META.generated_at && prev.dataGen && prev.dataGen !== DATA_META.generated_at) {
+      showAppNotification('Planilha atualizada · ' + x.nome, 'Fila ' + planilhaDe(x) + ' — confira sua posição (' + P.pos + 'º)');
+      changed = true;
+    }
+  });
+  if (changed) visitSave(snaps);
+}
+
+function printBrief() {
+  document.documentElement.classList.add('print-brief');
+  window.print();
+  setTimeout(function () { document.documentElement.classList.remove('print-brief'); }, 800);
+}
+window.printBrief = printBrief;
 
 function renderFavs() {
   var el = document.getElementById('favList');
@@ -1660,10 +1986,13 @@ function afterSelect(x) {
   if (!res) return;
   var sh = planilhaDe(x);
   var on = isFav(x);
+  var watching = isWatching(x);
   var act = document.createElement('div');
   act.className = 'act-row';
   act.innerHTML = '<button id="favBtn" class="fav-btn' + (on ? ' on' : '') + '" onclick="toggleFav(\'' + x.nome.replace(/'/g, "\\'") + '\',\'' + x.entrega + '\',\'' + sh + '\')">' + (on ? '⭐ Favorito' : '☆ Favoritar') + '</button>' +
-    '<button class="share-btn" onclick="shareProc(\'' + x.nome.replace(/'/g, "\\'") + '\',\'' + sh + '\')">🔗 Compartilhar</button>';
+    '<button id="watchBtn" class="watch-btn' + (watching ? ' on' : '') + '" onclick="toggleWatch(\'' + x.nome.replace(/'/g, "\\'") + '\',\'' + x.entrega + '\',\'' + sh + '\')">' + (watching ? '🔔 Avisos ativos' : '🔕 Avisar mudanças') + '</button>' +
+    '<button class="share-btn" onclick="shareProc(\'' + x.nome.replace(/'/g, "\\'") + '\',\'' + sh + '\')">🔗 Compartilhar</button>' +
+    '<button class="fav-btn" onclick="printBrief()">🖨️ Resumo PDF</button>';
   res.insertBefore(act, res.firstChild);
 }
 

@@ -46,15 +46,18 @@ Links OneDrive (atualizados pela comunidade):
 ### Por fila (B, JSI ou P)
 
 - Busca global na home — detecta a fila automaticamente
-- **Card único** com posição, dias e progresso (sem KPIs duplicados)
-- **Forecast** em 3 cenários (conservador · esperado · otimista)
+- **Síntese em 1 linha** — estimativa híbrida (posição + KM) + probabilidades
+- **Forecast híbrido** em 3 cenários + gráfico de linha do tempo
 - **Kaplan-Meier** em horizontes de 3–18 meses + curva completa
-- **Evolução da fila** (aguardando, entradas, concluídos por mês)
-- **Taxa de resolução mensal** e velocímetro de ritmo
-- **Distribuição percentil** (p25–p90) com sua posição relativa
-- **Heatmap de resoluções** (calendário por dia, últimos 6 meses)
-- **Análise avançada** colapsável: hazard, histograma de tempos
-- Alerta FIFO e prazo legal 730d (só Balcão)
+- **Evolução da fila** e **taxa de resolução** (janela móvel 12 meses)
+- **Desde a última visita** — delta de posição e dias
+- **Aviso de homônimos** na busca (mesma sigla, datas diferentes)
+- **Heatmap**, hazard e histograma (análise avançada)
+- **Vizinhos ±30**, processos relacionados (grupo/família)
+- **Notificações PWA** ao favoritar com “Avisar mudanças”
+- **Resumo PDF** focado (hero + forecast + KM)
+- **Reportar divergência** via GitHub Issues
+- Indicador de **frescor dos dados** e aviso de amostra pequena
 
 ### Aba Comunidade
 
@@ -71,6 +74,16 @@ Panorama das 3 filas **sem somar totais** (são etapas diferentes):
 - **Minha jornada** — 16 etapas do agendamento até passaporte/CIE (salvo no navegador)
 - Exportar jornada em PDF
 - Tema claro/escuro · PWA (instalar como app)
+
+---
+
+## Testes
+
+```bash
+npm test
+```
+
+Valida dedupe/homônimos, throughput móvel, projeção híbrida e integridade de `dados.json` / `insights.json`. Roda no CI a cada push.
 
 ---
 

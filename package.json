@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "gerar-dados": "node scripts/gerar-dados.mjs"
+    "gerar-dados": "node scripts/gerar-dados.mjs",
+    "test": "node scripts/test-stats.mjs"
   },
   "dependencies": {
     "xlsx": "0.18.5"
