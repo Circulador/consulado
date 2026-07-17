@@ -124,6 +124,14 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 .queue-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0}
 .queue-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;cursor:pointer;transition:.15s;text-align:center}
 .queue-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 24px rgba(200,90,40,.12)}
+.queue-card.on{border-color:var(--accent);background:var(--accent-soft)}
+.home-search{margin-top:0}
+.chip-row{margin-top:12px;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.chip-label{font-size:12px;color:var(--txt3);margin-right:4px}
+details.queue-fold{border:1px solid var(--line);border-radius:12px;margin-top:18px;background:var(--panel2)}
+details.queue-fold summary{cursor:pointer;font-weight:600;font-size:13px;padding:12px 16px;color:var(--txt2);list-style:none}
+details.queue-fold summary::-webkit-details-marker{display:none}
+details.queue-fold .queue-grid{margin:0 16px 16px}
 .queue-card .qc-icon{font-size:32px}.queue-card .qc-title{font-size:14px;font-weight:700;margin:10px 0 4px}
 .queue-card .qc-sub{font-size:11.5px;color:var(--txt2);margin-bottom:12px;min-height:32px}
 .queue-card .qc-count{font-size:36px;font-weight:800;color:var(--accent)}.queue-card .qc-lbl{font-size:11px;color:var(--txt3)}
@@ -269,20 +277,17 @@ details.chart-fold .chartbox-km{height:200px}
 <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="instbtn" id="topInstall" onclick="promptInstall()">📲 Instalar</button><button class="themebtn" id="themeToggle" onclick="toggleTheme()">🌙 Tema escuro</button><button class="dlbtn" onclick="window.print()">⬇️ Imprimir / PDF</button></div></div>
 
 <div id="view-buscar">
-<div id="landing"><div class="landing-h"><h2>Onde você está?</h2><p>Escolha a fila da sua etapa — busca e estatísticas <b>só dessa planilha</b>.</p></div><div class="queue-grid" id="queueGrid"></div></div>
-<div id="sheetView" class="view-hidden">
-<button type="button" class="back-btn" onclick="backToLanding()">← Voltar às filas</button>
-<div id="activeSheetBadge"></div>
-<div id="sheetStats" class="sheet-stats"></div>
-<div id="legacyWarn" class="legacy-warn view-hidden"></div>
-<div class="up-actions" style="margin-bottom:12px"><button class="up-btn" type="button" onclick="refreshData(true)">🔄 Atualizar planilha</button></div>
-<div class="searchbox"><h3>🔍 Busque seu processo</h3><p>Digite sua <b>sigla</b> ou <b>data de entrega</b> nesta fila.</p>
+<div class="searchbox home-search"><h3>🔍 Busque seu processo</h3><p>Digite sua <b>sigla</b> ou <b>data de entrega</b> — busca em todas as filas de uma vez.</p>
 <div class="search-wrap"><input type="text" id="search" placeholder="Ex.: RGC, 11/08/2025..." autocomplete="off"><span class="search-ic">🔎</span><button type="button" class="search-clear" id="searchClear" onclick="clearSearch()" aria-label="Limpar">✕</button><div class="suggestions" id="suggestions"></div></div>
-<span class="chip on" data-f="todos">Todos</span><span class="chip" data-f="aguardando">Só aguardando</span></div>
-<div id="empty"><span class="em">🇮🇹</span><b>Busque seu processo acima</b><p style="margin-top:8px">Veja posição, previsão e ritmo só desta fila.</p></div>
+<div class="chip-row"><span class="chip on" data-f="todos">Todos</span><span class="chip" data-f="aguardando">Só aguardando</span></div>
+<div class="chip-row"><span class="chip-label">Filtrar fila:</span><span class="chip on" data-q="">Todas</span><span class="chip" data-q="B">📊 B</span><span class="chip" data-q="JSI">🇮🇹 JSI</span><span class="chip" data-q="P">📎 P</span></div></div>
+<div id="legacyWarn" class="legacy-warn view-hidden"></div>
+<div id="sheetContext" class="view-hidden"><div id="activeSheetBadge"></div><div id="sheetStats" class="sheet-stats"></div>
+<div class="up-actions" style="margin-bottom:12px"><button class="up-btn" type="button" onclick="refreshData(true)">🔄 Atualizar dados</button></div></div>
+<div id="empty"><span class="em">🇮🇹</span><b>Digite acima para buscar</b><p style="margin-top:8px">Resultado na hora — posição, probabilidades e gráficos da fila correta.</p></div>
 <div id="result"></div>
+<details class="queue-fold"><summary>📊 Resumo das 3 filas (opcional)</summary><div class="queue-grid" id="queueGrid"></div></details>
 <div class="panel" id="favPanel" style="margin-top:14px;display:none"><h4>⭐ Meus favoritos</h4><div class="fav-list" id="favList"></div></div>
-</div>
 </div>
 
 <div id="view-comunidade" class="view-hidden">
@@ -755,7 +760,8 @@ function renderQueueGrid() {
     var st = SHEET_STATS[pid] || {};
     var w = (st.waiting || []).length;
     var tot = (SHEETS[pid] || []).length;
-    return '<div class="queue-card" data-sheet="' + pid + '" onclick="pickSheet(\'' + pid + '\')">' +
+    var on = activeSheet === pid ? ' on' : '';
+    return '<div class="queue-card' + on + '" data-sheet="' + pid + '" onclick="filterQueue(\'' + pid + '\')">' +
       '<div class="qc-icon">' + SHEET_ICONS[pid] + '</div>' +
       '<div class="qc-title">' + pid + '</div>' +
       '<div class="qc-sub">' + SHEET_LABELS[pid] + '</div>' +
@@ -763,10 +769,57 @@ function renderQueueGrid() {
   }).join('');
 }
 
+function syncQueueFilterUI() {
+  document.querySelectorAll('.chip[data-q]').forEach(function (c) {
+    c.classList.toggle('on', (c.dataset.q || '') === (activeSheet || ''));
+  });
+  document.querySelectorAll('.queue-card').forEach(function (c) {
+    c.classList.toggle('on', c.dataset.sheet === activeSheet);
+  });
+}
+
+function showSheetContext() {
+  var el = document.getElementById('sheetContext');
+  if (!el) return;
+  if (!activeSheet) {
+    el.classList.add('view-hidden');
+    return;
+  }
+  el.classList.remove('view-hidden');
+  var badge = document.getElementById('activeSheetBadge');
+  if (badge) badge.innerHTML = '<span class="sheet-badge ' + activeSheet.toLowerCase() + '">' + SHEET_ICONS[activeSheet] + ' ' + SHEET_LABELS[activeSheet] + '</span>';
+  renderSheetStats(activeSheet);
+  showLegacyMergeWarn(DATA_LEGACY_MERGE);
+}
+
+function filterQueue(pid) {
+  activeSheet = pid;
+  syncQueueFilterUI();
+  showSheetContext();
+  document.getElementById('mainTitle').textContent = 'Consultor de Expectativa';
+  updateSidebar();
+  renderSug();
+  setUrlParams({ sheet: pid });
+  if (input) input.focus();
+}
+
+function filterQueueAll() {
+  activeSheet = null;
+  syncQueueFilterUI();
+  showSheetContext();
+  document.getElementById('mainTitle').textContent = 'Consultor de Expectativa';
+  updateSidebar();
+  renderSug();
+  setUrlParams({});
+}
+
+function pickSheet(pid) { filterQueue(pid); }
+
+function backToLanding() { clearSearch(); filterQueueAll(); }
+
 function renderSheetStats(pid) {
   var el = document.getElementById('sheetStats');
-  if (!el) return;
-  if (!pid) { el.innerHTML = ''; return; }
+  if (!el || !pid) { if (el) el.innerHTML = ''; return; }
   var st = SHEET_STATS[pid] || {};
   var tot = (SHEETS[pid] || []).length;
   var w = (st.waiting || []).length;
@@ -799,30 +852,6 @@ function showLegacyMergeWarn(show) {
   }
 }
 
-function pickSheet(pid) {
-  activeSheet = pid;
-  document.getElementById('landing').classList.add('view-hidden');
-  document.getElementById('sheetView').classList.remove('view-hidden');
-  var badge = document.getElementById('activeSheetBadge');
-  badge.innerHTML = '<span class="sheet-badge ' + pid.toLowerCase() + '">' + SHEET_ICONS[pid] + ' ' + SHEET_LABELS[pid] + '</span>';
-  renderSheetStats(pid);
-  showLegacyMergeWarn(DATA_LEGACY_MERGE);
-  document.getElementById('mainTitle').textContent = 'Fila ' + pid;
-  clearSearch();
-  updateSidebar();
-  setUrlParams({ sheet: pid });
-}
-
-function backToLanding() {
-  activeSheet = null;
-  document.getElementById('landing').classList.remove('view-hidden');
-  document.getElementById('sheetView').classList.add('view-hidden');
-  resetProcView();
-  document.getElementById('mainTitle').textContent = 'Consultor de Expectativa';
-  updateSidebar();
-  setUrlParams({});
-}
-
 function showView(name) {
   ['buscar', 'comunidade', 'jornada', 'links', 'sobre'].forEach(function (v) {
     var el = document.getElementById('view-' + v);
@@ -835,7 +864,7 @@ function showView(name) {
     document.getElementById('mainTitle').textContent = 'Panorama da comunidade';
     renderCommunityView();
   } else if (name === 'buscar') {
-    document.getElementById('mainTitle').textContent = activeSheet ? ('Fila ' + activeSheet) : 'Consultor de Expectativa';
+    document.getElementById('mainTitle').textContent = 'Consultor de Expectativa';
   } else if (name === 'jornada') {
     document.getElementById('mainTitle').textContent = 'Minha jornada';
   } else if (name === 'links') {
@@ -876,7 +905,7 @@ function updateStamp(dateStr, source) {
 var input = document.getElementById('search');
 var sug = document.getElementById('suggestions');
 
-function poolActive() { return activeSheet ? sheetPool(activeSheet) : []; }
+function poolActive() { return activeSheet ? sheetPool(activeSheet) : DATA; }
 
 function matchFilter(x) {
   if (activeFilter === 'todos') return true;
@@ -899,19 +928,21 @@ function renderSug() {
   if (!input || !sug) return;
   var list = search(input.value);
   if (!list.length) {
-    sug.innerHTML = '<div class="sug"><span class="nm" style="color:var(--txt3)">Nenhum processo nesta fila</span></div>';
+    sug.innerHTML = '<div class="sug"><span class="nm" style="color:var(--txt3)">Nenhum processo encontrado' + (activeSheet ? ' na fila ' + activeSheet : '') + '</span></div>';
     sug.classList.add('show');
     return;
   }
   sug.innerHTML = list.map(function (x) {
     var st = x.done ? '<span class="st done">Resolvido</span>' : '<span class="st wait">Aguardando</span>';
-    return '<div class="sug" data-nome="' + encodeURIComponent(x.nome) + '" data-ent="' + x.entrega + '"><div><div class="nm">' + x.nome + '</div><div class="dt">' + fmt(x.dEntrega) + '</div></div>' + st + '</div>';
+    var pid = planilhaDe(x);
+    return '<div class="sug" data-nome="' + encodeURIComponent(x.nome) + '" data-ent="' + x.entrega + '" data-sheet="' + pid + '"><div><div class="nm">' + x.nome + ' ' + planilhaTag(pid) + '</div><div class="dt">' + fmt(x.dEntrega) + '</div></div>' + st + '</div>';
   }).join('');
   sug.classList.add('show');
   Array.prototype.forEach.call(sug.querySelectorAll('.sug'), function (el) {
     if (!el.dataset.nome) return;
     el.onclick = function () {
-      var x = poolActive().find(function (d) { return d.nome === decodeURIComponent(el.dataset.nome) && d.entrega === el.dataset.ent; });
+      var sh = el.dataset.sheet;
+      var x = sheetPool(sh).find(function (d) { return d.nome === decodeURIComponent(el.dataset.nome) && d.entrega === el.dataset.ent; });
       if (x) select(x);
     };
   });
@@ -940,7 +971,6 @@ function clearSearch() {
   input.focus();
   renderSug();
 }
-window.clearSearch = clearSearch;
 
 if (input) {
   input.addEventListener('input', function () { updateClearBtn(); if (!input.value.trim()) resetProcView(); renderSug(); });
@@ -956,6 +986,13 @@ Array.prototype.forEach.call(document.querySelectorAll('.chip[data-f]'), functio
     renderSug();
   };
 });
+Array.prototype.forEach.call(document.querySelectorAll('.chip[data-q]'), function (c) {
+  c.onclick = function () {
+    if (c.dataset.q) filterQueue(c.dataset.q);
+    else filterQueueAll();
+  };
+});
+window.clearSearch = clearSearch;
 
 function renderDone(x) {
   var pid = planilhaDe(x);
@@ -970,7 +1007,12 @@ function renderDone(x) {
 }
 
 function select(x) {
-  if (!x || !activeSheet) return;
+  if (!x) return;
+  activeSheet = planilhaDe(x);
+  syncQueueFilterUI();
+  renderQueueGrid();
+  showSheetContext();
+  updateSidebar();
   input.value = x.nome;
   updateClearBtn();
   sug.classList.remove('show');
@@ -1355,9 +1397,9 @@ function renderFavs() {
     c.onclick = function (ev) {
       var nome = decodeURIComponent(c.dataset.n), ent = c.dataset.e, sh = c.dataset.s;
       if (ev.target.classList.contains('x')) { toggleFav(nome, ent, sh); return; }
-      if (activeSheet !== sh) pickSheet(sh);
+      showView('buscar');
       var x = sheetPool(sh).find(function (d) { return d.nome === nome && d.entrega === ent; });
-      if (x) { showView('buscar'); select(x); }
+      if (x) select(x);
     };
   });
 }
@@ -1426,12 +1468,22 @@ function openFromURL() {
   var sh = params.get('sheet');
   var proc = params.get('proc');
   if (sh && ['B', 'JSI', 'P'].indexOf(sh.toUpperCase()) >= 0) {
-    pickSheet(sh.toUpperCase());
+    activeSheet = sh.toUpperCase();
+    syncQueueFilterUI();
   }
-  if (proc && activeSheet) {
-    var x = sheetPool(activeSheet).find(function (d) { return d.nome.toLowerCase() === proc.toLowerCase(); }) ||
-      sheetPool(activeSheet).find(function (d) { return d.nome.toLowerCase().indexOf(proc.toLowerCase()) >= 0; });
+  if (proc) {
+    var pools = activeSheet ? [activeSheet] : ['B', 'JSI', 'P'];
+    var x = null, i, p;
+    for (i = 0; i < pools.length; i++) {
+      p = pools[i];
+      x = sheetPool(p).find(function (d) { return d.nome.toLowerCase() === proc.toLowerCase(); }) ||
+        sheetPool(p).find(function (d) { return d.nome.toLowerCase().indexOf(proc.toLowerCase()) >= 0; });
+      if (x) break;
+    }
     if (x) setTimeout(function () { select(x); }, 400);
+  } else if (activeSheet) {
+    showSheetContext();
+    updateSidebar();
   }
 }
 
