@@ -204,16 +204,6 @@ async function processSheet(sheet) {
   return recs;
 }
 
-function dedupeRecords(records) {
-  const seen = new Set();
-  return records.filter((r) => {
-    const key = `${r.planilha}|${r.entrega}|${r.nome.toLowerCase()}`;
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
-}
-
 async function main() {
   let all = [];
   const report = [];
