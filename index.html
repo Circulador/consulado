@@ -222,6 +222,36 @@ details.advanced summary{cursor:pointer;font-weight:600;font-size:13px;color:var
 .prob-box{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;text-align:center}
 .prob-box .pb-l{font-size:10.5px;color:var(--txt3);text-transform:uppercase}.prob-box .pb-v{font-size:22px;font-weight:800;color:var(--accent);margin:4px 0}
 .prob-box .pb-s{font-size:11px;color:var(--txt2)}
+.km-horizons{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:14px 16px}
+.km-horizons .kh-title{font-size:12px;color:var(--txt2);margin-bottom:10px;line-height:1.45}
+.kh-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.kh-cell{text-align:center;background:var(--panel2);border-radius:10px;padding:10px 6px}
+.kh-cell .kh-l{font-size:10px;color:var(--txt3);text-transform:uppercase}
+.kh-cell .kh-v{font-size:20px;font-weight:800;color:var(--accent);margin-top:4px}
+.speed-line{font-size:12.5px;color:var(--txt2);padding:10px 14px;background:var(--panel2);border-radius:10px;border-left:3px solid var(--salvia);line-height:1.5}
+.speed-line b{color:var(--txt)}
+.forecast-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:4px 0}
+.fc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center}
+.fc.fc-main{border-color:var(--accent);background:var(--accent-soft)}
+.fc .fc-l{font-size:11px;font-weight:700;text-transform:uppercase;color:var(--txt2)}
+.fc .fc-d{font-size:20px;font-weight:800;margin:6px 0 2px;color:var(--accent)}
+.fc .fc-s{font-size:11px;color:var(--txt3)}
+.pct-context{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.pct-title{font-size:12px;color:var(--txt2);margin-bottom:14px}
+.pct-track{position:relative;height:36px;background:var(--panel2);border-radius:8px;margin-top:28px}
+.pct-tick{position:absolute;top:-26px;transform:translateX(-50%);font-size:9px;color:var(--txt3);text-align:center;line-height:1.2}
+.pct-tick.med{color:var(--salvia);font-weight:700}
+.pct-you{position:absolute;top:50%;transform:translate(-50%,-50%);font-size:11px;font-weight:800;color:var(--it-rosso);white-space:nowrap}
+.neighbors{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.nb-title{font-size:12px;font-weight:600;margin-bottom:8px;color:var(--txt2)}
+.nb-list{max-height:180px;overflow-y:auto}
+.nb-row{display:flex;gap:10px;padding:6px 8px;border-radius:6px;font-size:12px;color:var(--txt2)}
+.nb-row.you{background:var(--accent-soft);color:var(--txt);font-weight:600}
+.nb-p{min-width:32px;color:var(--txt3)}.nb-n{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.nb-d{font-size:11px;color:var(--txt3)}
+.charts-main{margin-top:4px}
+.charts-main .chart-block{margin-bottom:0}
+@media(max-width:800px){.kh-grid,.forecast-row{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.kh-grid,.forecast-row{grid-template-columns:1fr}}
 .pos-honest{font-size:11.5px;color:var(--txt3);margin-top:4px;line-height:1.45}
 .sheet-note{font-size:12px;color:var(--txt2);padding:10px 12px;background:var(--panel2);border-radius:9px;border-left:3px solid var(--accent);line-height:1.5}
 details.chart-fold{border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden}
@@ -536,6 +566,107 @@ function getKmMedian(pid) {
 
 function fmtPct(p) { return p === null || p === undefined ? '—' : Math.round(p * 100) + '%'; }
 
+function kmHorizonTable(pid, waited) {
+  return [90, 180, 270, 365, 547].map(function (days, i) {
+    var labels = ['3 meses', '6 meses', '9 meses', '12 meses', '18 meses'];
+    var p = probConcludeWithin(pid, waited, days);
+    return { label: labels[i], cum: p !== null ? Math.round(p * 100) : null };
+  });
+}
+
+function renderKmHorizonsHtml(pid, waited) {
+  var rows = kmHorizonTable(pid, waited);
+  return '<div class="km-horizons"><div class="kh-title">Chance de conclusão nos próximos meses (Kaplan-Meier · condicional a ' + waited + ' dias já esperados)</div><div class="kh-grid">' +
+    rows.map(function (r) {
+      return '<div class="kh-cell"><div class="kh-l">' + r.label + '</div><div class="kh-v">' + (r.cum != null ? r.cum + '%' : '—') + '</div></div>';
+    }).join('') + '</div></div>';
+}
+
+function throughputSpeed(pid) {
+  var st = SHEET_STATS[pid] || {};
+  var mc = st.monthCounts || {};
+  var keys = Object.keys(mc).sort();
+  var recentKeys = keys.slice(-3);
+  var recentSum = recentKeys.reduce(function (a, k) { return a + mc[k]; }, 0);
+  var recent = recentKeys.length ? Math.round(recentSum / recentKeys.length * 10) / 10 : 0;
+  var hist = keys.length ? Math.round(keys.reduce(function (a, k) { return a + mc[k]; }, 0) / keys.length * 10) / 10 : 0;
+  var ins = INSIGHTS && INSIGHTS.throughput_mensal_3m && INSIGHTS.throughput_mensal_3m[pid];
+  if (ins != null) recent = ins;
+  return { recent: recent, hist: hist || recent };
+}
+
+function speedLineHtml(pid) {
+  var sp = throughputSpeed(pid);
+  var cmp = sp.recent >= sp.hist ? 'mais rápido' : (sp.recent < sp.hist * 0.85 ? 'mais lento' : 'similar');
+  var arrow = sp.recent >= sp.hist ? '↑' : '↓';
+  return '<div class="speed-line">⚡ Ritmo da fila ' + pid + ': <b>' + sp.recent + ' resoluções/mês</b> (últimos 3m) · média histórica <b>' + sp.hist + '/mês</b> — ' + arrow + ' ' + cmp + ' ao passado.</div>';
+}
+
+function queueEvolutionSeries(pid) {
+  var pool = sheetPool(pid);
+  if (!pool.length) return null;
+  pool.forEach(function (p) {
+    if (!p.dEntrega) { p.dEntrega = pd(p.entrega); p.dResol = p.resol ? pd(p.resol) : null; }
+  });
+  var minD = pool[0].dEntrega, i;
+  for (i = 1; i < pool.length; i++) if (pool[i].dEntrega < minD) minD = pool[i].dEntrega;
+  var cur = new Date(minD.getFullYear(), minD.getMonth(), 1);
+  var end = new Date(TODAY.getFullYear(), TODAY.getMonth(), 1);
+  var M = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+  var labels = [], entries = [], exits = [], waiting = [];
+  while (cur <= end) {
+    var mEnd = new Date(cur.getFullYear(), cur.getMonth() + 1, 0);
+    mEnd.setHours(23, 59, 59, 999);
+    labels.push(M[cur.getMonth()] + '/' + String(cur.getFullYear()).slice(2));
+    var ent = 0, ex = 0, wait = 0;
+    pool.forEach(function (p) {
+      if (p.dEntrega >= cur && p.dEntrega <= mEnd) ent++;
+      if (p.dResol && p.dResol >= cur && p.dResol <= mEnd) ex++;
+      if (p.dEntrega <= mEnd && (!p.dResol || p.dResol > mEnd)) wait++;
+    });
+    entries.push(ent);
+    exits.push(ex);
+    waiting.push(wait);
+    cur = new Date(cur.getFullYear(), cur.getMonth() + 1, 1);
+  }
+  return { labels: labels, entries: entries, exits: exits, waiting: waiting };
+}
+
+function forecastHtml(P) {
+  return '<div class="forecast-row">' +
+    '<div class="fc scen-cons"><div class="fc-l">🕐 Conservador</div><div class="fc-d">' + mesAno(P.cons.date) + '</div><div class="fc-s">+' + P.cons.d + ' dias · ~' + Math.max(Math.round((P.thrSem || 1) * 0.7), 1) + '/mês</div></div>' +
+    '<div class="fc fc-main"><div class="fc-l">🎯 Cenário esperado</div><div class="fc-d">' + mesAno(P.real.date) + '</div><div class="fc-s">+' + P.real.d + ' dias · ~' + P.thrMedTrim + '/mês</div></div>' +
+    '<div class="fc scen-opt"><div class="fc-l">🚀 Otimista</div><div class="fc-d">' + mesAno(P.opt.date) + '</div><div class="fc-s">+' + P.opt.d + ' dias · ~' + P.thrPico + '/mês</div></div></div>';
+}
+
+function percentileContextHtml(pid, userDays) {
+  var desc = INSIGHTS && INSIGHTS.descritivas && INSIGHTS.descritivas[pid];
+  if (!desc) return '';
+  var p25 = Math.round(desc.p25), p50 = Math.round(desc.p50 || desc.mediana), p75 = Math.round(desc.p75), p90 = Math.round(desc.p90);
+  var max = Math.max(desc.max || p90, userDays, 365);
+  function pct(v) { return Math.min(98, Math.max(2, Math.round(v / max * 100))); }
+  return '<div class="pct-context"><div class="pct-title">Seu tempo vs. quem já foi resolvido nesta fila</div><div class="pct-track">' +
+    '<span class="pct-tick" style="left:' + pct(p25) + '%">p25<br>' + p25 + 'd</span>' +
+    '<span class="pct-tick med" style="left:' + pct(p50) + '%">p50<br>' + p50 + 'd</span>' +
+    '<span class="pct-tick" style="left:' + pct(p75) + '%">p75<br>' + p75 + 'd</span>' +
+    '<span class="pct-tick" style="left:' + pct(p90) + '%">p90<br>' + p90 + 'd</span>' +
+    '<span class="pct-you" style="left:' + pct(userDays) + '%">★ ' + userDays + 'd</span></div></div>';
+}
+
+function neighborsHtml(x, P) {
+  var waiting = (SHEET_STATS[P.pid] || {}).waiting || [];
+  var idx = P.pos - 1;
+  var start = Math.max(0, idx - 15);
+  var end = Math.min(waiting.length, idx + 16);
+  var rows = [], i;
+  for (i = start; i < end; i++) {
+    var w = waiting[i];
+    var you = w.nome === x.nome && w.entrega === x.entrega;
+    rows.push('<div class="nb-row' + (you ? ' you' : '') + '"><span class="nb-p">' + (i + 1) + 'º</span><span class="nb-n">' + w.nome + '</span><span class="nb-d">' + fmt(w.dEntrega) + '</span></div>');
+  }
+  return '<div class="neighbors"><div class="nb-title">Vizinhos na fila (' + (start + 1) + '–' + end + ' de ' + waiting.length + ')</div><div class="nb-list">' + rows.join('') + '</div></div>';
+}
+
 function countOvertaken(x) {
   if (!x || x.done) return 0;
   var resolved = (SHEET_STATS[planilhaDe(x)] || {}).resolved || [];
@@ -781,7 +912,7 @@ function syncQueueFilterUI() {
 function showSheetContext() {
   var el = document.getElementById('sheetContext');
   if (!el) return;
-  if (!activeSheet) {
+  if (document.documentElement.classList.contains('has-proc') || !activeSheet) {
     el.classList.add('view-hidden');
     return;
   }
@@ -960,6 +1091,7 @@ function resetProcView() {
   destroyCharts();
   var emp = document.getElementById('empty');
   if (emp) emp.style.display = 'block';
+  showSheetContext();
 }
 
 function clearSearch() {
@@ -1025,46 +1157,39 @@ function select(x) {
   var P = computeProjection(x);
   var pid = P.pid;
   var pctAhead = P.total ? Math.round((1 - P.pos / P.total) * 100) : 0;
-  var kmMed = getKmMedian(pid);
   var regime = inferRegime(x, pid);
   var overtaken = countOvertaken(x);
   var fifo = getFifoInfo(pid);
-  var p90 = probConcludeWithin(pid, x.espera, 90);
-  var p180 = probConcludeWithin(pid, x.espera, 180);
   var html = '<div class="onepage">';
   html += '<div class="posb"><div class="num">' + P.pos + 'º</div><div class="txt"><b>' + x.nome + '</b> ' + planilhaTag(pid) +
-    '<p>Entrega ' + fmt(x.dEntrega) + ' · ' + x.espera + ' dias aguardando · ' + P.ahead + ' à frente na fila</p>' +
-    '<p class="pos-honest">Posição por <b>data de entrega</b> — fila não é estrita' +
-    (fifo ? ' (~' + fifo.pct_inversao + '% dos pares invertem ordem)' : '') + '.</p></div>' +
-    '<div class="progress"><i style="width:' + pctAhead + '%"></i><span>~' + pctAhead + '% da fila ' + pid + ' atrás de você</span></div></div>';
-  html += '<div class="kpis3">' +
-    '<div class="kpi a"><div class="l">Posição na fila</div><div class="v">' + P.pos + 'º</div><div class="s">de ' + P.total + ' aguardando (ordem entrega)</div></div>' +
-    '<div class="kpi w"><div class="l">Dias aguardando</div><div class="v">' + x.espera + '</div><div class="s">desde entrega</div></div>' +
-    '<div class="kpi g"><div class="l">Mediana KM</div><div class="v">' + (kmMed != null ? kmMed : '—') + '</div><div class="s">dias (sobrevivência fila ' + pid + ')</div></div></div>';
-  html += '<div class="regime"><span class="regime-tag ' + regime.cls + '">' + regime.label + '</span><div><b>Regime inferido</b><p style="color:var(--txt2);font-size:12px;margin-top:4px;line-height:1.45">' + regime.tip + '</p></div></div>';
+    '<p>Entrega ' + fmt(x.dEntrega) + ' · <b>' + x.espera + ' dias</b> aguardando · ' + P.ahead + ' à frente · ' + P.total + ' na fila</p>' +
+    '<p class="pos-honest">Ordem por data de entrega — não é FIFO' +
+    (fifo ? ' (~' + fifo.pct_inversao + '% invertem)' : '') + ' · regime: <b>' + regime.label + '</b></p></div>' +
+    '<div class="progress"><i style="width:' + pctAhead + '%"></i><span>~' + pctAhead + '% da fila atrás de você</span></div></div>';
   if (overtaken > 0) {
-    html += '<div class="warn-fifo">⚠️ <b>' + overtaken + '</b> processo(s) com entrega <b>posterior</b> à sua já foram resolvidos nesta fila — a ordem não é FIFO.</div>';
+    html += '<div class="warn-fifo">⚠️ <b>' + overtaken + '</b> com entrega posterior à sua já foram resolvidos — posição por data não garante ordem de saída.</div>';
   }
-  html += '<div class="prob-row">' +
-    '<div class="prob-box"><div class="pb-l">P(concluir em 90d)</div><div class="pb-v">' + fmtPct(p90) + '</div><div class="pb-s">condicional · já esperou ' + x.espera + 'd</div></div>' +
-    '<div class="prob-box"><div class="pb-l">P(concluir em 180d)</div><div class="pb-v">' + fmtPct(p180) + '</div><div class="pb-s">Kaplan-Meier · fila ' + pid + '</div></div></div>';
+  html += speedLineHtml(pid);
+  html += forecastHtml(P);
+  html += renderKmHorizonsHtml(pid, x.espera);
+  html += percentileContextHtml(pid, x.espera);
   if (pid === 'B') {
     var LIMITE = 730, pctLegal = Math.min(Math.round(x.espera / LIMITE * 100), 100), rest = LIMITE - x.espera;
     var dataLim = new Date(x.dEntrega.getTime() + LIMITE * 864e5);
-    var cor = pctLegal >= 90 ? '#ef4444' : (pctLegal >= 60 ? '#f59e0b' : 'linear-gradient(90deg,var(--teal),var(--accent))');
+    var cor = pctLegal >= 90 ? '#ef4444' : (pctLegal >= 60 ? '#f59e0b' : 'linear-gradient(90deg,var(--salvia),var(--accent))');
     var note = rest < 0 ? '<b style="color:#ff6b6b">Prazo legal ultrapassado</b> em ' + Math.abs(rest) + ' dias.' : 'Restam <b>' + rest + '</b> dias (limite ' + fmt(dataLim) + ').';
     html += '<div class="legalbox"><h4>⚖️ Prazo legal (730 dias — só Balcão)</h4><div class="legalbar"><i style="width:' + pctLegal + '%;background:' + cor + '"></i><span>' + x.espera + ' / 730 dias</span></div><div class="legal-note">' + note + '</div></div>';
   }
-  html += sheetNote(pid);
-  html += '<details class="chart-fold"><summary>📈 Análise estatística da fila ' + pid + '</summary><div class="chart-inner charts-stack">' +
-    '<div class="chart-block"><h5>Curva Kaplan-Meier</h5><div class="chart-cap">% ainda aguardando — estrela vermelha = você (' + x.espera + 'd); ponto verde = mediana da fila</div><div class="chartbox chartbox-km"><canvas id="cKM"></canvas></div></div>' +
-    '<div class="chart-block"><h5>Risco de resolução (hazard)</h5><div class="chart-cap">Picos indicam janelas de lote — barras vermelhas ≈ 270–300d na B</div><div class="chartbox"><canvas id="cHazard"></canvas></div></div>' +
-    '<div class="chart-block"><h5>Distribuição de tempos (resolvidos)</h5><div class="chart-cap">Quantos processos levaram cada faixa de dias nesta planilha</div><div class="chartbox"><canvas id="cHist"></canvas></div></div>' +
-    '<div class="chart-block"><h5>Resoluções mensais</h5><div class="chart-cap">Ritmo observado mês a mês nesta fila</div><div class="chartbox"><canvas id="cVazao"></canvas></div></div>' +
-    '</div></details>';
-  html += '<div class="disc" style="margin:0"><h3>⚠️ Sobre esta estimativa</h3><ul><li>Dados voluntários só da planilha <b>' + pid + '</b>.</li><li>Probabilidades vêm de Kaplan-Meier — não substituem consulta oficial.</li></ul></div>';
+  html += '<div class="charts-main charts-stack">' +
+    '<div class="chart-block"><h5>1 · Evolução da fila</h5><div class="chart-cap">Aguardando, entradas e concluídos por mês</div><div class="chartbox chartbox-km"><canvas id="cEvolucao"></canvas></div></div>' +
+    '<div class="chart-block"><h5>2 · Taxa de resolução mensal</h5><div class="chart-cap">Quantos processos saíram da fila a cada mês</div><div class="chartbox"><canvas id="cVazao"></canvas></div></div>' +
+    '<div class="chart-block"><h5>3 · Curva Kaplan-Meier</h5><div class="chart-cap">★ você · ponto verde = mediana histórica</div><div class="chartbox chartbox-km"><canvas id="cKM"></canvas></div></div>' +
+    '</div>';
+  html += neighborsHtml(x, P);
+  html += '<details class="chart-fold"><summary>ℹ️ Metodologia e limitações</summary><div class="chart-inner"><div class="disc" style="margin:0"><ul><li>Dados voluntários só da planilha <b>' + pid + '</b>.</li><li>Forecast por posição ÷ throughput; KM por histórico de tempos.</li><li>Não substitui consulta oficial ao Consulado.</li></ul></div></div></details>';
   html += '</div>';
   res.innerHTML = html;
+  showSheetContext();
   drawCharts(x, P);
   afterSelect(x);
   setUrlParams({ sheet: activeSheet, proc: x.nome });
@@ -1075,6 +1200,35 @@ function drawCharts(x, P) {
   destroyCharts();
   var pid = P.pid;
   var ct = chartTheme();
+  var evo = queueEvolutionSeries(pid);
+  var cEv = document.getElementById('cEvolucao');
+  if (cEv && evo) {
+    addChart(cEv, {
+      type: 'line',
+      data: {
+        labels: evo.labels,
+        datasets: [
+          { label: 'Aguardando', data: evo.waiting, borderColor: ct.terra, backgroundColor: 'rgba(200,90,40,.08)', fill: true, tension: 0.3, pointRadius: 2 },
+          { label: 'Entradas', data: evo.entries, borderColor: ct.amber, tension: 0.3, pointRadius: 2 },
+          { label: 'Concluídos', data: evo.exits, borderColor: ct.salvia, tension: 0.3, pointRadius: 2 }
+        ]
+      },
+      options: baseChartOpts(ct)
+    });
+  }
+  var st = SHEET_STATS[pid] || {};
+  var mcMap = st.monthCounts || {};
+  function gmc(y, m) { return mcMap[y + '-' + p2(m)] || 0; }
+  var labels = ['ago/25', 'set/25', 'out/25', 'nov/25', 'dez/25', 'jan/26', 'fev/26', 'mar/26', 'abr/26', 'mai/26', 'jun/26', 'jul/26'];
+  var vals = [gmc(2025, 8), gmc(2025, 9), gmc(2025, 10), gmc(2025, 11), gmc(2025, 12), gmc(2026, 1), gmc(2026, 2), gmc(2026, 3), gmc(2026, 4), gmc(2026, 5), gmc(2026, 6), gmc(2026, 7)];
+  var cv = document.getElementById('cVazao');
+  if (cv) {
+    addChart(cv, {
+      type: 'bar',
+      data: { labels: labels, datasets: [{ label: 'Resoluções', data: vals, backgroundColor: ct.terra, borderRadius: 5 }] },
+      options: baseChartOpts(ct)
+    });
+  }
   var km = kmSeriesFromInsights(pid);
   var ckm = document.getElementById('cKM');
   if (ckm && km) {
@@ -1115,48 +1269,6 @@ function drawCharts(x, P) {
     kmOpts.scales.x = { type: 'linear', title: { display: true, text: 'Dias de espera', color: ct.txt }, ticks: { color: ct.txt }, grid: { color: ct.grid } };
     kmOpts.scales.y.title = { display: true, text: '% ainda na fila', color: ct.txt };
     addChart(ckm, { type: 'line', data: { datasets: datasets }, options: kmOpts });
-  }
-  var haz = hazardFromInsights(pid);
-  var cHz = document.getElementById('cHazard');
-  if (cHz && haz && haz.length) {
-    addChart(cHz, {
-      type: 'bar',
-      data: {
-        labels: haz.map(function (b) { return b.label; }),
-        datasets: [{
-          label: 'Hazard (%/30d)',
-          data: haz.map(function (b) { return b.val; }),
-          backgroundColor: haz.map(function (b) { return b.hi ? 'rgba(206,43,55,.85)' : 'rgba(200,90,40,.5)'; }),
-          borderRadius: 4
-        }]
-      },
-      options: baseChartOpts(ct)
-    });
-  }
-  var bins = histogramBins(pid);
-  var cHist = document.getElementById('cHist');
-  if (cHist && bins.some(function (b) { return b.n > 0; })) {
-    addChart(cHist, {
-      type: 'bar',
-      data: {
-        labels: bins.map(function (b) { return b.l + 'd'; }),
-        datasets: [{ label: 'Resolvidos', data: bins.map(function (b) { return b.n; }), backgroundColor: ct.salvia, borderRadius: 5 }]
-      },
-      options: baseChartOpts(ct)
-    });
-  }
-  var st = SHEET_STATS[pid] || {};
-  var mcMap = st.monthCounts || {};
-  function gmc(y, m) { return mcMap[y + '-' + p2(m)] || 0; }
-  var labels = ['ago/25', 'set/25', 'out/25', 'nov/25', 'dez/25', 'jan/26', 'fev/26', 'mar/26', 'abr/26', 'mai/26', 'jun/26', 'jul/26'];
-  var vals = [gmc(2025, 8), gmc(2025, 9), gmc(2025, 10), gmc(2025, 11), gmc(2025, 12), gmc(2026, 1), gmc(2026, 2), gmc(2026, 3), gmc(2026, 4), gmc(2026, 5), gmc(2026, 6), gmc(2026, 7)];
-  var cv = document.getElementById('cVazao');
-  if (cv) {
-    addChart(cv, {
-      type: 'bar',
-      data: { labels: labels, datasets: [{ label: 'Resoluções', data: vals, backgroundColor: ct.terra, borderRadius: 5 }] },
-      options: baseChartOpts(ct)
-    });
   }
 }
 

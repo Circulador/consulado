@@ -45,24 +45,15 @@ Links OneDrive (atualizados pela comunidade):
 
 ### Por fila (B, JSI ou P)
 
-- Painel com **totais só da planilha** (registros, aguardando, resolvidos, mediana KM)
-- Busca por **sigla/nome** ou **data de entrega**
-- **Posição na fila** — ordem por data de entrega, com aviso de que **não é FIFO**
-- **Dias aguardando** e **regime inferido** (rápido, típico, janela de lote, acima do p90)
-- **P(concluir em 90d / 180d)** — probabilidades condicionais (Kaplan-Meier)
-- Alerta de **processos ultrapassados** (entrega posterior já resolvida)
-- **Prazo legal de 730 dias** (somente fila B — Balcão)
-
-### Gráficos estatísticos (por processo)
-
-Bloco colapsável **“Análise estatística da fila”**:
-
-| Gráfico | Valor |
-|---------|-------|
-| **Curva Kaplan-Meier** | % ainda aguardando ao longo dos dias + marcador do seu processo |
-| **Hazard (risco de saída)** | Picos de resolução em lote (~270–300d na B) |
-| **Histograma de tempos** | Distribuição dos resolvidos por faixa de dias |
-| **Resoluções mensais** | Ritmo observado mês a mês |
+- Busca global na home — detecta a fila automaticamente
+- **Card único** com posição, dias e progresso (sem KPIs duplicados)
+- **Forecast** em 3 cenários (conservador · esperado · otimista)
+- **Kaplan-Meier** em horizontes de 3–18 meses + curva completa
+- **Evolução da fila** (aguardando, entradas, concluídos por mês)
+- **Taxa de resolução mensal** e velocímetro de ritmo
+- **Distribuição percentil** (p25–p90) com sua posição relativa
+- **Vizinhos na fila** (±15 posições)
+- Alerta FIFO e prazo legal 730d (só Balcão)
 
 ### Aba Comunidade
 

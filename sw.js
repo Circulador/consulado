@@ -1,5 +1,5 @@
-// Service Worker — Consultor de Fila (v10 — busca na home)
-const CACHE = 'fila-consulado-v10';
+// Service Worker — Consultor de Fila (v11 — dashboard preditivo)
+const CACHE = 'fila-consulado-v11';
 const CORE = ['./', './index.html', './icon-192.png', './icon-512.png', './icon-512-maskable.png', './manifest.json'];
 
 self.addEventListener('install', e => {
