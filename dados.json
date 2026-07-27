@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-27T09:56:42.809Z",
+    "generated_at": "2026-07-27T14:40:57.041Z",
     "source": "OneDrive (B + JSI + P, filas segregadas)",
     "sheets_raw": [
       "B: 194",
@@ -1057,7 +1057,7 @@
       "entrega": "2025-09-12",
       "nome": "LLP-DP",
       "grupo": "2",
-      "resol": null,
+      "resol": "2026-07-24",
       "planilha": "B",
       "origem": "B"
     },
@@ -1313,7 +1313,7 @@
       "entrega": "2025-10-13",
       "nome": "DLP",
       "grupo": "2",
-      "resol": null,
+      "resol": "2026-07-24",
       "planilha": "B",
       "origem": "B"
     },
