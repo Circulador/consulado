@@ -1,13 +1,13 @@
 {
   "meta": {
-    "generated_at": "2026-08-17T18:42:06.053Z",
+    "generated_at": "2026-08-18T01:20:25.060Z",
     "source": "OneDrive (B + JSI + P, filas segregadas)",
     "sheets_raw": [
-      "B: 194",
-      "JSI: 151",
+      "B: 195",
+      "JSI: 152",
       "P: 21"
     ],
-    "raw_total": 366,
+    "raw_total": 368,
     "duplicates_removed": 2,
     "homonym_warnings": 8,
     "homonyms": [
@@ -94,11 +94,11 @@
       }
     ],
     "by_sheet": {
-      "B": 194,
-      "JSI": 150,
+      "B": 195,
+      "JSI": 151,
       "P": 20
     },
-    "total": 364
+    "total": 366
   },
   "records": [
     {
@@ -1098,6 +1098,14 @@
       "nome": "PVDC",
       "grupo": "JSI",
       "resol": null,
+      "planilha": "B",
+      "origem": "B"
+    },
+    {
+      "entrega": "2025-09-17",
+      "nome": "VCB",
+      "grupo": "1",
+      "resol": "2026-08-17",
       "planilha": "B",
       "origem": "B"
     },
@@ -2849,6 +2857,14 @@
       "entrega": "2026-07-30",
       "nome": "MGD",
       "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-08-17",
+      "nome": "VCB",
+      "grupo": "1",
       "resol": null,
       "planilha": "JSI",
       "origem": "JSI"
