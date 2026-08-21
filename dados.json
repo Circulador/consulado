@@ -1,15 +1,15 @@
 {
   "meta": {
-    "generated_at": "2026-08-20T18:42:04.164Z",
+    "generated_at": "2026-08-21T01:25:00.242Z",
     "source": "OneDrive (B + JSI + P, filas segregadas)",
     "sheets_raw": [
       "B: 195",
-      "JSI: 152",
+      "JSI: 154",
       "P: 21"
     ],
-    "raw_total": 368,
+    "raw_total": 370,
     "duplicates_removed": 2,
-    "homonym_warnings": 8,
+    "homonym_warnings": 9,
     "homonyms": [
       {
         "nome": "AGS-AGP",
@@ -83,6 +83,16 @@
         ]
       },
       {
+        "nome": "AGS-AGP",
+        "planilha": "JSI",
+        "tipo": "homonimo",
+        "registros": 2,
+        "entregas": [
+          "2025-10-07",
+          "2026-08-20"
+        ]
+      },
+      {
         "nome": "MRE-TD",
         "planilha": "JSI",
         "tipo": "homonimo",
@@ -95,10 +105,10 @@
     ],
     "by_sheet": {
       "B": 195,
-      "JSI": 151,
+      "JSI": 153,
       "P": 20
     },
-    "total": 366
+    "total": 368
   },
   "records": [
     {
@@ -1097,7 +1107,7 @@
       "entrega": "2025-09-16",
       "nome": "PVDC",
       "grupo": "JSI",
-      "resol": null,
+      "resol": "2026-08-20",
       "planilha": "B",
       "origem": "B"
     },
@@ -1113,7 +1123,7 @@
       "entrega": "2025-09-18",
       "nome": "AG",
       "grupo": "2",
-      "resol": null,
+      "resol": "2026-08-20",
       "planilha": "B",
       "origem": "B"
     },
@@ -2865,6 +2875,22 @@
       "entrega": "2026-08-17",
       "nome": "VCB",
       "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-08-20",
+      "nome": "PVDC",
+      "grupo": "JSI",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-08-20",
+      "nome": "AGS-AGP",
+      "grupo": "2",
       "resol": null,
       "planilha": "JSI",
       "origem": "JSI"
