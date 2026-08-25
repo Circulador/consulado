@@ -1,13 +1,13 @@
 {
   "meta": {
-    "generated_at": "2026-08-25T12:51:12.158Z",
+    "generated_at": "2026-08-25T18:41:42.318Z",
     "source": "OneDrive (B + JSI + P, filas segregadas)",
     "sheets_raw": [
-      "B: 195",
-      "JSI: 154",
-      "P: 21"
+      "B: 197",
+      "JSI: 156",
+      "P: 22"
     ],
-    "raw_total": 370,
+    "raw_total": 375,
     "duplicates_removed": 2,
     "homonym_warnings": 9,
     "homonyms": [
@@ -104,11 +104,11 @@
       }
     ],
     "by_sheet": {
-      "B": 195,
-      "JSI": 153,
-      "P": 20
+      "B": 197,
+      "JSI": 155,
+      "P": 21
     },
-    "total": 368
+    "total": 373
   },
   "records": [
     {
@@ -371,7 +371,7 @@
       "entrega": "2025-07-17",
       "nome": "GGA",
       "grupo": "1",
-      "resol": null,
+      "resol": "2026-07-31",
       "planilha": "B",
       "origem": "B"
     },
@@ -641,9 +641,9 @@
     },
     {
       "entrega": "2025-08-11",
-      "nome": "RGC e RGC (IRMÃOS)",
+      "nome": "RGC-RGC",
       "grupo": "JSI",
-      "resol": null,
+      "resol": "2026-08-21",
       "planilha": "B",
       "origem": "B"
     },
@@ -676,6 +676,14 @@
       "nome": "BAM",
       "grupo": "1",
       "resol": "2026-04-28",
+      "planilha": "B",
+      "origem": "B"
+    },
+    {
+      "entrega": "2025-08-11",
+      "nome": "RGC-RGC (VIDE PENDENCIA)",
+      "grupo": "JSI",
+      "resol": "2026-08-21",
       "planilha": "B",
       "origem": "B"
     },
@@ -1170,6 +1178,14 @@
     {
       "entrega": "2025-09-23",
       "nome": "APN-ADP",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "B",
+      "origem": "B"
+    },
+    {
+      "entrega": "2025-09-23",
+      "nome": "CGR",
       "grupo": "1",
       "resol": null,
       "planilha": "B",
@@ -2872,6 +2888,14 @@
       "origem": "JSI"
     },
     {
+      "entrega": "2026-07-31",
+      "nome": "GGA",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
       "entrega": "2026-08-17",
       "nome": "VCB",
       "grupo": "1",
@@ -2891,6 +2915,14 @@
       "entrega": "2026-08-20",
       "nome": "AGS-AGP",
       "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-08-21",
+      "nome": "RGC",
+      "grupo": "JSI",
       "resol": null,
       "planilha": "JSI",
       "origem": "JSI"
@@ -3050,6 +3082,14 @@
     {
       "entrega": "2026-08-03",
       "nome": "DLP",
+      "grupo": "-",
+      "resol": null,
+      "planilha": "P",
+      "origem": "P"
+    },
+    {
+      "entrega": "2026-08-21",
+      "nome": "RGC-RGC",
       "grupo": "-",
       "resol": null,
       "planilha": "P",
