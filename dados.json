@@ -1,13 +1,13 @@
 {
   "meta": {
-    "generated_at": "2026-08-27T08:11:35.832Z",
+    "generated_at": "2026-08-27T21:57:30.013Z",
     "source": "OneDrive (B + JSI + P, filas segregadas)",
     "sheets_raw": [
       "B: 197",
-      "JSI: 156",
+      "JSI: 157",
       "P: 22"
     ],
-    "raw_total": 375,
+    "raw_total": 376,
     "duplicates_removed": 2,
     "homonym_warnings": 9,
     "homonyms": [
@@ -105,10 +105,10 @@
     ],
     "by_sheet": {
       "B": 197,
-      "JSI": 155,
+      "JSI": 156,
       "P": 21
     },
-    "total": 373
+    "total": 374
   },
   "records": [
     {
@@ -1163,7 +1163,7 @@
       "entrega": "2025-09-19",
       "nome": "NSD-CAS",
       "grupo": "2",
-      "resol": null,
+      "resol": "2026-08-26",
       "planilha": "B",
       "origem": "B"
     },
@@ -2587,7 +2587,7 @@
       "entrega": "2026-04-21",
       "nome": "AQS",
       "grupo": "1",
-      "resol": null,
+      "resol": "2026-08-25",
       "planilha": "JSI",
       "origem": "JSI"
     },
@@ -2659,7 +2659,7 @@
       "entrega": "2026-05-14",
       "nome": "LKD",
       "grupo": "2",
-      "resol": null,
+      "resol": "2026-08-27",
       "planilha": "JSI",
       "origem": "JSI"
     },
@@ -2922,6 +2922,14 @@
     {
       "entrega": "2026-08-21",
       "nome": "RGC",
+      "grupo": "JSI",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-08-26",
+      "nome": "NSD-CAS",
       "grupo": "JSI",
       "resol": null,
       "planilha": "JSI",
