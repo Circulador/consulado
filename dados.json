@@ -1,13 +1,13 @@
 {
   "meta": {
-    "generated_at": "2026-09-03T10:52:28.629Z",
+    "generated_at": "2026-09-03T16:00:47.568Z",
     "source": "OneDrive (B + JSI + P, filas segregadas)",
     "sheets_raw": [
       "B: 197",
-      "JSI: 157",
+      "JSI: 158",
       "P: 22"
     ],
-    "raw_total": 376,
+    "raw_total": 377,
     "duplicates_removed": 2,
     "homonym_warnings": 9,
     "homonyms": [
@@ -105,10 +105,10 @@
     ],
     "by_sheet": {
       "B": 197,
-      "JSI": 156,
+      "JSI": 157,
       "P": 21
     },
-    "total": 374
+    "total": 375
   },
   "records": [
     {
@@ -1227,7 +1227,7 @@
       "entrega": "2025-09-25",
       "nome": "FDPC",
       "grupo": "1",
-      "resol": null,
+      "resol": "2026-09-03",
       "planilha": "B",
       "origem": "B"
     },
@@ -2931,6 +2931,14 @@
       "entrega": "2026-08-26",
       "nome": "NSD-CAS",
       "grupo": "JSI",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-09-03",
+      "nome": "FDPC",
+      "grupo": "1",
       "resol": null,
       "planilha": "JSI",
       "origem": "JSI"
