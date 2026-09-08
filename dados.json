@@ -1,13 +1,13 @@
 {
   "meta": {
-    "generated_at": "2026-09-08T10:50:55.143Z",
+    "generated_at": "2026-09-08T16:15:10.657Z",
     "source": "OneDrive (B + JSI + P, filas segregadas)",
     "sheets_raw": [
       "B: 197",
-      "JSI: 158",
+      "JSI: 160",
       "P: 22"
     ],
-    "raw_total": 377,
+    "raw_total": 379,
     "duplicates_removed": 2,
     "homonym_warnings": 9,
     "homonyms": [
@@ -105,10 +105,10 @@
     ],
     "by_sheet": {
       "B": 197,
-      "JSI": 157,
+      "JSI": 159,
       "P": 21
     },
-    "total": 375
+    "total": 377
   },
   "records": [
     {
@@ -1187,7 +1187,7 @@
       "entrega": "2025-09-23",
       "nome": "CGR",
       "grupo": "1",
-      "resol": null,
+      "resol": "2026-08-28",
       "planilha": "B",
       "origem": "B"
     },
@@ -1235,7 +1235,7 @@
       "entrega": "2025-09-26",
       "nome": "PLMC-NFL",
       "grupo": "JSI",
-      "resol": null,
+      "resol": "2026-09-08",
       "planilha": "B",
       "origem": "B"
     },
@@ -2936,9 +2936,25 @@
       "origem": "JSI"
     },
     {
+      "entrega": "2026-08-28",
+      "nome": "CGR",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
       "entrega": "2026-09-03",
       "nome": "FDPC",
       "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-09-08",
+      "nome": "PLMC-NFL",
+      "grupo": "JSI",
       "resol": null,
       "planilha": "JSI",
       "origem": "JSI"
