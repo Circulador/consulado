@@ -1,13 +1,13 @@
 {
   "meta": {
-    "generated_at": "2026-09-09T16:09:16.861Z",
+    "generated_at": "2026-09-09T20:39:13.748Z",
     "source": "OneDrive (B + JSI + P, filas segregadas)",
     "sheets_raw": [
       "B: 199",
-      "JSI: 161",
+      "JSI: 162",
       "P: 23"
     ],
-    "raw_total": 383,
+    "raw_total": 384,
     "duplicates_removed": 2,
     "homonym_warnings": 9,
     "homonyms": [
@@ -105,10 +105,10 @@
     ],
     "by_sheet": {
       "B": 199,
-      "JSI": 160,
+      "JSI": 161,
       "P": 22
     },
-    "total": 381
+    "total": 382
   },
   "records": [
     {
@@ -1275,7 +1275,7 @@
       "entrega": "2025-09-30",
       "nome": "ARA-CC",
       "grupo": "1",
-      "resol": null,
+      "resol": "2026-09-09",
       "planilha": "B",
       "origem": "B"
     },
@@ -2979,6 +2979,14 @@
       "entrega": "2026-09-08",
       "nome": "PLMC-NFL",
       "grupo": "JSI",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-09-09",
+      "nome": "ARA-CC",
+      "grupo": "1",
       "resol": null,
       "planilha": "JSI",
       "origem": "JSI"
