@@ -1,13 +1,13 @@
 {
   "meta": {
-    "generated_at": "2026-09-18T16:02:08.182Z",
+    "generated_at": "2026-09-18T20:35:45.669Z",
     "source": "OneDrive (B + JSI + P, filas segregadas)",
     "sheets_raw": [
       "B: 199",
-      "JSI: 166",
+      "JSI: 167",
       "P: 23"
     ],
-    "raw_total": 388,
+    "raw_total": 389,
     "duplicates_removed": 2,
     "homonym_warnings": 9,
     "homonyms": [
@@ -105,10 +105,10 @@
     ],
     "by_sheet": {
       "B": 199,
-      "JSI": 165,
+      "JSI": 166,
       "P": 22
     },
-    "total": 386
+    "total": 387
   },
   "records": [
     {
@@ -1467,7 +1467,7 @@
       "entrega": "2025-10-23",
       "nome": "PCA",
       "grupo": "2",
-      "resol": null,
+      "resol": "2026-09-15",
       "planilha": "B",
       "origem": "B"
     },
@@ -3003,6 +3003,14 @@
       "entrega": "2026-09-15",
       "nome": "ESC-TSS",
       "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-09-15",
+      "nome": "PCA",
+      "grupo": "2",
       "resol": null,
       "planilha": "JSI",
       "origem": "JSI"
