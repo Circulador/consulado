@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-28T13:14:49.301Z",
+    "generated_at": "2026-09-28T23:02:00.371Z",
     "source": "OneDrive (B + JSI + P, filas segregadas)",
     "sheets_raw": [
       "B: 199",
@@ -2787,7 +2787,7 @@
       "entrega": "2026-06-15",
       "nome": "NMP",
       "grupo": "JSI",
-      "resol": null,
+      "resol": "2026-09-25",
       "planilha": "JSI",
       "origem": "JSI"
     },
