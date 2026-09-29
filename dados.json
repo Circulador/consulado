@@ -1,13 +1,13 @@
 {
   "meta": {
-    "generated_at": "2026-09-29T12:22:29.568Z",
+    "generated_at": "2026-09-29T21:59:58.029Z",
     "source": "OneDrive (B + JSI + P, filas segregadas)",
     "sheets_raw": [
       "B: 199",
-      "JSI: 168",
-      "P: 23"
+      "JSI: 169",
+      "P: 24"
     ],
-    "raw_total": 390,
+    "raw_total": 392,
     "duplicates_removed": 2,
     "homonym_warnings": 9,
     "homonyms": [
@@ -105,10 +105,10 @@
     ],
     "by_sheet": {
       "B": 199,
-      "JSI": 167,
-      "P": 22
+      "JSI": 168,
+      "P": 23
     },
-    "total": 388
+    "total": 390
   },
   "records": [
     {
@@ -1281,9 +1281,9 @@
     },
     {
       "entrega": "2025-09-30",
-      "nome": "NDS",
+      "nome": "NDS (PENDENCIA)",
       "grupo": "2",
-      "resol": null,
+      "resol": "2026-09-10",
       "planilha": "B",
       "origem": "B"
     },
@@ -1379,7 +1379,7 @@
       "entrega": "2025-10-14",
       "nome": "SG",
       "grupo": "2",
-      "resol": null,
+      "resol": "2026-09-29",
       "planilha": "B",
       "origem": "B"
     },
@@ -3040,6 +3040,14 @@
       "origem": "JSI"
     },
     {
+      "entrega": "2026-09-29",
+      "nome": "SG",
+      "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
       "entrega": "2024-10-24",
       "nome": "JSP - RPR",
       "grupo": "CMP",
@@ -3211,6 +3219,14 @@
       "entrega": "2026-09-02",
       "nome": "APR (FALTA DATA REAL DO SEDEX)",
       "grupo": "-",
+      "resol": null,
+      "planilha": "P",
+      "origem": "P"
+    },
+    {
+      "entrega": "2026-09-28",
+      "nome": "NDS",
+      "grupo": "2",
       "resol": null,
       "planilha": "P",
       "origem": "P"
