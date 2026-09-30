@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-09-30T12:08:13.872Z",
+    "generated_at": "2026-09-30T21:59:20.724Z",
     "source": "OneDrive (B + JSI + P, filas segregadas)",
     "sheets_raw": [
       "B: 199",
@@ -2867,7 +2867,7 @@
       "entrega": "2026-06-25",
       "nome": "BMO",
       "grupo": "2",
-      "resol": null,
+      "resol": "2026-09-23",
       "planilha": "JSI",
       "origem": "JSI"
     },
