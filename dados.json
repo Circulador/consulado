@@ -1,13 +1,13 @@
 {
   "meta": {
-    "generated_at": "2026-10-08T13:01:24.025Z",
+    "generated_at": "2026-10-08T23:04:07.043Z",
     "source": "OneDrive (B + JSI + P, filas segregadas)",
     "sheets_raw": [
       "B: 199",
-      "JSI: 170",
+      "JSI: 171",
       "P: 24"
     ],
-    "raw_total": 393,
+    "raw_total": 394,
     "duplicates_removed": 2,
     "homonym_warnings": 9,
     "homonyms": [
@@ -105,10 +105,10 @@
     ],
     "by_sheet": {
       "B": 199,
-      "JSI": 169,
+      "JSI": 170,
       "P": 23
     },
-    "total": 391
+    "total": 392
   },
   "records": [
     {
@@ -3056,6 +3056,14 @@
       "origem": "JSI"
     },
     {
+      "entrega": "2026-10-07",
+      "nome": "GSBG",
+      "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
       "entrega": "2024-10-24",
       "nome": "JSP - RPR",
       "grupo": "CMP",
@@ -3170,8 +3178,8 @@
     {
       "entrega": "2026-06-16",
       "nome": "GSBG",
-      "grupo": "-",
-      "resol": null,
+      "grupo": "2",
+      "resol": "2026-10-07",
       "planilha": "P",
       "origem": "P"
     },
