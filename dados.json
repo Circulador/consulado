@@ -1,15 +1,15 @@
 {
   "meta": {
-    "generated_at": "2026-10-19T12:31:10.827Z",
+    "generated_at": "2026-10-19T22:06:37.220Z",
     "source": "OneDrive (B + JSI + P, filas segregadas)",
     "sheets_raw": [
       "B: 199",
-      "JSI: 173",
+      "JSI: 174",
       "P: 25"
     ],
-    "raw_total": 397,
+    "raw_total": 398,
     "duplicates_removed": 2,
-    "homonym_warnings": 9,
+    "homonym_warnings": 10,
     "homonyms": [
       {
         "nome": "AGS-AGP",
@@ -88,8 +88,8 @@
         "tipo": "homonimo",
         "registros": 2,
         "entregas": [
-          "2026-08-20",
-          "2025-10-07"
+          "2025-10-07",
+          "2026-08-20"
         ]
       },
       {
@@ -98,17 +98,27 @@
         "tipo": "homonimo",
         "registros": 2,
         "entregas": [
-          "2026-06-01",
-          "2025-10-08"
+          "2025-10-08",
+          "2026-06-01"
+        ]
+      },
+      {
+        "nome": "FME",
+        "planilha": "JSI",
+        "tipo": "homonimo",
+        "registros": 2,
+        "entregas": [
+          "2026-03-18",
+          "2026-10-19"
         ]
       }
     ],
     "by_sheet": {
       "B": 199,
-      "JSI": 172,
+      "JSI": 173,
       "P": 24
     },
-    "total": 395
+    "total": 396
   },
   "records": [
     {
@@ -1475,7 +1485,7 @@
       "entrega": "2025-10-24",
       "nome": "FME",
       "grupo": "1",
-      "resol": null,
+      "resol": "2026-10-19",
       "planilha": "B",
       "origem": "B"
     },
@@ -1704,1210 +1714,130 @@
       "origem": "B"
     },
     {
-      "entrega": "2026-10-08",
-      "nome": "TMSC",
+      "entrega": "2025-01-27",
+      "nome": "RDTL-CT",
+      "grupo": "JSI",
+      "resol": "2025-04-07",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-02-10",
+      "nome": "JCA",
       "grupo": "JSI",
       "resol": null,
       "planilha": "JSI",
       "origem": "JSI"
     },
     {
-      "entrega": "2026-10-07",
-      "nome": "GSBG",
-      "grupo": "2",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-10-01",
-      "nome": "EGC",
-      "grupo": "2",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-09-29",
-      "nome": "SG",
-      "grupo": "2",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-09-23",
-      "nome": "ISC",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-09-22",
-      "nome": "CAMC",
-      "grupo": "2",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-09-17",
-      "nome": "RAA",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-09-16",
-      "nome": "ARG",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-09-15",
-      "nome": "ESC-TSS",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-09-15",
-      "nome": "PCA",
-      "grupo": "2",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-09-10",
-      "nome": "TMCL",
-      "grupo": "2",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-09-09",
-      "nome": "ARA-CC",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-09-08",
-      "nome": "PLMC-NFL",
+      "entrega": "2025-02-26",
+      "nome": "GPL",
       "grupo": "JSI",
       "resol": null,
       "planilha": "JSI",
       "origem": "JSI"
     },
     {
-      "entrega": "2026-09-03",
-      "nome": "FDPC",
+      "entrega": "2025-02-28",
+      "nome": "FSR",
       "grupo": "1",
       "resol": null,
       "planilha": "JSI",
       "origem": "JSI"
     },
     {
-      "entrega": "2026-08-28",
-      "nome": "CGR",
-      "grupo": "1",
-      "resol": null,
+      "entrega": "2025-03-07",
+      "nome": "MCGM -LP",
+      "grupo": "-",
+      "resol": "2025-11-11",
       "planilha": "JSI",
       "origem": "JSI"
     },
     {
-      "entrega": "2026-08-26",
-      "nome": "NSD-CAS",
+      "entrega": "2025-03-17",
+      "nome": "CBR E PCBR",
+      "grupo": "1",
+      "resol": "2025-09-05",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-03-26",
+      "nome": "NTL",
+      "grupo": "-",
+      "resol": "2025-12-22",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-03-26",
+      "nome": "PECC-RC",
       "grupo": "JSI",
       "resol": null,
       "planilha": "JSI",
       "origem": "JSI"
     },
     {
-      "entrega": "2026-08-21",
-      "nome": "RGC",
+      "entrega": "2025-03-28",
+      "nome": "WRV",
       "grupo": "JSI",
-      "resol": null,
+      "resol": "2025-12-19",
       "planilha": "JSI",
       "origem": "JSI"
     },
     {
-      "entrega": "2026-08-20",
-      "nome": "PVDC",
-      "grupo": "JSI",
-      "resol": null,
+      "entrega": "2025-04-02",
+      "nome": "SMR",
+      "grupo": "-",
+      "resol": "2025-12-22",
       "planilha": "JSI",
       "origem": "JSI"
     },
     {
-      "entrega": "2026-08-20",
-      "nome": "AGS-AGP",
-      "grupo": "2",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-08-17",
-      "nome": "VCB",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-07-31",
-      "nome": "GGA",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-07-30",
-      "nome": "MGD",
-      "grupo": "2",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-07-09",
-      "nome": "ABSC-RHS",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-07-09",
-      "nome": "VRG",
-      "grupo": "JSI",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-07-07",
-      "nome": "ASP-MLP",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-07-02",
-      "nome": "NBV",
-      "grupo": "2",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-06-25",
-      "nome": "BMO",
-      "grupo": "2",
-      "resol": "2026-09-23",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-06-23",
-      "nome": "CAG",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-06-23",
-      "nome": "RFRZ",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-06-23",
-      "nome": "ESM",
-      "grupo": "2",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-06-23",
-      "nome": "ELS-KV",
-      "grupo": "2",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-06-22",
-      "nome": "ABLB",
-      "grupo": "2",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-06-19",
-      "nome": "NLS",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-06-19",
-      "nome": "MLS-NLS",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-06-19",
-      "nome": "SFP-SP",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-06-16",
-      "nome": "ANT",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-06-15",
-      "nome": "NMP",
-      "grupo": "JSI",
-      "resol": "2026-09-25",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-06-12",
-      "nome": "TES",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-06-12",
-      "nome": "GPAC",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-06-11",
-      "nome": "NTC",
-      "grupo": "2",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-06-08",
-      "nome": "LAMC",
-      "grupo": "2",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-06-01",
-      "nome": "MRE-TD",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-05-29",
-      "nome": "SLA",
-      "grupo": "JSI",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-05-27",
-      "nome": "RMI",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-05-27",
-      "nome": "APT-4689",
-      "grupo": "JSI",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-05-26",
-      "nome": "CCJC",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-05-25",
-      "nome": "AZS-LFTS",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-05-21",
-      "nome": "SRMO LMO",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-05-19",
-      "nome": "DFP",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-05-19",
-      "nome": "ARJ",
-      "grupo": "1",
-      "resol": "2026-09-04",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-05-14",
-      "nome": "LKD",
-      "grupo": "2",
-      "resol": "2026-08-27",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-05-13",
-      "nome": "MLP",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-05-12",
-      "nome": "CPS",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-05-06",
-      "nome": "LB",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-05-06",
-      "nome": "JB",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-05-04",
-      "nome": "BPF",
-      "grupo": "2",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-05-04",
-      "nome": "RPF",
-      "grupo": "2",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-04-30",
-      "nome": "FC",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-04-28",
-      "nome": "BAM",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-04-21",
-      "nome": "AQS",
-      "grupo": "1",
-      "resol": "2026-08-25",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-04-08",
-      "nome": "JT",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-03-31",
-      "nome": "TPQ",
-      "grupo": "2",
-      "resol": "2026-05-11",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-03-31",
-      "nome": "JPWT",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-03-30",
-      "nome": "LH",
-      "grupo": "1",
-      "resol": "2026-05-15",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-03-26",
-      "nome": "YDF",
-      "grupo": "JSI",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-03-25",
-      "nome": "LML",
-      "grupo": "2",
-      "resol": "2026-05-05",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-03-24",
-      "nome": "WIR-LF",
-      "grupo": "1",
-      "resol": "2026-05-05",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-03-20",
-      "nome": "CSVM",
-      "grupo": "2",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-03-20",
-      "nome": "NSVM",
-      "grupo": "2",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-03-18",
-      "nome": "MLME",
-      "grupo": "1",
-      "resol": "2026-03-18",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-03-18",
-      "nome": "RME",
-      "grupo": "1",
-      "resol": "2026-03-18",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-03-18",
-      "nome": "FME",
-      "grupo": "1",
-      "resol": "2026-03-18",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-03-18",
-      "nome": "KMSD-WD",
-      "grupo": "JSI",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-02-24",
-      "nome": "AFO",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-02-19",
-      "nome": "FBB",
-      "grupo": "JSI",
-      "resol": "2026-05-18",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-02-19",
-      "nome": "MBB-FBB",
-      "grupo": "JSI",
-      "resol": "2026-05-18",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-02-06",
-      "nome": "IC-MAM",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-02-06",
-      "nome": "BC-MAM",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-02-05",
-      "nome": "AVS-BVS",
-      "grupo": "1",
-      "resol": "2026-06-03",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-02-02",
-      "nome": "VB-MAM",
-      "grupo": "1",
-      "resol": "2026-06-03",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-01-29",
-      "nome": "CPR",
-      "grupo": "1",
-      "resol": "2026-05-27",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-01-28",
-      "nome": "EG",
-      "grupo": "1",
-      "resol": "2026-05-27",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-01-26",
-      "nome": "DFA-HEF",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-01-26",
-      "nome": "TVA",
-      "grupo": "1",
-      "resol": "2026-05-25",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-01-09",
-      "nome": "BMF-AFJ",
-      "grupo": "1",
-      "resol": "2026-02-19",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-01-09",
-      "nome": "MMF-AFJ",
-      "grupo": "1",
-      "resol": "2026-02-19",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-01-09",
-      "nome": "GMF-AFJ",
-      "grupo": "1",
-      "resol": "2026-02-19",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-01-09",
-      "nome": "GMM-AFJ",
-      "grupo": "1",
-      "resol": "2026-02-19",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2026-01-06",
-      "nome": "NSF",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-12-30",
-      "nome": "NNG",
-      "grupo": "1",
-      "resol": "2026-02-19",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-12-30",
-      "nome": "DGS",
-      "grupo": "JSI",
-      "resol": "2026-01-05",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-12-24",
-      "nome": "NSS-ISIS",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-12-15",
-      "nome": "LCR",
-      "grupo": "JSI",
-      "resol": "2026-02-05",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-12-15",
-      "nome": "MB",
-      "grupo": "2",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-12-11",
-      "nome": "EHPSBC-CPS",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-12-09",
-      "nome": "ACDTL-CT",
-      "grupo": "JSI",
-      "resol": "2026-01-13",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-11-25",
-      "nome": "RHL",
-      "grupo": "JSI",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-11-11",
-      "nome": "VMR-LP",
-      "grupo": "1",
-      "resol": "2026-02-11",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-11-04",
-      "nome": "JCG-KC",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-10-29",
-      "nome": "VCB-DCG",
-      "grupo": "JSI",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-10-27",
-      "nome": "APSN",
-      "grupo": "2",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-10-22",
-      "nome": "LBL",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-10-21",
-      "nome": "CVCA-BCA",
-      "grupo": "JSI",
-      "resol": "2025-12-04",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-10-08",
-      "nome": "MRE-TD",
+      "entrega": "2025-04-04",
+      "nome": "Gu",
       "grupo": "-",
       "resol": null,
       "planilha": "JSI",
       "origem": "JSI"
     },
     {
-      "entrega": "2025-10-08",
-      "nome": "LBS-RB",
+      "entrega": "2025-04-07",
+      "nome": "NFL",
       "grupo": "JSI",
-      "resol": "2025-12-03",
+      "resol": "2025-09-17",
       "planilha": "JSI",
       "origem": "JSI"
     },
     {
-      "entrega": "2025-10-08",
-      "nome": "TPB-RB",
+      "entrega": "2025-04-07",
+      "nome": "LRPT",
+      "grupo": "-",
+      "resol": "2025-09-08",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-04-07",
+      "nome": "WG",
+      "grupo": "-",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-04-07",
+      "nome": "LCM",
       "grupo": "JSI",
-      "resol": "2025-12-03",
+      "resol": "2025-11-14",
       "planilha": "JSI",
       "origem": "JSI"
     },
     {
-      "entrega": "2025-10-07",
-      "nome": "GSCC-LP",
-      "grupo": "-",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-10-07",
-      "nome": "AGS-AGP",
-      "grupo": "-",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-10-07",
-      "nome": "APG-AGP",
-      "grupo": "-",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-09-25",
-      "nome": "JS",
+      "entrega": "2025-04-08",
+      "nome": "WA-BRR",
       "grupo": "JSI",
-      "resol": "2025-10-30",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-09-22",
-      "nome": "EMM-RMM",
-      "grupo": "JSI",
-      "resol": "2025-12-03",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-09-19",
-      "nome": "GFD",
-      "grupo": "JSI",
-      "resol": "2025-10-29",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-09-18",
-      "nome": "JHSE-CAS",
-      "grupo": "2",
-      "resol": "2025-10-29",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-09-12",
-      "nome": "MAE-ASA",
-      "grupo": "1",
-      "resol": "2025-12-03",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-09-11",
-      "nome": "LCPG-LP",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-09-09",
-      "nome": "KC",
-      "grupo": "1",
-      "resol": "2026-02-06",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-09-08",
-      "nome": "SRG",
-      "grupo": "1",
-      "resol": "2025-10-29",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-08-28",
-      "nome": "ACO",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-08-23",
-      "nome": "MPG-APG",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-08-22",
-      "nome": "LCC-RM",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-08-21",
-      "nome": "VPM-LP",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-08-21",
-      "nome": "GCGM-LP",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-08-20",
-      "nome": "MLC-RCP",
-      "grupo": "2",
-      "resol": "2025-08-26",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-08-19",
-      "nome": "RPC",
-      "grupo": "2",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-08-19",
-      "nome": "RPC - IRMAO DO RPC",
-      "grupo": "2",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-08-15",
-      "nome": "LPFG-LP",
-      "grupo": "-",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-08-15",
-      "nome": "KFCG",
-      "grupo": "-",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-08-15",
-      "nome": "MU-APG",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-08-12",
-      "nome": "MS",
-      "grupo": "-",
-      "resol": "2025-12-12",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-08-01",
-      "nome": "MAASFL-NFL",
-      "grupo": "ADM",
-      "resol": "2026-01-12",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-07-28",
-      "nome": "LG",
-      "grupo": "2",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-07-07",
-      "nome": "FNS",
-      "grupo": "-",
-      "resol": "2026-01-29",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-07-06",
-      "nome": "JLBR-CBR",
-      "grupo": "1",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-07-02",
-      "nome": "LSS",
-      "grupo": "-",
-      "resol": "2026-02-03",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-06-26",
-      "nome": "LPS",
-      "grupo": "-",
-      "resol": "2026-01-30",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-06-25",
-      "nome": "DTHRL-RH",
-      "grupo": "JSI",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-06-24",
-      "nome": "CLNS",
-      "grupo": "-",
-      "resol": "2026-02-03",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-06-24",
-      "nome": "INM",
-      "grupo": "-",
-      "resol": "2026-02-03",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-06-18",
-      "nome": "VNTO",
-      "grupo": "-",
-      "resol": "2026-02-03",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-06-16",
-      "nome": "RER",
-      "grupo": "-",
-      "resol": "2026-02-02",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-06-16",
-      "nome": "R.E.R.",
-      "grupo": "-",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-05-30",
-      "nome": "RGD",
-      "grupo": "2",
-      "resol": "2025-11-27",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-05-23",
-      "nome": "RML-BMC",
-      "grupo": "2",
-      "resol": "2025-11-27",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-05-09",
-      "nome": "DDSD",
-      "grupo": "JSI",
-      "resol": "2025-09-23",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-05-05",
-      "nome": "NEA",
-      "grupo": "JSI",
-      "resol": "2025-11-13",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-04-24",
-      "nome": "GBCB",
-      "grupo": "-",
-      "resol": "2025-09-18",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-04-17",
-      "nome": "KAFB",
-      "grupo": "JSI",
-      "resol": "2025-09-01",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-04-17",
-      "nome": "TBL",
-      "grupo": "JSI",
-      "resol": "2025-11-18",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-04-15",
-      "nome": "PRDCJ",
-      "grupo": "JSI",
-      "resol": "2025-09-02",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-04-14",
-      "nome": "JDPB",
-      "grupo": "-",
-      "resol": "2025-09-01",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-04-14",
-      "nome": "SDCDBN",
-      "grupo": "1",
-      "resol": null,
+      "resol": "2025-09-17",
       "planilha": "JSI",
       "origem": "JSI"
     },
@@ -2952,130 +1882,1218 @@
       "origem": "JSI"
     },
     {
-      "entrega": "2025-04-08",
-      "nome": "WA-BRR",
-      "grupo": "JSI",
-      "resol": "2025-09-17",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-04-07",
-      "nome": "NFL",
-      "grupo": "JSI",
-      "resol": "2025-09-17",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-04-07",
-      "nome": "LRPT",
+      "entrega": "2025-04-14",
+      "nome": "JDPB",
       "grupo": "-",
-      "resol": "2025-09-08",
+      "resol": "2025-09-01",
       "planilha": "JSI",
       "origem": "JSI"
     },
     {
-      "entrega": "2025-04-07",
-      "nome": "WG",
-      "grupo": "-",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-04-07",
-      "nome": "LCM",
-      "grupo": "JSI",
-      "resol": "2025-11-14",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-04-04",
-      "nome": "Gu",
-      "grupo": "-",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-04-02",
-      "nome": "SMR",
-      "grupo": "-",
-      "resol": "2025-12-22",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-03-28",
-      "nome": "WRV",
-      "grupo": "JSI",
-      "resol": "2025-12-19",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-03-26",
-      "nome": "NTL",
-      "grupo": "-",
-      "resol": "2025-12-22",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-03-26",
-      "nome": "PECC-RC",
-      "grupo": "JSI",
-      "resol": null,
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-03-17",
-      "nome": "CBR E PCBR",
-      "grupo": "1",
-      "resol": "2025-09-05",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-03-07",
-      "nome": "MCGM -LP",
-      "grupo": "-",
-      "resol": "2025-11-11",
-      "planilha": "JSI",
-      "origem": "JSI"
-    },
-    {
-      "entrega": "2025-02-28",
-      "nome": "FSR",
+      "entrega": "2025-04-14",
+      "nome": "SDCDBN",
       "grupo": "1",
       "resol": null,
       "planilha": "JSI",
       "origem": "JSI"
     },
     {
-      "entrega": "2025-02-26",
-      "nome": "GPL",
+      "entrega": "2025-04-15",
+      "nome": "PRDCJ",
+      "grupo": "JSI",
+      "resol": "2025-09-02",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-04-17",
+      "nome": "KAFB",
+      "grupo": "JSI",
+      "resol": "2025-09-01",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-04-17",
+      "nome": "TBL",
+      "grupo": "JSI",
+      "resol": "2025-11-18",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-04-24",
+      "nome": "GBCB",
+      "grupo": "-",
+      "resol": "2025-09-18",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-05-05",
+      "nome": "NEA",
+      "grupo": "JSI",
+      "resol": "2025-11-13",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-05-09",
+      "nome": "DDSD",
+      "grupo": "JSI",
+      "resol": "2025-09-23",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-05-23",
+      "nome": "RML-BMC",
+      "grupo": "2",
+      "resol": "2025-11-27",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-05-30",
+      "nome": "RGD",
+      "grupo": "2",
+      "resol": "2025-11-27",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-06-16",
+      "nome": "RER",
+      "grupo": "-",
+      "resol": "2026-02-02",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-06-16",
+      "nome": "R.E.R.",
+      "grupo": "-",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-06-18",
+      "nome": "VNTO",
+      "grupo": "-",
+      "resol": "2026-02-03",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-06-24",
+      "nome": "CLNS",
+      "grupo": "-",
+      "resol": "2026-02-03",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-06-24",
+      "nome": "INM",
+      "grupo": "-",
+      "resol": "2026-02-03",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-06-25",
+      "nome": "DTHRL-RH",
       "grupo": "JSI",
       "resol": null,
       "planilha": "JSI",
       "origem": "JSI"
     },
     {
-      "entrega": "2025-02-10",
-      "nome": "JCA",
+      "entrega": "2025-06-26",
+      "nome": "LPS",
+      "grupo": "-",
+      "resol": "2026-01-30",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-07-02",
+      "nome": "LSS",
+      "grupo": "-",
+      "resol": "2026-02-03",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-07-06",
+      "nome": "JLBR-CBR",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-07-07",
+      "nome": "FNS",
+      "grupo": "-",
+      "resol": "2026-01-29",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-07-28",
+      "nome": "LG",
+      "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-08-01",
+      "nome": "MAASFL-NFL",
+      "grupo": "ADM",
+      "resol": "2026-01-12",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-08-12",
+      "nome": "MS",
+      "grupo": "-",
+      "resol": "2025-12-12",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-08-15",
+      "nome": "LPFG-LP",
+      "grupo": "-",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-08-15",
+      "nome": "KFCG",
+      "grupo": "-",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-08-15",
+      "nome": "MU-APG",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-08-19",
+      "nome": "RPC",
+      "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-08-19",
+      "nome": "RPC - IRMAO DO RPC",
+      "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-08-20",
+      "nome": "MLC-RCP",
+      "grupo": "2",
+      "resol": "2025-08-26",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-08-21",
+      "nome": "VPM-LP",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-08-21",
+      "nome": "GCGM-LP",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-08-22",
+      "nome": "LCC-RM",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-08-23",
+      "nome": "MPG-APG",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-08-28",
+      "nome": "ACO",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-09-08",
+      "nome": "SRG",
+      "grupo": "1",
+      "resol": "2025-10-29",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-09-09",
+      "nome": "KC",
+      "grupo": "1",
+      "resol": "2026-02-06",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-09-11",
+      "nome": "LCPG-LP",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-09-12",
+      "nome": "MAE-ASA",
+      "grupo": "1",
+      "resol": "2025-12-03",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-09-18",
+      "nome": "JHSE-CAS",
+      "grupo": "2",
+      "resol": "2025-10-29",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-09-19",
+      "nome": "GFD",
+      "grupo": "JSI",
+      "resol": "2025-10-29",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-09-22",
+      "nome": "EMM-RMM",
+      "grupo": "JSI",
+      "resol": "2025-12-03",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-09-25",
+      "nome": "JS",
+      "grupo": "JSI",
+      "resol": "2025-10-30",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-10-07",
+      "nome": "GSCC-LP",
+      "grupo": "-",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-10-07",
+      "nome": "AGS-AGP",
+      "grupo": "-",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-10-07",
+      "nome": "APG-AGP",
+      "grupo": "-",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-10-08",
+      "nome": "MRE-TD",
+      "grupo": "-",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-10-08",
+      "nome": "LBS-RB",
+      "grupo": "JSI",
+      "resol": "2025-12-03",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-10-08",
+      "nome": "TPB-RB",
+      "grupo": "JSI",
+      "resol": "2025-12-03",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-10-21",
+      "nome": "CVCA-BCA",
+      "grupo": "JSI",
+      "resol": "2025-12-04",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-10-22",
+      "nome": "LBL",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-10-27",
+      "nome": "APSN",
+      "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-10-29",
+      "nome": "VCB-DCG",
       "grupo": "JSI",
       "resol": null,
       "planilha": "JSI",
       "origem": "JSI"
     },
     {
-      "entrega": "2025-01-27",
-      "nome": "RDTL-CT",
+      "entrega": "2025-11-04",
+      "nome": "JCG-KC",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-11-11",
+      "nome": "VMR-LP",
+      "grupo": "1",
+      "resol": "2026-02-11",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-11-25",
+      "nome": "RHL",
       "grupo": "JSI",
-      "resol": "2025-04-07",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-12-09",
+      "nome": "ACDTL-CT",
+      "grupo": "JSI",
+      "resol": "2026-01-13",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-12-11",
+      "nome": "EHPSBC-CPS",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-12-15",
+      "nome": "LCR",
+      "grupo": "JSI",
+      "resol": "2026-02-05",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-12-15",
+      "nome": "MB",
+      "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-12-24",
+      "nome": "NSS-ISIS",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-12-30",
+      "nome": "NNG",
+      "grupo": "1",
+      "resol": "2026-02-19",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2025-12-30",
+      "nome": "DGS",
+      "grupo": "JSI",
+      "resol": "2026-01-05",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-01-06",
+      "nome": "NSF",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-01-09",
+      "nome": "BMF-AFJ",
+      "grupo": "1",
+      "resol": "2026-02-19",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-01-09",
+      "nome": "MMF-AFJ",
+      "grupo": "1",
+      "resol": "2026-02-19",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-01-09",
+      "nome": "GMF-AFJ",
+      "grupo": "1",
+      "resol": "2026-02-19",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-01-09",
+      "nome": "GMM-AFJ",
+      "grupo": "1",
+      "resol": "2026-02-19",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-01-26",
+      "nome": "DFA-HEF",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-01-26",
+      "nome": "TVA",
+      "grupo": "1",
+      "resol": "2026-05-25",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-01-28",
+      "nome": "EG",
+      "grupo": "1",
+      "resol": "2026-05-27",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-01-29",
+      "nome": "CPR",
+      "grupo": "1",
+      "resol": "2026-05-27",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-02-02",
+      "nome": "VB-MAM",
+      "grupo": "1",
+      "resol": "2026-06-03",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-02-05",
+      "nome": "AVS-BVS",
+      "grupo": "1",
+      "resol": "2026-06-03",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-02-06",
+      "nome": "IC-MAM",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-02-06",
+      "nome": "BC-MAM",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-02-19",
+      "nome": "FBB",
+      "grupo": "JSI",
+      "resol": "2026-05-18",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-02-19",
+      "nome": "MBB-FBB",
+      "grupo": "JSI",
+      "resol": "2026-05-18",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-02-24",
+      "nome": "AFO",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-03-18",
+      "nome": "MLME",
+      "grupo": "1",
+      "resol": "2026-03-18",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-03-18",
+      "nome": "RME",
+      "grupo": "1",
+      "resol": "2026-03-18",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-03-18",
+      "nome": "FME",
+      "grupo": "1",
+      "resol": "2026-03-18",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-03-18",
+      "nome": "KMSD-WD",
+      "grupo": "JSI",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-03-20",
+      "nome": "CSVM",
+      "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-03-20",
+      "nome": "NSVM",
+      "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-03-24",
+      "nome": "WIR-LF",
+      "grupo": "1",
+      "resol": "2026-05-05",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-03-25",
+      "nome": "LML",
+      "grupo": "2",
+      "resol": "2026-05-05",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-03-26",
+      "nome": "YDF",
+      "grupo": "JSI",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-03-30",
+      "nome": "LH",
+      "grupo": "1",
+      "resol": "2026-05-15",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-03-31",
+      "nome": "TPQ",
+      "grupo": "2",
+      "resol": "2026-05-11",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-03-31",
+      "nome": "JPWT",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-04-08",
+      "nome": "JT",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-04-21",
+      "nome": "AQS",
+      "grupo": "1",
+      "resol": "2026-08-25",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-04-28",
+      "nome": "BAM",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-04-30",
+      "nome": "FC",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-05-04",
+      "nome": "BPF",
+      "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-05-04",
+      "nome": "RPF",
+      "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-05-06",
+      "nome": "LB",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-05-06",
+      "nome": "JB",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-05-12",
+      "nome": "CPS",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-05-13",
+      "nome": "MLP",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-05-14",
+      "nome": "LKD",
+      "grupo": "2",
+      "resol": "2026-08-27",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-05-19",
+      "nome": "DFP",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-05-19",
+      "nome": "ARJ",
+      "grupo": "1",
+      "resol": "2026-09-04",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-05-21",
+      "nome": "SRMO LMO",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-05-25",
+      "nome": "AZS-LFTS",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-05-26",
+      "nome": "CCJC",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-05-27",
+      "nome": "RMI",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-05-27",
+      "nome": "APT-4689",
+      "grupo": "JSI",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-05-29",
+      "nome": "SLA",
+      "grupo": "JSI",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-06-01",
+      "nome": "MRE-TD",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-06-08",
+      "nome": "LAMC",
+      "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-06-11",
+      "nome": "NTC",
+      "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-06-12",
+      "nome": "TES",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-06-12",
+      "nome": "GPAC",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-06-15",
+      "nome": "NMP",
+      "grupo": "JSI",
+      "resol": "2026-09-25",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-06-16",
+      "nome": "ANT",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-06-19",
+      "nome": "NLS",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-06-19",
+      "nome": "MLS-NLS",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-06-19",
+      "nome": "SFP-SP",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-06-22",
+      "nome": "ABLB",
+      "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-06-23",
+      "nome": "CAG",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-06-23",
+      "nome": "RFRZ",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-06-23",
+      "nome": "ESM",
+      "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-06-23",
+      "nome": "ELS-KV",
+      "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-06-25",
+      "nome": "BMO",
+      "grupo": "2",
+      "resol": "2026-09-23",
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-07-02",
+      "nome": "NBV",
+      "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-07-07",
+      "nome": "ASP-MLP",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-07-09",
+      "nome": "ABSC-RHS",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-07-09",
+      "nome": "VRG",
+      "grupo": "JSI",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-07-30",
+      "nome": "MGD",
+      "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-07-31",
+      "nome": "GGA",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-08-17",
+      "nome": "VCB",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-08-20",
+      "nome": "PVDC",
+      "grupo": "JSI",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-08-20",
+      "nome": "AGS-AGP",
+      "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-08-21",
+      "nome": "RGC",
+      "grupo": "JSI",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-08-26",
+      "nome": "NSD-CAS",
+      "grupo": "JSI",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-08-28",
+      "nome": "CGR",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-09-03",
+      "nome": "FDPC",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-09-08",
+      "nome": "PLMC-NFL",
+      "grupo": "JSI",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-09-09",
+      "nome": "ARA-CC",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-09-10",
+      "nome": "TMCL",
+      "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-09-15",
+      "nome": "ESC-TSS",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-09-15",
+      "nome": "PCA",
+      "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-09-16",
+      "nome": "ARG",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-09-17",
+      "nome": "RAA",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-09-22",
+      "nome": "CAMC",
+      "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-09-23",
+      "nome": "ISC",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-09-29",
+      "nome": "SG",
+      "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-10-01",
+      "nome": "EGC",
+      "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-10-07",
+      "nome": "GSBG",
+      "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-10-08",
+      "nome": "TMSC",
+      "grupo": "JSI",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-10-19",
+      "nome": "FME",
+      "grupo": "1",
+      "resol": null,
       "planilha": "JSI",
       "origem": "JSI"
     },
