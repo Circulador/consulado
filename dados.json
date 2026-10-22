@@ -1,15 +1,15 @@
 {
   "meta": {
-    "generated_at": "2026-10-22T16:49:49.046Z",
+    "generated_at": "2026-10-22T21:18:36.109Z",
     "source": "OneDrive (B + JSI + P, filas segregadas)",
     "sheets_raw": [
       "B: 199",
-      "JSI: 174",
+      "JSI: 175",
       "P: 25"
     ],
-    "raw_total": 398,
+    "raw_total": 399,
     "duplicates_removed": 2,
-    "homonym_warnings": 10,
+    "homonym_warnings": 11,
     "homonyms": [
       {
         "nome": "AGS-AGP",
@@ -111,14 +111,24 @@
           "2026-03-18",
           "2026-10-19"
         ]
+      },
+      {
+        "nome": "ABLB",
+        "planilha": "JSI",
+        "tipo": "homonimo",
+        "registros": 2,
+        "entregas": [
+          "2026-06-22",
+          "2026-10-20"
+        ]
       }
     ],
     "by_sheet": {
       "B": 199,
-      "JSI": 173,
+      "JSI": 174,
       "P": 24
     },
-    "total": 396
+    "total": 397
   },
   "records": [
     {
@@ -1237,7 +1247,7 @@
       "entrega": "2025-09-25",
       "nome": "ABLB",
       "grupo": "2",
-      "resol": "2026-06-22",
+      "resol": "2026-10-20",
       "planilha": "B",
       "origem": "B"
     },
@@ -3093,6 +3103,14 @@
       "entrega": "2026-10-19",
       "nome": "FME",
       "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-10-20",
+      "nome": "ABLB",
+      "grupo": "2",
       "resol": null,
       "planilha": "JSI",
       "origem": "JSI"
