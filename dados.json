@@ -1,15 +1,15 @@
 {
   "meta": {
-    "generated_at": "2026-10-23T16:41:23.006Z",
+    "generated_at": "2026-10-23T21:08:40.840Z",
     "source": "OneDrive (B + JSI + P, filas segregadas)",
     "sheets_raw": [
       "B: 199",
-      "JSI: 175",
+      "JSI: 176",
       "P: 25"
     ],
-    "raw_total": 399,
+    "raw_total": 400,
     "duplicates_removed": 2,
-    "homonym_warnings": 11,
+    "homonym_warnings": 12,
     "homonyms": [
       {
         "nome": "AGS-AGP",
@@ -113,6 +113,16 @@
         ]
       },
       {
+        "nome": "SFP-SP",
+        "planilha": "JSI",
+        "tipo": "homonimo",
+        "registros": 2,
+        "entregas": [
+          "2026-06-19",
+          "2026-10-22"
+        ]
+      },
+      {
         "nome": "ABLB",
         "planilha": "JSI",
         "tipo": "homonimo",
@@ -125,10 +135,10 @@
     ],
     "by_sheet": {
       "B": 199,
-      "JSI": 174,
+      "JSI": 175,
       "P": 24
     },
-    "total": 397
+    "total": 398
   },
   "records": [
     {
@@ -3111,6 +3121,14 @@
       "entrega": "2026-10-20",
       "nome": "ABLB",
       "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-10-22",
+      "nome": "SFP-SP",
+      "grupo": "JSI",
       "resol": null,
       "planilha": "JSI",
       "origem": "JSI"
