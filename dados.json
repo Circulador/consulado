@@ -1,13 +1,13 @@
 {
   "meta": {
-    "generated_at": "2026-10-28T12:21:04.797Z",
+    "generated_at": "2026-10-28T22:19:49.607Z",
     "source": "OneDrive (B + JSI + P, filas segregadas)",
     "sheets_raw": [
       "B: 199",
-      "JSI: 176",
+      "JSI: 177",
       "P: 25"
     ],
-    "raw_total": 400,
+    "raw_total": 401,
     "duplicates_removed": 2,
     "homonym_warnings": 12,
     "homonyms": [
@@ -135,10 +135,10 @@
     ],
     "by_sheet": {
       "B": 199,
-      "JSI": 175,
+      "JSI": 176,
       "P": 24
     },
-    "total": 398
+    "total": 399
   },
   "records": [
     {
@@ -1545,7 +1545,7 @@
       "entrega": "2025-10-31",
       "nome": "MNS",
       "grupo": "2",
-      "resol": null,
+      "resol": "2026-10-28",
       "planilha": "B",
       "origem": "B"
     },
@@ -2737,7 +2737,7 @@
       "entrega": "2026-05-25",
       "nome": "AZS-LFTS",
       "grupo": "1",
-      "resol": null,
+      "resol": "2026-10-28",
       "planilha": "JSI",
       "origem": "JSI"
     },
@@ -3129,6 +3129,14 @@
       "entrega": "2026-10-22",
       "nome": "SFP-SP",
       "grupo": "JSI",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-10-28",
+      "nome": "MNS",
+      "grupo": "2",
       "resol": null,
       "planilha": "JSI",
       "origem": "JSI"
