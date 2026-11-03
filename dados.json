@@ -1,13 +1,13 @@
 {
   "meta": {
-    "generated_at": "2026-11-03T13:49:29.307Z",
+    "generated_at": "2026-11-03T22:59:37.877Z",
     "source": "OneDrive (B + JSI + P, filas segregadas)",
     "sheets_raw": [
-      "B: 199",
-      "JSI: 177",
+      "B: 200",
+      "JSI: 178",
       "P: 26"
     ],
-    "raw_total": 402,
+    "raw_total": 404,
     "duplicates_removed": 2,
     "homonym_warnings": 12,
     "homonyms": [
@@ -134,11 +134,11 @@
       }
     ],
     "by_sheet": {
-      "B": 199,
-      "JSI": 176,
+      "B": 200,
+      "JSI": 177,
       "P": 25
     },
-    "total": 400
+    "total": 402
   },
   "records": [
     {
@@ -1734,6 +1734,14 @@
       "origem": "B"
     },
     {
+      "entrega": "2026-11-03",
+      "nome": "MHCA",
+      "grupo": "2",
+      "resol": null,
+      "planilha": "B",
+      "origem": "B"
+    },
+    {
       "entrega": "2025-01-27",
       "nome": "RDTL-CT",
       "grupo": "JSI",
@@ -2833,7 +2841,7 @@
       "entrega": "2026-06-19",
       "nome": "NLS",
       "grupo": "1",
-      "resol": null,
+      "resol": "2026-10-20",
       "planilha": "JSI",
       "origem": "JSI"
     },
@@ -2841,7 +2849,7 @@
       "entrega": "2026-06-19",
       "nome": "MLS-NLS",
       "grupo": "1",
-      "resol": null,
+      "resol": "2026-10-20",
       "planilha": "JSI",
       "origem": "JSI"
     },
@@ -3137,6 +3145,14 @@
       "entrega": "2026-10-28",
       "nome": "MNS",
       "grupo": "2",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-10-30",
+      "nome": "RQ",
+      "grupo": "1",
       "resol": null,
       "planilha": "JSI",
       "origem": "JSI"
