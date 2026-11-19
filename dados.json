@@ -1,13 +1,13 @@
 {
   "meta": {
-    "generated_at": "2026-11-18T15:18:30.725Z",
+    "generated_at": "2026-11-19T00:00:09.224Z",
     "source": "OneDrive (B + JSI + P, filas segregadas)",
     "sheets_raw": [
       "B: 200",
-      "JSI: 180",
+      "JSI: 181",
       "P: 26"
     ],
-    "raw_total": 406,
+    "raw_total": 407,
     "duplicates_removed": 2,
     "homonym_warnings": 13,
     "homonyms": [
@@ -145,10 +145,10 @@
     ],
     "by_sheet": {
       "B": 200,
-      "JSI": 179,
+      "JSI": 180,
       "P": 25
     },
-    "total": 404
+    "total": 405
   },
   "records": [
     {
@@ -1619,7 +1619,7 @@
       "entrega": "2025-11-14",
       "nome": "AAR",
       "grupo": "1",
-      "resol": null,
+      "resol": "2026-11-18",
       "planilha": "B",
       "origem": "B"
     },
@@ -3178,6 +3178,14 @@
     {
       "entrega": "2026-11-12",
       "nome": "JPS-LPS",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-11-18",
+      "nome": "AAR",
       "grupo": "1",
       "resol": null,
       "planilha": "JSI",
