@@ -1,15 +1,15 @@
 {
   "meta": {
-    "generated_at": "2026-11-19T07:11:54.192Z",
+    "generated_at": "2026-11-19T20:10:09.377Z",
     "source": "OneDrive (B + JSI + P, filas segregadas)",
     "sheets_raw": [
-      "B: 200",
-      "JSI: 181",
-      "P: 26"
+      "B: 201",
+      "JSI: 182",
+      "P: 27"
     ],
-    "raw_total": 407,
+    "raw_total": 410,
     "duplicates_removed": 2,
-    "homonym_warnings": 13,
+    "homonym_warnings": 14,
     "homonyms": [
       {
         "nome": "AGS-AGP",
@@ -123,6 +123,16 @@
         ]
       },
       {
+        "nome": "MLP",
+        "planilha": "JSI",
+        "tipo": "homonimo",
+        "registros": 2,
+        "entregas": [
+          "2026-05-13",
+          "2026-11-19"
+        ]
+      },
+      {
         "nome": "SFP-SP",
         "planilha": "JSI",
         "tipo": "homonimo",
@@ -144,11 +154,11 @@
       }
     ],
     "by_sheet": {
-      "B": 200,
-      "JSI": 180,
-      "P": 25
+      "B": 201,
+      "JSI": 181,
+      "P": 26
     },
-    "total": 405
+    "total": 408
   },
   "records": [
     {
@@ -1627,7 +1637,7 @@
       "entrega": "2025-11-14",
       "nome": "MLP",
       "grupo": "1",
-      "resol": "2026-05-13",
+      "resol": "2026-11-19",
       "planilha": "B",
       "origem": "B"
     },
@@ -1746,6 +1756,14 @@
     {
       "entrega": "2026-11-03",
       "nome": "MHCA",
+      "grupo": "2",
+      "resol": null,
+      "planilha": "B",
+      "origem": "B"
+    },
+    {
+      "entrega": "2026-11-17",
+      "nome": "LLGCA-MH",
       "grupo": "2",
       "resol": null,
       "planilha": "B",
@@ -3192,6 +3210,14 @@
       "origem": "JSI"
     },
     {
+      "entrega": "2026-11-19",
+      "nome": "MLP",
+      "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
       "entrega": "2024-10-24",
       "nome": "JSP - RPR",
       "grupo": "CMP",
@@ -3387,6 +3413,14 @@
       "entrega": "2026-10-28",
       "nome": "MPC-JPC",
       "grupo": "1",
+      "resol": null,
+      "planilha": "P",
+      "origem": "P"
+    },
+    {
+      "entrega": "2026-11-18",
+      "nome": "MHCA",
+      "grupo": "2",
       "resol": null,
       "planilha": "P",
       "origem": "P"
