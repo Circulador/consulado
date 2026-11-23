@@ -1,13 +1,13 @@
 {
   "meta": {
-    "generated_at": "2026-11-23T06:27:41.850Z",
+    "generated_at": "2026-11-23T23:33:49.407Z",
     "source": "OneDrive (B + JSI + P, filas segregadas)",
     "sheets_raw": [
       "B: 201",
-      "JSI: 182",
+      "JSI: 185",
       "P: 27"
     ],
-    "raw_total": 410,
+    "raw_total": 413,
     "duplicates_removed": 2,
     "homonym_warnings": 14,
     "homonyms": [
@@ -155,10 +155,10 @@
     ],
     "by_sheet": {
       "B": 201,
-      "JSI": 181,
+      "JSI": 184,
       "P": 26
     },
-    "total": 408
+    "total": 411
   },
   "records": [
     {
@@ -1605,7 +1605,7 @@
       "entrega": "2025-11-12",
       "nome": "PDA-FRSAC",
       "grupo": "ADM",
-      "resol": null,
+      "resol": "2026-11-19",
       "planilha": "B",
       "origem": "B"
     },
@@ -1613,7 +1613,7 @@
       "entrega": "2025-11-12",
       "nome": "RSAC-FRSAC",
       "grupo": "ADM",
-      "resol": null,
+      "resol": "2026-11-19",
       "planilha": "B",
       "origem": "B"
     },
@@ -1621,7 +1621,7 @@
       "entrega": "2025-11-12",
       "nome": "FRSAC",
       "grupo": "ADM",
-      "resol": null,
+      "resol": "2026-11-19",
       "planilha": "B",
       "origem": "B"
     },
@@ -3213,6 +3213,30 @@
       "entrega": "2026-11-19",
       "nome": "MLP",
       "grupo": "1",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-11-19",
+      "nome": "PDA-FRSAC",
+      "grupo": "ADM",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-11-19",
+      "nome": "RSAC-FRSAC",
+      "grupo": "ADM",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-11-19",
+      "nome": "FRSAC",
+      "grupo": "ADM",
       "resol": null,
       "planilha": "JSI",
       "origem": "JSI"
