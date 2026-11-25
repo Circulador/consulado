@@ -1,13 +1,13 @@
 {
   "meta": {
-    "generated_at": "2026-11-25T07:35:45.904Z",
+    "generated_at": "2026-11-25T21:18:06.560Z",
     "source": "OneDrive (B + JSI + P, filas segregadas)",
     "sheets_raw": [
       "B: 201",
-      "JSI: 185",
+      "JSI: 186",
       "P: 27"
     ],
-    "raw_total": 413,
+    "raw_total": 414,
     "duplicates_removed": 2,
     "homonym_warnings": 14,
     "homonyms": [
@@ -155,10 +155,10 @@
     ],
     "by_sheet": {
       "B": 201,
-      "JSI": 184,
+      "JSI": 185,
       "P": 26
     },
-    "total": 411
+    "total": 412
   },
   "records": [
     {
@@ -1645,7 +1645,7 @@
       "entrega": "2025-11-17",
       "nome": "ACA",
       "grupo": "2",
-      "resol": null,
+      "resol": "2026-11-25",
       "planilha": "B",
       "origem": "B"
     },
@@ -3237,6 +3237,14 @@
       "entrega": "2026-11-19",
       "nome": "FRSAC",
       "grupo": "ADM",
+      "resol": null,
+      "planilha": "JSI",
+      "origem": "JSI"
+    },
+    {
+      "entrega": "2026-11-25",
+      "nome": "ACA",
+      "grupo": "2",
       "resol": null,
       "planilha": "JSI",
       "origem": "JSI"
